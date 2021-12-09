@@ -1,0 +1,222 @@
+.kitify-imagebox {
+	transition: all 0.4s ease;
+	--kitify-imagebox-icon-spacing: 10px;
+	--kitify-imagebox-icon-vspacing: 0
+}
+.kitify-imagebox > a {
+	text-decoration: none;
+	outline: 0
+}
+.kitify-imagebox__header {
+	transition: all 0.4s ease;
+	position: relative;
+	overflow: hidden;
+}
+.kitify-imagebox__header img {
+	display: block;
+	transition: all 0.4s ease;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden
+}
+.kitify-imagebox__content-align-center {
+	text-align: center
+}
+.kitify-imagebox__content-align-center img {
+	margin: 0 auto
+}
+.kitify-imagebox__content-align-left {
+	text-align: left
+}
+.kitify-imagebox__content-align-left img {
+	margin-right: auto
+}
+.kitify-imagebox__content-align-right {
+	text-align: right
+}
+.kitify-imagebox__content-align-right img {
+	margin-left: auto
+}
+.kitify-imagebox__body {
+	padding: 2rem
+}
+.kitify-imagebox__button_wrapper {
+	line-height: 1;
+	margin-top: 20px
+}
+.kitify-imagebox__title {
+	font-size: 1.5rem;
+	margin: 0 0 1rem;
+	transition: all 0.4s ease
+}
+.kitify-imagebox__title a {
+	color: inherit;
+	line-height: inherit;
+	text-decoration: inherit
+}
+.kitify-imagebox__title_text {
+	display: inline-block;
+	vertical-align: middle
+}
+.kitify-imagebox__title_text + .kitify-imagebox__title_icon {
+	padding-left: var(--kitify-imagebox-icon-spacing);
+	padding-right: 0
+}
+.kitify-imagebox__title_icon {
+	padding-right: var(--kitify-imagebox-icon-spacing);
+	transform: translateY(var(--kitify-imagebox-icon-vspacing));
+	display: inline-block;
+	vertical-align: middle
+}
+.kitify-imagebox__title_icon i {
+	display: inline-block;
+	vertical-align: middle
+}
+.kitify-imagebox__title_icon svg {
+	width: 1em;
+	height: 1em;
+	display: inline-block;
+	vertical-align: middle
+}
+.kitify-imagebox__desc {
+	margin: 0 0 1rem;
+	transition: all 0.4s ease
+}
+.kitify-imagebox.hover-border-bottom .kitify-imagebox__body {
+	position: relative
+}
+.kitify-imagebox.hover-border-bottom .kitify-imagebox__body:before {
+	position: absolute;
+	content: "";
+	bottom: -1px;
+	left: 0;
+	height: 3px;
+	width: 100%;
+	background-color: var(--kitify-primary-color);
+	transition: transform 250ms ease-in;
+	transform: scaleX(0);
+	transform-origin: 0 50%
+}
+.kitify-imagebox.hover-border-bottom.hover_from_left .kitify-imagebox__body {
+	transform-origin: right center
+}
+.kitify-imagebox.hover-border-bottom.hover_from_center .kitify-imagebox__body {
+	transform-origin: center center
+}
+.kitify-imagebox.hover-border-bottom:hover .kitify-imagebox__body:before {
+	transform: scaleX(1);
+	transform-origin: 100% 50%
+}
+.kitify-imagebox.hover-border-bottom:hover.hover_from_left .kitify-imagebox__body {
+	transform-origin: left center
+}
+.kitify-imagebox.hover-border-bottom:hover.hover_from_center .kitify-imagebox__body {
+	transform-origin: center center
+}
+.kitify-imagebox.style-modern {
+	overflow: inherit
+}
+.kitify-imagebox.style-modern .kitify-imagebox__body {
+	box-shadow: -1.216px 6.894px 25px 0 rgba(0, 0, 0, 0.07);
+	border-radius: 10px;
+	background-color: rgba(255, 255, 255, 0.9);
+	width: calc(100% - 40px);
+	padding: 30px 40px;
+	position: relative;
+	z-index: 2;
+	margin-top: -20px;
+	margin-left: auto;
+	margin-right: auto
+}
+.kitify-imagebox.floating-style .kitify-imagebox__body {
+	background-color: #fff;
+	box-shadow: -1.216px 6.894px 25px 0 rgba(0, 0, 0, 0.07);
+	border-radius: 10px;
+	width: calc(100% - 40px);
+	position: relative;
+	padding: 30px 35px;
+	transition: all 0.4s ease;
+	height: 90px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: -40px
+}
+.kitify-imagebox.floating-style .kitify-imagebox__body:after, .kitify-imagebox.floating-style .kitify-imagebox__body:before {
+	position: absolute;
+	content: "";
+	bottom: -10px;
+	left: 50%;
+	height: 100%;
+	transform: translateX(-50%);
+	width: calc(100% - 20px);
+	z-index: -1;
+	transition: all 0.4s ease;
+	opacity: 0;
+	border-radius: 10px;
+	background-color: #fff;
+	box-shadow: -1.216px 6.894px 25px 0 rgba(0, 0, 0, 0.07)
+}
+.kitify-imagebox.floating-style .kitify-imagebox__body:after {
+	bottom: -20px;
+	width: calc(100% - 40px);
+	z-index: -2
+}
+.kitify-imagebox.floating-style .kitify-iconbox__button_wrapper, .kitify-imagebox.floating-style .kitify-imagebox__desc {
+	opacity: 0;
+	transition: all 0.4s ease-in-out
+}
+.kitify-imagebox.floating-style:hover .kitify-imagebox__body {
+	height: 220px
+}
+.kitify-imagebox.floating-style:hover .kitify-imagebox__body:after, .kitify-imagebox.floating-style:hover .kitify-imagebox__body:before {
+	opacity: 1
+}
+.kitify-imagebox.floating-style:hover .kitify-iconbox__button_wrapper, .kitify-imagebox.floating-style:hover .kitify-imagebox__desc {
+	opacity: 1
+}
+.kitify-imagebox.style-sideline .kitify-imagebox__body {
+	padding-left: 0;
+	padding-right: 0
+}
+.kitify-imagebox.style-sideline .kitify-imagebox__body_inner {
+	padding-left: 40px;
+	padding-right: 40px;
+	border-style: solid;
+	border-color: var(--kitify-primary-color);
+	border-top-width: 0 !important;
+	border-bottom-width: 0 !important;
+	transition: border-color 0.3s
+}
+.rtl .kitify-imagebox.style-sideline.kitify-imagebox__content-align-center .kitify-imagebox__body_inner {
+	border-left-width: 0 !important
+}
+.ltr .kitify-imagebox.style-sideline.kitify-imagebox__content-align-center .kitify-imagebox__body_inner {
+	border-right-width: 0 !important
+}
+.kitify-imagebox.style-sideline.kitify-imagebox__content-align-left .kitify-imagebox__body_inner {
+	border-right-width: 0 !important
+}
+.kitify-imagebox.style-sideline.kitify-imagebox__content-align-right .kitify-imagebox__body_inner {
+	border-left-width: 0 !important
+}
+.kitify-imagebox.style-sideline .kitify-iconbox__button_wrapper {
+	padding-left: 40px;
+	padding-right: 40px
+}
+.kitify-imagebox.shadow-line .kitify-imagebox__body {
+	position: relative
+}
+.kitify-imagebox.shadow-line .kitify-imagebox__body:after, .kitify-imagebox.shadow-line .kitify-imagebox__body:before {
+	position: absolute;
+	content: "";
+	left: 0;
+	bottom: 0;
+	height: 100%;
+	background-color: #fff;
+	width: 10px;
+	box-shadow: -1.216px 6.894px 15px 0 rgba(0, 0, 0, 0.07)
+}
+.kitify-imagebox.shadow-line .kitify-imagebox__body:after {
+	left: inherit;
+	right: 0;
+	height: calc(100% + 40px)
+}

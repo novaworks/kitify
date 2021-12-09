@@ -1,0 +1,58 @@
+.kitify-pricing-table {
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    transition: background .3s,border-color .3s,border-radius .3s,box-shadow .3s;
+}
+.kitify-pricing-table__icon-box i {
+    display: -webkit-inline-flex;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center
+}
+.kitify-pricing-table__icon-box svg {
+    width: 1em;
+    height: 1em
+}
+.kitify-pricing-table__badge {
+    position: absolute;
+    right: 20px;
+    top: 20px
+}
+.kitify-pricing-table .kitify-pricing-table-button {
+    overflow: hidden;
+    vertical-align: middle
+}
+.kitify-pricing-table .kitify-pricing-table-button.button-full-size {
+    width: 100%
+}
+.kitify-pricing-table .button-icon {
+    margin-right: 5px
+}
+.kitify-pricing-table__price-val {
+    vertical-align: middle
+}
+.kitify-pricing-feature:not(:first-child):before {
+    content: "";
+    display: block;
+    height: 0;
+    margin-left: auto;
+    margin-right: auto
+}
+.kitify-pricing-feature__inner {
+    display: -webkit-inline-flex;
+    display: inline-flex;
+    align-items: center
+}
+.kitify-pricing-feature .item-bullet {
+    display: flex;
+    align-items: center;
+    margin-right: 0.8em
+}
+.item-bullet.novaicon-dot {
+    width: auto !important
+}
+.item-bullet svg {
+    width: 1em;
+    height: auto;
+}

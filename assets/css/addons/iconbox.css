@@ -1,0 +1,160 @@
+.kitify-iconbox {
+	padding: 60px 40px;
+	transition: all 0.4s ease;
+	background-color: #fff;
+	position: relative;
+	overflow: hidden
+}
+.kitify-iconbox:before {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-size: 101% 101%;
+	transition: all 0.4s ease;
+	left: 0;
+	top: 0
+}
+.kitify-iconbox__badge {
+	position: absolute;
+	line-height: 1;
+	z-index: 2
+}
+.kitify-iconbox__title {
+	margin: 0 0 0.5rem;
+	font-size: 1.5rem
+}
+.kitify-iconbox__image-hover {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	margin: 0
+}
+.kitify-iconbox__image-hover img {
+	opacity: 0;
+	width: 100%;
+	height: 100%;
+	transition: all 0.4s ease;
+	object-fit: cover
+}
+.kitify-iconbox__icon-hover {
+	position: absolute;
+	bottom: -50px;
+	right: 0;
+	opacity: 0;
+	transition: all 0.4s ease;
+	z-index: 1;
+	font-size: 6em
+}
+.kitify-iconbox__icon-hover .kitify-iconbox__water_icon {
+	font-size: 1em
+}
+.kitify-iconbox__box_icon {
+	display: inline-block;
+	line-height: 1em;
+	font-size: 4em;
+	text-align: center;
+}
+.kitify-iconbox__box_icon.icon_pos_top {
+	margin-bottom: 1.25rem
+}
+.kitify-iconbox__box_icon.icon_pos_left {
+	margin-right: 1.25rem
+}
+.kitify-iconbox__box_icon.icon_pos_right {
+	margin-left: 1.25rem
+}
+.kitify-iconbox__icon {
+	font-size: 1em;
+	line-height: inherit;
+	transition: all 0.4s
+}
+.kitify-iconbox__box_body {
+	flex-grow: 1
+}
+.kitify-iconbox__box_body, .kitify-iconbox__box_header {
+	position: relative;
+	z-index: 2
+}
+.kitify-iconbox__icon-align-left, .kitify-iconbox__icon-align-right {
+	display: flex;
+	flex-flow: row;
+	text-align: left
+}
+.kitify-iconbox__icon-align-right {
+	text-align: right;
+	flex-flow: row-reverse
+}
+.kitify-iconbox:hover .kitify-iconbox__icon-hover {
+	opacity: 1;
+	bottom: -20px
+}
+.kitify-iconbox svg {
+	width: 1em;
+	height: 1em;
+	display: inline-block;
+	vertical-align: middle;
+	stroke: currentColor;
+	fill: currentColor
+}
+.kitify-iconbox.gradient-active:before {
+	top: 0;
+	left: -101%;
+	transition: all 0.6s ease
+}
+.kitify-iconbox.gradient-active:hover:before {
+	left: 0
+}
+.kitify-iconbox.gradient-active.hover_from_top:before {
+	left: 0;
+	top: -100%
+}
+.kitify-iconbox.gradient-active.hover_from_top:hover:before {
+	top: 0
+}
+.kitify-iconbox.gradient-active.hover_from_right:before {
+	left: 100%
+}
+.kitify-iconbox.gradient-active.hover_from_right:hover:before {
+	left: 0
+}
+.kitify-iconbox.gradient-active.hover_from_bottom:before {
+	left: 0;
+	top: 100%
+}
+.kitify-iconbox.gradient-active.hover_from_bottom:hover:before {
+	top: 0
+}
+.kitify-iconbox.image-active:before {
+	background-color: transparent;
+	transition: all 0.4s ease;
+	z-index: 1
+}
+.kitify-iconbox.image-active:hover .kitify-iconbox__image-hover img {
+	opacity: 1;
+	transform: scale(1.06)
+}
+.kitify-iconbox__icon-align-righttitle .kitify-iconbox__box_header {
+	display: flex;
+	align-items: center;
+}
+.kitify-iconbox__icon-align-lefttitle .kitify-iconbox__box_header {
+	display: flex;
+	align-items: center;
+}
+.kitify-iconbox__icon-align-righttitle .kitify-iconbox__box_icon {
+	order: 2;
+}
+.kitify-iconbox .enable_hover_btn {
+	opacity: 0;
+	transform: translateY(20px);
+	visibility: hidden;
+	transition: all .3s;
+}
+.kitify-iconbox:hover .enable_hover_btn {
+	opacity: 1;
+	visibility: inherit;
+	transform: translateY(0);
+}

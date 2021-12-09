@@ -1,0 +1,124 @@
+#kitify-settings-page{
+  visibility: hidden
+}
+#kitify-settings-page.is-mounted{
+  visibility: visible
+}
+.kitify-settings-page{
+  margin: 25px 15px 0 15px
+}
+.kitify-settings-page .cx-vui-tabs-panel > .cx-vui-subtitle{
+  padding: 20px;
+  margin-top: 20px
+}
+.kitify-settings-page .cx-vui-tabs-panel > .cx-vui-subtitle:first-child{
+  margin-top: 0
+}
+.kitify-settings-page .kitify-avaliable-widgets-control .cx-vui-checkgroup{
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap
+}
+.kitify-settings-page .kitify-avaliable-widgets-control .cx-vui-checkgroup .cx-vui-checkbox-wrap{
+  width: 25%
+}
+@media screen and (max-width: 1200px){
+  .kitify-settings-page .kitify-avaliable-widgets-control .cx-vui-checkgroup .cx-vui-checkbox-wrap{
+    width: 50%
+  }
+}
+@media screen and (max-width: 782px){
+  .kitify-settings-page .kitify-avaliable-widgets-control .cx-vui-checkgroup .cx-vui-checkbox-wrap{
+    width: 100%
+  }
+}
+.kitify-settings-page .cx-vui-subtitle{
+  font-size: 15px;
+  line-height: 20px;
+  color: #23282d;
+  font-weight: 500
+}
+.kitify-settings-page__avaliable-controls{
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap;
+  margin-bottom: 40px
+}
+.kitify-settings-page__avaliable-controls:last-child{
+  margin-bottom: 0
+}
+.cx-vui-title{
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 20px;
+  width: 100%;
+  color: #000;
+}
+.kitify-settings-page__avaliable-controls .cx-vui-title {
+  margin-bottom: 20px;
+}
+.kitify-settings-page__avaliable-control{
+  width: 33.3333%
+}
+@media screen and (max-width: 1200px){
+  .kitify-settings-page__avaliable-control{
+    width: 50%
+  }
+}
+@media screen and (max-width: 782px){
+  .kitify-settings-page__avaliable-control{
+    width: 100%
+  }
+}
+.kitify-settings-page__avaliable-control .cx-vui-component__label{
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: normal
+}
+.kitify-settings-page__avaliable-control .cx-vui-component{
+  padding: 10px 0
+}
+.kitify-settings-page__disable-all-widgets{
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-bottom: 1px solid #ECECEC;
+  padding-bottom: 20px;
+  margin: 20px 0
+}
+.kitify-settings-page__disable-all-widgets .cx-vui-component__label{
+  margin-right: 10px
+}
+.cx-vui-component__meta {
+  align-self: center;
+}
+.cx-vui-title.cx-vui-title--divider,
+.cx-vui-subtitle.cx-vui-subtitle--divider {
+  border-bottom: 1px solid #DCDCDD;
+  padding-bottom: 10px;
+  margin-top: 10px;
+}
+.kitify-settings-page__fonts-manager .cx-vui-title {
+  margin-bottom: 30px;
+}

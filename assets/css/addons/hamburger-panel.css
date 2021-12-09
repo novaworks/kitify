@@ -1,0 +1,300 @@
+body:not(.kitify--js-ready) .kitify-hamburger-panel__instance {
+	display: none;
+}
+.kitify-hamburger-panel {
+	display: flex;
+	justify-content: center
+}
+.kitify-hamburger-panel__toggle {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	padding: 10px;
+	background-color: var(--kitify-primary-color);
+	box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2)
+}
+.kitify-hamburger-panel__toggle-icon {
+	font-size: 20px;
+	line-height: 1;
+	color: white
+}
+.kitify-hamburger-panel__toggle-label {
+	color: white;
+	font-size: 16px
+}
+.kitify-hamburger-panel__toggle-icon + .kitify-hamburger-panel__toggle-label {
+	margin-left: 10px
+}
+.kitify-hamburger-panel__icon {
+	display: flex;
+	justify-content: center;
+	align-items: center
+}
+.kitify-hamburger-panel__icon [class*=novaicon-] {
+	vertical-align: inherit;
+}
+.kitify-hamburger-panel__icon.icon-active {
+	display: none
+}
+.kitify-hamburger-panel__instance {
+	position: fixed;
+	display: flex;
+	align-items: stretch;
+	top: 0;
+	width: 500px;
+	max-width: 100%;
+	height: 100vh;
+	pointer-events: none;
+	z-index: 5
+}
+.admin-bar .kitify-hamburger-panel__instance {
+	top: 32px
+}
+.elementor-editor-active .kitify-hamburger-panel__instance {
+	z-index: 9999
+}
+.kitify-hamburger-panel__inner {
+	position: relative;
+	width: 100%;
+	overflow-y: auto;
+	background-color: white;
+	box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+	visibility: hidden;
+}
+.open-state .kitify-hamburger-panel__inner{
+	visibility: inherit;
+}
+.kitify-hamburger-panel__close-button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	line-height: 1;
+	cursor: pointer;
+	z-index: 100;
+	color: #54595f;
+	font-size: 20px
+}
+.kitify-hamburger-panel__cover {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	opacity: 0;
+	background-color: rgba(0, 0, 0, 0.3);
+	pointer-events: none;
+	transition: opacity 0.4s cubic-bezier(0.6, 0.17, 0.45, 0.88)
+}
+.kitify-hamburger-panel__content {
+	position: relative;
+	padding: 30px 20px
+}
+.kitify-hamburger-panel.open-state .kitify-hamburger-panel__cover {
+	opacity: 1
+}
+.kitify-hamburger-panel.open-state .kitify-hamburger-panel__instance {
+	pointer-events: auto
+}
+.kitify-hamburger-panel.open-state .kitify-hamburger-panel__icon.icon-normal {
+	display: none
+}
+.kitify-hamburger-panel.open-state .kitify-hamburger-panel__icon.icon-active {
+	display: block
+}
+.kitify-hamburger-panel ::-webkit-scrollbar {
+	width: 8px;
+	height: 8px
+}
+.kitify-hamburger-panel ::-webkit-scrollbar-button {
+	width: 10px;
+	height: 10px
+}
+.kitify-hamburger-panel ::-webkit-scrollbar-thumb {
+	background: #cecece;
+	border: 0px none #ffffff;
+	border-radius: 8px
+}
+.kitify-hamburger-panel ::-webkit-scrollbar-thumb:hover {
+	background: #c1c1c1
+}
+.kitify-hamburger-panel ::-webkit-scrollbar-thumb:active {
+	background: #c1c1c1
+}
+.kitify-hamburger-panel ::-webkit-scrollbar-track {
+	background: rgba(122, 122, 122, 0.15);
+	border: 0px none #ffffff;
+	border-radius: 8px
+}
+.kitify-hamburger-panel ::-webkit-scrollbar-track:hover {
+	background: rgba(122, 122, 122, 0.2)
+}
+.kitify-hamburger-panel ::-webkit-scrollbar-track:active {
+	background: rgba(122, 122, 122, 0.2)
+}
+.kitify-hamburger-panel ::-webkit-scrollbar-corner {
+	background: transparent
+}
+.kitify-hamburger-panel.kitify-hamburger-panel-slide-effect.kitify-hamburger-panel-right-position .kitify-hamburger-panel__instance {
+	right: 0
+}
+.kitify-hamburger-panel.kitify-hamburger-panel-slide-effect.kitify-hamburger-panel-right-position .kitify-hamburger-panel__inner {
+	transform: translateX(100%);
+	transition: transform 0.4s cubic-bezier(0.6, 0.17, 0.45, 0.88)
+}
+.kitify-hamburger-panel.kitify-hamburger-panel-slide-effect.kitify-hamburger-panel-right-position.open-state .kitify-hamburger-panel__inner {
+	transform: translateX(0%)
+}
+.kitify-hamburger-panel.kitify-hamburger-panel-slide-effect.kitify-hamburger-panel-left-position .kitify-hamburger-panel__instance {
+	left: 0
+}
+.kitify-vheader-pleft .kitify-hamburger-panel.kitify-hamburger-panel-slide-effect.kitify-hamburger-panel-left-position.kitify-hbg-is-behind .kitify-hamburger-panel__instance {
+	left: var(--kitify-vheader-width);
+	z-index: 2;
+}
+.kitify-vheader-pright .kitify-hamburger-panel.kitify-hamburger-panel-slide-effect.kitify-hamburger-panel-right-position.kitify-hbg-is-behind .kitify-hamburger-panel__instance {
+	right: var(--kitify-vheader-width);
+	z-index: 2;
+}
+.kitify-hamburger-panel.kitify-hamburger-panel-slide-effect.kitify-hamburger-panel-left-position .kitify-hamburger-panel__inner {
+	transform: translateX(-100%);
+	transition: transform 0.4s cubic-bezier(0.6, 0.17, 0.45, 0.88), visibility cubic-bezier(0.6, 0.17, 0.45, 0.88);
+}
+.kitify-hamburger-panel.kitify-hamburger-panel-slide-effect.kitify-hamburger-panel-left-position.open-state .kitify-hamburger-panel__inner {
+	transform: translateX(0%)
+}
+.kitify-hamburger-panel.kitify-hamburger-panel-fade-effect.kitify-hamburger-panel-right-position .kitify-hamburger-panel__instance {
+	right: 0;
+	opacity: 0;
+	transition: opacity 0.4s cubic-bezier(0.6, 0.17, 0.45, 0.88), visibility cubic-bezier(0.6, 0.17, 0.45, 0.88)
+}
+.kitify-hamburger-panel.kitify-hamburger-panel-fade-effect.kitify-hamburger-panel-right-position.open-state .kitify-hamburger-panel__instance {
+	opacity: 1
+}
+.kitify-hamburger-panel.kitify-hamburger-panel-fade-effect.kitify-hamburger-panel-left-position .kitify-hamburger-panel__instance {
+	left: 0;
+	opacity: 0;
+	transition: opacity 0.4s cubic-bezier(0.6, 0.17, 0.45, 0.88), visibility cubic-bezier(0.6, 0.17, 0.45, 0.88)
+}
+.kitify-hamburger-panel.kitify-hamburger-panel-fade-effect.kitify-hamburger-panel-left-position.open-state .kitify-hamburger-panel__instance {
+	opacity: 1
+}
+.kitify-hamburger-panel.kitify-hamburger-panel-zoom-effect.kitify-hamburger-panel-right-position .kitify-hamburger-panel__instance {
+	right: 0
+}
+.kitify-hamburger-panel.kitify-hamburger-panel-zoom-effect.kitify-hamburger-panel-right-position .kitify-hamburger-panel__inner {
+	opacity: 0;
+	transform: scale(0.75);
+	transition: opacity 0.3s cubic-bezier(0.6, 0.17, 0.45, 0.88), transform 0.4s cubic-bezier(0.31, 0.86, 0.62, 0.99), visibility cubic-bezier(0.6, 0.17, 0.45, 0.88)
+}
+.kitify-hamburger-panel.kitify-hamburger-panel-zoom-effect.kitify-hamburger-panel-right-position.open-state .kitify-hamburger-panel__inner {
+	opacity: 1;
+	transform: scale(1)
+}
+.kitify-hamburger-panel.kitify-hamburger-panel-zoom-effect.kitify-hamburger-panel-left-position .kitify-hamburger-panel__instance {
+	left: 0
+}
+.kitify-hamburger-panel.kitify-hamburger-panel-zoom-effect.kitify-hamburger-panel-left-position .kitify-hamburger-panel__instance .kitify-hamburger-panel__inner {
+	opacity: 0;
+	transform: scale(0.75);
+	transition: opacity 0.3s cubic-bezier(0.6, 0.17, 0.45, 0.88), transform 0.4s cubic-bezier(0.31, 0.86, 0.62, 0.99), visibility cubic-bezier(0.6, 0.17, 0.45, 0.88)
+}
+.kitify-hamburger-panel.kitify-hamburger-panel-zoom-effect.kitify-hamburger-panel-left-position.open-state .kitify-hamburger-panel__inner {
+	opacity: 1;
+	transform: scale(1)
+}
+.kitify-hamburger-panel.kitify-hamburger-panel-slide-effect.kitify-hamburger-panel-top-position .kitify-hamburger-panel__inner {
+	left: 0;
+	top: 0;
+	transform: translateY(-100%);
+	transition: all 0.3s cubic-bezier(0.6, 0.17, 0.45, 0.88);
+}
+.kitify-hamburger-panel.kitify-hamburger-panel-slide-effect.kitify-hamburger-panel-top-position.open-state .kitify-hamburger-panel__inner {
+	transform: translateY(0%)
+}
+.kitify-hamburger-panel.kitify-hamburger-panel-slide-effect.kitify-hamburger-panel-bottom-position .kitify-hamburger-panel__inner {
+	left: 0;
+	top: 0;
+	transform: translateY(100%);
+	transition: all 0.3s cubic-bezier(0.6, 0.17, 0.45, 0.88);
+}
+.kitify-hamburger-panel.kitify-hamburger-panel-slide-effect.kitify-hamburger-panel-bottom-position.open-state .kitify-hamburger-panel__inner {
+	transform: translateY(0%)
+}
+.kitify-burger-wrapall > .elementor-element > .elementor-widget-container {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+html.kitify-hamburger-panel-visible {
+	overflow: hidden
+}
+.kitify-blocks__edit-cover {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	box-sizing: border-box;
+	height: 30px;
+	padding: 5px 10px;
+	left: 15px;
+	top: 15px;
+	border-radius: 3px;
+	background-color: var(--kitify-primary-color);
+	z-index: 99;
+	cursor: pointer;
+	transition: opacity 0.3s ease
+}
+.kitify-blocks__edit-cover i {
+	font-size: 14px;
+	color: white;
+	margin-right: 5px
+}
+.kitify-blocks__edit-cover span {
+	font-family: Roboto, Arial, Helvetica, Verdana, sans-serif;
+	font-size: 13px;
+	color: white
+}
+.kitify-blocks__edit-cover:hover {
+	background-color: #840739
+}
+.kitify-blocks-no-template-message {
+	text-align: center;
+	padding: 10px
+}
+.kitify-blocks-new-template-link {
+	color: var(--kitify-primary-color);
+	text-decoration: underline
+}
+.kitify-hamburger-panel-loader {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 24px;
+	height: 24px;
+	margin-top: -12px;
+	margin-left: -12px;
+	border: 4px rgba(204, 51, 102, 0.15) solid;
+	border-top-width: 4px;
+	border-top-style: solid;
+	border-top-color: #fff;
+	border-radius: 50%;
+	animation: spCircRot 0.6s infinite linear
+}
+@keyframes spCircRot {
+	0% {
+		transform: rotate(0deg)
+	}
+	to {
+		transform: rotate(359deg)
+	}
+}
+
+[data-elementor-device-mode="laptop"] .kitify--is-vheader.kitify-vheader--hidelaptop,
+[data-elementor-device-mode="tablet"] .kitify--is-vheader.kitify-vheader--hidetablet,
+[data-elementor-device-mode="mobile_extra"] .kitify--is-vheader.kitify-vheader--hidemobile_extra,
+[data-elementor-device-mode="mobile"] .kitify--is-vheader.kitify-vheader--hidemobile{
+	--kitify-vheader-width: 0px;
+}

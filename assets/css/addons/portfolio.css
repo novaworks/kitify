@@ -1,0 +1,31 @@
+.elementor-kitify-portfolio .kitify-posts__inner-content{
+	display: flex;
+}
+.elementor-kitify-portfolio .kitify-posts.preset-grid-2 .kitify-posts__thumbnail + .kitify-posts__inner-content{
+	bottom: 0;
+	right: 0;
+	left: 0;
+	top: 0;
+	width: auto;
+	transform: none;
+}
+.elementor-kitify-portfolio .kitify-posts.preset-grid-2 .kitify-posts__inner-box:after{
+	background: none;
+}
+.elementor-kitify-portfolio .kitify-posts__inner-content-inner {
+	width: 100%;
+	overflow: hidden;
+}
+.kitify--portfolio-btn-right-yes .kitify-posts__inner-content-inner{
+	position: relative;
+}
+.kitify--portfolio-btn-right-yes .kitify-posts__btn-more{
+	position: absolute;
+	right: 0;
+	top: 0;
+	bottom: 0;
+}
+.rtl .kitify--portfolio-btn-right-yes .kitify-posts__btn-more{
+	right: auto;
+	left: 0;
+}

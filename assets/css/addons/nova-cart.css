@@ -1,0 +1,23 @@
+/**
+ * Foundation for Sites
+ * Version 6.6.3
+ * https://get.foundation
+ * Licensed under MIT Open Source
+ */
+.kitify-nova-cart {
+  padding: 1rem; }
+  .kitify-nova-cart .header-cart-box {
+    position: relative; }
+    .kitify-nova-cart .header-cart-box .count-badge {
+      position: absolute;
+      top: -15px;
+      right: -19px;
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #FFF;
+      background-color: var(--site-accent-color); }

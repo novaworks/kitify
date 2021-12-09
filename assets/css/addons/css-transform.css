@@ -1,0 +1,13 @@
+.kitify-css-transform-yes {
+  -webkit-transition-duration: var(--kitify-tfx-transition-duration, .2s);
+  transition-duration: var(--kitify-tfx-transition-duration, .2s);
+  -webkit-transition-property: -webkit-transform;
+  transition-property: transform;
+  transition-property: transform, -webkit-transform;
+  -webkit-transform: translate(var(--kitify-tfx-translate-x, 0), var(--kitify-tfx-translate-y, 0)) scale(var(--kitify-tfx-scale-x, 1), var(--kitify-tfx-scale-y, 1)) skew(var(--kitify-tfx-skew-x, 0), var(--kitify-tfx-skew-y, 0)) rotateX(var(--kitify-tfx-rotate-x, 0)) rotateY(var(--kitify-tfx-rotate-y, 0)) rotateZ(var(--kitify-tfx-rotate-z, 0));
+  transform: translate(var(--kitify-tfx-translate-x, 0), var(--kitify-tfx-translate-y, 0)) scale(var(--kitify-tfx-scale-x, 1), var(--kitify-tfx-scale-y, 1)) skew(var(--kitify-tfx-skew-x, 0), var(--kitify-tfx-skew-y, 0)) rotateX(var(--kitify-tfx-rotate-x, 0)) rotateY(var(--kitify-tfx-rotate-y, 0)) rotateZ(var(--kitify-tfx-rotate-z, 0))
+}
+.kitify-css-transform-yes:hover {
+  -webkit-transform: translate(var(--kitify-tfx-translate-x-hover, var(--kitify-tfx-translate-x, 0)), var(--kitify-tfx-translate-y-hover, var(--kitify-tfx-translate-y, 0))) scale(var(--kitify-tfx-scale-x-hover, var(--kitify-tfx-scale-x, 1)), var(--kitify-tfx-scale-y-hover, var(--kitify-tfx-scale-y, 1))) skew(var(--kitify-tfx-skew-x-hover, var(--kitify-tfx-skew-x, 0)), var(--kitify-tfx-skew-y-hover, var(--kitify-tfx-skew-y, 0))) rotateX(var(--kitify-tfx-rotate-x-hover, var(--kitify-tfx-rotate-x, 0))) rotateY(var(--kitify-tfx-rotate-y-hover, var(--kitify-tfx-rotate-y, 0))) rotateZ(var(--kitify-tfx-rotate-z-hover, var(--kitify-tfx-rotate-z, 0)));
+  transform: translate(var(--kitify-tfx-translate-x-hover, var(--kitify-tfx-translate-x, 0)), var(--kitify-tfx-translate-y-hover, var(--kitify-tfx-translate-y, 0))) scale(var(--kitify-tfx-scale-x-hover, var(--kitify-tfx-scale-x, 1)), var(--kitify-tfx-scale-y-hover, var(--kitify-tfx-scale-y, 1))) skew(var(--kitify-tfx-skew-x-hover, var(--kitify-tfx-skew-x, 0)), var(--kitify-tfx-skew-y-hover, var(--kitify-tfx-skew-y, 0))) rotateX(var(--kitify-tfx-rotate-x-hover, var(--kitify-tfx-rotate-x, 0))) rotateY(var(--kitify-tfx-rotate-y-hover, var(--kitify-tfx-rotate-y, 0))) rotateZ(var(--kitify-tfx-rotate-z-hover, var(--kitify-tfx-rotate-z, 0)))
+}

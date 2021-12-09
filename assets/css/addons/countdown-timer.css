@@ -1,0 +1,26 @@
+.kitify-countdown-timer {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: center
+}
+.kitify-countdown-timer__item {
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-items: stretch;
+	text-align: center;
+	margin: 5px
+}
+.kitify-countdown-timer__separator {
+	display: none
+}
+* + .kitify-countdown-timer__separator {
+	display: block
+}
+.kitify-countdown-timer__digit {
+	display: inline-block
+}
+.kitify-countdown-timer.timer-inline .kitify-countdown-timer__item {
+	flex-flow: row nowrap
+}

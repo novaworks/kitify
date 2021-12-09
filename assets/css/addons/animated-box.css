@@ -1,0 +1,296 @@
+.kitify-animated-box {
+	position: relative;
+	perspective: 1000px;
+	-webkit-perspective: 1000px;
+	color: #fff;
+}
+.kitify-animated-box__back,
+.kitify-animated-box__front {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: stretch;
+	flex-flow: row nowrap;
+}
+.kitify-animated-box__front {
+	background-color: #c36
+}
+.kitify-animated-box__back {
+	background-color: #000
+}
+.kitify-animated-box__subtitle,
+.kitify-animated-box__title{
+	color: inherit;
+}
+.kitify-animated-box__overlay {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	display: block;
+	top: 0;
+	left: 0;
+	z-index: 1
+}
+.kitify-animated-box__inner {
+	min-width: 100%;
+	z-index: 2;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-content: center;
+	align-items: stretch
+}
+.kitify-animated-box__icon {
+	min-width: 100%;
+	display: flex;
+	justify-content: center
+}
+.kitify-animated-box__icon .kitify-animated-box-icon-inner {
+	display: flex;
+	justify-content: center;
+	align-items: center
+}
+.kitify-animated-box__content {
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	align-content: center;
+	align-items: stretch
+}
+.kitify-animated-box .kitify-animated-box__button {
+	display: flex;
+	justify-content: center;
+	align-items: center
+}
+.kitify-animated-box .kitify-animated-box__button--icon-before .kitify-animated-box__button-text {
+	order: 2
+}
+.kitify-animated-box .kitify-animated-box__button--icon-before .kitify-animated-box__button-icon {
+	order: 1
+}
+.kitify-animated-box .kitify-animated-box__button--icon-after .kitify-animated-box__button-text {
+	order: 1
+}
+.kitify-animated-box .kitify-animated-box__button--icon-after .kitify-animated-box__button-icon {
+	order: 2
+}
+
+.kitify-animated-box.kitify-effect-1 .kitify-animated-box__front {
+	transform-style: preserve-3d;
+	transform: rotateY(0deg);
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	z-index: 2;
+	transition: all 0.7s cubic-bezier(0.11, 0.6, 0.24, 0.89)
+}
+.kitify-animated-box.kitify-effect-1 .kitify-animated-box__back {
+	transform-style: preserve-3d;
+	transform: rotateY(-180deg);
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	z-index: 1;
+	transition: all 0.7s cubic-bezier(0.11, 0.6, 0.24, 0.89)
+}
+.kitify-animated-box.kitify-effect-1.flipped .kitify-animated-box__front {
+	transform: rotateY(180deg);
+	transition: all 0.7s cubic-bezier(0.11, 0.6, 0.24, 0.89)
+}
+.kitify-animated-box.kitify-effect-1.flipped .kitify-animated-box__back {
+	transform: rotateY(0deg);
+	transition: all 0.7s cubic-bezier(0.11, 0.6, 0.24, 0.89)
+}
+.kitify-animated-box.kitify-effect-2 .kitify-animated-box__front {
+	transform-style: preserve-3d;
+	transform: rotateX(0deg);
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	z-index: 2;
+	transition: all 0.7s cubic-bezier(0.11, 0.6, 0.24, 0.89)
+}
+.kitify-animated-box.kitify-effect-2 .kitify-animated-box__back {
+	transform-style: preserve-3d;
+	transform: rotateX(-180deg);
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	z-index: 1;
+	transition: all 0.7s cubic-bezier(0.11, 0.6, 0.24, 0.89)
+}
+.kitify-animated-box.kitify-effect-2.flipped .kitify-animated-box__front {
+	transform: rotateX(180deg);
+	transition: all 0.7s cubic-bezier(0.11, 0.6, 0.24, 0.89)
+}
+.kitify-animated-box.kitify-effect-2.flipped .kitify-animated-box__back {
+	transform: rotateX(0deg);
+	transition: all 0.7s cubic-bezier(0.11, 0.6, 0.24, 0.89)
+}
+.kitify-animated-box.kitify-effect-3 .kitify-animated-box__front {
+	transform-style: preserve-3d;
+	transform: rotateX(0deg) translateY(0) scale(1);
+	z-index: 2;
+	transition: all 0.7s cubic-bezier(0.11, 0.6, 0.24, 0.89)
+}
+.kitify-animated-box.kitify-effect-3 .kitify-animated-box__back {
+	transform-style: preserve-3d;
+	transform: rotateX(-90deg) translateY(150%) scale(0);
+	z-index: 1;
+	transition: all 0.5s cubic-bezier(0.63, 0.07, 0.78, 0.55)
+}
+.kitify-animated-box.kitify-effect-3.flipped .kitify-animated-box__front {
+	transform: rotateX(90deg) translateY(-150%) scale(0);
+	transition: all 0.5s cubic-bezier(0.63, 0.07, 0.78, 0.55);
+	z-index: 1
+}
+.kitify-animated-box.kitify-effect-3.flipped .kitify-animated-box__back {
+	transform: rotateX(0deg) translateY(0) scale(1);
+	transition: all 0.7s cubic-bezier(0.11, 0.6, 0.24, 0.89);
+	z-index: 2
+}
+
+.kitify-animated-box.kitify-effect-4 .kitify-animated-box__front {
+	transform-style: preserve-3d;
+	transform: rotateY(0deg) translateX(0) scale(1);
+	z-index: 2;
+	transition: all 0.7s cubic-bezier(0.11, 0.6, 0.24, 0.89)
+}
+.kitify-animated-box.kitify-effect-4 .kitify-animated-box__back {
+	transform-style: preserve-3d;
+	transform: rotateY(-90deg) translateX(-150%) scale(0);
+	z-index: 1;
+	transition: all 0.5s cubic-bezier(0.63, 0.07, 0.78, 0.55)
+}
+.kitify-animated-box.kitify-effect-4.flipped .kitify-animated-box__front {
+	transform: rotateY(90deg) translateX(150%) scale(0);
+	transition: all 0.5s cubic-bezier(0.63, 0.07, 0.78, 0.55);
+	z-index: 1
+}
+.kitify-animated-box.kitify-effect-4.flipped .kitify-animated-box__back {
+	transform: rotateY(0deg) translateX(0) scale(1);
+	transition: all 0.7s cubic-bezier(0.11, 0.6, 0.24, 0.89);
+	z-index: 2
+}
+.kitify-animated-box.kitify-effect-5 {
+	overflow: hidden
+}
+.kitify-animated-box.kitify-effect-5 .kitify-animated-box__front {
+	transform: translateY(0%);
+	transition: all 0.7s cubic-bezier(0.5, 0.12, 0.46, 0.88)
+}
+.kitify-animated-box.kitify-effect-5 .kitify-animated-box__back {
+	transform: translateY(-100%);
+	transition: all 0.7s cubic-bezier(0.5, 0.12, 0.46, 0.88)
+}
+.kitify-animated-box.kitify-effect-5.flipped .kitify-animated-box__front {
+	transform: translateY(100%);
+	transition: all 0.7s cubic-bezier(0.5, 0.12, 0.46, 0.88)
+}
+.kitify-animated-box.kitify-effect-5.flipped .kitify-animated-box__back {
+	transform: translateY(0%);
+	transition: all 0.7s cubic-bezier(0.5, 0.12, 0.46, 0.88)
+}
+.kitify-animated-box.kitify-effect-6 {
+	overflow: hidden
+}
+.kitify-animated-box.kitify-effect-6 .kitify-animated-box__front {
+	transform: translateX(0%);
+	transition: all 0.7s cubic-bezier(0.5, 0.12, 0.46, 0.88)
+}
+.kitify-animated-box.kitify-effect-6 .kitify-animated-box__back {
+	transform: translateX(-100%);
+	transition: all 0.7s cubic-bezier(0.5, 0.12, 0.46, 0.88)
+}
+.kitify-animated-box.kitify-effect-6.flipped .kitify-animated-box__front {
+	transform: translateX(100%);
+	transition: all 0.7s cubic-bezier(0.5, 0.12, 0.46, 0.88)
+}
+.kitify-animated-box.kitify-effect-6.flipped .kitify-animated-box__back {
+	transform: translateX(0%);
+	transition: all 0.7s cubic-bezier(0.5, 0.12, 0.46, 0.88)
+}
+
+.kitify-animated-box.kitify-effect-7 .kitify-animated-box__front {
+	transform-style: preserve-3d;
+	transform: rotateY(0deg);
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	transition: all 0.8s cubic-bezier(0.5, 0.12, 0.46, 0.88)
+}
+.kitify-animated-box.kitify-effect-7 .kitify-animated-box__front .kitify-animated-box__inner {
+	transform: translateZ(0px);
+	transition: all 0.8s cubic-bezier(0.5, 0.12, 0.46, 0.88);
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden
+}
+.kitify-animated-box.kitify-effect-7 .kitify-animated-box__back {
+	transform-style: preserve-3d;
+	transform: rotateY(-180deg);
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	z-index: 2;
+	transition: all 0.8s cubic-bezier(0.5, 0.12, 0.46, 0.88)
+}
+.kitify-animated-box.kitify-effect-7 .kitify-animated-box__back .kitify-animated-box__inner {
+	transform: translateZ(120px);
+	transition: all 0.8s cubic-bezier(0.5, 0.12, 0.46, 0.88);
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden
+}
+.kitify-animated-box.kitify-effect-7.flipped .kitify-animated-box__front {
+	transform: rotateY(180deg)
+}
+.kitify-animated-box.kitify-effect-7.flipped .kitify-animated-box__front .kitify-animated-box__inner {
+	transform: translateZ(120px)
+}
+.kitify-animated-box.kitify-effect-7.flipped .kitify-animated-box__back {
+	transform: rotateY(0deg)
+}
+.kitify-animated-box.kitify-effect-7.flipped .kitify-animated-box__back .kitify-animated-box__inner {
+	transform: translateZ(0px)
+}
+
+.kitify-animated-box.kitify-effect-8 .kitify-animated-box__front {
+	transform-style: preserve-3d;
+	transform: rotateX(0deg);
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	z-index: 2;
+	transition: all 0.8s cubic-bezier(0.5, 0.12, 0.46, 0.88)
+}
+.kitify-animated-box.kitify-effect-8 .kitify-animated-box__front .kitify-animated-box__inner {
+	transform: translateZ(0px);
+	transition: all 0.8s cubic-bezier(0.5, 0.12, 0.46, 0.88);
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+}
+.kitify-animated-box.kitify-effect-8 .kitify-animated-box__back {
+	transform-style: preserve-3d;
+	transform: rotateX(-180deg);
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	z-index: 1;
+	transition: all 0.8s cubic-bezier(0.5, 0.12, 0.46, 0.88)
+}
+.kitify-animated-box.kitify-effect-8 .kitify-animated-box__back .kitify-animated-box__inner {
+	transform: translateZ(125px);
+	transition: all 0.8s cubic-bezier(0.5, 0.12, 0.46, 0.88);
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+}
+.kitify-animated-box.kitify-effect-8.flipped .kitify-animated-box__front {
+	transform: rotateX(180deg);
+}
+.kitify-animated-box.kitify-effect-8.flipped .kitify-animated-box__front .kitify-animated-box__inner {
+	transform: translateZ(125px);
+}
+.kitify-animated-box.kitify-effect-8.flipped .kitify-animated-box__back {
+	transform: rotateX(0deg);
+}
+.kitify-animated-box.kitify-effect-8.flipped .kitify-animated-box__back .kitify-animated-box__inner {
+	transform: translateZ(0px);
+}
+.elementor-wrap-icon svg, .kitify-animated-box-icon-inner svg {
+	width: 1em;
+	height: 1em;
+	vertical-align: middle
+}

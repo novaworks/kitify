@@ -1,0 +1,42 @@
+/**
+ * Foundation for Sites
+ * Version 6.6.3
+ * https://get.foundation
+ * Licensed under MIT Open Source
+ */
+.kitify-nova-menu__mobile-trigger {
+  display: none;
+}
+.kitify-nova-menu__mobile-trigger .kitify-nova-menu__mobile-trigger-icon {
+  font-size: 1.3125rem;
+}
+.kitify-nova-menu.kitify-nova-menu--style-default .main-navigation > ul > li > a:after,
+.kitify-nova-menu.kitify-nova-menu--style-default .main-navigation > ul > li > a:before {
+  display: none;
+}
+.kitify-nova-menu.kitify-nova-menu--style-bottom-line .main-navigation > ul > li > a:before {
+  top: auto;
+  bottom: 0;
+}
+.kitify-nova-menu .main-navigation {
+  display: flex;
+}
+.kitify-nova-menu .main-navigation .nav-menu {
+  position: static;
+}
+.kitify-nova-menu .main-navigation > ul > li > a {
+  display: flex;
+  align-items: center;
+}
+.kitify-nova-menu .main-navigation ul > li > a:hover {
+  color: var(--site-accent-color);
+}
+.kitify-nova-menu .main-navigation .sub-menu li a:before {
+  display: none;
+}
+.kitify-nova-menu.kitify-active--mbmenu .kitify-nova-menu__mobile-trigger {
+  display: flex;
+}
+.kitify-nova-menu.kitify-active--mbmenu .main-navigation {
+  display: none;
+}

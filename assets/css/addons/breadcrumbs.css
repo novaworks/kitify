@@ -1,0 +1,92 @@
+.kitify-breadcrumbs {
+	display: flex;
+	flex-direction: column
+}
+.kitify-breadcrumbs-page-title-yes.kitify-breadcrumbs-align-justify .kitify-breadcrumbs {
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center
+}
+.kitify-breadcrumbs-page-title-yes.kitify-breadcrumbs-align-justify .kitify-breadcrumbs__content, .kitify-breadcrumbs-page-title-yes.kitify-breadcrumbs-align-justify .kitify-breadcrumbs__title {
+	flex-grow: 0
+}
+@media (max-width: 1024px) {
+	.kitify-breadcrumbs-page-title-yes.kitify-breadcrumbs-align-tablet-justify .kitify-breadcrumbs {
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center
+	}
+	.kitify-breadcrumbs-page-title-yes.kitify-breadcrumbs-align-tablet-justify .kitify-breadcrumbs__content, .kitify-breadcrumbs-page-title-yes.kitify-breadcrumbs-align-tablet-justify .kitify-breadcrumbs__title {
+		flex-grow: 0
+	}
+}
+@media (max-width: 1024px) {
+	.kitify-breadcrumbs-page-title-yes.kitify-breadcrumbs-align-tablet-center .kitify-breadcrumbs, .kitify-breadcrumbs-page-title-yes.kitify-breadcrumbs-align-tablet-left .kitify-breadcrumbs, .kitify-breadcrumbs-page-title-yes.kitify-breadcrumbs-align-tablet-right .kitify-breadcrumbs {
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: stretch
+	}
+	.kitify-breadcrumbs-page-title-yes.kitify-breadcrumbs-align-tablet-center .kitify-breadcrumbs__content, .kitify-breadcrumbs-page-title-yes.kitify-breadcrumbs-align-tablet-center .kitify-breadcrumbs__title, .kitify-breadcrumbs-page-title-yes.kitify-breadcrumbs-align-tablet-left .kitify-breadcrumbs__content, .kitify-breadcrumbs-page-title-yes.kitify-breadcrumbs-align-tablet-left .kitify-breadcrumbs__title, .kitify-breadcrumbs-page-title-yes.kitify-breadcrumbs-align-tablet-right .kitify-breadcrumbs__content, .kitify-breadcrumbs-page-title-yes.kitify-breadcrumbs-align-tablet-right .kitify-breadcrumbs__title {
+		flex-grow: 1
+	}
+}
+@media (max-width: 767px) {
+	.kitify-breadcrumbs-page-title-yes.kitify-breadcrumbs-align-mobile-justify .kitify-breadcrumbs {
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center
+	}
+	.kitify-breadcrumbs-page-title-yes.kitify-breadcrumbs-align-mobile-justify .kitify-breadcrumbs__content, .kitify-breadcrumbs-page-title-yes.kitify-breadcrumbs-align-mobile-justify .kitify-breadcrumbs__title {
+		flex-grow: 0
+	}
+}
+@media (max-width: 767px) {
+	.kitify-breadcrumbs-page-title-yes.kitify-breadcrumbs-align-mobile-center .kitify-breadcrumbs, .kitify-breadcrumbs-page-title-yes.kitify-breadcrumbs-align-mobile-left .kitify-breadcrumbs, .kitify-breadcrumbs-page-title-yes.kitify-breadcrumbs-align-mobile-right .kitify-breadcrumbs {
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: stretch
+	}
+	.kitify-breadcrumbs-page-title-yes.kitify-breadcrumbs-align-mobile-center .kitify-breadcrumbs__content, .kitify-breadcrumbs-page-title-yes.kitify-breadcrumbs-align-mobile-center .kitify-breadcrumbs__title, .kitify-breadcrumbs-page-title-yes.kitify-breadcrumbs-align-mobile-left .kitify-breadcrumbs__content, .kitify-breadcrumbs-page-title-yes.kitify-breadcrumbs-align-mobile-left .kitify-breadcrumbs__title, .kitify-breadcrumbs-page-title-yes.kitify-breadcrumbs-align-mobile-right .kitify-breadcrumbs__content, .kitify-breadcrumbs-page-title-yes.kitify-breadcrumbs-align-mobile-right .kitify-breadcrumbs__title {
+		flex-grow: 1
+	}
+}
+.kitify-breadcrumbs__content, .kitify-breadcrumbs__title {
+	flex-grow: 1
+}
+.kitify-breadcrumbs__title {
+	padding: 0;
+	margin: 0;
+	border: none;
+	text-align: inherit
+}
+.kitify-breadcrumbs__content {
+	font-size: 0
+}
+.kitify-breadcrumbs__browse, .kitify-breadcrumbs__item, .kitify-breadcrumbs__item-link, .kitify-breadcrumbs__item-target {
+	display: inline-block
+}
+.kitify-breadcrumbs__wrap {
+	display: inline
+}
+.kitify-breadcrumbs__browse {
+	margin-right: 5px
+}
+.kitify-breadcrumbs__browse, .kitify-breadcrumbs__item {
+	font-size: 14px;
+	vertical-align: middle
+}
+.kitify-breadcrumbs__item-sep {
+	margin-left: 5px;
+	margin-right: 5px;
+	font-size: .6em;
+}
+.kitify-breadcrumbs__item-sep i {
+	display: block;
+	width: 1em;
+	height: 1em;
+	line-height: 1;
+	text-align: center
+}
+body.home .elementor-widget-kitify-breadcrumbs:not(.kitify-breadcrumbs-on-front-yes):not(.elementor-element-edit-mode) {
+	display: none
+}

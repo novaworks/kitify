@@ -1,0 +1,217 @@
+.customize-control.deactivate {
+	display: none !important;
+}
+.kitifycustomizer-control-wrap .kitifycustomizer-control-title {
+	margin-bottom: 15px;
+}
+.kitifycustomizer-control-wrap .customize-control-title {
+	font-weight: 400;
+	color: #2B3B50;
+}
+.kitifycustomizer-control-wrap .customize-control-title .kitifycustomizer-toggle-desc {
+	color: #c0c3d4;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+.kitifycustomizer-control-wrap .customize-control-title .kitifycustomizer-toggle-desc.is-active {
+	color: #135e96;
+}
+.kitifycustomizer-control-wrap .customize-control-title .kitifycustomizer-toggle-desc i {
+	margin-top: 2px;
+}
+.kitifycustomizer-control-wrap .kitifycustomizer-toggle-desc {
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	margin-left: 8px;
+}
+.kitifycustomizer-control-wrap .customize-control-description {
+	display: none;
+	transition: none !important;
+}
+.kitifycustomizer-control-title {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}
+.kitifycustomizer-control-title .customize-control-title {
+	margin-bottom: 0;
+}
+.kitifycustomizer-control-responsive {
+	margin: 0;
+	margin-left: 8px;
+	padding: 0;
+	list-style: none;
+	display: flex;
+}
+.kitifycustomizer-control-responsive li {
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+}
+.kitifycustomizer-control-responsive li button {
+	padding: 4px 4px 0;
+	margin: 0;
+	border: none;
+	font-size: 12px;
+	background-color: #7F8EA2;
+	color: #fff;
+	border-radius: 20px;
+	cursor: pointer;
+	display: none;
+	outline: none;
+	margin-left: 3px;
+}
+.kitifycustomizer-control-responsive li button.is-active {
+	display: block;
+}
+.kitifycustomizer-control-responsive li button > .dashicons {
+	font-size: 12px;
+	width: 12px;
+	height: 12px;
+}
+.kitifycustomizer-control-responsive li button.kitifycustomizer-device-mobile-landscape > .dashicons {
+	transform: rotate(90deg);
+}
+.kitifycustomizer-control-responsive.kitifycustomizer-expanded li button {
+	display: block;
+}
+.kitifycustomizer-control-responsive.kitifycustomizer-expanded li button.is-active {
+	background-color: #135e96;
+}
+.kitifycustomizer-inline-control {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+}
+.kitifycustomizer-inline-control .kitifycustomizer-control-title {
+	flex: 1 1 0;
+	margin-bottom: 0;
+}
+.kitifycustomizer-inline-control .kitifycustomizer-control-title .customize-control-title {
+	margin-bottom: 0;
+}
+.kitifycustomizer-inline-control .description {
+	width: 100%;
+	flex: 0 0 100%;
+	margin-top: 10px;
+}
+.kitifycustomizer-inline-control .customize-control-notifications-container {
+	width: 100%;
+	flex: 0 0 100%;
+	margin-top: 10px;
+}
+.kitifycustomizer-input-number {
+	position: relative;
+}
+.kitifycustomizer-input-number button {
+	position: absolute;
+	right: 0;
+	width: 18px;
+	height: 18px;
+	padding: 0;
+	border: 1px solid #D8DFE8;
+	outline: none;
+	color: #7F8EA2;
+	background-color: transparent;
+	transition: all 0.3s;
+	cursor: pointer;
+	overflow: hidden;
+}
+.kitifycustomizer-input-number button span {
+	width: 16px;
+	height: 16px;
+	font-size: 16px;
+	margin-left: -1px;
+}
+.kitifycustomizer-input-number button.kitifycustomizer-number-input-up {
+	top: 0;
+	border-radius: 0 5px 0 0;
+}
+.kitifycustomizer-input-number button.kitifycustomizer-number-input-down {
+	bottom: 0;
+	border-radius: 0 0 5px 0;
+	border-top: none;
+}
+.kitifycustomizer-input-number button:hover {
+	background-color: #135e96;
+	border-color: #135e96;
+	color: #fff;
+}
+.kitifycustomizer-input-number .kitifycustomizer-number-input {
+	height: auto;
+	-webkit-appearance: textfield;
+	-moz-appearance: textfield;
+	appearance: textfield;
+	max-width: 100px;
+	background-color: #fff;
+	box-shadow: none;
+	border: 1px solid #dddddd;
+	border-radius: 5px;
+	padding: 8px 15px;
+	line-height: 1.5;
+}
+.kitifycustomizer-input-number .kitifycustomizer-number-input::-webkit-inner-spin-button, .kitifycustomizer-input-number .kitifycustomizer-number-input::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	appearance: none;
+}
+.kitifycustomizer-input-number .kitifycustomizer-number-input:focus + button {
+	border-color: #135e96;
+}
+.kitifycustomizer-input-number .kitifycustomizer-number-input:focus + button + button {
+	border-color: #135e96;
+}
+.preview-laptop .wp-full-overlay-main {
+	width: 1366px;
+	margin: auto 0 auto -683px;
+	max-height: 100%;
+	max-width: 100%;
+	left: 50%;
+}
+.wp-full-overlay-footer .devices .preview-laptop:before {
+	content: "\f547";
+}
+.preview-mobile_extra .wp-full-overlay-main {
+	width: 768px;
+	margin: auto 0 auto -384px;
+	max-height: 100%;
+	max-width: 100%;
+	left: 50%;
+	height: 600px;
+}
+.wp-full-overlay-footer .devices .preview-mobile_extra:before {
+	content: "\f470";
+	transform: rotate(90deg);
+}
+.preview-tablet .wp-full-overlay-main {
+	width: 1024px;
+	margin: auto 0 auto -512px;
+	height: 768px;
+}
+.preview-mobile .wp-full-overlay-main {
+	width: 360px;
+	height: 600px;
+	margin: auto 0 auto -180px;
+}
+.section-open #customize-theme-controls .customize-pane-parent.busy,
+.in-sub-panel #customize-theme-controls .customize-pane-parent.busy,
+.section-open #customize-info.busy,
+.in-sub-panel #customize-info.busy,
+#customize-theme-controls .customize-pane-child.open,
+#customize-theme-controls .customize-pane-child.current-panel,
+#customize-theme-controls .customize-pane-child.busy {
+	min-height: 100%;
+}
+
+@media(max-width: 1600px){
+	.wp-full-overlay.preview-laptop.expanded div#customize-preview {
+		margin-left: -50%;
+	}
+	.preview-laptop .wp-full-overlay-main iframe {
+		min-width: 1366px;
+	}
+	.preview-laptop .wp-full-overlay-main {
+		overflow: auto;
+	}
+}

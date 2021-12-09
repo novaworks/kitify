@@ -1,0 +1,76 @@
+.kitify-animated-text {
+
+}
+.kitify-animated-text__before-text {
+	display: inline;
+}
+.kitify-animated-text__animated-text {
+	color: var(--kitify-primary-color);
+	display: inline;
+	transition: width 0.3s ease
+}
+.kitify-animated-text__animated-text-item {
+	position: absolute;
+	top: 0;
+	left: 0;
+	pointer-events: none;
+	visibility: hidden;
+	z-index: 1;
+	display: inherit;
+}
+.kitify-animated-text__animated-text-item.active {
+	position: relative;
+	z-index: 2;
+}
+.kitify-animated-text__animated-text-item.visible {
+	visibility: inherit
+}
+.kitify-animated-text__animated-text-item span {
+	display: inline-block;
+}
+.kitify-animated-text__after-text {
+	display: inline;
+}
+.kitify-animated-text--effect-fx6 .kitify-animated-text__animated-text-item {
+	perspective: 1000px;
+	transform-origin: 50% 100%
+}
+.kitify-animated-text--effect-fx7 .kitify-animated-text__animated-text-item span {
+	transform-origin: -200% 50%
+}
+.kitify-animated-text--effect-fx8 .kitify-animated-text__animated-text-item {
+	perspective: 1000px;
+	transform-origin: 50% 100%
+}
+.kitify-animated-text--effect-fx8 .kitify-animated-text__animated-text-item span {
+	transform-origin: -200% 50%
+}
+.kitify-animated-text--effect-fx9 .kitify-animated-text__animated-text-item {
+	perspective: 1000px
+}
+.kitify-animated-text--effect-fx9 .kitify-animated-text__animated-text-item span {
+	transform-origin: 50% 100%
+}
+.kitify-animated-text--effect-fx10 .kitify-animated-text__animated-text-item {
+	perspective: 1000px
+}
+.kitify-animated-text--effect-fx12 .kitify-animated-text__animated-text-item span {
+	overflow: hidden;
+	transform-origin: 0 50%
+}
+.kitify-animated-text--effect-fx12 .kitify-animated-text__animated-text-item:after {
+	width: 2px;
+	overflow: hidden;
+	display: inline-block;
+	background-color: black;
+	animation: 1s blink step-end infinite;
+	content: "|"
+}
+@keyframes blink {
+	0%, to {
+		opacity: 0
+	}
+	50% {
+		opacity: 1
+	}
+}

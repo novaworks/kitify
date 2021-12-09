@@ -1,0 +1,358 @@
+.kitify{
+	--kitify-progress-bar-height: 15px;
+	--kitify-progress-bar-width: 50px;
+}
+.kitify-progress-bar__title {
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-flex-flow: row nowrap;
+	-ms-flex-flow: row nowrap;
+	flex-flow: row nowrap
+}
+.kitify-progress-bar__wrapper {
+	position: relative
+}
+.kitify-progress-bar__status-bar {
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-flow: column;
+	-ms-flex-flow: column;
+	flex-flow: column;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	will-change: width, height;
+	transition: width 1s cubic-bezier(0.6, 0.17, 0.37, 0.86), height 1s cubic-bezier(0.6, 0.17, 0.37, 0.86);
+	transform: translateZ(0)
+}
+.kitify-progress-bar__percent {
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center
+}
+.kitify-progress-bar__percent-value {
+	line-height: 1
+}
+.kitify-progress-bar__percent-suffix {
+	line-height: 1
+}
+.kitify-progress-bar-type-1 .kitify-progress-bar__inner {
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-flow: column;
+	-ms-flex-flow: column;
+	flex-flow: column
+}
+.kitify-progress-bar-type-1 .kitify-progress-bar__inner .kitify-progress-bar__status-bar {
+	width: 0%
+}
+.kitify-progress-bar-type-1 .kitify-progress-bar__inner .kitify-progress-bar__title {
+	-webkit-align-self: flex-start;
+	-ms-flex-item-align: start;
+	align-self: flex-start
+}
+.kitify-progress-bar-type-1 .kitify-progress-bar__inner .kitify-progress-bar__wrapper {
+	-webkit-align-self: stretch;
+	-ms-flex-item-align: stretch;
+	align-self: stretch
+}
+.kitify-progress-bar-type-1 .kitify-progress-bar__inner .kitify-progress-bar__percent {
+	-webkit-align-self: flex-end;
+	-ms-flex-item-align: end;
+	align-self: flex-end
+}
+
+.kitify-progress-bar-type-3 .kitify-progress-bar__inner {
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-flow: column;
+	-ms-flex-flow: column;
+	flex-flow: column
+}
+.kitify-progress-bar-type-3 .kitify-progress-bar__inner .kitify-progress-bar__wrapper {
+	-ms-flex: 1 1 auto;
+	flex: 1 1 auto
+}
+.kitify-progress-bar-type-3 .kitify-progress-bar__inner .kitify-progress-bar__status-bar {
+	width: 0
+}
+.kitify-progress-bar-type-3 .kitify-progress-bar__inner .kitify-progress-bar__percent {
+	-webkit-align-self: flex-end;
+	-ms-flex-item-align: end;
+	align-self: flex-end;
+	position: absolute;
+	bottom: calc(100% + 10px);
+	right: 0
+}
+.kitify-progress-bar-type-4 .kitify-progress-bar__inner {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	align-items: center
+}
+.kitify-progress-bar-type-4 .kitify-progress-bar__inner .kitify-progress-bar__wrapper {
+	flex: 1 1 auto
+}
+.kitify-progress-bar-type-4 .kitify-progress-bar__inner .kitify-progress-bar__status-bar {
+	width: 0%
+}
+.kitify-progress-bar-type-5 .kitify-progress-bar__inner {
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-flex-flow: row nowrap;
+	-ms-flex-flow: row nowrap;
+	flex-flow: row nowrap
+}
+.kitify-progress-bar-type-5 .kitify-progress-bar__inner .kitify-progress-bar__wrapper {
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-flow: row nowrap;
+	-ms-flex-flow: row nowrap;
+	flex-flow: row nowrap;
+	-webkit-align-self: stretch;
+	-ms-flex-item-align: stretch;
+	align-self: stretch
+}
+.kitify-progress-bar-type-5 .kitify-progress-bar__inner .kitify-progress-bar__status-bar {
+	width: 0
+}
+.kitify-progress-bar-type-6 .kitify-progress-bar__inner {
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-flex-flow: column nowrap;
+	-ms-flex-flow: column nowrap;
+	flex-flow: column nowrap
+}
+.kitify-progress-bar-type-6 .kitify-progress-bar__inner .kitify-progress-bar__wrapper {
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-flow: row nowrap;
+	-ms-flex-flow: row nowrap;
+	flex-flow: row nowrap;
+	-webkit-align-self: stretch;
+	-ms-flex-item-align: stretch;
+	align-self: stretch
+}
+.kitify-progress-bar-type-6 .kitify-progress-bar__inner .kitify-progress-bar__status-bar {
+	width: 0
+}
+.kitify-progress-bar-type-6 .kitify-progress-bar__inner .kitify-progress-bar__status {
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-flow: column nowrap;
+	-ms-flex-flow: column nowrap;
+	flex-flow: column nowrap;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-align: start;
+	-ms-flex-align: start;
+	align-items: flex-start
+}
+.kitify-progress-bar-type-7 .kitify-progress-bar__inner {
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-flex-flow: column nowrap;
+	-ms-flex-flow: column nowrap;
+	flex-flow: column nowrap
+}
+.kitify-progress-bar-type-7 .kitify-progress-bar__inner .kitify-progress-bar__wrapper {
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-flow: column nowrap;
+	-ms-flex-flow: column nowrap;
+	flex-flow: column nowrap
+}
+.kitify-progress-bar-type-7 .kitify-progress-bar__inner .kitify-progress-bar__status-bar {
+	width: 100%;
+	height: 0
+}
+.kitify-progress-bar__wrapper {
+	position: relative;
+	height: var(--kitify-progress-bar-height);
+	background-color: #eeeeee;
+	border-radius: 2px
+}
+.kitify-progress-bar__status-bar {
+	height: 100%;
+	background-color: var(--site-accent-color, #FD6363)
+}
+.kitify-progress-bar__title-icon {
+	margin-right: 5px;
+	line-height: 0;
+}
+.kitify-progress-bar__title-icon svg {
+	width: 1em;
+	height: auto;
+	vertical-align: middle;
+}
+.kitify-progress-bar-type-1 .kitify-progress-bar__title {
+	align-self: flex-start
+}
+.kitify-progress-bar-type-1 .kitify-progress-bar__percent {
+	margin: 0 10px;
+	color: white;
+	align-self: flex-end
+}
+.kitify-progress-bar-type-2 .kitify-progress-bar__inner {
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-flow: column;
+	-ms-flex-flow: column;
+	flex-flow: column
+}
+.kitify-progress-bar-type-2 .kitify-progress-bar__inner .kitify-progress-bar__status-bar {
+	width: 0
+}
+.kitify-progress-bar-type-2 .kitify-progress-bar__title {
+	align-self: center;
+	margin-top: 5px
+}
+.kitify-progress-bar-type-2 .kitify-progress-bar__percent {
+	align-self: center;
+	margin-bottom: 5px
+}
+.kitify-progress-bar-type-2b .kitify-progress-bar__inner {
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-flow: column;
+	-ms-flex-flow: column;
+	flex-flow: column
+}
+.kitify-progress-bar-type-2b .kitify-progress-bar__inner .kitify-progress-bar__status-bar {
+	width: 0
+}
+.kitify-progress-bar-type-2b .kitify-progress-bar__title {
+	align-self: center;
+	margin-top: 5px
+}
+.kitify-progress-bar-type-2b .kitify-progress-bar__percent {
+	align-self: center;
+	margin-bottom: 5px
+}
+.kitify-progress-bar-type-3 .kitify-progress-bar__inner {
+	-webkit-flex-flow: column-reverse;
+	-ms-flex-flow: column-reverse;
+	flex-flow: column-reverse;
+	font-size: 12px
+}
+.kitify-progress-bar-type-3 .kitify-progress-bar__percent {
+	width: 40px;
+	margin-right: -20px;
+	font-weight: bold
+}
+.kitify-progress-bar-type-3 .kitify-progress-bar__title {
+	justify-content: inherit;
+	-webkit-justify-content: inherit;
+	font-weight: bold;
+	margin-bottom: 5px
+}
+.kitify-progress-bar-type-4 .kitify-progress-bar__title {
+	margin-right: 20px
+}
+.kitify-progress-bar-type-4 .kitify-progress-bar__percent {
+	margin-left: 20px
+}
+.kitify-progress-bar-type-5 .kitify-progress-bar__title {
+	margin-bottom: 5px;
+	align-self: flex-start
+}
+.kitify-progress-bar-type-5 .kitify-progress-bar__percent {
+	margin-left: 10px
+}
+.kitify-progress-bar-type-6 .kitify-progress-bar__title {
+	align-self: flex-start
+}
+.kitify-progress-bar-type-6 .kitify-progress-bar__status {
+	margin-left: 10px
+}
+.kitify-progress-bar-type-6 .kitify-progress-bar__percent {
+	font-size: 25px
+}
+.kitify-progress-bar-type-7{
+	--kitify-progress-bar-width: 50px;
+	--kitify-progress-bar-height: 300px;
+}
+
+.kitify-progress-bar-type-7 .kitify-progress-bar__wrapper {
+	width: var(--kitify-progress-bar-width);
+	height: var(--kitify-progress-bar-height);
+	justify-content: flex-end
+}
+.kitify-progress-bar-type-7 .kitify-progress-bar__percent {
+	margin-bottom: 10px
+}
+.kitify--progressbar-endpoint .kitify-progress-bar__status-bar{
+	margin-bottom: 20px;
+}
+.kitify--progressbar-endpoint .kitify-progress-bar__status-bar:after {
+	content: '';
+	width: var(--kitify-progress-bar-height);
+	height: var(--kitify-progress-bar-height);
+	position: absolute;
+	box-sizing: content-box;
+	border: 5px solid;
+	border-radius: 50%;
+	background: inherit;
+	transform: translateY(-50%);
+	top: 50%;
+}
+.ltr .kitify--progressbar-endpoint .kitify-progress-bar__status-bar:after{
+	right: calc(var(--kitify-progress-bar-height) * -.5);
+}
+.rtl .kitify--progressbar-endpoint .kitify-progress-bar__status-bar:after{
+	left: calc(var(--kitify-progress-bar-height) * -.5);
+}
+.kitify--progressbar-endpoint .kitify-progress-bar-type-7 .kitify-progress-bar__status-bar{
+	margin: 0;
+}
+.kitify--progressbar-endpoint .kitify-progress-bar-type-7 .kitify-progress-bar__status-bar:after{
+	width: var(--kitify-progress-bar-width);
+	height: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	top: 0;
+	right: auto;
+	border-radius: 0;
+	border: 2px solid;
+	box-sizing: border-box;
+}

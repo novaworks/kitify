@@ -1,0 +1,249 @@
+.kitify-htimeline {
+	position: relative;
+	--kitify-htimeline-line-offset: 50%;
+}
+.kitify-htimeline--arrows-nav .kitify-htimeline-inner {
+	overflow: hidden
+}
+.kitify-htimeline-track{
+	display: flex;
+	flex-flow: column;
+}
+.kitify-htimeline--scroll-bar .kitify-htimeline-track {
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+	-ms-overflow-style: -ms-autohiding-scrollbar;
+	padding-bottom: 30px
+}
+.kitify-htimeline--scroll-bar .kitify-htimeline-track::-webkit-scrollbar {
+	height: 8px;
+	background: var(--kitify-border-color);
+	border-radius: 4px
+}
+.kitify-htimeline--scroll-bar .kitify-htimeline-track::-webkit-scrollbar-button {
+	width: 0;
+	height: 0
+}
+.kitify-htimeline--scroll-bar .kitify-htimeline-track::-webkit-scrollbar-thumb {
+	background-color: var(--kitify-secondary-color);
+	border: none;
+	border-radius: 4px
+}
+.kitify-htimeline--scroll-bar .kitify-htimeline-track::-webkit-scrollbar-track {
+	border: none;
+	background: transparent
+}
+.kitify-htimeline--scroll-bar .kitify-htimeline-track::-webkit-scrollbar-corner {
+	background: transparent
+}
+.kitify-htimeline--arrows-nav .kitify-htimeline-track {
+	transition: transform 500ms ease
+}
+.kitify-htimeline-list {
+	position: relative;
+	display: flex;
+	direction: ltr
+}
+.kitify-htimeline-list--top {
+	align-items: flex-end
+}
+.kitify-htimeline-list--middle {
+	align-items: flex-end
+}
+.kitify-htimeline-list--bottom {
+	align-items: flex-start
+}
+.kitify-htimeline-item {
+	display: flex;
+	flex-flow: column nowrap;
+	padding-left: 15px;
+	padding-right: 15px;
+	flex: 0 0 33.33%;
+	max-width: 33.33%;
+	transition: 0.2s
+}
+.kitify-htimeline-list--top .kitify-htimeline-item {
+	padding-top: 15px
+}
+.kitify-htimeline-list--bottom .kitify-htimeline-item {
+	padding-bottom: 15px
+}
+.kitify-htimeline-item__card {
+	position: relative;
+	display: flex;
+	flex-flow: column nowrap;
+	border-width: 1px;
+	transition: inherit
+}
+.kitify-htimeline-list--top .kitify-htimeline-item__card {
+	margin-bottom: 30px
+}
+.kitify-htimeline-list--bottom .kitify-htimeline-item__card {
+	margin-top: 30px
+}
+.kitify-htimeline-item__card-inner {
+	display: flex;
+	flex-flow: column nowrap;
+	padding: 30px;
+	overflow: hidden;
+	z-index: 1;
+	background-color: #f8f8f8;
+	transition: inherit
+}
+.kitify-htimeline-item__card-img {
+	margin-bottom: 10px
+}
+.kitify-htimeline-item__card-img img {
+	vertical-align: top
+}
+.kitify-htimeline-item__card-title {
+	margin: 0 0 10px;
+	padding: 0;
+	transition: inherit
+}
+.kitify-htimeline-item__card-arrow {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	border-width: 1px;
+	transition: inherit
+}
+.kitify-htimeline .kitify-htimeline-item__card-arrow {
+	box-sizing: content-box
+}
+.kitify-htimeline-item__card-arrow:before {
+	content: "";
+	display: block;
+	width: 100%;
+	height: 100%;
+	background-color: #f8f8f8;
+	transition: inherit
+}
+.kitify-htimeline-list--top .kitify-htimeline-item__card-arrow {
+	top: 100%;
+	transform: translateY(-50%) rotate(45deg);
+	border-left-color: transparent !important;
+	border-top-color: transparent !important
+}
+.kitify-htimeline-list--bottom .kitify-htimeline-item__card-arrow {
+	bottom: 100%;
+	transform: translateY(50%) rotate(45deg);
+	border-right-color: transparent !important;
+	border-bottom-color: transparent !important
+}
+.kitify-htimeline--align-left .kitify-htimeline-item__card-arrow {
+	left: 20px
+}
+.kitify-htimeline--align-right .kitify-htimeline-item__card-arrow {
+	right: 20px
+}
+.kitify-htimeline--align-center .kitify-htimeline-item__card-arrow {
+	left: 50%
+}
+.kitify-htimeline--align-center .kitify-htimeline-list--top .kitify-htimeline-item__card-arrow {
+	transform: translateX(-50%) translateY(-50%) rotate(45deg)
+}
+.kitify-htimeline--align-center .kitify-htimeline-list--bottom .kitify-htimeline-item__card-arrow {
+	transform: translateX(-50%) translateY(50%) rotate(45deg)
+}
+.kitify-htimeline-item__meta {
+	transition: inherit
+}
+.kitify-htimeline-list--top .kitify-htimeline-item__meta {
+	margin-bottom: 15px
+}
+.kitify-htimeline-list--bottom .kitify-htimeline-item__meta {
+	margin-top: 15px
+}
+.kitify-htimeline--align-left .kitify-htimeline-item__meta {
+	text-align: left;
+	margin-right: auto
+}
+.kitify-htimeline--align-center .kitify-htimeline-item__meta {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto
+}
+.kitify-htimeline--align-right .kitify-htimeline-item__meta {
+	text-align: right;
+	margin-left: auto
+}
+.kitify-htimeline-item__point {
+	z-index: 1;
+	transition: inherit
+}
+.kitify-htimeline-item__point-content {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	min-width: 10px;
+	min-height: 10px;
+	font-size: 16px;
+	color: var(--kitify-secondary-color);
+	background-color: var(--kitify-border-color);
+	border-radius: 50%;
+	transition: inherit
+}
+.kitify-htimeline-item__point-content svg {
+	width: 1em;
+	height: 1em;
+	vertical-align: middle;
+	display: inline-block;
+}
+.kitify-htimeline--align-left .kitify-htimeline-item__point-content {
+	margin-left: 10px;
+	margin-right: auto
+}
+.kitify-htimeline--align-center .kitify-htimeline-item__point-content {
+	margin-left: auto;
+	margin-right: auto
+}
+.kitify-htimeline--align-right .kitify-htimeline-item__point-content {
+	margin-left: auto;
+	margin-right: 10px
+}
+.kitify-htimeline-item.is-active .kitify-htimeline-item__point-content {
+	background-color: var(--kitify-primary-color);
+	color: #fff
+}
+.kitify-htimeline__line {
+	position: absolute;
+	top: 50%;
+	height: 2px;
+	transform: translateY(-50%);
+	overflow: hidden;
+	background-color: var(--kitify-border-color)
+}
+.kitify-htimeline__line-progress {
+	width: 0;
+	height: 100%;
+	background-color: var(--kitify-primary-color);
+	transition: 500ms ease
+}
+.kitify-htimeline .kitify-arrow {
+	border-radius: 50%;
+	background-color: var(--kitify-primary-color);
+	color: #fff;
+}
+
+.kitify-htimeline .kitify-arrow.arrow-disabled {
+	opacity: 0;
+	cursor: default;
+	pointer-events: none
+}
+.kitify-htimeline-line100-yes .kitify-htimeline__line {
+	opacity: 0;
+}
+.kitify-htimeline-line100-yes .kitify-htimeline-inner:before {
+	content: '';
+	background-color: var(--kitify-border-color);
+	width: 100vw;
+	position: absolute;
+	height: 2px;
+	left: 50%;
+	top: var(--kitify-htimeline-line-offset);
+	transform: translateX(-50%);
+}
