@@ -726,7 +726,7 @@ class Kitify_Woo_Products extends Kitify_Base {
                 'type' => Controls_Manager::COLOR,
                 'default' => '',
                 'selectors' => [
-                    '{{WRAPPER}} ul.products li.product .product-item .product-item__thumbnail .product-item__description--button .button' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} ul.products li.product .product-item__description--button .button' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -737,7 +737,7 @@ class Kitify_Woo_Products extends Kitify_Base {
                 'label' => esc_html__( 'Background Color', 'kitify' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} ul.products li.product .product-item .product-item__thumbnail .product-item__description--button .button' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} ul.products li.product .product-item__description--button .button' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -748,7 +748,7 @@ class Kitify_Woo_Products extends Kitify_Base {
                 'label' => esc_html__( 'Border Color', 'kitify' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} ul.products li.product .product-item .product-item__thumbnail .product-item__description--button .button' => 'border-color: {{VALUE}};',
+                    '{{WRAPPER}} ul.products li.product .product-item__description--button .button' => 'border-color: {{VALUE}};',
                 ],
             ]
         );
@@ -760,7 +760,7 @@ class Kitify_Woo_Products extends Kitify_Base {
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px', 'em' ],
                 'selectors' => [
-                    '{{WRAPPER}} ul.products li.product .product-item .product-item__thumbnail .product-item__description--button .button' => 'font-size: {{SIZE}}{{UNIT}}',
+                    '{{WRAPPER}} ul.products li.product .product-item__description--button .button' => 'font-size: {{SIZE}}{{UNIT}}',
                 ],
             ]
         );
@@ -780,7 +780,7 @@ class Kitify_Woo_Products extends Kitify_Base {
                 'label' => esc_html__( 'Text Color', 'kitify' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} ul.products li.product .product-item .product-item__thumbnail .product-item__description--button .button:hover' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} ul.products li.product .product-item__description--button .button:hover' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -791,7 +791,7 @@ class Kitify_Woo_Products extends Kitify_Base {
                 'label' => esc_html__( 'Background Color', 'kitify' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} ul.products li.product .product-item .product-item__thumbnail .product-item__description--button .button:hover' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} ul.products li.product .product-item__description--button .button:hover' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -802,7 +802,7 @@ class Kitify_Woo_Products extends Kitify_Base {
                 'label' => esc_html__( 'Border Color', 'kitify' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}}. ul.products li.product .product-item .product-item__thumbnail .product-item__description--button .button:hover' => 'border-color: {{VALUE}};',
+                    '{{WRAPPER}}. ul.products li.product .product-item__description--button .button:hover' => 'border-color: {{VALUE}};',
                 ],
             ]
         );
@@ -815,7 +815,7 @@ class Kitify_Woo_Products extends Kitify_Base {
             Group_Control_Border::get_type(), [
                 'name' => 'button_border',
                 'exclude' => [ 'color' ],
-                'selector' => '{{WRAPPER}} ul.products li.product .product-item .product-item__thumbnail .product-item__description--button .button',
+                'selector' => '{{WRAPPER}} ul.products li.product .product-item__description--button .button',
                 'separator' => 'before',
             ]
         );
@@ -827,7 +827,7 @@ class Kitify_Woo_Products extends Kitify_Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', '%' ],
                 'selectors' => [
-                    '{{WRAPPER}} ul.products li.product .product-item .product-item__thumbnail .product-item__description--button .button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} ul.products li.product .product-item__description--button .button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
