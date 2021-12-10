@@ -69,11 +69,11 @@ class Current_Query_Renderer extends Base_Products_Renderer {
 			}
 
 			if ( 'yes' !== $settings['allow_order'] ) {
-				remove_action( 'nova_woocommerce_result_count', 'woocommerce_catalog_ordering', 30, 0 );
+				remove_action( 'nova_woocommerce_catalog_ordering', 'woocommerce_catalog_ordering', 30 );
 			}
 
 			if ( 'yes' !== $settings['show_result_count'] ) {
-				remove_action( 'nova_woocommerce_catalog_ordering', 'woocommerce_result_count', 20, 0 );
+				remove_action( 'nova_woocommerce_result_count', 'woocommerce_result_count', 20 );
 			}
 		}
 

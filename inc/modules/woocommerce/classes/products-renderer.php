@@ -148,11 +148,11 @@ class Products_Renderer extends Base_Products_Renderer {
 			}
 
 			if ( 'yes' !== $settings['allow_order'] || $front_page ) {
-				remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
+				remove_action( 'nova_woocommerce_catalog_ordering', 'woocommerce_catalog_ordering', 30 );
 			}
 
 			if ( 'yes' !== $settings['show_result_count'] ) {
-				remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
+				remove_action( 'nova_woocommerce_result_count', 'woocommerce_result_count', 20 );
 			}
 		}
 		// fallback to the widget's default settings in case settings was left empty:
