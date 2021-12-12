@@ -326,7 +326,6 @@ if(!function_exists('Kitify')){
             require_once $this->plugin_path( 'inc/class-settings.php' );
             require_once $this->plugin_path( 'inc/settings/manager.php' );
             require_once $this->plugin_path( 'inc/class-svg-manager.php' );
-
             require_once $this->plugin_path( 'inc/rest-api/template-helper.php' );
             require_once $this->plugin_path( 'inc/rest-api/rest-api.php' );
             require_once $this->plugin_path( 'inc/rest-api/endpoints/base.php' );

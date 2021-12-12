@@ -66,11 +66,12 @@ if ( ! class_exists( 'Kitify_Settings' ) ) {
 		 */
 		public $default_avaliable_extensions = [
 			'motion_effects'        => 'true',
-			'floating_effects'       => 'true',
+			'floating_effects'      => 'true',
 			'css_transform'         => 'true',
-			'wrapper_link'          => 'true',
+			'wrapper_link'          => 'false',
 			'element_visibility'    => 'true',
 			'custom_css'            => 'true',
+			'column_sticky'    			=> 'true',
 		];
 
 		/**
@@ -149,9 +150,13 @@ if ( ! class_exists( 'Kitify_Settings' ) ) {
 					'label' => esc_html__( 'Custom CSS', 'kitify' ),
 					'value' => 'custom_css',
 				],
-                [
+        [
 					'label' => esc_html__( 'Portfolio Content Type', 'kitify' ),
 					'value' => 'portfolio_content_type',
+				],
+				[
+					'label' => esc_html__( 'Sticky Column', 'kitify' ),
+					'value' => 'column_sticky',
 				],
 			];
 

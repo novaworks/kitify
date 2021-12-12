@@ -1100,6 +1100,13 @@ span.kitify-btn-more-icon {
 .kitify--enable-zoom-hover .kitify-carousel--simple .kitify-carousel__item:hover .kitify-carousel__content:before {
 	transform: scale(var(--kitify-content-zoom-lv));
 }
+.kitify-sticky-column {
+	align-self: flex-start;
+}
+.kitify-sticky-column.is-affixed.elementor-element.elementor-column > .elementor-element-populated {
+		margin-top: 0;
+		margin-bottom: 0;
+}
 body:not(.elementor-editor-active) .kitify--disable-relative-section-yes > div,
 body:not(.elementor-editor-active) .kitify-disable-relative-yes,
 body:not(.elementor-editor-active) .kitify-disable-relative-yes .elementor-element-populated,
