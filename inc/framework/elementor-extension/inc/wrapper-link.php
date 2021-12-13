@@ -36,14 +36,14 @@ class Wrapper_Link {
             $controls_stack->start_controls_section(
                 '_section_kitify_wrapper_link',
                 [
-                    'label' => __( 'KITIFY Wrapper Link', 'nova' ),
+                    'label' => __( 'KITIFY Wrapper Link', 'kitify' ),
                     'tab'   => $tabs,
                 ]
             );
             $controls_stack->add_control(
                 'kitify_element_link',
                 [
-                    'label'       => __( 'Link', 'nova' ),
+                    'label'       => __( 'Link', 'kitify' ),
                     'type'        => \Elementor\Controls_Manager::URL,
                     'dynamic'     => [
                         'active' => true,

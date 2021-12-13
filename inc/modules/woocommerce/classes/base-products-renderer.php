@@ -249,11 +249,15 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
             add_action('kitify/products/action/shop_loop_item_title', [ $this, 'loop_item_add_product_title' ], 10 );
             add_action('kitify/products/action/shop_loop_item_title', [ $this, 'add_product_loop_category' ], 15 );
             add_action('woocommerce_after_shop_loop_item', [ $this, 'loop_item_info_close' ], 101 );
+
 						if( 2 == $this->settings['grid_style']) {
 							add_action('woocommerce_after_shop_loop_item', [ $this, 'loop_item_footer_open' ], 150 );
 							add_action('woocommerce_after_shop_loop_item', [ $this, 'loop_item_footer_close' ], 160 );
 							add_action('woocommerce_after_shop_loop_item', [ $this, 'loop_item_hover_box' ], 2000 );
 							remove_action('kitify/products/action/shop_loop_item_button', 'woocommerce_template_loop_add_to_cart', 10);
+						}
+						if(!empty($this->settings['enable_p_summary'])){
+								add_action( 'woocommerce_after_shop_loop_item_title', [ $this, 'loop_item_short_description' ], 20);
 						}
 
             remove_action('woocommerce_after_shop_loop', 'woocommerce_pagination', 10);
@@ -302,6 +306,13 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
             echo '</div>';
         echo '</div>';
     }
+
+		public function loop_item_short_description() {
+			global $product;
+			echo '<div class="product-short-description">';
+			echo $product->get_short_description();
+			echo '</div>';
+		}
 
     public function loop_item_footer_open(){
     	echo '<div class="product-item-footer">';

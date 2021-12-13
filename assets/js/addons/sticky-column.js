@@ -27,7 +27,6 @@
         if ( $target.hasClass( 'kitify-sticky-column' ) ) {
 
           if ( -1 !== settings['stickyOn'].indexOf( elementorFrontend.getCurrentDeviceMode() ) ) {
-
             stickyInstanceOptions.topSpacing = settings['topSpacing'];
             stickyInstanceOptions.bottomSpacing = settings['bottomSpacing'];
 

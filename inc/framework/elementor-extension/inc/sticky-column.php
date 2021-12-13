@@ -9,6 +9,7 @@ use Elementor\Controls_Manager;
 class Sticky_Column {
 
     public $columns_data = array();
+    public $toggle_columns = array();
     public $sticky_columns = array();
     private $has_sticky = false;
 
@@ -19,6 +20,8 @@ class Sticky_Column {
         add_action( 'elementor/frontend/column/before_render', array( $this, 'column_before_render' ) );
 
         add_action( 'elementor/frontend/element/before_render', array( $this, 'column_before_render' ) );
+
+        //add_action('elementor/frontend/after_render', [ $this, 'add_button'], -1);
 
         add_action( 'elementor/frontend/before_enqueue_scripts', array( $this, 'enqueue_scripts' ), 9 );
     }
@@ -54,6 +57,18 @@ class Sticky_Column {
         array(
           'label' => esc_html__( 'Kitify Column', 'kitify' ),
           'tab'   => \Elementor\Controls_Manager::TAB_ADVANCED,
+        )
+      );
+
+      $stack->add_control(
+        'kitify_column_toggle',
+        array(
+          'label'        => esc_html__( 'Toggle Column', 'kitify' ),
+          'type'         => \Elementor\Controls_Manager::SWITCHER,
+          'label_on'     => esc_html__( 'Yes', 'kitify' ),
+          'label_off'    => esc_html__( 'No', 'kitify' ),
+          'return_value' => 'true',
+          'default'      => 'false',
         )
       );
 
@@ -141,9 +156,14 @@ class Sticky_Column {
           'sticky'        => filter_var( $settings['kitify_column_sticky'], FILTER_VALIDATE_BOOLEAN ),
           'topSpacing'    => isset( $settings['kitify_top_spacing'] ) ? $settings['kitify_top_spacing'] : 50,
           'bottomSpacing' => isset( $settings['kitify_bottom_spacing'] ) ? $settings['kitify_bottom_spacing'] : 50,
-          'stickyOn'      => isset( $settings['kitify_column_sticky_on'] ) ? $settings['kitify_column_sticky_on'] : array( 'desktop', 'tablet' ),
+          'stickyOn'      => isset( $settings['kitify_column_sticky_on'] ) ? $settings['kitify_column_sticky_on'] : array( 'desktop', 'laptop', 'tablet' ),
         );
-
+        if ( filter_var( $settings['kitify_column_toggle'], FILTER_VALIDATE_BOOLEAN ) ) {
+          $element->add_render_attribute( '_wrapper', array(
+            'class'         => 'kitify-toggle-column',
+          ) );
+          $this->toggle_columns[] = $data['id'];
+        }
         if ( filter_var( $settings['kitify_column_sticky'], FILTER_VALIDATE_BOOLEAN ) ) {
 
           $element->add_render_attribute( '_wrapper', array(
@@ -180,17 +200,26 @@ class Sticky_Column {
           '3.3.1',
           true
         );
+        wp_enqueue_script(
+          'kitify-stickycolumn-frontend',
+          kitify()->plugin_url( 'assets/js/addons/sticky-column.js' ),
+          array('kitify-sticky-sidebar' ),
+          kitify()->get_version(),
+          true
+        );
+        wp_localize_script( 'kitify-stickycolumn-frontend', 'StickyColumnSettings', array(
+          'elements_data' => $this->columns_data,
+        ) );
       }
-      wp_enqueue_script(
-        'kitify-stickycolumn-frontend',
-        kitify()->plugin_url( 'assets/js/addons/sticky-column.js' ),
-        array('kitify-sticky-sidebar' ),
-        kitify()->get_version(),
-        true
-      );
-      wp_localize_script( 'kitify-stickycolumn-frontend', 'StickyColumnSettings', array(
-        'elements_data' => $this->columns_data,
-      ) );
+      if ( ! empty( $this->toggle_columns ) ) {
+        wp_enqueue_script(
+          'kitify-tooggle-columns-frontend',
+          kitify()->plugin_url( 'assets/js/addons/toggle-column.min.js' ),
+          array('elementor-frontend' ),
+          kitify()->get_version(),
+          true
+        );
+      }
     }
 }
 
