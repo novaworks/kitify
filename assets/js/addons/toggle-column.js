@@ -4,7 +4,7 @@
 
     $window.on('elementor/frontend/init', function() {
       $column_container.each( function(){
-        $(this).append( '<a class="nova-sidebar__toggle js-column-toogle" href="javascript:void(0)"></a>' );
+        $(this).append( '<a class="toggle-column-btn js-column-toogle" href="javascript:void(0)"></a>' );
       });
       $(document).on('click', '.js-column-toogle', function() {
         $('.kitify-toggle-column').toggleClass('opened');
