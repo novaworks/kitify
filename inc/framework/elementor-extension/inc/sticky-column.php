@@ -47,8 +47,9 @@ class Sticky_Column {
       } else {
         $breakpoints_list = array(
           'desktop' => 'Desktop',
+          'laptop'  => 'Laptop',
           'tablet'  => 'Tablet',
-          'mobile'  => 'Mobile'
+          'mobile'  => 'Mobile',
         );
       }
 
@@ -57,18 +58,6 @@ class Sticky_Column {
         array(
           'label' => esc_html__( 'Kitify Column', 'kitify' ),
           'tab'   => \Elementor\Controls_Manager::TAB_ADVANCED,
-        )
-      );
-
-      $stack->add_control(
-        'kitify_column_toggle',
-        array(
-          'label'        => esc_html__( 'Toggle Column', 'kitify' ),
-          'type'         => \Elementor\Controls_Manager::SWITCHER,
-          'label_on'     => esc_html__( 'Yes', 'kitify' ),
-          'label_off'    => esc_html__( 'No', 'kitify' ),
-          'return_value' => 'true',
-          'default'      => 'false',
         )
       );
 
@@ -124,7 +113,6 @@ class Sticky_Column {
           'default' => array(
             'desktop',
             'laptop',
-            'tablet',
           ),
           'options' => $breakpoints_list,
           'condition' => array(
@@ -151,6 +139,7 @@ class Sticky_Column {
       }
 
       if ( isset( $settings['kitify_column_sticky'] ) ) {
+        $active_breakpoints = kitify_helper()->get_active_breakpoints();
         $column_settings = array(
           'id'            => $data['id'],
           'sticky'        => filter_var( $settings['kitify_column_sticky'], FILTER_VALIDATE_BOOLEAN ),
@@ -158,12 +147,7 @@ class Sticky_Column {
           'bottomSpacing' => isset( $settings['kitify_bottom_spacing'] ) ? $settings['kitify_bottom_spacing'] : 50,
           'stickyOn'      => isset( $settings['kitify_column_sticky_on'] ) ? $settings['kitify_column_sticky_on'] : array( 'desktop', 'laptop', 'tablet' ),
         );
-        if ( filter_var( $settings['kitify_column_toggle'], FILTER_VALIDATE_BOOLEAN ) ) {
-          $element->add_render_attribute( '_wrapper', array(
-            'class'         => 'kitify-toggle-column',
-          ) );
-          $this->toggle_columns[] = $data['id'];
-        }
+
         if ( filter_var( $settings['kitify_column_sticky'], FILTER_VALIDATE_BOOLEAN ) ) {
 
           $element->add_render_attribute( '_wrapper', array(
@@ -214,7 +198,7 @@ class Sticky_Column {
       if ( ! empty( $this->toggle_columns ) ) {
         wp_enqueue_script(
           'kitify-tooggle-columns-frontend',
-          kitify()->plugin_url( 'assets/js/addons/toggle-column.min.js' ),
+          kitify()->plugin_url( 'assets/js/addons/toggle-column.js' ),
           array('elementor-frontend' ),
           kitify()->get_version(),
           true

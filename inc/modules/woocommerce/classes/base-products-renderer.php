@@ -216,6 +216,11 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 
     private function override_loop_hook(){
         if( ! kitify()->get_theme_support('kitify-woo::product-loop') ){
+					
+						add_action('woocommerce_before_shop_loop',  'vedbo_setup_toolbar' , -999 );
+						add_action('woocommerce_before_shop_loop',  'vedbo_add_toolbar_open' , 15 );
+						add_action('woocommerce_before_shop_loop',  'vedbo_add_toolbar_close' , 35 );
+						add_action( 'nova_woocommerce_catalog_ordering', 'vedbo_add_grid_list_display', 35, 0 );
 
             add_action('kitify/products/action/shop_loop_item_button', 'woocommerce_template_loop_add_to_cart', 10);
 
