@@ -935,6 +935,64 @@ class Kitify_Woo_Products extends Kitify_Base {
 		    ]
 	    );
 
+      $this->add_control(
+        'heading_sale_label',
+        [
+          'label' => esc_html__( 'Sale Label', 'kitify' ),
+          'type' => Controls_Manager::HEADING,
+          'separator' => 'before',
+        ]
+      );
+      $this->add_control(
+        'sale_label_bg_color',
+        [
+          'label' => esc_html__( 'Background Color', 'kitify' ),
+          'type' => Controls_Manager::COLOR,
+          'selectors' => [
+            '{{WRAPPER}} ul.products .product .product-item__badges .onsale' => 'background-color: {{VALUE}} !important',
+          ],
+        ]
+      );
+      $this->add_control(
+        'sale_label_color',
+        [
+          'label' => esc_html__( 'Color', 'kitify' ),
+          'type' => Controls_Manager::COLOR,
+          'selectors' => [
+            '{{WRAPPER}} ul.products .product .product-item__badges .onsale' => 'color: {{VALUE}} !important',
+          ],
+        ]
+      );
+
+      $this->add_control(
+        'heading_new_label',
+        [
+          'label' => esc_html__( 'New Label', 'kitify' ),
+          'type' => Controls_Manager::HEADING,
+          'separator' => 'before',
+        ]
+      );
+      $this->add_control(
+        'new_label_bg_color',
+        [
+          'label' => esc_html__( 'Background Color', 'kitify' ),
+          'type' => Controls_Manager::COLOR,
+          'selectors' => [
+            '{{WRAPPER}} ul.products .product .product-item__badges .nova_new_product' => 'background-color: {{VALUE}} !important',
+          ],
+        ]
+      );
+      $this->add_control(
+        'new_label_color',
+        [
+          'label' => esc_html__( 'Color', 'kitify' ),
+          'type' => Controls_Manager::COLOR,
+          'selectors' => [
+            '{{WRAPPER}} ul.products .product .product-item__badges .nova_new_product' => 'color: {{VALUE}} !important',
+          ],
+        ]
+      );
+
         $this->end_controls_section();
 
         $this->start_controls_section(
