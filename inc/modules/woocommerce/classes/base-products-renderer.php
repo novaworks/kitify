@@ -216,7 +216,7 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 
     private function override_loop_hook(){
         if( ! kitify()->get_theme_support('kitify-woo::product-loop') ){
-					
+
 						add_action('woocommerce_before_shop_loop',  'vedbo_setup_toolbar' , -999 );
 						add_action('woocommerce_before_shop_loop',  'vedbo_add_toolbar_open' , 15 );
 						add_action('woocommerce_before_shop_loop',  'vedbo_add_toolbar_close' , 35 );
@@ -244,9 +244,6 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
             add_action('woocommerce_before_shop_loop_item_title', [ $this, 'loop_item_thumbnail_overlay' ], 100 );
             add_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_link_close', 101 );
 
-						remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_rating', 5);
-						add_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_rating', 15);
-
 						remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10);
 						add_action( 'kitify/products/action/shop_loop_item_after_title', 'woocommerce_template_loop_price', 10);
 
@@ -254,12 +251,17 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
             add_action('kitify/products/action/shop_loop_item_title', [ $this, 'loop_item_add_product_title' ], 10 );
             add_action('kitify/products/action/shop_loop_item_title', [ $this, 'add_product_loop_category' ], 15 );
             add_action('woocommerce_after_shop_loop_item', [ $this, 'loop_item_info_close' ], 101 );
-
+						if( 1 == $this->settings['grid_style']) {
+							remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_rating', 5);
+							add_action( 'kitify/products/action/shop_loop_item_title', 'woocommerce_template_loop_rating', 15);
+						}
 						if( 2 == $this->settings['grid_style']) {
 							add_action('woocommerce_after_shop_loop_item', [ $this, 'loop_item_footer_open' ], 150 );
 							add_action('woocommerce_after_shop_loop_item', [ $this, 'loop_item_footer_close' ], 160 );
 							add_action('woocommerce_after_shop_loop_item', [ $this, 'loop_item_hover_box' ], 2000 );
 							remove_action('kitify/products/action/shop_loop_item_button', 'woocommerce_template_loop_add_to_cart', 10);
+							remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_rating', 5);
+							add_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_rating', 15);
 						}
 						if(!empty($this->settings['enable_p_summary'])){
 								add_action( 'woocommerce_after_shop_loop_item_title', [ $this, 'loop_item_short_description' ], 20);
