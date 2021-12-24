@@ -72,9 +72,13 @@ class Kitify_Woo_Single_Product_Images extends Kitify_Base {
                     'label' => esc_html__( 'Gallery Layout', 'kitify' ),
                     'type' => Controls_Manager::SELECT,
                     'options' => [
-                        'wc' => esc_html__('Default', 'kitify')
+                        '1' => esc_html__('Type 01', 'kitify'),
+                        '2' => esc_html__('Type 02', 'kitify'),
+                        '3' => esc_html__('Type 03', 'kitify'),
+                        '4' => esc_html__('Type 04', 'kitify'),
+                        '5' => esc_html__('Type 05', 'kitify'),
                     ],
-                    'default' => 'wc',
+                    'default' => '1',
                 ]
             );
 
@@ -395,7 +399,78 @@ class Kitify_Woo_Single_Product_Images extends Kitify_Base {
                 'type'       => Controls_Manager::DIMENSIONS,
                 'size_units' => array( 'px', '%', 'em' ),
                 'selectors'  => array(
-                    '{{WRAPPER}} .zoominner' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .flex-control-thumbs li img' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ),
+            )
+        );
+        $this->end_controls_section();
+
+        $this->start_controls_section(
+            'section_sale_label',
+            [
+                'label' => esc_html__( 'Sale Label', 'kitify' ),
+                'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
+        $this->_add_control(
+            'sale_label_color',
+            array(
+                'label' => esc_html__( 'Color', 'kitify' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => array(
+                    '{{WRAPPER}} .kitify-product-images .onsale' => 'color: {{VALUE}}',
+                ),
+            )
+        );
+        $this->_add_control(
+            'sale_label_bg_color',
+            array(
+                'label' => esc_html__( 'Background Color', 'kitify' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => array(
+                    '{{WRAPPER}} .kitify-product-images .onsale' => 'background-color: {{VALUE}}',
+                ),
+            )
+        );
+        $this->add_group_control(
+            Group_Control_Border::get_type(),
+            array(
+                'name'        => 'sale_label_border',
+                'label'       => esc_html__( 'Border', 'kitify' ),
+                'placeholder' => '1px',
+                'default'     => '1px',
+                'selector'    => '{{WRAPPER}} .kitify-product-images .onsale',
+            )
+        );
+
+        $this->add_responsive_control(
+            'sale_label_radius',
+            array(
+                'label'      => esc_html__( 'Border Radius', 'kitify' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => array( 'px', '%' ),
+                'selectors'  => array(
+                    '{{WRAPPER}} .kitify-product-images .onsale' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ),
+            )
+        );
+
+        $this->add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            array(
+                'name'     => 'sale_label_shadow',
+                'selector' => '{{WRAPPER}} .kitify-product-images .onsale',
+            )
+        );
+
+        $this->add_responsive_control(
+            'sale_label_padding',
+            array(
+                'label'      => esc_html__( 'Padding', 'kitify' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => array( 'px', '%', 'em' ),
+                'selectors'  => array(
+                    '{{WRAPPER}} .kitify-product-images .onsale' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ),
             )
         );

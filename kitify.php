@@ -522,7 +522,7 @@ if(!function_exists('Kitify')){
         }
 
         public function get_theme_support( $prop = '', $default = null ) {
-            $theme_support = get_theme_support( 'nova' );
+            $theme_support = get_theme_support( 'novaworks' );
             $theme_support = is_array( $theme_support ) ? $theme_support[0] : false;
 
             if ( ! $theme_support ) {
