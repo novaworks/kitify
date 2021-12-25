@@ -210,9 +210,6 @@ ul.flex-direction-nav {
 	vertical-align: top;
 	margin-right: 0;
 }
-.woocommerce div.product.elementor .quantity + .button {
-	margin-left: 10px;
-}
 .woocommerce div.product.elementor .woocommerce-variation-add-to-cart .quantity input {
 	height: 100%;
 }

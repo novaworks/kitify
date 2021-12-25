@@ -62,15 +62,28 @@ class Kitify_Woo_Single_Product_Stock extends Kitify_Base {
             ]
         );
 
-        $this->add_control(
-            'text_color',
-            [
-                'label' => esc_html__( 'Text Color', 'kitify' ),
-                'type' => Controls_Manager::COLOR,
-                'selectors' => [
-                    '.woocommerce {{WRAPPER}} .stock' => 'color: {{VALUE}}',
-                ],
-            ]
+        $this->add_responsive_control(
+            'padding',
+            array(
+                'label'      => esc_html__( 'Padding', 'kitify' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => array( 'px', '%', 'em' ),
+                'selectors'  => array(
+                    '.woocommerce {{WRAPPER}} .stock' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ),
+            )
+        );
+
+        $this->add_responsive_control(
+            'border_radius',
+            array(
+                'label'      => esc_html__( 'Border Radius', 'kitify' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => array( 'px', '%' ),
+                'selectors'  => array(
+                    '.woocommerce {{WRAPPER}} .stock' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+                ),
+            )
         );
 
         $this->add_group_control(
