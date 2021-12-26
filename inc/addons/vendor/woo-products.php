@@ -370,6 +370,15 @@ class Kitify_Woo_Products extends Kitify_Base {
                 'default' => ''
             ]
         );
+        $this->add_control(
+            'enable_p_rating',
+            [
+                'label' => esc_html__( 'Enable Product Rating', 'kitify' ),
+                'type' => Controls_Manager::SWITCHER,
+                'return_value' => 'yes',
+                'default' => ''
+            ]
+        );
 
         $this->register_advance_control_layout();
 

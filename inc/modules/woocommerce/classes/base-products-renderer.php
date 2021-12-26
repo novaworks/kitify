@@ -232,7 +232,8 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
             remove_action('woocommerce_shop_loop_item_title', 'woocommerce_template_loop_product_title', 10);
             remove_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10);
 						remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_show_product_loop_sale_flash', 10 );
-
+						remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_rating', 5);
+						
             add_action( 'woocommerce_before_shop_loop_item', [ $this, 'loop_item_open' ], -1001 );
             add_action( 'woocommerce_after_shop_loop_item', [ $this, 'loop_item_close' ], 1001 );
 
@@ -251,8 +252,8 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
             add_action('kitify/products/action/shop_loop_item_title', [ $this, 'loop_item_add_product_title' ], 10 );
             add_action('kitify/products/action/shop_loop_item_title', [ $this, 'add_product_loop_category' ], 15 );
             add_action('woocommerce_after_shop_loop_item', [ $this, 'loop_item_info_close' ], 101 );
-						if( 1 == $this->settings['grid_style']) {
-							remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_rating', 5);
+
+						if( 1 == $this->settings['grid_style'] && !empty($this->settings['enable_p_rating']) ) {
 							add_action( 'kitify/products/action/shop_loop_item_title', 'woocommerce_template_loop_rating', 15);
 						}
 						if( 2 == $this->settings['grid_style']) {
@@ -260,10 +261,11 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 							add_action('woocommerce_after_shop_loop_item', [ $this, 'loop_item_footer_close' ], 160 );
 							add_action('woocommerce_after_shop_loop_item', [ $this, 'loop_item_hover_box' ], 2000 );
 							remove_action('kitify/products/action/shop_loop_item_button', 'woocommerce_template_loop_add_to_cart', 10);
-							remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_rating', 5);
-							add_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_rating', 15);
+							if( !empty($this->settings['enable_p_rating']) ) {
+								add_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_rating', 15);
+							}
 						}
-						if(!empty($this->settings['enable_p_summary'])){
+						if( !empty($this->settings['enable_p_summary']) ){
 								add_action( 'woocommerce_after_shop_loop_item_title', [ $this, 'loop_item_short_description' ], 20);
 						}
 
