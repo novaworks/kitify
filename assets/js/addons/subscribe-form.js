@@ -6,7 +6,7 @@
     /**
      * Ajax Handlers
      */
-    var LakitHandlerUtils = {
+    var KitifyHandlerUtils = {
         /**
          * Rendering notice message
          *
@@ -119,7 +119,7 @@
         }
     };
 
-    var LakitAjaxHandler = function (options) {
+    var KitifyAjaxHandler = function (options) {
         /**
          * General default settings
          *
@@ -192,7 +192,7 @@
          */
         self.send = function () {
             if (self.ajaxProcessing) {
-                LakitHandlerUtils.noticeCreate('error-notice', self.handlerSettings.sys_messages.wait_processing, self.handlerSettings.is_public);
+                KitifyHandlerUtils.noticeCreate('error-notice', self.handlerSettings.sys_messages.wait_processing, self.handlerSettings.is_public);
             }
             self.ajaxProcessing = true;
 
@@ -238,7 +238,7 @@
                         settings.successCallback(data, textStatus, jqXHR);
                     }
 
-                    LakitHandlerUtils.noticeCreate(data.type, data.message, self.handlerSettings.is_public);
+                    KitifyHandlerUtils.noticeCreate(data.type, data.message, self.handlerSettings.is_public);
                 },
                 complete: function (jqXHR, textStatus) {
                     $(document).trigger({
@@ -281,13 +281,13 @@
             var form = $(formId),
                 data;
 
-            data = LakitHandlerUtils.serializeObject(form);
+            data = KitifyHandlerUtils.serializeObject(form);
 
             self.sendData(data);
         };
     };
 
-    var LakitSubscribeForm = function( $scope ) {
+    var KitifySubscribeForm = function( $scope ) {
         var $target = $scope.find('.kitify-subscribe-form'),
             scoreId = $scope.data('id'),
             settings = $target.data('settings'),
@@ -301,7 +301,7 @@
             timeout = null,
             invalidMailMessage = window.kitifySubscribeConfig.sys_messages.invalid_mail;
 
-        var kitifySubscribeFormAjax = new LakitAjaxHandler({
+        var kitifySubscribeFormAjax = new KitifyAjaxHandler({
             handlerId: subscribeFormAjaxId,
 
             successCallback: function (data) {
@@ -405,7 +405,7 @@
 
     $(window).on('elementor/frontend/init', function () {
         elementorFrontend.hooks.addAction('frontend/element_ready/kitify-subscribe-form.default', function ($scope) {
-            LakitSubscribeForm($scope);
+            KitifySubscribeForm($scope);
         });
     });
 

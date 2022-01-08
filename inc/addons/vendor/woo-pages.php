@@ -85,8 +85,8 @@ class Kitify_Woo_Pages extends Kitify_Base {
         ];
 
         if(kitify()->get_theme_support('kitify')){
-            $page_options['la_wishlist'] = esc_html__( 'LaStudio Wishlist', 'kitify' );
-            $page_options['la_compare'] = esc_html__( 'LaStudio Compare', 'kitify' );
+            $page_options['la_wishlist'] = esc_html__( 'Novaworks Wishlist', 'kitify' );
+            $page_options['la_compare'] = esc_html__( 'Novaworks Compare', 'kitify' );
         }
 
         $this->_add_control(

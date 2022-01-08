@@ -166,7 +166,7 @@ if(!function_exists('Kitify')){
          * @return string
          */
         public function get_version() {
-            if(defined('LA_DEBUG') && LA_DEBUG){
+            if(defined('NOVA_DEBUG') && NOVA_DEBUG){
                 return time();
             }
             return $this->version;

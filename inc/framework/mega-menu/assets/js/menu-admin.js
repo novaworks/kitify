@@ -4,7 +4,7 @@
 
     Vue.config.devtools = true;
 
-    window.LaStudioMenuNavSettings = {
+    window.NovaworksMenuNavSettings = {
 
         navItemsSettingsInstance: null,
 
@@ -16,15 +16,15 @@
         },
 
         initEvents: function() {
-            $( document ).on( 'click.LakitMenuAdmin', '.kitify-menu-item-trigger', this.openItemSettingPopup );
+            $( document ).on( 'click.KitifyMenuAdmin', '.kitify-menu-item-trigger', this.openItemSettingPopup );
         },
 
         initTriggers: function() {
 
             $( '#menu-to-edit .menu-item' ).each( function() {
                 var $this = $( this ),
-                    depth = LaStudioMenuNavSettings.getItemDepth( $this ),
-                    id    = LaStudioMenuNavSettings.getItemId( $this );
+                    depth = NovaworksMenuNavSettings.getItemDepth( $this ),
+                    id    = NovaworksMenuNavSettings.getItemId( $this );
 
                 $this.find( '.item-title' ).append( `<span class="kitify-menu-item-trigger" data-item-id="${ id }" data-item-depth="${ depth }">${ navSettingsConfig.labels.itemTriggerLabel }</span>` );
             });
@@ -198,9 +198,9 @@
                 itemId      = $this.data( 'item-id' ),
                 itemDepth   = $this.data( 'item-depth' );
 
-            LaStudioMenuNavSettings.navItemsSettingsInstance.$data.itemSettingItem = true;
-            LaStudioMenuNavSettings.navItemsSettingsInstance.$data.itemId = itemId;
-            LaStudioMenuNavSettings.navItemsSettingsInstance.$data.itemDepth = itemDepth;
+            NovaworksMenuNavSettings.navItemsSettingsInstance.$data.itemSettingItem = true;
+            NovaworksMenuNavSettings.navItemsSettingsInstance.$data.itemId = itemId;
+            NovaworksMenuNavSettings.navItemsSettingsInstance.$data.itemDepth = itemDepth;
         },
 
         getItemId: function( $item ) {
@@ -231,6 +231,6 @@
         }
     }
 
-    window.LaStudioMenuNavSettings.init();
+    window.NovaworksMenuNavSettings.init();
 
 })( jQuery, window.KitifyMenuConfig );

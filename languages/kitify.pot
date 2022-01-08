@@ -3686,7 +3686,7 @@ msgid "Last Name + First Name"
 msgstr ""
 
 #: inc/addons/vendor/woo-pages.php:89
-msgid "LaStudio Compare"
+msgid "Novaworks Compare"
 msgstr ""
 
 #: inc/class-integration.php:350 inc/settings/manager.php:72
@@ -3709,7 +3709,7 @@ msgid "Kitify WooCommerce"
 msgstr ""
 
 #: inc/addons/vendor/woo-pages.php:88
-msgid "LaStudio Wishlist"
+msgid "Novaworks Wishlist"
 msgstr ""
 
 #: inc/class-settings.php:236

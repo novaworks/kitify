@@ -177,7 +177,7 @@ class Kitify_Countdown_Timer extends Kitify_Base {
         $this->end_controls_section();
 
         $css_scheme = apply_filters(
-            'LaStudioElement/kitify-countdown-timer/css-scheme',
+            'NovaworksElement/kitify-countdown-timer/css-scheme',
             array(
                 'container'  => '.kitify-countdown-timer',
                 'item'  => '.kitify-countdown-timer__item',

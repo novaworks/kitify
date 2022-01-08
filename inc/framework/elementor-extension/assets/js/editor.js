@@ -2,7 +2,7 @@
 
 	'use strict';
 
-	var LaStudioQueryControl = {
+	var NovaworksQueryControl = {
 		init: function() {
 
 			var QueryControlItemView = elementor.modules.controls.Select2.extend({
@@ -129,7 +129,7 @@
 				}
 			});
 
-			var LakitSearchView = window.elementor.modules.controls.BaseData.extend( {
+			var KitifySearchView = window.elementor.modules.controls.BaseData.extend( {
 
 				hasTitles: false,
 
@@ -229,7 +229,7 @@
 
 			// Add controls views
 			elementor.addControlView( 'kitify-query',    	QueryControlItemView );
-			elementor.addControlView( 'kitify_search',    		LakitSearchView );
+			elementor.addControlView( 'kitify_search',    		KitifySearchView );
 		}
 	};
 
@@ -282,7 +282,7 @@
 		}
 	}
 
-	$( window ).on( 'elementor:init', LaStudioQueryControl.init );
+	$( window ).on( 'elementor:init', NovaworksQueryControl.init );
 	$( window ).on( 'elementor:init', CustomCSS.init );
 
 }( jQuery ));

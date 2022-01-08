@@ -1,4 +1,4 @@
-// Initialize LaStudio Sticky
+// Initialize Novaworks Sticky
 
 (function($) {
     "use strict";

@@ -2,7 +2,7 @@
 
 	"use strict";
 
-	var LakitCountDownTimer = function ($el){
+	var KitifyCountDownTimer = function ($el){
 		var $scope = $el;
 		var timeInterval,
 			$coutdown = $scope.find('[data-due-date]'),
@@ -77,7 +77,7 @@
 
 	$(window).on('elementor/frontend/init', function () {
 		window.elementorFrontend.hooks.addAction('frontend/element_ready/kitify-countdown-timer.default', function ($scope) {
-			LakitCountDownTimer( $scope );
+			KitifyCountDownTimer( $scope );
 		});
 	});
 

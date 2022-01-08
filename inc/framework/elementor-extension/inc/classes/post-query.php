@@ -356,7 +356,7 @@ class Post_Query {
 		if ( $this->widget ) {
 			$query_id = $this->get_widget_settings( 'query_id' );
 			/**
-			 * LaStudio posts widget Query args.
+			 * Novaworks posts widget Query args.
 			 *
 			 * It allows developers to alter individual posts widget queries.
 			 *

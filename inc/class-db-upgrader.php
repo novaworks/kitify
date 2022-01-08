@@ -52,10 +52,10 @@ if ( ! class_exists( 'Kitify_DB_Upgrader' ) ) {
 					'path'      => $db_updater_data['path'],
 					'url'       => $db_updater_data['url'],
 					'slug'      => 'nova-element-kit',
-					'version'   => '1.0.3',
+					'version'   => '1.0.1',
 					'callbacks' => array(
-						'1.0.3' => array(
-							array( $this, 'update_db_1_0_3' ),
+						'1.0.1' => array(
+							array( $this, 'update_db_1_0_1' ),
 						),
 					),
 					'labels'    => array(
@@ -72,11 +72,11 @@ if ( ! class_exists( 'Kitify_DB_Upgrader' ) ) {
 		}
 
 		/**
-		 * Update db updater 1.0.3
+		 * Update db updater 1.0.1
 		 *
 		 * @return void
 		 */
-		public function update_db_1_0_3() {
+		public function update_db_1_0_1() {
 			if ( class_exists( 'Elementor\Plugin' ) ) {
 				kitify()->elementor()->files_manager->clear_cache();
 			}

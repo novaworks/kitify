@@ -3,7 +3,7 @@
  * Class description
  *
  * @package   package_name
- * @author    LaStudio Team
+ * @author    Novaworks Team
  * @license   GPL-2.0+
  */
 

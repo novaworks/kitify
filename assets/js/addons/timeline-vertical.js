@@ -3,7 +3,7 @@
     "use strict";
 
     /**
-     * LaStudio Timeline Class
+     * Novaworks Timeline Class
      *
      * @return {void}
      */

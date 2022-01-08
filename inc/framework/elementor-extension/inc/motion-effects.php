@@ -57,7 +57,7 @@ class Motion_Effects
     public function register_enqueue_scripts() {
         wp_register_style('kitify-motion-fx', kitify()->plugin_url('assets/css/addons/motion-fx.css'), [], kitify()->get_version());
         wp_register_script('kitify-sticky-js', kitify()->plugin_url('assets/js/lib/jquery.sticky.min.js'), ['jquery'], kitify()->get_version(), true);
-        wp_register_script('kitify-motion-fx', kitify()->plugin_url('assets/js/addons/motion-fx.min.js'), [
+        wp_register_script('kitify-motion-fx', kitify()->plugin_url('assets/js/addons/motion-fx.js'), [
             'elementor-frontend-modules',
             'kitify-sticky-js'
         ], kitify()->get_version(), true);
