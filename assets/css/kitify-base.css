@@ -39,10 +39,10 @@
 body:not(.elementor-editor-active) .elementor-location-header .elementor-sticky.elementor-sticky__spacer.kitify--transparency-yes {
 	display: none;
 }
-/* .elementor-location-header {
+.elementor-location-header {
 	position: relative;
 	z-index: 9;
-} */
+}
 .kitify-logo .kitify-logo-light{
 	display: none;
 }
