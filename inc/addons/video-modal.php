@@ -1,7 +1,7 @@
 <?php
 /**
  * Class: Kitify_VideoModal
- * Name: Sidebar
+ * Name: Video Modal
  * Slug: kitify-video-modal
  */
 
