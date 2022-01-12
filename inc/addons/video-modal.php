@@ -1,6 +1,6 @@
 <?php
 /**
- * Class: Kitify_VideoModal
+ * Class: Kitify_Video_Modal
  * Name: Video Modal
  * Slug: kitify-video-modal
  */
@@ -9,16 +9,14 @@ namespace Elementor;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-use Elementor\Controls_Manager;
-use Elementor\Group_Control_Text_Shadow;
-use Elementor\Group_Control_Border;
-use Elementor\Group_Control_Typography;
-use Elementor\Group_Control_Background;
-use Elementor\Icons_Manager;
-
-class Kitify_VideoModal extends Kitify_Base {
+class Kitify_Video_Modal extends Kitify_Base {
 
   protected function enqueue_addon_resources(){
+      wp_register_style( $this->get_name(),
+        kitify()->plugin_url('assets/css/addons/video-modal.css'),
+        array('fancybox' ),
+        kitify()->get_version()
+      );
       wp_register_script(
         $this->get_name(),
         kitify()->plugin_url( 'assets/js/addons/video-modal.js' ),
@@ -28,11 +26,14 @@ class Kitify_VideoModal extends Kitify_Base {
       );
       $this->add_script_depends( 'fancybox' );
       $this->add_script_depends( $this->get_name() );
+
+      $this->add_style_depends( 'fancybox' );
+      $this->add_style_depends( $this->get_name() );
   }
   /**
    * Get widget name.
    *
-   * Retrieve sidebar widget name.
+   * Retrieve video modal widget name.
    *
    * @since 1.0.0
    * @access public
@@ -45,7 +46,7 @@ class Kitify_VideoModal extends Kitify_Base {
   /**
    * Get widget title.
    *
-   * Retrieve sidebar widget title.
+   * Retrieve video modal widget title.
    *
    * @since 1.0.0
    * @access public
@@ -55,10 +56,11 @@ class Kitify_VideoModal extends Kitify_Base {
   public function get_title() {
     return esc_html__( 'Kitify Video Modal', 'kitify' );
   }
+
   /**
   	 * Get widget icon.
   	 *
-  	 * Retrieve sidebar widget icon.
+  	 * Retrieve video modal widget icon.
   	 *
   	 * @since 1.0.0
   	 * @access public
@@ -70,33 +72,19 @@ class Kitify_VideoModal extends Kitify_Base {
   	}
 
   	/**
-  	 * Get widget keywords.
-  	 *
-  	 * Retrieve the list of keywords the widget belongs to.
-  	 *
-  	 * @since 2.1.0
-  	 * @access public
-  	 *
-  	 * @return array Widget keywords.
-  	 */
-  	public function get_keywords() {
-  		return [ 'video', 'widget' ];
-  	}
-
-  	/**
-  	 * Register sidebar widget controls.
+  	 * Register video modal widget controls.
   	 *
   	 * Adds different input fields to allow the user to change and customize the widget settings.
   	 *
-  	 * @since 3.1.0
+  	 * @since 1.0.0
   	 * @access protected
   	 */
-     protected function _register_controls() {
+     protected function register_controls() {
        $css_scheme = apply_filters(
            'kitify/video-modal/css-scheme',
            array(
-               'icon_play'   => '.nova-video-modal .video-modal-btn',
-               'icon_play_hover'   => '.nova-video-modal .video-modal-btn:hover',
+               'icon_play'   => '.kitify-video-modal .video-modal-btn',
+               'icon_play_hover'   => '.kitify-video-modal .video-modal-btn:hover',
            )
        );
        $this->start_controls_section(
@@ -189,7 +177,7 @@ class Kitify_VideoModal extends Kitify_Base {
          Icons_Manager::render_icon($video_icon,[ 'aria-hidden' => 'true' ]);
          $play_icon = ob_get_clean();
          if($video_url['url']) {
-           echo '<div class="nova-video-modal"><a href="'.$video_url['url'].'" class="js-video-modal video-modal-btn">'.$play_icon.'</a></div>';
+           echo '<div class="kitify-video-modal"><a href="'.$video_url['url'].'" class="js-video-modal video-modal-btn">'.$play_icon.'</a></div>';
          }
       }
   }

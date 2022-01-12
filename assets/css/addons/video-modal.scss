@@ -1,0 +1,18 @@
+.kitify-video-modal {
+	text-align: center;
+	.video-modal-btn {
+		font-size: rem-calc(24);
+		svg {
+			width: rem-calc(60);
+			height: rem-calc(60);
+		}
+	}
+
+}
+.modal-video-close-btn {
+	padding: 0;
+	margin: 0;
+	&:hover {
+		background-color: transparent;
+	}
+}
