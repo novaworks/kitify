@@ -196,6 +196,12 @@ if ( ! class_exists( 'Kitify_Integration' ) ) {
                         ),
                         'conditional' => $woo_conditional,
                     ),
+                    'woo_categories' => array(
+                        'file' => kitify()->plugin_path(
+                            'inc/addons/vendor/woo-categories.php'
+                        ),
+                        'conditional' => $woo_conditional,
+                    ),
                     'woo_menu_cart' => array(
                         'file' => kitify()->plugin_path(
                             'inc/addons/vendor/woo-menu-cart.php'
@@ -769,7 +775,7 @@ if ( ! class_exists( 'Kitify_Integration' ) ) {
 		    $breakpoints = kitify_helper()->get_active_breakpoints();
 			asort($breakpoints);
 		    $css = '';
-		    $vheader_css = '.kitify-vheader--hide__DEVICE__.kitify--is-vheader{position:relative}.kitify-vheader--hide__DEVICE__.kitify--is-vheader.kitify-vheader-pleft{padding-left:var(--kitify-vheader-width)}.kitify-vheader--hide__DEVICE__.kitify--is-vheader.kitify-vheader-pright{padding-right:var(--kitify-vheader-width)}.kitify-vheader--hide__DEVICE__.kitify--is-vheader > .elementor-location-header.elementor-edit-area{position:static}.kitify-vheader--hide__DEVICE__.kitify--is-vheader > .elementor-location-header > .elementor-section-wrap > .elementor-top-section:first-child{position:absolute;top:0;bottom:0;width:var(--kitify-vheader-width);height:auto;z-index:3;min-height:calc(100vh - var(--kitify-adminbar-height))}.kitify-vheader--hide__DEVICE__.kitify--is-vheader.kitify-vheader-pleft > .elementor-location-header > .elementor-section-wrap > .elementor-top-section:first-child{left:0}.kitify-vheader--hide__DEVICE__.kitify--is-vheader.kitify-vheader-pright > .elementor-location-header > .elementor-section-wrap > .elementor-top-section:first-child{right:0}.kitify-vheader--hide__DEVICE__.kitify--is-vheader > .elementor-location-header > .elementor-section-wrap > .elementor-top-section:first-child > .elementor-container{flex-flow:row wrap;height:auto;position:sticky;top:var(--kitify-adminbar-height);left:0;min-height:calc(100vh - var(--kitify-adminbar-height))}.kitify-vheader--hide__DEVICE__.kitify--is-vheader > .elementor-location-header > .elementor-section-wrap > .elementor-top-section:first-child > .elementor-container > .elementor-column{width:100%}';
+		    $vheader_css = '.kitify-vheader--hide__DEVICE__.kitify--is-vheader{position:relative}.kitify-vheader--hide__DEVICE__.kitify--is-vheader.kitify-vheader-pleft{padding-left:var(--kitify-vheader-width)}.kitify-vheader--hide__DEVICE__.kitify--is-vheader.kitify-vheader-pright{padding-right:var(--kitify-vheader-width)}.kitify-vheader--hide__DEVICE__.kitify--is-vheader > .elementor-location-header.elementor-edit-area{position:static}.kitify-vheader--hide__DEVICE__.kitify--is-vheader > .elementor-location-header > .elementor-section-wrap > .elementor-top-section:first-child{position:absolute;top:0;bottom:0;width:var(--kitify-vheader-width);height:auto;z-index:3;min-height:calc(100vh - 32px)}.kitify-vheader--hide__DEVICE__.kitify--is-vheader.kitify-vheader-pleft > .elementor-location-header > .elementor-section-wrap > .elementor-top-section:first-child{left:0}.kitify-vheader--hide__DEVICE__.kitify--is-vheader.kitify-vheader-pright > .elementor-location-header > .elementor-section-wrap > .elementor-top-section:first-child{right:0}.kitify-vheader--hide__DEVICE__.kitify--is-vheader > .elementor-location-header > .elementor-section-wrap > .elementor-top-section:first-child > .elementor-container{flex-flow:row wrap;height:auto;position:sticky;top:var(--kitify-adminbar-height);left:0;min-height:calc(100vh - var(--kitify-adminbar-height))}.kitify-vheader--hide__DEVICE__.kitify--is-vheader > .elementor-location-header > .elementor-section-wrap > .elementor-top-section:first-child > .elementor-container > .elementor-column{width:100%}';
 		    $grid_mapping = [
 		        'laptop'        => 'desk',
 		        'tablet'        => 'lap',
