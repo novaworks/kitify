@@ -25,7 +25,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 if(!function_exists('Kitify')){
-    class Kitify{
+    class Kitify {
         /**
          * A reference to an instance of this class.
          *
