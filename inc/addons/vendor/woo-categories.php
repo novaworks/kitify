@@ -268,67 +268,18 @@ class Kitify_Woo_Categories extends Kitify_Base {
 			$product_categories = array_slice( $product_categories, 0, $atts['limit'] );
 		}
 
-		$columns = absint( $atts['columns'] );
-
-		wc_set_loop_prop( 'columns', $columns );
-
-		/* Category Link */
-		remove_action( 'woocommerce_before_subcategory', 'woocommerce_template_loop_category_link_open', 10 );
-		add_action( 'woocommerce_before_subcategory', array( $this, 'template_loop_category_link_open' ), 10 );
-
-		/* Category Wrapper */
-		add_action( 'woocommerce_before_subcategory', array( $this, 'category_wrap_start' ), 15 );
-		add_action( 'woocommerce_after_subcategory', array( $this, 'category_wrap_end' ), 8 );
-
-		if ( 'yes' === $settings['display_cat_desc'] ) {
-			add_action( 'woocommerce_after_subcategory', array( $this, 'category_description' ), 8 );
-		}
-
-		/* Category Title */
-		remove_action( 'woocommerce_shop_loop_subcategory_title', 'woocommerce_template_loop_category_title', 10 );
-		add_action( 'woocommerce_shop_loop_subcategory_title', array( $this, 'template_loop_category_title' ), 10 );
-
-		ob_start();
-
 		if ( $product_categories ) {
-			do_action( 'uael_before_product_loop_start' );
-			woocommerce_product_loop_start();
-
 			foreach ( $product_categories as $category ) {
 
 				include UAEL_MODULES_DIR . 'woocommerce/templates/content-product-cat.php';
 			}
 
-			woocommerce_product_loop_end();
 		}
 
-		woocommerce_reset_loop();
-
-		$inner_classes  = ' uael-woo-cat__column-' . $settings['cat_columns'];
-		$inner_classes .= ' uael-woo-cat__column-tablet-' . $settings['cat_columns_tablet'];
-		$inner_classes .= ' uael-woo-cat__column-mobile-' . $settings['cat_columns_mobile'];
-
-		$inner_content = ob_get_clean();
-
-		/* Category Link */
-		add_action( 'woocommerce_before_subcategory', 'woocommerce_template_loop_category_link_open', 10 );
-		remove_action( 'woocommerce_before_subcategory', array( $this, 'template_loop_category_link_open' ), 10 );
-
-		/* Category Wrapper */
-		remove_action( 'woocommerce_before_subcategory', array( $this, 'category_wrap_start' ), 15 );
-		remove_action( 'woocommerce_after_subcategory', array( $this, 'category_wrap_end' ), 8 );
-
-		if ( 'yes' === $settings['display_cat_desc'] ) {
-			remove_action( 'woocommerce_after_subcategory', array( $this, 'category_description' ), 8 );
-		}
-
-		/* Category Title */
-		remove_action( 'woocommerce_shop_loop_subcategory_title', array( $this, 'template_loop_category_title' ), 10 );
-		add_action( 'woocommerce_shop_loop_subcategory_title', 'woocommerce_template_loop_category_title', 10 );
 
 		return '<div class="uael-woo-categories-inner ' . $inner_classes . '">' . $inner_content . '</div>';
 	}
-  
+
   protected function render() {
     $this->_context = 'render';
 
