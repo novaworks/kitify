@@ -218,7 +218,7 @@ class Kitify_Woo_Categories extends Kitify_Base {
 
 		$atts = array(
 			'limit'   => ( $woo_cat_slider ) ? $woo_cat_slider : '-1',
-			'columns' => ( $settings['cat_columns'] ) ? $settings['cat_columns'] : '4',
+			'columns' => ( $settings['columns'] ) ? $settings['columns'] : '4',
 			'parent'  => '',
 		);
 
@@ -242,7 +242,7 @@ class Kitify_Woo_Categories extends Kitify_Base {
 			'include'    => $include_ids,
 			'exclude'    => $exclude_ids,
 		);
-
+    ob_start();
 		$product_categories = get_terms( 'product_cat', $args );
 
 		if ( '' !== $atts['parent'] ) {
@@ -271,13 +271,14 @@ class Kitify_Woo_Categories extends Kitify_Base {
 		if ( $product_categories ) {
 			foreach ( $product_categories as $category ) {
 
-				include UAEL_MODULES_DIR . 'woocommerce/templates/content-product-cat.php';
+				$this->_load_template( $this->_get_global_template( 'loop-cat-item' ) );
 			}
 
 		}
 
-
-		return '<div class="uael-woo-categories-inner ' . $inner_classes . '">' . $inner_content . '</div>';
+    $inner_content = ob_get_clean();
+    
+		return '<div class="kitify-woo-categories-inner">' . $inner_content . '</div>';
 	}
 
   protected function render() {

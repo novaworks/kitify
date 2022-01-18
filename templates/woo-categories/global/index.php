@@ -41,7 +41,7 @@
   ?>
   <div <?php echo $this->get_render_attribute_string( 'list-wrapper' ); ?>>
       <div <?php echo $this->get_render_attribute_string( 'list-container' ); ?>>
-        <?php $this->_get_global_looped_template( 'loop-item' ); ?>
+        <?php echo $this->query_product_categories(); ?>
       </div>
   </div>
   <?php
