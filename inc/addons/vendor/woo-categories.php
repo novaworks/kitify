@@ -12,6 +12,10 @@ if (!defined('WPINC')) {
 }
 
 class Kitify_Woo_Categories extends Kitify_Base {
+  protected function enqueue_addon_resources(){
+      wp_register_style( $this->get_name(), kitify()->plugin_url('assets/css/addons/woo-categories.css'), ['kitify-base'], kitify()->get_version());
+      $this->add_style_depends( $this->get_name() );
+  }
   public function get_name() {
       return 'kitify-woo-categories';
   }
@@ -277,8 +281,8 @@ class Kitify_Woo_Categories extends Kitify_Base {
 		}
 
     $inner_content = ob_get_clean();
-    
-		return '<div class="kitify-woo-categories-inner">' . $inner_content . '</div>';
+
+		return $inner_content;
 	}
 
   protected function render() {

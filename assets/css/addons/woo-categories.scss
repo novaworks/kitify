@@ -1,0 +1,39 @@
+.kitify-product-categories {
+  .kitify-product-categories__item {
+    text-align: center;
+    .cat-image {
+      position: relative;
+      .cat-count {
+        display: flex;
+        position: absolute;
+        right: 0;
+        background: #fff;
+        align-items: center;
+        justify-content: center;
+        color: var(--site-heading-color);
+        width: 50px;
+        height: 50px;
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.06);
+        border-radius: 50%;
+        span {
+          font-size: 1rem;
+          font-weight: 600;
+        }
+      }
+      img {
+        border: 1px solid #e6e6e6;
+        border-radius: 50%;
+      }
+    }
+    .cat-name {
+      margin-top: 20px;
+      h2 {
+        font-size: 1rem;
+        font-weight: 600;
+        &:hover {
+          color: var(--site-accent-color);
+        }
+      }
+    }
+  }
+}

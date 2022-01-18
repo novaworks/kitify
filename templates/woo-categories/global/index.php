@@ -8,7 +8,9 @@
  $this->add_render_attribute( 'list-container', 'class', 'kitify-product-categories__list' );
 
  $is_carousel = false;
-
+ $this->add_render_attribute( 'list-container', 'data-item_selector', array(
+     '.kitify-product-categories__item'
+ ) );
  if(filter_var($this->get_settings_for_display('enable_carousel'), FILTER_VALIDATE_BOOLEAN)){
      $slider_options = $this->get_advanced_carousel_options('columns');
      if(!empty($slider_options)){
@@ -31,7 +33,6 @@
  } else {
      $this->add_render_attribute( 'list-container', 'class', 'col-row' );
  }
- $this->add_render_attribute('list-container', 'id', 'product_cat_' . $this->get_id());
 ?>
 <div <?php echo $this->get_render_attribute_string( 'main-container' ); ?>>
   <?php

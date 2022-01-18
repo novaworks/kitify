@@ -122,18 +122,18 @@ if( $enable_carousel ){
                                             $this->get_render_attribute_string( $link_key ),
                                             esc_html($member_name)
                                         );
-    
+
                                         if(!empty($member_role) && $show_role){
                                             echo sprintf('<div class="kitify-team-member__position"><span>%s</span></div>', esc_html($member_role));
                                         }
-    
+
                                         if($excerpt_length > 0){
                                             echo sprintf(
                                                 '<p class="kitify-team-member__desc">%1$s</p>',
                                                 wp_trim_words($member_description, $excerpt_length)
                                             );
                                         }
-    
+
                                         if(!in_array($preset, array('type-1', 'type-2', 'type-3')) && $show_social && !empty($social_html)){
                                             echo '<div class="kitify-team-member__socials">' . $social_html . '</div>';
                                         }
