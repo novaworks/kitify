@@ -7,6 +7,13 @@
 
 namespace Elementor;
 
+use Elementor\Controls_Manager;
+use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
+use Elementor\Group_Control_Typography;
+use Elementor\Group_Control_Border;
+use Elementor\Group_Control_Box_Shadow;
+
 if (!defined('WPINC')) {
     die;
 }
@@ -71,7 +78,7 @@ class Kitify_Woo_Categories extends Kitify_Base {
           'yes' => 'display: none',
         ),
         'selectors'            => array(
-          '{{WRAPPER}} .kitify-woo-categories .kitify-category__title-wrap .kitify-count' => '{{VALUE}}',
+          '{{WRAPPER}} .kitify-product-categories .kitify-product-categories__item .cat-count' => '{{VALUE}}',
         ),
       )
     );
@@ -125,17 +132,6 @@ class Kitify_Woo_Categories extends Kitify_Base {
       )
     );
     $this->add_control(
-      'display_cat_desc',
-      array(
-        'label'        => __( 'Display Category Description', 'kitify' ),
-        'type'         => Controls_Manager::SWITCHER,
-        'default'      => '',
-        'label_on'     => 'Yes',
-        'label_off'    => 'No',
-        'return_value' => 'yes',
-      )
-    );
-    $this->add_control(
       'display_empty_cat',
       array(
         'label'        => __( 'Display Empty Categories', 'kitify' ),
@@ -176,8 +172,206 @@ class Kitify_Woo_Categories extends Kitify_Base {
     );
     $this->end_controls_section();
     $this->register_carousel_section( [], 'columns');
-  }
+    $this->register_style_category_controls();
 
+  }
+  /**
+ * Register Category Content Controls.
+ *
+ * @since 0.0.1
+ * @access protected
+ */
+protected function register_style_category_controls() {
+  $this->start_controls_section(
+    'section_design_cat_content',
+    array(
+      'label' => __( 'Category Content', 'kitify' ),
+      'tab'   => Controls_Manager::TAB_STYLE,
+    )
+  );
+
+  $this->add_control(
+    'category_name_tag',
+    array(
+      'label'   => __( 'HTML Tag', 'kitify' ),
+      'type'    => Controls_Manager::SELECT,
+      'options' => array(
+        'h1' => __( 'H1', 'kitify' ),
+        'h2' => __( 'H2', 'kitify' ),
+        'h3' => __( 'H3', 'kitify' ),
+        'h4' => __( 'H4', 'kitify' ),
+        'h5' => __( 'H5', 'kitify' ),
+        'h6' => __( 'H6', 'kitify' ),
+      ),
+      'default' => 'h2',
+    )
+  );
+
+    $this->add_control(
+      'cat_content_alignment',
+      array(
+        'label'        => __( 'Alignment', 'kitify' ),
+        'type'         => Controls_Manager::CHOOSE,
+        'label_block'  => false,
+        'options' => array(
+            'flex-start' => array(
+                'title' => esc_html__( 'Start', 'kitify' ),
+                'icon'  => ! is_rtl() ? 'eicon-h-align-left' : 'eicon-h-align-right',
+            ),
+            'center' => array(
+                'title' => esc_html__( 'Center', 'kitify' ),
+                'icon'  => 'eicon-h-align-center',
+            ),
+            'flex-end' => array(
+                'title' => esc_html__( 'End', 'kitify' ),
+                'icon'  => ! is_rtl() ? 'eicon-h-align-right' : 'eicon-h-align-left',
+            ),
+        ),
+        'default'      => 'center',
+        'prefix_class' => 'kitify-woo-cat--align-',
+        'separator'    => 'after',
+      )
+    );
+
+    $this->start_controls_tabs( 'cat_content_tabs_style' );
+
+      $this->start_controls_tab(
+        'cat_content_normal',
+        array(
+          'label' => __( 'Normal', 'kitify' ),
+        )
+      );
+
+        $this->add_control(
+          'cat_content_color',
+          array(
+            'label'     => __( 'Color', 'kitify' ),
+            'type'      => Controls_Manager::COLOR,
+            'selectors' => array(
+              '{{WRAPPER}} .kitify-woo-categories li.product .woocommerce-loop-category__title, {{WRAPPER}} .kitify-woo-categories li.product .kitify-category__title-wrap .kitify-count' => 'color: {{VALUE}};',
+            ),
+          )
+        );
+        $this->add_control(
+          'cat_content_background_color',
+          array(
+            'label'     => __( 'Background Color', 'kitify' ),
+            'type'      => Controls_Manager::COLOR,
+            'selectors' => array(
+              '{{WRAPPER}} .kitify-woo-categories li.product .kitify-category__title-wrap' => 'background-color: {{VALUE}};',
+            ),
+          )
+        );
+
+      $this->end_controls_tab();
+
+      $this->start_controls_tab(
+        'cat_content_hover',
+        array(
+          'label' => __( 'Hover', 'kitify' ),
+        )
+      );
+
+        $this->add_control(
+          'cat_content_hover_color',
+          array(
+            'label'     => __( 'Text Hover Color', 'kitify' ),
+            'type'      => Controls_Manager::COLOR,
+            'selectors' => array(
+              '{{WRAPPER}} .kitify-woo-categories li.product-category > a:hover .woocommerce-loop-category__title, {{WRAPPER}} .kitify-woo-categories li.product-category > a:hover .kitify-category__title-wrap .kitify-count' => 'color: {{VALUE}};',
+            ),
+          )
+        );
+
+        $this->add_control(
+          'cat_content_background_hover_color',
+          array(
+            'label'     => __( 'Background Hover Color', 'kitify' ),
+            'type'      => Controls_Manager::COLOR,
+            'selectors' => array(
+              '{{WRAPPER}} .kitify-woo-categories li.product-category > a:hover .kitify-category__title-wrap' => 'background-color: {{VALUE}};',
+            ),
+          )
+        );
+
+      $this->end_controls_tab();
+
+    $this->end_controls_tabs();
+
+    $this->add_control(
+      'cat_content_padding',
+      array(
+        'label'      => __( 'Padding', 'kitify' ),
+        'type'       => Controls_Manager::DIMENSIONS,
+        'size_units' => array( 'px', 'em', '%' ),
+        'default'    => array(
+          'top'      => '10',
+          'right'    => '',
+          'bottom'   => '10',
+          'left'     => '',
+          'isLinked' => false,
+        ),
+        'selectors'  => array(
+          '{{WRAPPER}} .kitify-woo-categories li.product .kitify-category__title-wrap' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+        ),
+        'separator'  => 'before',
+      )
+    );
+
+    $this->add_control(
+      'cat_content_typography',
+      array(
+        'label'     => __( 'Typography', 'kitify' ),
+        'type'      => Controls_Manager::HEADING,
+        'separator' => 'before',
+      )
+    );
+
+    $this->add_group_control(
+      Group_Control_Typography::get_type(),
+      array(
+        'name'     => 'cat_content_title_typography',
+        'label'    => __( 'Title', 'kitify' ),
+        'selector' => '{{WRAPPER}} .kitify-woo-categories li.product .woocommerce-loop-category__title',
+      )
+    );
+
+    $this->add_group_control(
+      Group_Control_Typography::get_type(),
+      array(
+        'name'      => 'cat_content_count_typography',
+        'label'     => __( 'Count', 'kitify' ),
+        'selector'  => '{{WRAPPER}} .kitify-woo-categories li.product .kitify-category__title-wrap .kitify-count',
+        'global'    => array(
+          'default' => Global_Typography::TYPOGRAPHY_ACCENT,
+        ),
+        'separator' => 'after',
+        'condition' => array(
+          'products_layout_type' => 'grid',
+          'cat_hide_count!'      => 'yes',
+        ),
+      )
+    );
+
+  $this->add_group_control(
+    Group_Control_Typography::get_type(),
+    array(
+      'name'      => 'cat_slider_content_count_typography',
+      'label'     => __( 'Count', 'kitify' ),
+      'selector'  => '{{WRAPPER}} .kitify-woo-categories li.product .kitify-category__title-wrap .kitify-count',
+      'global'    => array(
+        'default' => Global_Typography::TYPOGRAPHY_ACCENT,
+      ),
+      'separator' => 'after',
+      'condition' => array(
+        'products_layout_type'  => 'slider',
+        'cat_slide_hide_count!' => 'yes',
+      ),
+    )
+  );
+
+  $this->end_controls_section();
+}
   /**
    * Get WooCommerce Product Categories.
    *
@@ -274,8 +468,7 @@ class Kitify_Woo_Categories extends Kitify_Base {
 
 		if ( $product_categories ) {
 			foreach ( $product_categories as $category ) {
-
-				$this->_load_template( $this->_get_global_template( 'loop-cat-item' ) );
+        include kitify()->plugin_path( 'templates/woo-categories/global/loop-cat-item.php' );
 			}
 
 		}

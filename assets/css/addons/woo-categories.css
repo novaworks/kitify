@@ -1,10 +1,23 @@
 .kitify-product-categories .kitify-product-categories__item {
+  position: relative;
   text-align: center;
+}
+.kitify-product-categories .kitify-product-categories__item .kitify-product-categories__item--inner {
+  position: relative;
 }
 .kitify-product-categories .kitify-product-categories__item .cat-image {
   position: relative;
+  overflow: hidden;
+  padding-bottom: 100%;
 }
-.kitify-product-categories .kitify-product-categories__item .cat-image .cat-count {
+.kitify-product-categories .kitify-product-categories__item .cat-image img {
+  position: absolute;
+  display: inline-block;
+  left: 0;
+  top: 0;
+  object-fit: cover;
+}
+.kitify-product-categories .kitify-product-categories__item .cat-count {
   display: flex;
   position: absolute;
   right: 0;
@@ -16,14 +29,11 @@
   height: 50px;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.06);
   border-radius: 50%;
+  z-index: 2;
 }
-.kitify-product-categories .kitify-product-categories__item .cat-image .cat-count span {
+.kitify-product-categories .kitify-product-categories__item .cat-count span {
   font-size: 1rem;
   font-weight: 600;
-}
-.kitify-product-categories .kitify-product-categories__item .cat-image img {
-  border: 1px solid #e6e6e6;
-  border-radius: 50%;
 }
 .kitify-product-categories .kitify-product-categories__item .cat-name {
   margin-top: 20px;

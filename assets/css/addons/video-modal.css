@@ -2,11 +2,11 @@
   text-align: center;
 }
 .kitify-video-modal .video-modal-btn {
-  font-size: rem-calc(24);
+  font-size: 24px;
 }
 .kitify-video-modal .video-modal-btn svg {
-  width: rem-calc(60);
-  height: rem-calc(60);
+  width: 60px;
+  height: 60px;
 }
 
 .modal-video-close-btn {
