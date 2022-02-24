@@ -11,6 +11,7 @@
 	--kitify-pagination-link-hover-color: #fff;
 	--kitify-pagination-link-hover-bg-color: #c36;
 	--kitify-pagination-item-width: 40px;
+	--kitify-pagination-item-height: 40px;
 	--kitify-pagination-item-spacing: 5px;
 	--kitify-vheader-width: 300px;
 	--kitify-adminbar-height: 0px;
@@ -358,6 +359,7 @@ body:not(.elementor-editor-active) .elementor-location-header .elementor-sticky.
 	border: 1px solid var(--kitify-pagination-border-color);
 	padding: var(--kitify-pagination-padding);
 	width: var(--kitify-pagination-item-width);
+	height: var(--kitify-pagination-item-height);
 	margin: 0 var(--kitify-pagination-item-spacing) var(--kitify-pagination-item-spacing);
 	border-radius: 50%;
 	display: flex;
