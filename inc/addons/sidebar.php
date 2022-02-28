@@ -240,11 +240,12 @@ class Kitify_Sidebar extends Kitify_Base {
       }
 
       echo '<div ' . $this->get_render_attribute_string( 'sidebar-wrapper' ) . '>';
-      echo '<button class="js-column-toggle">';
-        echo '<span class="icon-filter"><i class="inova ic-options"></i></span>';
-        echo '<span class="title-filter">'.esc_html__( 'Filters','kitify' ).'</span>';
-      echo '</button>';
+        echo '<div class="nova-sidebar__overlay js-sidebar-toogle"></div>';
         echo '<div class="kitify-toggle-sidebar__container nova_box_ps">';
+        echo '<button class="js-column-toggle">';
+          echo '<span class="icon-filter"><i class="inova ic-options"></i></span>';
+          echo '<span class="title-filter">'.esc_html__( 'Filters','kitify' ).'</span>';
+        echo '</button>';
           echo '<div class="toggle-column-btn__wrap"><a class="toggle-column-btn js-column-toggle" href="javascript:void(0)"></a></div>';
           echo '<div class="kitify-toggle-sidebar__inner">';
           dynamic_sidebar( $sidebar );
