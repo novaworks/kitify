@@ -240,7 +240,7 @@ class Kitify_Sidebar extends Kitify_Base {
       }
 
       echo '<div ' . $this->get_render_attribute_string( 'sidebar-wrapper' ) . '>';
-        echo '<div class="nova-sidebar__overlay js-sidebar-toogle"></div>';
+        echo '<div class="kitify-toggle-sidebar__overlay js-sidebar-toogle"></div>';
         echo '<div class="kitify-toggle-sidebar__container nova_box_ps">';
         echo '<button class="js-column-toggle">';
           echo '<span class="icon-filter"><i class="inova ic-options"></i></span>';
