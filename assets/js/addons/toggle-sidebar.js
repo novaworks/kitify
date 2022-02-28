@@ -39,8 +39,8 @@
       });
       $(document).on('click', '.js-column-toggle', function() {
         $('.kitify-toggle-sidebar').toggleClass('opened');
-        //$('.nova-overlay-global').toggleClass('opened');
       });
+
     });
 
 }( jQuery, window.elementorFrontend ) );
