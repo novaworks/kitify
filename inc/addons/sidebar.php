@@ -91,6 +91,13 @@ class Kitify_Sidebar extends Kitify_Base {
 
   		$options = [];
 
+      $sidebar_style = apply_filters(
+          'kitify/sidebar/style/sidebar_style',
+          array(
+              '1' => esc_html__( 'Default', 'kitify' )
+          )
+      );
+
   		if ( ! $wp_registered_sidebars ) {
   			$options[''] = esc_html__( 'No sidebars were found', 'kitify' );
   		} else {
@@ -173,6 +180,24 @@ class Kitify_Sidebar extends Kitify_Base {
           'widget_title'         => '.widget .widget-title',
         )
       );
+      $this->_start_controls_section(
+          'section_sidebar_layout',
+          array(
+              'label'      => esc_html__( 'Sidebar layout', 'kitify' ),
+              'tab'        => Controls_Manager::TAB_STYLE,
+              'show_label' => false,
+          )
+      );
+      $this->add_control(
+          'sidebar_style',
+          array(
+              'label'     => esc_html__( 'Sidebar Layout', 'kitify' ),
+              'type'      => Controls_Manager::SELECT,
+              'default'   => '1',
+              'options'   => $sidebar_style
+          )
+      );
+      $this->end_controls_section();
 
       $this->_start_controls_section(
           'section_widget_title_style',
@@ -224,6 +249,7 @@ class Kitify_Sidebar extends Kitify_Base {
   			return;
   		}
       $this->add_render_attribute( 'sidebar-wrapper', 'class', 'kitify-sidebar' );
+      $this->add_render_attribute( 'sidebar-wrapper', 'class', 'kitify-sidebar-layout_0'.$settings['sidebar_style'] );
       if ( filter_var( $settings['sidebar_toggle'], FILTER_VALIDATE_BOOLEAN ) ) {
         add_action('kitify/products/toolbar/filter', [ $this, 'filter_button' ] );
         $breakpoint = isset($settings['sidebar_toggle_breakpoint']) ? $settings['sidebar_toggle_breakpoint'] : 'tablet';
