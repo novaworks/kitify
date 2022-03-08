@@ -254,7 +254,7 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
             add_action('woocommerce_after_shop_loop_item', [ $this, 'loop_item_info_close' ], 101 );
 
 						if( 1 == $this->settings['grid_style'] && !empty($this->settings['enable_p_rating']) ) {
-							add_action( 'kitify/products/action/shop_loop_item_title', 'woocommerce_template_loop_rating', 15);
+							add_action( 'kitify/products/action/shop_loop_item_after_title', 'woocommerce_template_loop_rating', 15);
 						}
 						if( 2 == $this->settings['grid_style']) {
 							add_action('woocommerce_after_shop_loop_item', [ $this, 'loop_item_footer_open' ], 150 );
