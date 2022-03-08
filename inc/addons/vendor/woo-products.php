@@ -912,7 +912,7 @@ class Kitify_Woo_Products extends Kitify_Base {
 			    'label' => esc_html__( 'Color', 'kitify' ),
 			    'type' => Controls_Manager::COLOR,
 			    'selectors' => [
-				    '{{WRAPPER}} ul.products li.product .product_item--category-link' => 'color: {{VALUE}}',
+				    '{{WRAPPER}} ul.products li.product .product-item__category .content-product-cat' => 'color: {{VALUE}}',
 			    ],
 		    ]
 	    );
@@ -921,7 +921,7 @@ class Kitify_Woo_Products extends Kitify_Base {
 		    Group_Control_Typography::get_type(),
 		    [
 			    'name' => 'cat_typography',
-			    'selector' => '{{WRAPPER}} ul.products li.product .product_item--category-link',
+			    'selector' => '{{WRAPPER}} ul.products li.product .product-item__category .content-product-cat',
 		    ]
 	    );
 
@@ -939,7 +939,7 @@ class Kitify_Woo_Products extends Kitify_Base {
 				    ],
 			    ],
 			    'selectors' => [
-				    '{{WRAPPER}} ul.products li.product .product_item--category-link' => 'margin-bottom: {{SIZE}}{{UNIT}}',
+				    '{{WRAPPER}} ul.products li.product .product-item__category' => 'margin-bottom: {{SIZE}}{{UNIT}}',
 			    ],
 		    ]
 	    );
