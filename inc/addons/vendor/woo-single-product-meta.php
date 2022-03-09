@@ -235,7 +235,7 @@ class Kitify_Woo_Single_Product_Meta extends Kitify_Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'text_typography',
-                'selector' => '.single-product .product {{WRAPPER}} .product_meta',
+                'selector' => '{{WRAPPER}}',
             ]
         );
 
@@ -245,7 +245,7 @@ class Kitify_Woo_Single_Product_Meta extends Kitify_Base {
                 'label' => esc_html__( 'Color', 'kitify' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '.single-product .product {{WRAPPER}} .product_meta' => 'color: {{VALUE}}',
+                    '{{WRAPPER}}' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -263,7 +263,7 @@ class Kitify_Woo_Single_Product_Meta extends Kitify_Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'link_typography',
-                'selector' => '.single-product .product {{WRAPPER}} .product_meta a',
+                'selector' => '{{WRAPPER}} a',
             ]
         );
 
@@ -273,7 +273,7 @@ class Kitify_Woo_Single_Product_Meta extends Kitify_Base {
                 'label' => esc_html__( 'Color', 'kitify' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '.single-product .product {{WRAPPER}} .product_meta a' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} a' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -284,7 +284,7 @@ class Kitify_Woo_Single_Product_Meta extends Kitify_Base {
                 'label' => esc_html__( 'Hover Color', 'kitify' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '.single-product .product {{WRAPPER}} .product_meta a:hover' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} a:hover' => 'color: {{VALUE}}',
                 ],
             ]
         );
