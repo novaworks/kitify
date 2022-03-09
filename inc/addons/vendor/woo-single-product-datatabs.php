@@ -44,7 +44,12 @@ class Kitify_Woo_Single_Product_Datatabs extends Kitify_Base {
     }
 
     protected function register_controls() {
-
+        $tabs_layout = apply_filters(
+            'kitify/wootabs/layout/tabs_layout',
+            array(
+                'default' => esc_html__( 'Default', 'kitify' )
+            )
+        );
         $this->start_controls_section(
             'section_product_tabs_setting',
             [
@@ -72,64 +77,19 @@ class Kitify_Woo_Single_Product_Datatabs extends Kitify_Base {
                     'default' => 'default',
                 ]
             );
-            $this->add_control(
-                'accordion_icon',
-                [
-                    'label' => esc_html__( 'Accordion Icon', 'kitify' ),
-                    'type' => Controls_Manager::SELECT,
-                    'options' => [
-                        'plus'   => esc_html__('Plus/Minus Icon', 'kitify'),
-                    ],
-                    'default' => 'plus',
-                ]
-            );
         }
-        else{
+        else {
             $this->add_control(
                 'layout_type',
                 [
                     'label' => esc_html__( 'Layout', 'kitify' ),
                     'type' => Controls_Manager::SELECT,
-                    'options' => [
-                        'default'   => esc_html__('Default', 'kitify'),
-                        'tab_left'  => esc_html__('Tab left', 'kitify'),
-                        'tab_right' => esc_html__('Tab Right', 'kitify'),
-                        'accordion' => esc_html__('Accordion', 'kitify'),
-                    ],
+                    'options'   => $tabs_layout,
                     'default' => 'default',
-                ]
-            );
-
-            $this->add_control(
-                'accordion_icon',
-                [
-                    'label' => esc_html__( 'Accordion Icon', 'kitify' ),
-                    'type' => Controls_Manager::SELECT,
-                    'options' => [
-                        'plus'   => esc_html__('Plus/Minus Icon', 'kitify'),
-                        'arrow'  => esc_html__('Up/Down Icon', 'kitify'),
-                    ],
-                    'default' => 'plus',
                 ]
             );
         }
 
-        $this->_add_responsive_control(
-            'tabs_controls_width',
-            array(
-                'label'      => esc_html__( 'Tabs Controls Width', 'kitify' ),
-                'type'       => Controls_Manager::SLIDER,
-                'size_units' => array(
-                    'px', '%', 'em', 'vw', 'vh',
-                ),
-                'condition' => array(
-                    'layout_type' => array( 'tab_left', 'tab_right' ),
-                ),
-                'selectors'  => array(
-                    '{{WRAPPER}}' => '--singleproduct-datatab-width: {{SIZE}}{{UNIT}}',
-                ),
-            )
-        );
 
         $this->end_controls_section();
 
@@ -164,32 +124,18 @@ class Kitify_Woo_Single_Product_Datatabs extends Kitify_Base {
                     'layout_type' => 'default',
                 ),
                 'selectors'  => array(
-                    '{{WRAPPER}} .kitify-product-tabs .wc-tabs-wrapper .kitify-wc-tabs--controls' => 'justify-content: {{VALUE}};'
+                    '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs' => 'justify-content: {{VALUE}};'
                 )
             )
         );
 
-        $this->_add_control(
-            'tabs_controls_width_auto',
-            array(
-                'label'        => esc_html__( 'Auto Width', 'kitify' ),
-                'type'         => Controls_Manager::SWITCHER,
-                'label_on'     => esc_html__( 'On', 'kitify' ),
-                'label_off'    => esc_html__( 'Off', 'kitify' ),
-                'return_value' => 'yes',
-                'prefix_class' => 'kitify-tab-auto-with-',
-                'condition' => array(
-                    'layout_type' => 'default',
-                ),
-            )
-        );
         $this->_add_control(
             'tabs_content_wrapper_bgcolor',
             array(
                 'label'  => esc_html__( 'Background Color', 'kitify' ),
                 'type'   => Controls_Manager::COLOR,
                 'selectors' => array(
-                    '{{WRAPPER}} .kitify-product-tabs .wc-tabs-wrapper .kitify-wc-tabs--controls ul.wc-tabs' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs' => 'background-color: {{VALUE}}',
                     '{{WRAPPER}} .layout-type-accordion .wc-tabs-wrapper .wc-tab' => 'background-color: {{VALUE}}',
                 ),
             )
@@ -202,7 +148,7 @@ class Kitify_Woo_Single_Product_Datatabs extends Kitify_Base {
                 'type'       => Controls_Manager::DIMENSIONS,
                 'size_units' => array( 'px', '%', 'em', 'vw', 'vh' ),
                 'selectors'  => array(
-                    '{{WRAPPER}} .kitify-product-tabs .wc-tabs-wrapper .kitify-wc-tabs--controls ul.wc-tabs' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     '{{WRAPPER}} .layout-type-accordion .wc-tabs-wrapper .wc-tab' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ),
             )
@@ -215,7 +161,7 @@ class Kitify_Woo_Single_Product_Datatabs extends Kitify_Base {
                 'type'       => Controls_Manager::DIMENSIONS,
                 'size_units' => array( 'px', '%', 'em', 'vw', 'vh' ),
                 'selectors'  => array(
-                    '{{WRAPPER}} .kitify-product-tabs .wc-tabs-wrapper .kitify-wc-tabs--controls ul.wc-tabs' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     '{{WRAPPER}} .layout-type-accordion .wc-tabs-wrapper .wc-tab' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ),
             )
@@ -225,7 +171,7 @@ class Kitify_Woo_Single_Product_Datatabs extends Kitify_Base {
             Group_Control_Border::get_type(),
             array(
                 'name'        => 'tabs_control_wrapper_border',
-                'selector'    => '{{WRAPPER}} .kitify-product-tabs .wc-tabs-wrapper .kitify-wc-tabs--controls ul.wc-tabs, {{WRAPPER}} .layout-type-accordion .wc-tabs-wrapper .wc-tab',
+                'selector'    => '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs',
             )
         );
 
@@ -236,7 +182,7 @@ class Kitify_Woo_Single_Product_Datatabs extends Kitify_Base {
                 'type'       => Controls_Manager::DIMENSIONS,
                 'size_units' => array( 'px', '%', 'em', 'vw', 'vh' ),
                 'selectors'  => array(
-                    '{{WRAPPER}} .kitify-product-tabs .wc-tabs-wrapper .kitify-wc-tabs--controls ul.wc-tabs' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     '{{WRAPPER}} .layout-type-accordion .wc-tabs-wrapper .wc-tab' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ),
             )
@@ -246,10 +192,10 @@ class Kitify_Woo_Single_Product_Datatabs extends Kitify_Base {
             Group_Control_Box_Shadow::get_type(),
             array(
                 'name'     => 'tabs_control_wrapper_box_shadow',
-                'selector' => '{{WRAPPER}} .kitify-product-tabs .wc-tabs-wrapper .kitify-wc-tabs--controls ul.wc-tabs, {{WRAPPER}} .layout-type-accordion .wc-tabs-wrapper .wc-tab'
+                'selector' => '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs'
             )
         );
-        
+
         $this->end_controls_section();
 
         $this->_start_controls_section(
@@ -274,8 +220,8 @@ class Kitify_Woo_Single_Product_Datatabs extends Kitify_Base {
                 'label'  => esc_html__( 'Text Color', 'kitify' ),
                 'type'   => Controls_Manager::COLOR,
                 'selectors' => array(
-                    '{{WRAPPER}} .kitify-product-tabs .wc-tabs-wrapper .kitify-wc-tabs--controls ul.wc-tabs li' => 'color: {{VALUE}}',
-                    '{{WRAPPER}} .wc-tab-title a' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs .tabs-title ' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs .tabs-title > a' => 'color: {{VALUE}}',
                 ),
             )
         );
@@ -285,8 +231,7 @@ class Kitify_Woo_Single_Product_Datatabs extends Kitify_Base {
                 'label'  => esc_html__( 'Background Color', 'kitify' ),
                 'type'   => Controls_Manager::COLOR,
                 'selectors' => array(
-                    '{{WRAPPER}} .kitify-product-tabs .wc-tabs-wrapper .kitify-wc-tabs--controls ul.wc-tabs li' => 'background-color: {{VALUE}}',
-                    '{{WRAPPER}} .wc-tab-title a' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs .tabs-title' => 'background-color: {{VALUE}}',
                 ),
             )
         );
@@ -294,7 +239,7 @@ class Kitify_Woo_Single_Product_Datatabs extends Kitify_Base {
             Group_Control_Typography::get_type(),
             array(
                 'name'     => 'tabs_control_text_typography',
-                'selector' => '{{WRAPPER}} .kitify-product-tabs .wc-tabs-wrapper .kitify-wc-tabs--controls ul.wc-tabs li, {{WRAPPER}} .wc-tab-title a'
+                'selector' => '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs .tabs-title > a'
             )
         );
 
@@ -305,8 +250,7 @@ class Kitify_Woo_Single_Product_Datatabs extends Kitify_Base {
                 'type'       => Controls_Manager::DIMENSIONS,
                 'size_units' => array( 'px', '%', 'em', 'vw', 'vh' ),
                 'selectors'  => array(
-                    '{{WRAPPER}} .kitify-product-tabs .wc-tabs-wrapper .kitify-wc-tabs--controls ul.wc-tabs li' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                    '{{WRAPPER}} .wc-tab-title a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs .tabs-title > a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ),
             )
         );
@@ -318,8 +262,8 @@ class Kitify_Woo_Single_Product_Datatabs extends Kitify_Base {
                 'type'       => Controls_Manager::DIMENSIONS,
                 'size_units' => array( 'px', '%', 'em', 'vw', 'vh' ),
                 'selectors'  => array(
-                    '{{WRAPPER}} .kitify-product-tabs .wc-tabs-wrapper .kitify-wc-tabs--controls ul.wc-tabs li' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                    '{{WRAPPER}} .wc-tab-title a' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs .tabs-title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs .tabs-title > a' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ),
             )
         );
@@ -331,8 +275,7 @@ class Kitify_Woo_Single_Product_Datatabs extends Kitify_Base {
                 'type'       => Controls_Manager::DIMENSIONS,
                 'size_units' => array( 'px', '%', 'em', 'vw', 'vh' ),
                 'selectors'  => array(
-                    '{{WRAPPER}} .kitify-product-tabs .wc-tabs-wrapper .kitify-wc-tabs--controls ul.wc-tabs li' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                    '{{WRAPPER}} .wc-tab-title a' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs .tabs-title' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ),
             )
         );
@@ -341,7 +284,7 @@ class Kitify_Woo_Single_Product_Datatabs extends Kitify_Base {
             Group_Control_Border::get_type(),
             array(
                 'name'        => 'tabs_control_border',
-                'selector'  => '{{WRAPPER}} .kitify-product-tabs .wc-tabs-wrapper .kitify-wc-tabs--controls ul.wc-tabs li, {{WRAPPER}} .wc-tab-title a',
+                'selector'  => '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs .tabs-title',
             )
         );
 
@@ -349,7 +292,7 @@ class Kitify_Woo_Single_Product_Datatabs extends Kitify_Base {
             Group_Control_Box_Shadow::get_type(),
             array(
                 'name'     => 'tabs_control_box_shadow',
-                'selector' => '{{WRAPPER}} .kitify-product-tabs .wc-tabs-wrapper .kitify-wc-tabs--controls ul.wc-tabs li, {{WRAPPER}} .wc-tab-title a',
+                'selector' => '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs .tabs-title',
             )
         );
 
@@ -368,9 +311,9 @@ class Kitify_Woo_Single_Product_Datatabs extends Kitify_Base {
                 'label'  => esc_html__( 'Text Color', 'kitify' ),
                 'type'   => Controls_Manager::COLOR,
                 'selectors' => array(
-                    '{{WRAPPER}} .kitify-product-tabs .wc-tabs-wrapper .kitify-wc-tabs--controls ul.wc-tabs li:hover' => 'color: {{VALUE}}',
-                    '{{WRAPPER}} .kitify-product-tabs .wc-tabs-wrapper .kitify-wc-tabs--controls ul.wc-tabs li.active' => 'color: {{VALUE}}',
-                    '{{WRAPPER}} .active .wc-tab-title a' => 'color: {{VALUE}}',
+                  '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs .tabs-title.is-active' => 'color: {{VALUE}};',
+                  '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs .tabs-title.is-active > a' => 'color: {{VALUE}};',
+                  '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs .tabs-title > a:hover' => 'color: {{VALUE}};',
                 ),
             )
         );
@@ -380,9 +323,8 @@ class Kitify_Woo_Single_Product_Datatabs extends Kitify_Base {
                 'label'  => esc_html__( 'Background Color', 'kitify' ),
                 'type'   => Controls_Manager::COLOR,
                 'selectors' => array(
-                    '{{WRAPPER}} .kitify-product-tabs .wc-tabs-wrapper .kitify-wc-tabs--controls ul.wc-tabs li:hover' => 'background-color: {{VALUE}}',
-                    '{{WRAPPER}} .kitify-product-tabs .wc-tabs-wrapper .kitify-wc-tabs--controls ul.wc-tabs li.active' => 'background-color: {{VALUE}}',
-                    '{{WRAPPER}} .active .wc-tab-title a' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs .tabs-title.is-active:hover' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs .tabs-title.is-active' => 'background-color: {{VALUE}}',
                 ),
             )
         );
@@ -390,57 +332,16 @@ class Kitify_Woo_Single_Product_Datatabs extends Kitify_Base {
             Group_Control_Typography::get_type(),
             array(
                 'name'     => 'tabs_control_text_typography_hover',
-                'selector' => '{{WRAPPER}} .kitify-product-tabs .wc-tabs-wrapper .kitify-wc-tabs--controls ul.wc-tabs li:hover,{{WRAPPER}} .kitify-product-tabs .wc-tabs-wrapper .kitify-wc-tabs--controls ul.wc-tabs li.active, {{WRAPPER}} .active .wc-tab-title a'
+                'selector' => '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs .tabs-title > a:hover,{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs .tabs-title.is-active > a'
             )
         );
 
-        $this->_add_responsive_control(
-            'tabs_control_padding_hover',
-            array(
-                'label'      => esc_html__( 'Padding', 'kitify' ),
-                'type'       => Controls_Manager::DIMENSIONS,
-                'size_units' => array( 'px', '%', 'em', 'vw', 'vh' ),
-                'selectors'  => array(
-                    '{{WRAPPER}} .kitify-product-tabs .wc-tabs-wrapper .kitify-wc-tabs--controls ul.wc-tabs li:hover' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                    '{{WRAPPER}} .kitify-product-tabs .wc-tabs-wrapper .kitify-wc-tabs--controls ul.wc-tabs li.active' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                    '{{WRAPPER}} .active .wc-tab-title a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ),
-            )
-        );
-
-        $this->_add_responsive_control(
-            'tabs_control_margin_hover',
-            array(
-                'label'      => esc_html__( 'Margin', 'kitify' ),
-                'type'       => Controls_Manager::DIMENSIONS,
-                'size_units' => array( 'px', '%', 'em', 'vw', 'vh' ),
-                'selectors'  => array(
-                    '{{WRAPPER}} .kitify-product-tabs .wc-tabs-wrapper .kitify-wc-tabs--controls ul.wc-tabs li:hover' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                    '{{WRAPPER}} .kitify-product-tabs .wc-tabs-wrapper .kitify-wc-tabs--controls ul.wc-tabs li.active' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                    '{{WRAPPER}} .active .wc-tab-title a' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ),
-            )
-        );
-
-        $this->_add_responsive_control(
-            'tabs_control_border_radius_hover',
-            array(
-                'label'      => esc_html__( 'Border Radius', 'kitify' ),
-                'type'       => Controls_Manager::DIMENSIONS,
-                'size_units' => array( 'px', '%', 'em', 'vw', 'vh' ),
-                'selectors'  => array(
-                    '{{WRAPPER}} .kitify-product-tabs .wc-tabs-wrapper .kitify-wc-tabs--controls ul.wc-tabs li:hover' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                    '{{WRAPPER}} .kitify-product-tabs .wc-tabs-wrapper .kitify-wc-tabs--controls ul.wc-tabs li.active' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                    '{{WRAPPER}} .active .wc-tab-title a' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ),
-            )
-        );
 
         $this->_add_group_control(
             Group_Control_Border::get_type(),
             array(
                 'name'        => 'tabs_control_border_hover',
-                'selector'  => '{{WRAPPER}} .kitify-product-tabs .wc-tabs-wrapper .kitify-wc-tabs--controls ul.wc-tabs li:hover,{{WRAPPER}} .kitify-product-tabs .wc-tabs-wrapper .kitify-wc-tabs--controls ul.wc-tabs li.active,{{WRAPPER}} .active .wc-tab-title a',
+                'selector'  => '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs .tabs-title.is-active,{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs .tabs-title:hover',
             )
         );
 
@@ -448,7 +349,7 @@ class Kitify_Woo_Single_Product_Datatabs extends Kitify_Base {
             Group_Control_Box_Shadow::get_type(),
             array(
                 'name'     => 'tabs_control_box_shadow_hover',
-                'selector'  => '{{WRAPPER}} .kitify-product-tabs .wc-tabs-wrapper .kitify-wc-tabs--controls ul.wc-tabs li:hover,{{WRAPPER}} .kitify-product-tabs .wc-tabs-wrapper .kitify-wc-tabs--controls ul.wc-tabs li.active,{{WRAPPER}} .active .wc-tab-title a',
+                'selector'  => '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs .tabs-title.is-active,{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs .tabs-title:hover',
             )
         );
 
@@ -469,7 +370,7 @@ class Kitify_Woo_Single_Product_Datatabs extends Kitify_Base {
             Group_Control_Typography::get_type(),
             array(
                 'name'     => 'tabs_content_typography',
-                'selector' => '{{WRAPPER}} .tab-content'
+                'selector' => '{{WRAPPER}} .nova-woocommerce-tabs .tabs-content'
             )
         );
         $this->_add_control(
@@ -478,7 +379,7 @@ class Kitify_Woo_Single_Product_Datatabs extends Kitify_Base {
                 'label'  => esc_html__( 'Text Color', 'kitify' ),
                 'type'   => Controls_Manager::COLOR,
                 'selectors' => array(
-                    '{{WRAPPER}} .tab-content' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .nova-woocommerce-tabs .tabs-content' => 'color: {{VALUE}}',
                 ),
             )
         );
@@ -488,7 +389,7 @@ class Kitify_Woo_Single_Product_Datatabs extends Kitify_Base {
                 'label'  => esc_html__( 'Heading Color', 'kitify' ),
                 'type'   => Controls_Manager::COLOR,
                 'selectors' => array(
-                    '{{WRAPPER}} .tab-content h1,{{WRAPPER}} .tab-content h2,{{WRAPPER}} .tab-content h3,{{WRAPPER}} .tab-content h4,{{WRAPPER}} .tab-content h5,{{WRAPPER}} .tab-content h6' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .nova-woocommerce-tabs .tabs-content h1,{{WRAPPER}} .nova-woocommerce-tabs .tabs-content h2,{{WRAPPER}} .nova-woocommerce-tabs .tabs-content h3,{{WRAPPER}} .nova-woocommerce-tabs .tabs-content h4,{{WRAPPER}} .nova-woocommerce-tabs .tabs-content h5,{{WRAPPER}} .nova-woocommerce-tabs .tabs-content h6' => 'color: {{VALUE}}',
                 ),
             )
         );
@@ -498,7 +399,7 @@ class Kitify_Woo_Single_Product_Datatabs extends Kitify_Base {
                 'label'  => esc_html__( 'Link Color', 'kitify' ),
                 'type'   => Controls_Manager::COLOR,
                 'selectors' => array(
-                    '{{WRAPPER}} .tab-content a' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .nova-woocommerce-tabs .tabs-content a' => 'color: {{VALUE}}',
                 ),
             )
         );
@@ -508,7 +409,7 @@ class Kitify_Woo_Single_Product_Datatabs extends Kitify_Base {
                 'label'  => esc_html__( 'Link Hover Color', 'kitify' ),
                 'type'   => Controls_Manager::COLOR,
                 'selectors' => array(
-                    '{{WRAPPER}} .tab-content a:hover' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .nova-woocommerce-tabs .tabs-content a:hover' => 'color: {{VALUE}}',
                 ),
             )
         );
@@ -517,7 +418,7 @@ class Kitify_Woo_Single_Product_Datatabs extends Kitify_Base {
             Group_Control_Background::get_type(),
             array(
                 'name'     => 'tabs_content_background',
-                'selector' => '{{WRAPPER}} .tab-content',
+                'selector' => '{{WRAPPER}} .nova-woocommerce-tabs .tabs-content',
             )
         );
 
@@ -528,7 +429,7 @@ class Kitify_Woo_Single_Product_Datatabs extends Kitify_Base {
                 'type'       => Controls_Manager::DIMENSIONS,
                 'size_units' => array( 'px', '%' ),
                 'selectors'  => array(
-                    '{{WRAPPER}} .tab-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .nova-woocommerce-tabs .tabs-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ),
             )
         );
@@ -540,7 +441,7 @@ class Kitify_Woo_Single_Product_Datatabs extends Kitify_Base {
                 'type'       => Controls_Manager::DIMENSIONS,
                 'size_units' => array( 'px', '%' ),
                 'selectors'  => array(
-                    '{{WRAPPER}} .tab-content' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .nova-woocommerce-tabs .tabs-content' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ),
             )
         );
@@ -549,7 +450,7 @@ class Kitify_Woo_Single_Product_Datatabs extends Kitify_Base {
             Group_Control_Border::get_type(),
             array(
                 'name'        => 'tabs_content_border',
-                'selector'  => '{{WRAPPER}} .tab-content',
+                'selector'  => '{{WRAPPER}} .nova-woocommerce-tabs .tabs-content',
             )
         );
 
@@ -560,7 +461,7 @@ class Kitify_Woo_Single_Product_Datatabs extends Kitify_Base {
                 'type'       => Controls_Manager::DIMENSIONS,
                 'size_units' => array( 'px', '%' ),
                 'selectors'  => array(
-                    '{{WRAPPER}} .tab-content' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .nova-woocommerce-tabs .tabs-content' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ),
             )
         );
@@ -569,7 +470,7 @@ class Kitify_Woo_Single_Product_Datatabs extends Kitify_Base {
             Group_Control_Box_Shadow::get_type(),
             array(
                 'name'     => 'tabs_content_box_shadow',
-                'selector' => '{{WRAPPER}} .tab-content',
+                'selector' => '{{WRAPPER}} .nova-woocommerce-tabs .tabs-content',
             )
         );
 
