@@ -1749,6 +1749,9 @@
             Kitifys.initCarousel($scope);
             Kitifys.initMasonry($scope);
         });
+        elementor.hooks.addAction('frontend/element_ready/kitify-wooproduct-datatabs.default', function ($scope) {
+            $scope.foundation();
+        });
 
         elementor.hooks.addAction('frontend/element_ready/kitify-search.default', function ($scope) {
             Kitifys.onSearchSectionActivated($scope);

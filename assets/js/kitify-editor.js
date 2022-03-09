@@ -24,7 +24,6 @@
 				window.elementor.$preview[0].contentWindow.KitifyEditor = KitifyEditor;
 				KitifyEditor.onPreviewLoaded();
 			});
-
 			$(document).on('kitify:editor:tab_active', KitifyEditor.onTabActive );
 
 			$(document).on('click', '#elementor-panel .elementor-control.elementor-control-type-tab', function (e){

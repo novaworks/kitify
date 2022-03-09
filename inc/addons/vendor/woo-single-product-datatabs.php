@@ -47,7 +47,8 @@ class Kitify_Woo_Single_Product_Datatabs extends Kitify_Base {
         $tabs_layout = apply_filters(
             'kitify/wootabs/layout/tabs_layout',
             array(
-                'default' => esc_html__( 'Default', 'kitify' )
+                'default' => esc_html__( 'Default', 'kitify' ),
+                'accordion' => esc_html__( 'Accordion', 'kitify' ),
             )
         );
         $this->start_controls_section(
@@ -476,6 +477,276 @@ class Kitify_Woo_Single_Product_Datatabs extends Kitify_Base {
 
         $this->_end_controls_section();
 
+        $this->_start_controls_section(
+            'section_tabs_accordion_item_style',
+            array(
+                'label'      => esc_html__( 'Accordion Item', 'kitify' ),
+                'tab'        => Controls_Manager::TAB_STYLE,
+                'show_label' => false,
+            )
+        );
+        $this->_start_controls_tabs( 'tabs_acc_item_styles' );
+        $this->_start_controls_tab(
+            'tabs_acc_item_normal',
+            array(
+                'label' => esc_html__( 'Normal', 'kitify' ),
+            )
+        );
+        $this->_add_control(
+            'tabs_acc_item_text_color',
+            array(
+                'label'  => esc_html__( 'Text Color', 'kitify' ),
+                'type'   => Controls_Manager::COLOR,
+                'selectors' => array(
+                    '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .accordion .accordion-item > a' => 'color: {{VALUE}}',
+                ),
+            )
+        );
+        $this->_add_control(
+            'tabs_acc_item_bgcolor',
+            array(
+                'label'  => esc_html__( 'Background Color', 'kitify' ),
+                'type'   => Controls_Manager::COLOR,
+                'selectors' => array(
+                    '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .accordion .accordion-item' => 'background-color: {{VALUE}}',
+                ),
+            )
+        );
+        $this->_add_group_control(
+            Group_Control_Typography::get_type(),
+            array(
+                'name'     => 'tabs_acc_item_typography',
+                'selector' => '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .accordion .accordion-item > a'
+            )
+        );
+        $this->_add_responsive_control(
+            'tabs_acc_item_padding',
+            array(
+                'label'      => esc_html__( 'Padding', 'kitify' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => array( 'px', '%', 'em', 'vw', 'vh' ),
+                'selectors'  => array(
+                    '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .accordion .accordion-item > a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .accordion .accordion-item > a:before' => 'right: {{TOP}}{{UNIT}};',
+                ),
+            )
+        );
+        $this->_add_responsive_control(
+            'tabs_acc_item_margin',
+            array(
+                'label'      => esc_html__( 'Margin', 'kitify' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => array( 'px', '%', 'em', 'vw', 'vh' ),
+                'selectors'  => array(
+                    '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .accordion .accordion-item' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ),
+            )
+        );
+        $this->_add_responsive_control(
+            'tabs_acc_item_border_radius',
+            array(
+                'label'      => esc_html__( 'Border Radius', 'kitify' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => array( 'px', '%', 'em', 'vw', 'vh' ),
+                'selectors'  => array(
+                    '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .accordion .accordion-item > a' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ),
+            )
+        );
+
+        $this->_add_group_control(
+            Group_Control_Border::get_type(),
+            array(
+                'name'        => 'tabs_acc_item_border',
+                'selector'  => '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .accordion .accordion-item > a',
+            )
+        );
+
+        $this->_add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            array(
+                'name'     => 'tabs_acc_item_box_shadow',
+                'selector' => '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .accordion .accordion-item > a',
+            )
+        );
+        $this->_end_controls_tab();
+        $this->_start_controls_tab(
+            'tabs_acc_item_hover',
+            array(
+                'label' => esc_html__( 'Hover & Active', 'kitify' ),
+            )
+        );
+
+        $this->_add_control(
+            'tabs_acc_item_text_color_hover',
+            array(
+                'label'  => esc_html__( 'Text Color', 'kitify' ),
+                'type'   => Controls_Manager::COLOR,
+                'selectors' => array(
+                  '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .accordion .accordion-item.is-active > a' => 'color: {{VALUE}};',
+                  '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .accordion .accordion-item > a:hover' => 'color: {{VALUE}};',
+                ),
+            )
+        );
+        $this->_add_control(
+            'tabs_acc_item_text_bgcolor_hover',
+            array(
+                'label'  => esc_html__( 'Background Color', 'kitify' ),
+                'type'   => Controls_Manager::COLOR,
+                'selectors' => array(
+                    '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .accordion .accordion-item:hover > a' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .accordion .accordion-item.is-active > a' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .accordion .accordion-item:hover > a' => 'background-color: {{VALUE}}',
+                ),
+            )
+        );
+        $this->_add_group_control(
+            Group_Control_Typography::get_type(),
+            array(
+                'name'     => 'tabs_acc_item_text_typography_hover',
+                'selector' => '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .accordion .accordion-item > a:hover,{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .accordion .accordion-item.is-active > a'
+            )
+        );
+
+
+        $this->_add_group_control(
+            Group_Control_Border::get_type(),
+            array(
+                'name'        => 'tabs_acc_item_border_hover',
+                'selector'  => '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .accordion .accordion-item.is-active,{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .accordion .accordion-item:hover',
+            )
+        );
+
+        $this->_add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            array(
+                'name'     => 'tabs_acc_item_box_shadow_hover',
+                'selector'  => '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .accordion .accordion-item.is-active,{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .accordion .accordion-item:hover',
+            )
+        );
+
+        $this->_end_controls_tab();
+        $this->_end_controls_tabs();
+        $this->_end_controls_section();
+
+        $this->_start_controls_section(
+            'section_tabs_acc_content_style',
+            array(
+                'label'      => esc_html__( 'Accordion Content', 'kitify' ),
+                'tab'        => Controls_Manager::TAB_STYLE,
+                'show_label' => false,
+            )
+        );
+        $this->_add_group_control(
+            Group_Control_Typography::get_type(),
+            array(
+                'name'     => 'tabs_acc_content_typography',
+                'selector' => '{{WRAPPER}} .nova-woocommerce-tabs .accordion-content'
+            )
+        );
+        $this->_add_control(
+            'tabs_acc_content_text_color',
+            array(
+                'label'  => esc_html__( 'Text Color', 'kitify' ),
+                'type'   => Controls_Manager::COLOR,
+                'selectors' => array(
+                    '{{WRAPPER}} .nova-woocommerce-tabs .accordion-content' => 'color: {{VALUE}}',
+                ),
+            )
+        );
+        $this->_add_control(
+            'tabs_acc_content_heading_color',
+            array(
+                'label'  => esc_html__( 'Heading Color', 'kitify' ),
+                'type'   => Controls_Manager::COLOR,
+                'selectors' => array(
+                    '{{WRAPPER}} .nova-woocommerce-tabs .accordion-content h1,{{WRAPPER}} .nova-woocommerce-tabs .accordion-content h2,{{WRAPPER}} .nova-woocommerce-tabs .accordion-content h3,{{WRAPPER}} .nova-woocommerce-tabs .accordion-content h4,{{WRAPPER}} .nova-woocommerce-tabs .accordion-content h5,{{WRAPPER}} .nova-woocommerce-tabs .accordion-content h6' => 'color: {{VALUE}}',
+                ),
+            )
+        );
+        $this->_add_control(
+            'tabs_acc_content_link_color',
+            array(
+                'label'  => esc_html__( 'Link Color', 'kitify' ),
+                'type'   => Controls_Manager::COLOR,
+                'selectors' => array(
+                    '{{WRAPPER}} .nova-woocommerce-tabs .accordion-content a' => 'color: {{VALUE}}',
+                ),
+            )
+        );
+        $this->_add_control(
+            'tabs_acc_content_link_hover_color',
+            array(
+                'label'  => esc_html__( 'Link Hover Color', 'kitify' ),
+                'type'   => Controls_Manager::COLOR,
+                'selectors' => array(
+                    '{{WRAPPER}} .nova-woocommerce-tabs .accordion-content a:hover' => 'color: {{VALUE}}',
+                ),
+            )
+        );
+
+        $this->_add_group_control(
+            Group_Control_Background::get_type(),
+            array(
+                'name'     => 'tabs_acc_content_background',
+                'selector' => '{{WRAPPER}} .nova-woocommerce-tabs .accordion-content',
+            )
+        );
+
+        $this->_add_responsive_control(
+            'tabs_acc_content_padding',
+            array(
+                'label'      => esc_html__( 'Padding', 'kitify' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => array( 'px', '%' ),
+                'selectors'  => array(
+                    '{{WRAPPER}} .nova-woocommerce-tabs .accordion-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ),
+            )
+        );
+
+        $this->_add_responsive_control(
+            'tabs_acc_content_margin',
+            array(
+                'label'      => esc_html__( 'Margin', 'kitify' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => array( 'px', '%' ),
+                'selectors'  => array(
+                    '{{WRAPPER}} .nova-woocommerce-tabs .accordion-content' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ),
+            )
+        );
+
+        $this->_add_group_control(
+            Group_Control_Border::get_type(),
+            array(
+                'name'        => 'tabs_acc_content_border',
+                'selector'  => '{{WRAPPER}} .nova-woocommerce-tabs .accordion-content',
+            )
+        );
+
+        $this->_add_responsive_control(
+            'tabs_acc_content_radius',
+            array(
+                'label'      => esc_html__( 'Border Radius', 'kitify' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => array( 'px', '%' ),
+                'selectors'  => array(
+                    '{{WRAPPER}} .nova-woocommerce-tabs .accordion-content' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ),
+            )
+        );
+
+        $this->_add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            array(
+                'name'     => 'tabs_acc_content_box_shadow',
+                'selector' => '{{WRAPPER}} .nova-woocommerce-tabs .accordion-content',
+            )
+        );
+
+        $this->_end_controls_section();
+
         do_action('kitify/woocommerce/single/setting/product-tabs', $this);
     }
 
@@ -491,11 +762,13 @@ class Kitify_Woo_Single_Product_Datatabs extends Kitify_Base {
         setup_postdata( $product->get_id() );
 
         $layout_type = $this->get_settings_for_display('layout_type');
-        $accordion_icon = $this->get_settings_for_display('accordion_icon');
 
-        echo '<div class="kitify-product-tabs layout-type-'.esc_attr($layout_type).' kitifyicon-type-'.esc_attr($accordion_icon).'">';
-
-        wc_get_template( 'single-product/tabs/tabs.php' );
+        echo '<div class="kitify-product-tabs layout-type-'.esc_attr($layout_type).'">';
+        if($layout_type == 'accordion') {
+          wc_get_template( 'single-product/tabs/tabs-accordion.php' );
+        }else{
+          wc_get_template( 'single-product/tabs/tabs.php' );
+        }
 
         echo '</div>';
 
