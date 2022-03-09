@@ -100,6 +100,7 @@ class Kitify_Woo_Single_Product_Meta extends Kitify_Base {
 
         $this->add_control(
             'divider',
+            [
                 'label' => esc_html__( 'Divider', 'kitify' ),
                 'type' => Controls_Manager::SWITCHER,
                 'label_off' => esc_html__( 'Off', 'kitify' ),
