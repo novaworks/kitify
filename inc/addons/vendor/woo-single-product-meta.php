@@ -100,7 +100,6 @@ class Kitify_Woo_Single_Product_Meta extends Kitify_Base {
 
         $this->add_control(
             'divider',
-            [
                 'label' => esc_html__( 'Divider', 'kitify' ),
                 'type' => Controls_Manager::SWITCHER,
                 'label_off' => esc_html__( 'Off', 'kitify' ),
@@ -235,7 +234,7 @@ class Kitify_Woo_Single_Product_Meta extends Kitify_Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'text_typography',
-                'selector' => '{{WRAPPER}}',
+                'selector' => '.single-product .product {{WRAPPER}} .product_meta',
             ]
         );
 
@@ -245,7 +244,7 @@ class Kitify_Woo_Single_Product_Meta extends Kitify_Base {
                 'label' => esc_html__( 'Color', 'kitify' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}}' => 'color: {{VALUE}}',
+                    '.single-product .product {{WRAPPER}} .product_meta' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -263,7 +262,7 @@ class Kitify_Woo_Single_Product_Meta extends Kitify_Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'link_typography',
-                'selector' => '{{WRAPPER}} a',
+                'selector' => '.single-product .product {{WRAPPER}} .product_meta a',
             ]
         );
 
@@ -273,7 +272,7 @@ class Kitify_Woo_Single_Product_Meta extends Kitify_Base {
                 'label' => esc_html__( 'Color', 'kitify' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} a' => 'color: {{VALUE}}',
+                    '.single-product .product {{WRAPPER}} .product_meta a' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -284,7 +283,7 @@ class Kitify_Woo_Single_Product_Meta extends Kitify_Base {
                 'label' => esc_html__( 'Hover Color', 'kitify' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} a:hover' => 'color: {{VALUE}}',
+                    '.single-product .product {{WRAPPER}} .product_meta a:hover' => 'color: {{VALUE}}',
                 ],
             ]
         );
