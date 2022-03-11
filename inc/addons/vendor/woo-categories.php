@@ -393,6 +393,7 @@ protected function register_style_category_controls() {
   );
 
   $this->end_controls_section();
+  $this->register_carousel_arrows_dots_style_section( [ 'enable_carousel' => 'yes' ] );
 }
   /**
    * Get WooCommerce Product Categories.
