@@ -1752,7 +1752,9 @@
         elementor.hooks.addAction('frontend/element_ready/kitify-wooproduct-datatabs.default', function ($scope) {
             $scope.foundation();
         });
-
+        elementor.hooks.addAction('frontend/element_ready/kitify-woo-categories.default', function ($scope) {
+            Kitifys.initCarousel($scope);
+        });
         elementor.hooks.addAction('frontend/element_ready/kitify-search.default', function ($scope) {
             Kitifys.onSearchSectionActivated($scope);
             $(document).on('click', function (event) {

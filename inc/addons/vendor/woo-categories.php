@@ -22,6 +22,7 @@ class Kitify_Woo_Categories extends Kitify_Base {
   protected function enqueue_addon_resources(){
       wp_register_style( $this->get_name(), kitify()->plugin_url('assets/css/addons/woo-categories.css'), ['kitify-base'], kitify()->get_version());
       $this->add_style_depends( $this->get_name() );
+      $this->add_script_depends( 'kitify-base' );
   }
   public function get_name() {
       return 'kitify-woo-categories';
