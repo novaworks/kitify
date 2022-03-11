@@ -184,6 +184,27 @@ class Kitify_Woo_Categories extends Kitify_Base {
  */
 protected function register_style_category_controls() {
   $this->start_controls_section(
+      'section_cat_style',
+      [
+          'label' => esc_html__( 'Column', 'kitify' ),
+          'tab' => Controls_Manager::TAB_STYLE,
+      ]
+  );
+  $this->add_responsive_control(
+      'column_padding',
+      array(
+          'label'       => esc_html__( 'Column Padding', 'kitify' ),
+          'type'        => Controls_Manager::DIMENSIONS,
+          'size_units'  => array( 'px' ),
+          'selectors'   => array(
+              '{{WRAPPER}} .kitify-product-categories__item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+              '{{WRAPPER}} ' => '--kitify-carousel-item-top-space: {{TOP}}{{UNIT}}; --kitify-carousel-item-right-space: {{RIGHT}}{{UNIT}};--kitify-carousel-item-bottom-space: {{BOTTOM}}{{UNIT}};--kitify-carousel-item-left-space: {{LEFT}}{{UNIT}};--kitify-gcol-top-space: {{TOP}}{{UNIT}}; --kitify-gcol-right-space: {{RIGHT}}{{UNIT}};--kitify-gcol-bottom-space: {{BOTTOM}}{{UNIT}};--kitify-gcol-left-space: {{LEFT}}{{UNIT}};',
+          ),
+      )
+  );
+  $this->end_controls_section();
+
+  $this->start_controls_section(
     'section_design_cat_content',
     array(
       'label' => __( 'Category Content', 'kitify' ),
