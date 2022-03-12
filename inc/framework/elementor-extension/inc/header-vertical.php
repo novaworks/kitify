@@ -28,6 +28,7 @@ class Header_Vertical {
               'name' => 'sticky_style_box_shadow',
               'label' => esc_html__( 'Box Shadow', 'kitify' ),
               'selector' => '{{WRAPPER}}.elementor-top-section.elementor-sticky--effects',
+              'selector' => '{{WRAPPER}}.elementor-inner-section.elementor-sticky--effects',
           ]
       );
       $stack->end_controls_section();
