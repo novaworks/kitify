@@ -18,7 +18,7 @@
 
 				$this->_html( 'banner_title', '<' . $title_tag  . ' class="kitify-banner__title">%s</' . $title_tag  . '>' );
 				$this->_html( 'banner_text', '<div class="kitify-banner__text">%s</div>' );
-				$this->_html( 'btn_text', '<a'.$href.' class="elementor-button elementor-size-md"' . $target . $rel . '>%s</a>' );
+				$this->_html( 'btn_text', '<a'.$href.' class="elementor-button elementor-size-md kitify-banner__button"' . $target . $rel . '>%s</a>' );
 			echo '</div>';
 		echo '</figcaption>';
 	$this->_html( 'banner_link', '</a>' );
