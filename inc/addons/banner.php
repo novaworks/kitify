@@ -273,6 +273,7 @@ class Kitify_Banner extends Kitify_Base {
 				'banner_title'   => '.kitify-banner__title',
 				'banner_text'    => '.kitify-banner__text',
 				'banner_button'    => '.kitify-banner__button',
+				'banner_button_icon'    => '.kitify-banner__button_icon',
 			)
 		);
 
@@ -816,7 +817,24 @@ class Kitify_Banner extends Kitify_Base {
             ),
         )
     );
-
+    $this->_add_responsive_control(
+        'tab_btn_icon_font_size',
+        [
+            'label' => esc_html__( 'Icon Font Size', 'kitify' ),
+            'type' => Controls_Manager::SLIDER,
+            'size_units' => [ 'px' ],
+            'range' => [
+                'px' => [
+                    'min' => 0,
+                    'max' => 200,
+                    'step' => 1,
+                ],
+            ],
+            'selectors' => [
+                '{{WRAPPER}} ' . $css_scheme['banner_button_icon'] => 'font-size: {{SIZE}}{{UNIT}};',
+            ],
+        ]
+    );
     $this->start_controls_tabs( 'tabs_btn_style' );
 
     $this->start_controls_tab(
