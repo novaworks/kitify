@@ -6,7 +6,6 @@
 <figure class="kitify-banner kitify-effect-<?php $this->_html( 'animation_effect', '%s' ); ?>"><?php
 	$target = $this->_get_html( 'banner_link_target', ' target="%s"' );
 	$rel = $this->_get_html( 'banner_link_rel', ' rel="%s"' );
-	$href = $this->_get_html( 'banner_link', ' href="%s"' );
 
 	$this->_html( 'banner_link', '<a href="%s" class="kitify-banner__link"' . $target . $rel . '>' );
 		echo '<div class="kitify-banner__overlay"></div>';
@@ -18,7 +17,7 @@
 
 				$this->_html( 'banner_title', '<' . $title_tag  . ' class="kitify-banner__title">%s</' . $title_tag  . '>' );
 				$this->_html( 'banner_text', '<div class="kitify-banner__text">%s</div>' );
-				$this->_html( 'btn_text', '<a'.$href.' class="elementor-button elementor-size-md kitify-banner__button"' . $target . $rel . '>%s</a>' );
+				$this->_html( 'btn_text', '<button type="button" class="elementor-button kitify-banner__button">%s</button>' );
 			echo '</div>';
 		echo '</figcaption>';
 	$this->_html( 'banner_link', '</a>' );
