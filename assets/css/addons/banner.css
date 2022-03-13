@@ -24,7 +24,8 @@
 }
 .kitify-banner__content-wrap {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column;
+  width: 100%;
 }
 .kitify-banner .kitify-banner__text,
 .kitify-banner .kitify-banner__title {
