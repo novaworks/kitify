@@ -36,7 +36,9 @@
     line-height: 1;
     width: 100%;
   }
-
+  .kitify-banner__button {
+    align-self: center;
+  }
   &__overlay {
     position: absolute;
     top: 0;
