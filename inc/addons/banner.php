@@ -139,7 +139,46 @@ class Kitify_Banner extends Kitify_Base {
 				),
 			)
 		);
-
+    $this->_add_control(
+        'banner_link_icons__switch',
+        [
+            'label' => esc_html__('Add icon? ', 'kitify'),
+            'type' => Controls_Manager::SWITCHER,
+            'label_on' =>esc_html__( 'Yes', 'kitify' ),
+            'label_off' =>esc_html__( 'No', 'kitify' ),
+            'condition' => [
+                'banner_link!' => '',
+            ]
+        ]
+    );
+    $this->_add_advanced_icon_control(
+        'banner_link_icons',
+        [
+            'label' =>esc_html__( 'Icon', 'kitify' ),
+            'type' => Controls_Manager::ICONS,
+            'label_block' => true,
+            'condition' => [
+                'banner_link!' => '',
+                'banner_link_icons__switch' => 'yes'
+            ]
+        ]
+    );
+    $this->_add_control(
+        'banner_link_icon_align',
+        [
+            'label' =>esc_html__( 'Icon Position', 'kitify' ),
+            'type' => Controls_Manager::SELECT,
+            'default' => 'left',
+            'options' => [
+                'left' =>esc_html__( 'Before', 'kitify' ),
+                'right' =>esc_html__( 'After', 'kitify' ),
+            ],
+            'condition' => [
+                'banner_link_icons__switch' => 'yes',
+                'banner_link!' => '',
+            ],
+        ]
+    );
 		$this->_end_controls_section();
 
 		$this->_start_controls_section(
@@ -1040,5 +1079,7 @@ class Kitify_Banner extends Kitify_Base {
 
 		return sprintf( $format, $image_url, $alt );
 	}
-
+  public function get_button_icon( $main_format = '%s' ){
+      return $this->_get_icon( 'banner_link_icons', $main_format, 'kitify-banner__button_icon' );
+  }
 }
