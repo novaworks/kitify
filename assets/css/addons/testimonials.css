@@ -5,23 +5,7 @@
 .kitify-testimonials__item-inner {
   min-height: 100%;
 }
-.kitify-testimonials .has-replace .star-rating {
-  width: 1em;
-  letter-spacing: 0;
-  color: #F5A623;
-}
-.kitify-testimonials .has-replace .star-rating:before {
-  display: none;
-}
-.kitify-testimonials .has-replace .star-rating svg {
-  width: 1em;
-  height: 1em;
-  vertical-align: middle;
-}
-.kitify-testimonials .has-replace .star-rating span {
-  color: inherit;
-}
-.kitify-testimonials .has-replace .star-rating {
+.kitify-testimonials .star-rating {
   font-family: "iNova" !important;
   font-style: normal !important;
   font-weight: normal !important;
@@ -43,26 +27,42 @@
   width: 5em;
   margin-right: rem-calc(1);
 }
-.kitify-testimonials .has-replace .star-rating:before {
+.kitify-testimonials .star-rating:before {
   content: "\ea03\ea03\ea03\ea03\ea03";
   position: absolute;
   top: 0;
   left: 0;
   color: v(site-border-color);
 }
-.kitify-testimonials .has-replace .star-rating span {
+.kitify-testimonials .star-rating span {
   overflow: hidden;
   position: absolute;
   top: 0;
   left: 0;
   padding-top: 1.5em;
 }
-.kitify-testimonials .has-replace .star-rating span:before {
+.kitify-testimonials .star-rating span:before {
   content: "\ea03\ea03\ea03\ea03\ea03";
   position: absolute;
   top: 0;
   left: 0;
   color: #F5A623;
+}
+.kitify-testimonials .has-replace .star-rating {
+  width: 1em;
+  letter-spacing: 0;
+  color: #F5A623;
+}
+.kitify-testimonials .has-replace .star-rating:before {
+  display: none;
+}
+.kitify-testimonials .has-replace .star-rating svg {
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+}
+.kitify-testimonials .has-replace .star-rating span {
+  color: inherit;
 }
 .kitify-testimonials__item {
   outline: none;

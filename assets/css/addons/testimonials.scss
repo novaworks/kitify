@@ -5,7 +5,57 @@
 	&__item-inner {
 		min-height: 100%;
 	}
+	.star-rating
+	{
+		font-family: "iNova" !important;
+		font-style: normal !important;
+		font-weight: normal !important;
+		font-variant: normal !important;
+		text-transform: none !important;
+		speak: none;
+		line-height: 1;
+		vertical-align: -.125em;
+		text-rendering: auto;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		content: '\ea03\ea03\ea03\ea03\ea03';
+			display: inline-block;
+			overflow: hidden;
+			position: relative;
+			height: 1em;
+			line-height: 1;
+			font-size: rem-calc(14);
+			width: 5em;
+			margin-right: rem-calc(1);
 
+			&:before
+			{
+					content: "\ea03\ea03\ea03\ea03\ea03";
+					position: absolute;
+					top: 0;
+					left: 0;
+					color: v(site-border-color);
+
+			}
+
+			span
+			{
+					overflow: hidden;
+					position: absolute;
+					top: 0;
+					left: 0;
+					padding-top: 1.5em;
+
+					&:before
+					{
+							content: "\ea03\ea03\ea03\ea03\ea03";
+							position: absolute;
+							top: 0;
+							left: 0;
+							color: #F5A623;
+					}
+			}
+	}
 	.has-replace {
 		.star-rating {
 			width: 1em;
@@ -25,57 +75,6 @@
 			span {
 				color: inherit;
 			}
-		}
-		.star-rating
-		{
-			font-family: "iNova" !important;
-			font-style: normal !important;
-			font-weight: normal !important;
-			font-variant: normal !important;
-			text-transform: none !important;
-			speak: none;
-			line-height: 1;
-			vertical-align: -.125em;
-			text-rendering: auto;
-			-webkit-font-smoothing: antialiased;
-			-moz-osx-font-smoothing: grayscale;
-			content: '\ea03\ea03\ea03\ea03\ea03';
-				display: inline-block;
-				overflow: hidden;
-				position: relative;
-				height: 1em;
-				line-height: 1;
-				font-size: rem-calc(14);
-				width: 5em;
-				margin-right: rem-calc(1);
-
-				&:before
-				{
-						content: "\ea03\ea03\ea03\ea03\ea03";
-						position: absolute;
-						top: 0;
-						left: 0;
-						color: v(site-border-color);
-
-				}
-
-				span
-				{
-						overflow: hidden;
-						position: absolute;
-						top: 0;
-						left: 0;
-						padding-top: 1.5em;
-
-						&:before
-						{
-								content: "\ea03\ea03\ea03\ea03\ea03";
-								position: absolute;
-								top: 0;
-								left: 0;
-								color: #F5A623;
-						}
-				}
 		}
 	}
 
