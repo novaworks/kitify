@@ -273,6 +273,8 @@
   order: 2;
   width: 100%;
   line-height: 1;
+  width: auto;
+  margin-left: auto;
 }
 .kitify-testimonials.preset-type-6 .kitify-testimonials__name {
   -webkit-box-ordinal-group: 5;
