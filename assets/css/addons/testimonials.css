@@ -256,6 +256,7 @@
   padding: 30px;
 }
 .kitify-testimonials.preset-type-6 .kitify-testimonials__content {
+  position: relative;
   display: flex;
   flex-flow: row wrap;
   align-items: center;
@@ -299,6 +300,11 @@
 .kitify-testimonials.preset-type-6 .kitify-testimonials__tag-img span {
   width: 45px;
   height: 45px;
+}
+.kitify-testimonials.preset-type-6 .kitify-testimonials__position {
+  position: absolute;
+  left: 60px;
+  border-bottom: 0;
 }
 .kitify-testimonials.preset-type-7 .kitify-testimonials__item-inner {
   position: relative;

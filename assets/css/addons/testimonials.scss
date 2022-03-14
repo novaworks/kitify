@@ -319,6 +319,7 @@
 		}
 
 		.kitify-testimonials__content {
+			position: relative;
 			display: flex;
 			flex-flow: row wrap;
 			align-items: center;
@@ -368,6 +369,11 @@
 		.kitify-testimonials__tag-img span {
 			width: 45px;
 			height: 45px;
+		}
+		.kitify-testimonials__position {
+			position: absolute;
+			left: 60px;
+			border-bottom: 0;
 		}
 	}
 
