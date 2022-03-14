@@ -304,7 +304,7 @@
 .kitify-testimonials.preset-type-6 .kitify-testimonials__position {
   position: absolute;
   left: 60px;
-  border-bottom: 0;
+  bottom: 0;
 }
 .kitify-testimonials.preset-type-7 .kitify-testimonials__item-inner {
   position: relative;
