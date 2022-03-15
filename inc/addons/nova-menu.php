@@ -394,6 +394,190 @@ class Kitify_Nova_Menu extends Kitify_Base {
     );
 
     $this->end_controls_section();
+    $this->_start_controls_section(
+        'mobile_trigger_styles',
+        array(
+            'label'      => esc_html__( 'Mobile Trigger', 'kitify' ),
+            'tab'        => Controls_Manager::TAB_STYLE,
+            'show_label' => false,
+        )
+    );
+
+    $this->_start_controls_tabs( 'tabs_mobile_trigger_style' );
+
+    $this->_start_controls_tab(
+        'mobile_trigger_normal',
+        array(
+            'label' => esc_html__( 'Normal', 'kitify' ),
+        )
+    );
+
+    $this->_add_control(
+        'mobile_trigger_bg_color',
+        array(
+            'label'  => esc_html__( 'Background Color', 'kitify' ),
+            'type'   => Controls_Manager::COLOR,
+            'selectors' => array(
+                '{{WRAPPER}} .kitify-nova-menu__mobile-trigger' => 'background-color: {{VALUE}}',
+            ),
+        ),
+        25
+    );
+
+    $this->_add_control(
+        'mobile_trigger_color',
+        array(
+            'label'  => esc_html__( 'Text Color', 'kitify' ),
+            'type'   => Controls_Manager::COLOR,
+            'selectors' => array(
+                '{{WRAPPER}} .kitify-nova-menu__mobile-trigger' => 'color: {{VALUE}}',
+                '{{WRAPPER}} .kitify-nova-menu__mobile-trigger i' => 'color: {{VALUE}}',
+            ),
+        ),
+        25
+    );
+
+    $this->_end_controls_tab();
+
+    $this->_start_controls_tab(
+        'mobile_trigger_hover',
+        array(
+            'label' => esc_html__( 'Hover', 'kitify' ),
+        )
+    );
+
+    $this->_add_control(
+        'mobile_trigger_bg_color_hover',
+        array(
+            'label'  => esc_html__( 'Background Color', 'kitify' ),
+            'type'   => Controls_Manager::COLOR,
+            'selectors' => array(
+                '{{WRAPPER}} .kitify-nova-menu__mobile-trigger:hover' => 'background-color: {{VALUE}}',
+            ),
+        ),
+        25
+    );
+
+    $this->_add_control(
+        'mobile_trigger_color_hover',
+        array(
+            'label'  => esc_html__( 'Text Color', 'kitify' ),
+            'type'   => Controls_Manager::COLOR,
+            'selectors' => array(
+                '{{WRAPPER}} .kitify-nova-menu__mobile-trigger i:hover' => 'color: {{VALUE}}',
+                '{{WRAPPER}} .kitify-nova-menu__mobile-trigger:hover i' => 'color: {{VALUE}}',
+            ),
+        ),
+        25
+    );
+
+    $this->_add_control(
+        'mobile_trigger_hover_border_color',
+        array(
+            'label' => esc_html__( 'Border Color', 'kitify' ),
+            'type' => Controls_Manager::COLOR,
+            'condition' => array(
+                'mobile_trigger_border_border!' => '',
+            ),
+            'selectors' => array(
+                '{{WRAPPER}} .kitify-nova-menu__mobile-trigger:hover' => 'border-color: {{VALUE}};',
+            ),
+        ),
+        75
+    );
+
+    $this->_end_controls_tab();
+
+    $this->_end_controls_tabs();
+
+    $this->_add_group_control(
+        Group_Control_Border::get_type(),
+        array(
+            'name'        => 'mobile_trigger_border',
+            'label'       => esc_html__( 'Border', 'kitify' ),
+            'placeholder' => '1px',
+            'selector'    => '{{WRAPPER}} .kitify-nova-menu__mobile-trigger',
+            'separator'   => 'before',
+        ),
+        75
+    );
+
+    $this->_add_control(
+        'mobile_trigger_border_radius',
+        array(
+            'label'      => esc_html__( 'Border Radius', 'kitify' ),
+            'type'       => Controls_Manager::DIMENSIONS,
+            'size_units' => array( 'px', '%' ),
+            'selectors'  => array(
+                '{{WRAPPER}} .kitify-nova-menu__mobile-trigger' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+            ),
+        ),
+        75
+    );
+
+    $this->_add_control(
+        'mobile_trigger_width',
+        array(
+            'label'      => esc_html__( 'Width', 'kitify' ),
+            'type'       => Controls_Manager::SLIDER,
+            'size_units' => array( 'px', '%' ),
+            'range'      => array(
+                'px' => array(
+                    'min' => 20,
+                    'max' => 200,
+                ),
+                '%' => array(
+                    'min' => 10,
+                    'max' => 100,
+                ),
+            ),
+            'selectors'  => array(
+                '{{WRAPPER}} .kitify-nova-menu__mobile-trigger' => 'width: {{SIZE}}{{UNIT}};',
+            ),
+            'separator' => 'before',
+        ),
+        50
+    );
+
+    $this->_add_control(
+        'mobile_trigger_height',
+        array(
+            'label'      => esc_html__( 'Height', 'kitify' ),
+            'type'       => Controls_Manager::SLIDER,
+            'size_units' => array( 'px', '%' ),
+            'range'      => array(
+                'px' => array(
+                    'min' => 20,
+                    'max' => 200,
+                ),
+            ),
+            'selectors'  => array(
+                '{{WRAPPER}} .kitify-nova-menu__mobile-trigger' => 'height: {{SIZE}}{{UNIT}};',
+            ),
+        ),
+        50
+    );
+
+    $this->_add_control(
+        'mobile_trigger_icon_size',
+        array(
+            'label'      => esc_html__( 'Icon Size', 'kitify' ),
+            'type'       => Controls_Manager::SLIDER,
+            'size_units' => array( 'px' ),
+            'range'      => array(
+                'px' => array(
+                    'min' => 10,
+                    'max' => 100,
+                ),
+            ),
+            'selectors'  => array(
+                '{{WRAPPER}} .kitify-nova-menu__mobile-trigger' => 'font-size: {{SIZE}}{{UNIT}};',
+            ),
+        ),
+        50
+    );
+
+    $this->_end_controls_section();
 
   }
   /**
