@@ -717,7 +717,7 @@ class Kitify_Search extends Kitify_Base {
                 'label'  => esc_html__( 'Text Color', 'kitify' ),
                 'type'   => Controls_Manager::COLOR,
                 'selectors' => array(
-                    '{{WRAPPER}} ' . $css_scheme['popup_trigger'] => 'color: {{VALUE}}',
+                    '{{WRAPPER}} ' . $css_scheme['popup_trigger'].' i' => 'color: {{VALUE}}',
                 ),
             ),
             25
@@ -750,7 +750,7 @@ class Kitify_Search extends Kitify_Base {
                 'label'  => esc_html__( 'Text Color', 'kitify' ),
                 'type'   => Controls_Manager::COLOR,
                 'selectors' => array(
-                    '{{WRAPPER}} ' . $css_scheme['popup_trigger'] . ':hover' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} ' . $css_scheme['popup_trigger'] . ' i:hover' => 'color: {{VALUE}}',
                 ),
             ),
             25
