@@ -13,7 +13,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Accepts an array in which the `key` is the value and the `value` is the option
  * name. Set `multiple` to `true` to allow multiple value selection.
  *
- * Creating new control in the editor (inside `Widget_Base::_register_controls()`
  * method):
  *
  *    $this->add_control(
