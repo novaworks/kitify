@@ -62,6 +62,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0;
 }
 .kitify-banner.kitify-effect-lily .kitify-banner__img {
   max-width: none;
