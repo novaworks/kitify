@@ -75,24 +75,6 @@ if ( ! class_exists( 'Kitify_Helper' ) ) {
 				'mob'  => 1,
 			));
 
-//			if( kitify()->get_theme_support('kitify') ){
-//
-//			    if(!empty($columns['desk'])){
-//                    $columns['deskn'] = $columns['desk'];
-//                    unset($columns['desk']);
-//                }
-//			    if(!empty($columns['tab'])){
-//                    $columns['tabn'] = $columns['tab'];
-//                    unset($columns['tab']);
-//                }
-//
-//                if(empty($columns['mob'])){
-//                    $columns['mob'] = 1;
-//                }
-//            }
-
-
-
 			$classes = array();
 
 			foreach ( $columns as $device => $cols ) {
