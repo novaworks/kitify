@@ -8,44 +8,56 @@
   display: block;
   width: 100%;
 }
+
 position:relative .kitify-team-member__inner-box {
   margin: 0 auto;
   overflow: hidden;
 }
+
 .kitify-team-member__image {
   position: relative;
   width: 100%;
 }
+
 .kitify-team-member__cover {
   position: absolute;
   width: 100%;
   bottom: 0;
   left: 0;
 }
+
 .kitify-team-member__content {
   width: 100%;
 }
+
 .kitify-team-member__content:empty {
   display: none;
 }
+
 .kitify-team-member__name {
   max-width: 100%;
 }
+
 .kitify-team-member__position {
   max-width: 100%;
 }
+
 .kitify-team-member .kitify-team-member__cover {
   text-align: center;
   z-index: 2;
   bottom: 30px;
   opacity: 0;
+  -webkit-transition: all 0.4s 0.1s;
   transition: all 0.4s 0.1s;
-  transform: translateY(20px);
+  -webkit-transform: translateY(20px);
+          transform: translateY(20px);
 }
+
 .kitify-team-member__image_wrap {
   position: relative;
   width: 100%;
 }
+
 .kitify-team-member__item .kitify-team-member__link:after {
   content: "";
   opacity: 0;
@@ -55,15 +67,20 @@ position:relative .kitify-team-member__inner-box {
   top: 0;
   width: 100%;
   height: 100%;
+  -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
+
 .kitify-team-member .kitify-team-member__inner:hover .kitify-team-member__link:after {
   opacity: 0.9;
 }
+
 .kitify-team-member .kitify-team-member__inner:hover .kitify-team-member__cover {
   opacity: 1;
-  transform: translateY(0);
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
 }
+
 .kitify-team-member__socials .item--social a {
   line-height: 1;
   font-size: 16px;
@@ -73,69 +90,88 @@ position:relative .kitify-team-member__inner-box {
   margin: 5px;
   border: 1px solid rgba(255, 255, 255, 0.5);
   color: #fff;
+  -webkit-transition: all 0.3s;
   transition: all 0.3s;
   display: inline-block;
   text-align: center;
 }
+
 .kitify-team-member__socials .item--social a i {
   width: 1em;
   height: 1em;
   display: block;
 }
+
 .kitify-team-member__socials .item--social a:hover {
   background-color: var(--site-accent-color);
   border-color: transparent;
   color: #fff;
 }
+
 .kitify-team-member__socials .item--social a:first-child {
   margin-left: 0;
 }
+
 .kitify-team-member__position {
   line-height: 1;
   font-size: 12px;
   margin-bottom: 15px;
 }
+
 .kitify-team-member__content {
   padding-top: 20px;
   padding-bottom: 20px;
 }
+
 .kitify-team-member__name {
   margin: 0 0 10px;
 }
+
 .kitify-team-member__name a {
   color: inherit;
 }
+
 .kitify-team-member .loop__item__thumbnail--bkg {
   background-size: cover;
 }
+
 .kitify-team-member .loop__item__thumbnail--bkg > img {
   opacity: 0;
   width: 100%;
 }
+
 .kitify-team-member.preset-type-2 .kitify-team-member__cover {
   bottom: calc(50% - 20px);
 }
+
 .kitify-team-member.preset-type-2 .kitify-team-member__name {
   display: inline-block;
   margin-right: 10px;
 }
+
 .kitify-team-member.preset-type-2 .kitify-team-member__position {
   display: inline-block;
 }
+
 .kitify-team-member.preset-type-2 .kitify-team-member__socials a:hover {
   border-color: #fff;
   background-color: #fff;
   color: #181818;
 }
+
 .kitify-team-member.preset-type-3 .kitify-team-member__image {
-  filter: grayscale(100);
+  -webkit-filter: grayscale(100);
+          filter: grayscale(100);
 }
+
 .kitify-team-member.preset-type-3 .kitify-team-member__content {
   position: relative;
 }
+
 .kitify-team-member.preset-type-3 .kitify-team-member__cover {
   display: none;
 }
+
 .kitify-team-member.preset-type-3 .kitify-team-member__position {
   position: absolute;
   background-color: var(--site-accent-color);
@@ -147,16 +183,20 @@ position:relative .kitify-team-member__inner-box {
   white-space: pre;
   visibility: hidden;
   opacity: 0;
+  -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
+
 .kitify-team-member.preset-type-3 .kitify-team-member__inner {
   overflow: hidden;
 }
+
 .kitify-team-member.preset-type-3 .kitify-team-member__inner:hover .kitify-team-member__position {
   opacity: 1;
   visibility: visible;
   left: 0;
 }
+
 .kitify-team-member.preset-type-4 .kitify-team-member__link:after {
   left: 20px;
   right: 20px;
@@ -165,50 +205,69 @@ position:relative .kitify-team-member__inner-box {
   width: auto;
   height: auto;
 }
+
 .kitify-team-member.preset-type-4 .kitify-team-member__item:hover .kitify-team-member__link:after {
   left: 0;
   top: 0;
   right: 0;
   bottom: 0;
 }
+
 .kitify-team-member.preset-type-4 .kitify-team-member__item:hover .kitify-team-member__desc,
 .kitify-team-member.preset-type-4 .kitify-team-member__item:hover .kitify-team-member__name,
 .kitify-team-member.preset-type-4 .kitify-team-member__item:hover .kitify-team-member__position,
 .kitify-team-member.preset-type-4 .kitify-team-member__item:hover .kitify-team-member__socials {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0);
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
 }
+
 .kitify-team-member.preset-type-4 .kitify-team-member__item:hover .kitify-team-member__name {
-  transition-delay: 0.2s;
+  -webkit-transition-delay: 0.2s;
+          transition-delay: 0.2s;
 }
+
 .kitify-team-member.preset-type-4 .kitify-team-member__position {
-  transition-delay: 0.4s;
+  -webkit-transition-delay: 0.4s;
+          transition-delay: 0.4s;
 }
+
 .kitify-team-member.preset-type-4 .kitify-team-member__item:hover .kitify-team-member__desc {
-  transition-delay: 0.5s;
+  -webkit-transition-delay: 0.5s;
+          transition-delay: 0.5s;
 }
+
 .kitify-team-member.preset-type-4 .kitify-team-member__item:hover .kitify-team-member__socials {
-  transition-delay: 0.6s;
+  -webkit-transition-delay: 0.6s;
+          transition-delay: 0.6s;
 }
+
 .kitify-team-member.preset-type-4 .kitify-team-member__desc,
 .kitify-team-member.preset-type-4 .kitify-team-member__name,
 .kitify-team-member.preset-type-4 .kitify-team-member__position,
 .kitify-team-member.preset-type-4 .kitify-team-member__socials {
-  transform: translateY(20px);
+  -webkit-transform: translateY(20px);
+          transform: translateY(20px);
+  -webkit-transition: all 0.4s;
   transition: all 0.4s;
   visibility: hidden;
   opacity: 0;
 }
+
 .kitify-team-member.preset-type-4 .kitify-team-member__inner {
   overflow: hidden;
 }
+
 .kitify-team-member.preset-type-4 .kitify-team-member__image {
-  filter: grayscale(100);
+  -webkit-filter: grayscale(100);
+          filter: grayscale(100);
 }
+
 .kitify-team-member.preset-type-4 .kitify-team-member__name {
   color: inherit;
 }
+
 .kitify-team-member.preset-type-4 .kitify-team-member__content {
   position: absolute;
   height: 100%;
@@ -217,11 +276,21 @@ position:relative .kitify-team-member__inner-box {
   z-index: 2;
   text-align: center;
   color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
+
 .kitify-team-member.preset-type-5 .kitify-team-member__link:after {
   left: 20px;
   right: 20px;
@@ -231,52 +300,70 @@ position:relative .kitify-team-member__inner-box {
   height: auto;
   background-color: rgba(33, 33, 33, 0.3);
 }
+
 .kitify-team-member.preset-type-5 .kitify-team-member__item:hover .kitify-team-member__link:after {
   left: 0;
   top: 0;
   right: 0;
   bottom: 0;
 }
+
 .kitify-team-member.preset-type-5 .kitify-team-member__item:hover .kitify-team-member__desc,
 .kitify-team-member.preset-type-5 .kitify-team-member__item:hover .kitify-team-member__name,
 .kitify-team-member.preset-type-5 .kitify-team-member__item:hover .kitify-team-member__position,
 .kitify-team-member.preset-type-5 .kitify-team-member__item:hover .kitify-team-member__socials {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0);
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
 }
+
 .kitify-team-member.preset-type-5 .kitify-team-member__item:hover .kitify-team-member__name {
-  transition-delay: 0.2s;
+  -webkit-transition-delay: 0.2s;
+          transition-delay: 0.2s;
 }
+
 .kitify-team-member.preset-type-5 .kitify-team-member__item:hover .kitify-team-member__position {
-  transition-delay: 0.4s;
+  -webkit-transition-delay: 0.4s;
+          transition-delay: 0.4s;
 }
+
 .kitify-team-member.preset-type-5 .kitify-team-member__item:hover .kitify-team-member__desc {
-  transition-delay: 0.5s;
+  -webkit-transition-delay: 0.5s;
+          transition-delay: 0.5s;
 }
+
 .kitify-team-member.preset-type-5 .kitify-team-member__item:hover .kitify-team-member__socials {
-  transition-delay: 0.6s;
+  -webkit-transition-delay: 0.6s;
+          transition-delay: 0.6s;
 }
+
 .kitify-team-member.preset-type-5 .kitify-team-member__desc,
 .kitify-team-member.preset-type-5 .kitify-team-member__name,
 .kitify-team-member.preset-type-5 .kitify-team-member__position,
 .kitify-team-member.preset-type-5 .kitify-team-member__socials {
-  transform: translateY(20px);
+  -webkit-transform: translateY(20px);
+          transform: translateY(20px);
+  -webkit-transition: all 0.4s;
   transition: all 0.4s;
   visibility: hidden;
   opacity: 0;
 }
+
 .kitify-team-member.preset-type-5 .kitify-team-member__inner {
   overflow: hidden;
 }
+
 .kitify-team-member.preset-type-5 .kitify-team-member__name {
   color: inherit;
   font-weight: normal;
   font-style: italic;
 }
+
 .kitify-team-member.preset-type-5 .kitify-team-member__position {
   margin-bottom: 20px;
 }
+
 .kitify-team-member.preset-type-5 .kitify-team-member__content {
   position: absolute;
   height: 100%;
@@ -285,11 +372,21 @@ position:relative .kitify-team-member__inner-box {
   z-index: 2;
   text-align: center;
   color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  flex-direction: column;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
+
 .kitify-team-member.preset-type-6 .kitify-team-member__name {
   display: inline-block;
   font-family: inherit;
@@ -297,80 +394,127 @@ position:relative .kitify-team-member__inner-box {
   font-size: 18px;
   margin-right: 10px;
 }
+
 .kitify-team-member.preset-type-6 .kitify-team-member__position {
   display: inline-block;
 }
+
 .kitify-team-member.preset-type-6 .kitify-team-member__socials a {
   color: #3E3E3E;
   border-color: #E1E1E1;
 }
+
 .kitify-team-member.preset-type-6 .kitify-team-member__socials a:hover {
   border-color: var(--site-accent-color);
   color: #fff;
 }
+
 .kitify-team-member.preset-type-7 .kitify-team-member__content {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
 .kitify-team-member.preset-type-7 .kitify-team-member__content .kitify-team-member__name {
-  order: 2;
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
   font-size: 1.125rem;
   font-family: inherit;
   font-weight: 700;
 }
+
 .kitify-team-member.preset-type-7 .kitify-team-member__content .kitify-team-member__position {
-  order: 1;
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
   font-size: 0.6875rem;
   margin-bottom: 0.4375rem;
   text-transform: uppercase;
 }
+
 .kitify-team-member.preset-type-7 .kitify-team-member__content .kitify-team-member__socials {
-  order: 3;
+  -webkit-box-ordinal-group: 4;
+      -ms-flex-order: 3;
+          order: 3;
 }
+
 .kitify-team-member.preset-type-7 .kitify-team-member__link:after {
   display: none;
 }
+
 .kitify-team-member.preset-type-7 .kitify-team-member__socials a {
   color: var(--site-heading-color);
   border-color: var(--site-border-color);
 }
+
 .kitify-team-member.preset-type-8 .kitify-team-member__content {
   position: absolute;
   bottom: 0;
   margin: 40px;
   width: auto;
-  box-sizing: inherit;
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
   right: 0;
   left: 0;
   top: auto;
   padding: 30px;
+  display: -ms-grid;
   display: grid;
-  grid-template-areas: "name socials" "position socials" "description description";
+      grid-template-areas: "name socials" "position socials" "description description";
   background-color: #fff;
   opacity: 0;
-  transform: translateY(50%);
+  -webkit-transform: translateY(50%);
+          transform: translateY(50%);
+  -webkit-transition: all 0.5s;
   transition: all 0.5s;
-  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.05);
+  -webkit-box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.05);
+          box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.05);
 }
+
 .kitify-team-member.preset-type-8 .kitify-team-member__position {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
   grid-area: position;
 }
+
 .kitify-team-member.preset-type-8 .kitify-team-member__name {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
   grid-area: name;
 }
+
 .kitify-team-member.preset-type-8 .kitify-team-member__desc {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
   grid-area: description;
 }
+
 .kitify-team-member.preset-type-8 .kitify-team-member__socials {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 2;
+  -ms-grid-column: 2;
   grid-area: socials;
-  align-self: center;
+  -ms-grid-row-align: center;
+      align-self: center;
   justify-self: flex-end;
 }
+
 .kitify-team-member.preset-type-8 .kitify-team-member__inner-box:hover .kitify-team-member__content {
   opacity: 1;
   z-index: 2;
-  transform: translateY(0);
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
 }
+
 .kitify-team-member.preset-type-9 .kitify-team-member__content {
   position: absolute;
   margin: 0 40px;
@@ -382,18 +526,23 @@ position:relative .kitify-team-member__inner-box {
   padding: 20px;
   background-color: #fff;
   opacity: 0;
-  transform: translateY(-30%);
+  -webkit-transform: translateY(-30%);
+          transform: translateY(-30%);
+  -webkit-transition: all 0.5s;
   transition: all 0.5s;
   visibility: hidden;
 }
+
 .kitify-team-member.preset-type-9 .kitify-team-member__inner-box {
   overflow: inherit;
 }
+
 .kitify-team-member.preset-type-9 .kitify-team-member__inner-box:hover .kitify-team-member__content {
   opacity: 1;
   z-index: 2;
   visibility: inherit;
-  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
 }
 
 @media (max-width: 767px) {
@@ -401,3 +550,4 @@ position:relative .kitify-team-member__inner-box {
     display: none;
   }
 }
+/*# sourceMappingURL=team-member.css.map */
