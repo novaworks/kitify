@@ -220,7 +220,7 @@ class Dashboard {
     public function register_page() {
 
         $branding_label = apply_filters('kitify/branding/name', esc_html__( 'Kitify', 'kitify' ));
-        $branding_logo = apply_filters('kitify/branding/logo', "data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='16' height='16' rx='8' fill='white'/%3E%3Cpath d='M8.69266 8.40617L8.59175 6.79378L4 5.26855L4.10092 6.79378L4.80734 14.4635L6.52294 13.2869L5.91743 7.44745L8.69266 8.40617Z' fill='black'/%3E%3Cpath d='M6.47253 8.05734L6.57345 9.71331L11.2157 11.195L11.0643 9.66973L10.3579 2L8.64226 3.17661L9.24777 9.01606L6.47253 8.05734Z' fill='black'/%3E%3C/svg%3E%0A");
+        $branding_logo = apply_filters('kitify/branding/logo', plugins_url( 'kitify/assets/logo.svg' ));
 
         add_menu_page(
             $branding_label,
