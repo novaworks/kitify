@@ -102,7 +102,6 @@ class Settings {
         if( kitify()->get_theme_support('elementor::custom-fonts') ) {
             require kitify()->plugin_path('inc/settings/subpage-modules/fonts-manager.php');
         }
-		require kitify()->plugin_path( 'inc/settings/subpage-modules/license.php' );
 		foreach ( $this->subpage_modules as $subpage => $subpage_data ) {
 			\Kitify_Dashboard\Dashboard::get_instance()->module_manager->register_subpage_module( $subpage, $subpage_data );
 		}
