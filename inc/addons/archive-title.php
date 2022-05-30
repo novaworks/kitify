@@ -168,7 +168,28 @@ class Kitify_Archive_Title extends Kitify_Base {
                 'selector' => '{{WRAPPER}} .kitify-archive-title',
             ]
         );
-
+        $this->add_responsive_control(
+            'padding',
+            array(
+                'label'      => esc_html__( 'Padding', 'kitify' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => array( 'px', '%' ),
+                'selectors'  => array(
+                    '{{WRAPPER}} .kitify-archive-title' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ),
+            )
+        );
+        $this->add_responsive_control(
+            'margin',
+            array(
+                'label'      => esc_html__( 'Margin', 'kitify' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => array( 'px', '%' ),
+                'selectors'  => array(
+                    '{{WRAPPER}} .kitify-archive-title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ),
+            )
+        );
         $this->add_control(
             'hover_animation',
             [
@@ -283,5 +304,5 @@ class Kitify_Archive_Title extends Kitify_Base {
         #>
         <?php
     }
-    
+
 }
