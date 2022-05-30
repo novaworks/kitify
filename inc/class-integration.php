@@ -45,9 +45,9 @@ if ( ! class_exists( 'Kitify_Integration' ) ) {
 
 			add_action( 'elementor/init', array( $this, 'register_category' ) );
 
-			add_action( 'elementor/widgets/widgets_registered', array( $this, 'register_addons' ), 10 );
+			add_action( 'elementor/widgets/register', array( $this, 'register_addons' ), 10 );
 
-			add_action( 'elementor/widgets/widgets_registered', array( $this, 'register_vendor_addons' ), 20 );
+			add_action( 'elementor/widgets/register', array( $this, 'register_vendor_addons' ), 20 );
 
 			add_action( 'elementor/controls/controls_registered', array( $this, 'rewrite_controls' ), 10 );
 
