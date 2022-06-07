@@ -353,7 +353,26 @@ class Kitify_Banner extends Kitify_Base {
 			),
 			100
 		);
-
+    $this->_add_control(
+			'banner_content_heading',
+			array(
+				'label'     => esc_html__( 'Content', 'kitify' ),
+				'type'      => Controls_Manager::HEADING,
+			),
+			100
+		);
+    $this->_add_responsive_control(
+      'banner_content_padding',
+      array(
+        'label'      => __( 'Padding', 'kitify' ),
+        'type'       => Controls_Manager::DIMENSIONS,
+        'size_units' => array( 'px', '%' ),
+        'selectors'  => array(
+          '{{WRAPPER}} ' . $css_scheme['banner_content'] => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+        ),
+      ),
+      100
+    );
     $this->add_responsive_control(
     'ha',
         array(
@@ -405,7 +424,6 @@ class Kitify_Banner extends Kitify_Base {
             ),
         )
     );
-
 
 		$this->_add_control(
 			'banner_overlay_heading',
