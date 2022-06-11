@@ -39,6 +39,15 @@ class Kitify_Nova_Menu extends Kitify_Base {
   }
 
   protected function register_controls() {
+    $menu_style = apply_filters(
+        'kitify/nova-menu/control/style',
+        array(
+          'default' => esc_html__( 'Default', 'kitify' ),
+          'top-line' => esc_html__( 'Top Line', 'kitify' ),
+          'bottom-line' => esc_html__( ' Bottom Line', 'kitify' ),
+        )
+    );
+
     $this->start_controls_section(
         'section_menu',
         array(
@@ -106,11 +115,7 @@ class Kitify_Nova_Menu extends Kitify_Base {
             'label'   => esc_html__( 'Menu Style', 'kitify' ),
             'type'    => Controls_Manager::SELECT,
             'default' => 'default',
-            'options' => array(
-              'default' => esc_html__( 'Default', 'kitify' ),
-              'top-line' => esc_html__( 'Top Line', 'kitify' ),
-              'bottom-line' => esc_html__( ' Bottom Line', 'kitify' ),
-            ),
+            'options' => $menu_style,
         )
     );
     $this->_add_control(
@@ -245,6 +250,14 @@ class Kitify_Nova_Menu extends Kitify_Base {
         ),
         25
     );
+    $this->_add_group_control(
+        Group_Control_Typography::get_type(),
+        array(
+            'name'     => 'nova_nav_items_typography',
+            'selector' => '{{WRAPPER}} '. $css_scheme['nova_menu_item'].' > a',
+        ),
+        50
+    );
     $this->end_controls_section();
 
     $this->_start_controls_section(
@@ -319,7 +332,7 @@ class Kitify_Nova_Menu extends Kitify_Base {
         Group_Control_Typography::get_type(),
         array(
             'name'     => 'dropdown_items_typography',
-            'selector' => '{{WRAPPER}} '. $css_scheme['nova_menu_item'].' > a',
+            'selector' => '{{WRAPPER}} '. $css_scheme['nova_menu_dropdown_li'].' > a',
         ),
         50
     );
