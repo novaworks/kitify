@@ -137,6 +137,7 @@ class Kitify_Woo_Single_Product_AddToCart extends Kitify_Base {
             [
                 'label' => esc_html__( 'Border Radius', 'kitify' ),
                 'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
                 'selectors' => [
                     '{{WRAPPER}} .cart button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
@@ -306,6 +307,7 @@ class Kitify_Woo_Single_Product_AddToCart extends Kitify_Base {
             [
                 'label' => esc_html__( 'Border Radius', 'kitify' ),
                 'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%' ],
                 'selectors' => [
                     '{{WRAPPER}} .quantity .qty' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
