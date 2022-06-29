@@ -14,7 +14,7 @@ $query_post_type    = $this->get_settings_for_display('query_post_type');
 $floating_counter = $this->get_settings_for_display('floating_counter');
 $floating_counter_as = $this->get_settings_for_display('floating_counter_as');
 
-$this->add_render_attribute( 'main-container', 'id', 'lapost_' . $this->get_id() );
+$this->add_render_attribute( 'main-container', 'id', 'novapost_' . $this->get_id() );
 
 $this->add_render_attribute( 'main-container', 'class', array(
 	'kitify-posts',
@@ -86,7 +86,7 @@ $the_query = $this->the_query();
         }
 
         if( $enable_masonry ){
-          $this->render_masonry_filters('#lapost_'.$this->get_id().' .kitify-posts__list');
+          $this->render_masonry_filters('#novapost_'.$this->get_id().' .kitify-posts__list');
         }
 
         ?>
@@ -174,7 +174,7 @@ $the_query = $this->the_query();
             }
 
             ?>
-            <nav class="<?php echo join(' ', $nav_classes) ?>" data-parent-container="#lapost_<?php echo $this->get_id() ?>" data-container="#lapost_<?php echo $this->get_id() ?> .kitify-posts__list" data-item-selector=".kitify-posts__item" data-ajax_request_id="<?php echo $paged_key ?>">
+            <nav class="<?php echo join(' ', $nav_classes) ?>" data-parent-container="#novapost_<?php echo $this->get_id() ?>" data-container="#novapost_<?php echo $this->get_id() ?> .kitify-posts__list" data-item-selector=".kitify-posts__item" data-ajax_request_id="<?php echo $paged_key ?>">
                 <div class="kitify-ajax-loading-outer"><span class="kitify-css-loader"></span></div>
                 <div class="kitify-post__loadmore_ajax kitify-pagination_ajax_loadmore">
                     <a href="javascript:;"><span><?php echo esc_html($load_more_text); ?></span></a>

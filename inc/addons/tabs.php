@@ -52,6 +52,12 @@ class Kitify_Tabs extends Kitify_Base {
                 'icon'            => '.kitify-tabs__label-icon',
             )
         );
+        $preset_type = apply_filters(
+          'kitify/'.$this->get_kitify_name().'/control/preset',
+          array(
+            'default' => esc_html__( 'Default', 'kitify' ),
+          )
+        );
 
         $this->_start_controls_section(
             'section_items_data',
@@ -316,7 +322,15 @@ class Kitify_Tabs extends Kitify_Base {
                 'show_label' => false,
             )
         );
-
+        $this->add_control(
+            'tabs_style',
+            array(
+                'label'     => esc_html__( 'Style', 'kitify' ),
+                'type'      => Controls_Manager::SELECT,
+                'default'   => 'default',
+                'options'   => $preset_type
+            )
+        );
         $this->_add_responsive_control(
             'tabs_position',
             array(
@@ -1277,6 +1291,7 @@ class Kitify_Tabs extends Kitify_Base {
 
         $id_int = substr( $this->get_id_int(), 0, 3 );
 
+        $tabs_style = $this->get_settings( 'tabs_style' );
         $tabs_position = $this->get_settings( 'tabs_position' );
         $tabs_position_laptop = $this->get_settings( 'tabs_position_laptop' );
         $tabs_position_tablet = $this->get_settings( 'tabs_position_tablet' );
@@ -1305,6 +1320,7 @@ class Kitify_Tabs extends Kitify_Base {
         $this->add_render_attribute( 'instance', array(
             'class' => array(
                 'kitify-tabs',
+                'kitify-tabs-style-' . $tabs_style,
                 'kitify-tabs-position-' . $tabs_position,
                 'kitify-tabs-' . $show_effect . '-effect',
             ),
