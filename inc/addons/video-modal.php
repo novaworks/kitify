@@ -128,6 +128,98 @@ class Kitify_Video_Modal extends Kitify_Base {
            )
        );
        $this->add_control(
+           'icon_play_bg_color',
+           array(
+               'label' => esc_html__( 'Background Color', 'kitify' ),
+               'type' => Controls_Manager::COLOR,
+               'selectors' => array(
+                   '{{WRAPPER}} ' . $css_scheme['icon_play'] => 'background: {{VALUE}}',
+               ),
+           )
+       );
+       $this->add_control(
+           'icon_play_bg_color_hover',
+           array(
+               'label' => esc_html__( 'Background Color Hover', 'kitify' ),
+               'type' => Controls_Manager::COLOR,
+               'selectors' => array(
+                   '{{WRAPPER}} ' . $css_scheme['icon_play_hover'] => 'background: {{VALUE}}',
+               ),
+           )
+       );
+       $this->add_responsive_control(
+           'items_size_val',
+           array(
+               'label'      => esc_html__( 'Width', 'kitify' ),
+               'type'       => Controls_Manager::SLIDER,
+               'size_units' => array( 'px', '%', 'em' ),
+               'default'    => array(
+                   'unit' => 'px',
+                   'size' => 70,
+               ),
+               'range'      => array(
+                   'px' => array(
+                       'min' => 60,
+                       'max' => 600,
+                   ),
+                   'em' => array(
+                       'min' => 1,
+                       'max' => 20,
+                   ),
+               ),
+               'selectors' => array(
+                   '{{WRAPPER}} ' . $css_scheme['icon_play'] => 'width: {{SIZE}}{{UNIT}};',
+               ),
+           )
+       );
+
+       $this->add_responsive_control(
+           'items_width_val',
+           array(
+               'label'      => esc_html__( 'Height', 'kitify' ),
+               'type'       => Controls_Manager::SLIDER,
+               'size_units' => array( 'px', '%', 'em' ),
+               'default'    => array(
+                   'unit' => 'px',
+                   'size' => 70,
+               ),
+               'range'      => array(
+                   'px' => array(
+                       'min' => 60,
+                       'max' => 600,
+                   ),
+                   'em' => array(
+                       'min' => 1,
+                       'max' => 20,
+                   ),
+               ),
+               'selectors' => array(
+                   '{{WRAPPER}} ' . $css_scheme['icon_play'] => 'height: {{SIZE}}{{UNIT}};',
+               ),
+           )
+       );
+
+               $this->add_group_control(
+                   Group_Control_Border::get_type(),
+                   array(
+                       'name'        => 'border',
+                       'placeholder' => '0',
+                       'selector'    => '{{WRAPPER}} ' . $css_scheme['icon_play'],
+                   )
+               );
+
+               $this->add_control(
+                   'item_border_radius',
+                   array(
+                       'label'      => esc_html__( 'Border Radius', 'kitify' ),
+                       'type'       => Controls_Manager::DIMENSIONS,
+                       'size_units' => array( 'px', '%' ),
+                       'selectors'  => array(
+                           '{{WRAPPER}} ' . $css_scheme['icon_play'] => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                       ),
+                   )
+               );
+       $this->add_control(
            'icon_play_color',
            array(
                'label' => esc_html__( 'Icon Color', 'kitify' ),

@@ -1039,7 +1039,17 @@ class Kitify_Tabs extends Kitify_Base {
                 ),
             )
         );
-
+        $this->_add_responsive_control(
+            'tabs_control_border_radius_hover',
+            array(
+                'label'      => esc_html__( 'Border Radius', 'kitify' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => array( 'px', '%' , 'em', 'vw', 'vh'),
+                'selectors'  => array(
+                    '{{WRAPPER}} ' . $css_scheme['control'] . ':hover' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ),
+            )
+        );
         $this->_add_group_control(
             Group_Control_Border::get_type(),
             array(

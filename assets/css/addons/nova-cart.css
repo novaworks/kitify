@@ -1,23 +1,41 @@
-/**
- * Foundation for Sites
- * Version 6.6.3
- * https://get.foundation
- * Licensed under MIT Open Source
- */
 .kitify-nova-cart {
-  padding: 1rem; }
-  .kitify-nova-cart .header-cart-box {
-    position: relative; }
-    .kitify-nova-cart .header-cart-box .count-badge {
-      position: absolute;
-      top: -15px;
-      right: -19px;
-      width: 20px;
-      height: 20px;
-      line-height: 20px;
-      border-radius: 50%;
-      text-align: center;
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: #FFF;
-      background-color: var(--site-accent-color); }
+  padding: 16px;
+}
+.kitify-nova-cart .header-cart-box {
+  position: relative;
+}
+.kitify-nova-cart .header-cart-box .count-badge {
+  position: absolute;
+  top: 0px;
+  right: -6px;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: rem-calc(12);
+  font-weight: 500;
+  color: #FFF;
+  background-color: var(--site-accent-color);
+}
+.kitify-nova-cart.kitify-nova-cart-label-on .count-text {
+  display: none;
+}
+@media screen and (min-width: 1550px) {
+  .kitify-nova-cart.kitify-nova-cart-label-on .header-cart-box {
+    display: flex;
+    align-items: center;
+  }
+  .kitify-nova-cart.kitify-nova-cart-label-on .header-cart-box .cart-text {
+    margin-left: 12px;
+  }
+  .kitify-nova-cart.kitify-nova-cart-label-on .header-cart-box .cart-text .count-text {
+    display: block;
+    font-size: 14px;
+    color: #999999;
+    text-transform: uppercase;
+  }
+  .kitify-nova-cart.kitify-nova-cart-label-on .header-cart-box .count-badge {
+    position: static;
+  }
+}

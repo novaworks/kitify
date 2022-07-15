@@ -26,6 +26,7 @@
 	padding: 8px 15px
 }
 .kitify-nav .menu-item-link-sub .kitify-nav-arrow {
+	-webkit-transform: rotate(-90deg);
 	transform: rotate(-90deg)
 }
 .kitify-nav-item-desc {
@@ -44,8 +45,11 @@
 	width: 200px;
 	background: #fff;
 	opacity: 0;
+	-webkit-transform: translateY(20px);
 	transform: translateY(20px);
+	transition: opacity 200ms, -webkit-transform 200ms;
 	transition: transform 200ms, opacity 200ms;
+	transition: transform 200ms, opacity 200ms, -webkit-transform 200ms;
 	transition-timing-function: cubic-bezier(0.17, 0.67, 0.83, 0.67)
 }
 .kitify-mobile-menu.kitify-nav-wrap.kitify-active--mbmenu .kitify-nav__sub {
@@ -53,6 +57,7 @@
 	top: 0;
 	left: 0;
 	width: 100% !important;
+	-webkit-transform: translateY(0);
 	transform: translateY(0);
 	display: none
 }
@@ -61,11 +66,13 @@
 	top: 0;
 	left: 0;
 	width: 100%;
+	-webkit-transform: translateY(0);
 	transform: translateY(0);
 	display: none
 }
 .menu-item.kitify-nav-hover > .kitify-nav__sub {
 	opacity: 1;
+	-webkit-transform: translateY(0);
 	transform: translateY(0)
 }
 .kitify-mobile-menu.kitify-nav-wrap.kitify-active--mbmenu .menu-item.kitify-nav-hover > .kitify-nav__sub {
@@ -117,10 +124,12 @@
 	justify-content: flex-start
 }
 .kitify-nav.kitify-nav--vertical .menu-item-link.menu-item-link-top .kitify-nav-arrow {
+	-webkit-transform: rotate(-90deg);
 	transform: rotate(-90deg)
 }
 .kitify-nav.kitify-nav--vertical-sub-left-side .menu-item-link.menu-item-link-sub .kitify-nav-arrow,
 .kitify-nav.kitify-nav--vertical-sub-left-side .menu-item-link.menu-item-link-top .kitify-nav-arrow {
+	-webkit-transform: rotate(90deg);
 	transform: rotate(90deg)
 }
 .kitify-nav.kitify-nav--vertical-sub-left-side .menu-item-link.menu-item-link-sub {
@@ -136,6 +145,7 @@
 }
 .kitify-nav.kitify-nav--vertical-sub-bottom .menu-item-link.menu-item-link-sub .kitify-nav-arrow,
 .kitify-nav.kitify-nav--vertical-sub-bottom .menu-item-link.menu-item-link-top .kitify-nav-arrow {
+	-webkit-transform: rotate(0);
 	transform: rotate(0)
 }
 .kitify-mobile-menu.kitify-nav-wrap.kitify-active--mbmenu .kitify-nav {
@@ -149,6 +159,7 @@
 }
 .kitify-mobile-menu.kitify-nav-wrap.kitify-active--mbmenu .kitify-nav .menu-item-link.menu-item-link-sub .kitify-nav-arrow,
 .kitify-mobile-menu.kitify-nav-wrap.kitify-active--mbmenu .kitify-nav .menu-item-link.menu-item-link-top .kitify-nav-arrow {
+	-webkit-transform: rotate(0deg);
 	transform: rotate(0deg)
 }
 .kitify-mobile-menu.kitify-nav-wrap.kitify-active--mbmenu .kitify-nav.kitify-nav--vertical-sub-left-side .menu-item .menu-item-link.menu-item-link-top .kitify-nav-link-text {
@@ -168,9 +179,13 @@
 	left: 0;
 	display: block;
 	width: 100vw;
+	-webkit-transform: scaleY(0);
 	transform: scaleY(0);
+	-webkit-transform-origin: top center;
 	transform-origin: top center;
+	transition: -webkit-transform 0.2s cubic-bezier(0.35, 0.19, 0.45, 0.91);
 	transition: transform 0.2s cubic-bezier(0.35, 0.19, 0.45, 0.91);
+	transition: transform 0.2s cubic-bezier(0.35, 0.19, 0.45, 0.91), -webkit-transform 0.2s cubic-bezier(0.35, 0.19, 0.45, 0.91);
 	will-change: transform;
 	overflow-y: auto;
 	-webkit-overflow-scrolling: touch;
@@ -178,6 +193,7 @@
 	background-color: #fff
 }
 .kitify-mobile-menu--full-width.kitify-mobile-menu-active.kitify-active--mbmenu .kitify-nav {
+	-webkit-transform: scaleY(1);
 	transform: scaleY(1)
 }
 .kitify-mobile-menu--left-side.kitify-nav-wrap.kitify-active--mbmenu .kitify-nav,
@@ -191,7 +207,10 @@
 	height: 100vh;
 	padding: 10px 5px;
 	margin-top: 0;
+	transition: -webkit-transform 0.2s cubic-bezier(0.35, 0.19, 0.45, 0.91);
 	transition: transform 0.2s cubic-bezier(0.35, 0.19, 0.45, 0.91);
+	transition: transform 0.2s cubic-bezier(0.35, 0.19, 0.45, 0.91), -webkit-transform 0.2s cubic-bezier(0.35, 0.19, 0.45, 0.91);
+	-webkit-transform: translateX(-100%);
 	transform: translateX(-100%);
 	will-change: transform;
 	overflow-y: auto;
@@ -207,14 +226,17 @@
 }
 .kitify-mobile-menu--left-side.kitify-nav-wrap.kitify-active--mbmenu .kitify-nav {
 	left: 0;
+	-webkit-transform: translateX(-100%);
 	transform: translateX(-100%)
 }
 .kitify-mobile-menu--right-side.kitify-nav-wrap.kitify-active--mbmenu .kitify-nav {
 	right: 0;
+	-webkit-transform: translateX(100%);
 	transform: translateX(100%)
 }
 .kitify-mobile-menu--left-side.kitify-mobile-menu-active.kitify-active--mbmenu .kitify-nav,
 .kitify-mobile-menu--right-side.kitify-mobile-menu-active.kitify-active--mbmenu .kitify-nav {
+	-webkit-transform: translateX(0);
 	transform: translateX(0)
 }
 .kitify-nav__mobile-close-btn {

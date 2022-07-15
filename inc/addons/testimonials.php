@@ -23,7 +23,7 @@ class Kitify_Testimonials extends Kitify_Base {
         $this->add_style_depends( $this->get_name() );
         $this->add_script_depends( 'kitify-base' );
     }
-    
+
     public function get_name() {
         return 'kitify-testimonials';
     }
@@ -353,7 +353,43 @@ class Kitify_Testimonials extends Kitify_Base {
                 ),
             )
         );
-
+        $this->add_control(
+            'enable_image_full_width',
+            array(
+                'label'        => esc_html__( 'Enable Image Full Width ', 'kitify' ),
+                'type'         => Controls_Manager::SWITCHER,
+                'label_on'     => esc_html__( 'Yes', 'kitify' ),
+                'label_off'    => esc_html__( 'No', 'kitify' ),
+                'return_value' => 'true',
+                'default'      => '',
+            )
+        );
+        $this->add_responsive_control(
+            'custom_image_height',
+            [
+                'label' => __( 'Custom Image Height', 'kitify' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units'  => array( 'px' ),
+                'range' => [
+                    'px' => [
+                        'min' => 50,
+                        'max' => 500,
+                        'step' => 1,
+                    ]
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 60,
+                ],
+                'condition' => [
+                    'enable_image_full_width!' => ''
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} ' . $css_scheme['image_tag'] . ' img' => 'height: {{SIZE}}{{UNIT}};'
+                ],
+                'render_type' => 'template'
+            ]
+        );
         $this->add_control(
             'enable_custom_image_width',
             array(
@@ -363,6 +399,9 @@ class Kitify_Testimonials extends Kitify_Base {
                 'label_off'    => esc_html__( 'No', 'kitify' ),
                 'return_value' => 'true',
                 'default'      => '',
+                'condition' => [
+                    'enable_image_full_width' => ''
+                ],
             )
         );
 

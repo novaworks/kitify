@@ -215,6 +215,19 @@ class Kitify_Nova_Menu extends Kitify_Base {
             ],
         ]
     );
+    $this->_add_responsive_control(
+        'nova_nav_items_padding',
+        array(
+            'label'      => esc_html__( 'Padding', 'kitify' ),
+            'type'       => Controls_Manager::DIMENSIONS,
+            'size_units' => array( 'px', '%', 'em' ),
+            'selectors'  => array(
+                '{{WRAPPER}} ' . $css_scheme['nova_menu_item'] => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+            ),
+            'separator' => 'before',
+        ),
+        25
+    );
     $this->_add_control(
         'nova_nav_items_color',
         array(
@@ -335,19 +348,6 @@ class Kitify_Nova_Menu extends Kitify_Base {
             'selector' => '{{WRAPPER}} '. $css_scheme['nova_menu_dropdown_li'].' > a',
         ),
         50
-    );
-    $this->_add_responsive_control(
-        'dropdown_items_padding',
-        array(
-            'label'      => esc_html__( 'Padding', 'kitify' ),
-            'type'       => Controls_Manager::DIMENSIONS,
-            'size_units' => array( 'px', '%', 'em' ),
-            'selectors'  => array(
-                '{{WRAPPER}} ' . $css_scheme['nova_menu_item'] => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-            ),
-            'separator' => 'before',
-        ),
-        25
     );
     $this->end_controls_section();
 

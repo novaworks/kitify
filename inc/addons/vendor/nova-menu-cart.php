@@ -37,11 +37,26 @@ class Kitify_Nova_Menu_Cart extends Kitify_Base {
   }
 
   protected function register_controls() {
+    $preset_type = apply_filters(
+      'kitify/nova-menu-cart/control/preset',
+      array(
+        'default' => esc_html__( 'Default', 'kitify' ),
+      )
+    );
     $this->start_controls_section(
         'section_settings',
         array(
             'label' => esc_html__( 'Settings', 'kitify' ),
         )
+    );
+    $this->_add_control(
+      'preset',
+      array(
+        'label'   => esc_html__( 'Preset', 'kitify' ),
+        'type'    => Controls_Manager::SELECT,
+        'default' => 'default',
+        'options' => $preset_type
+      )
     );
     $this->_add_advanced_icon_control(
         'novacart_icon',
@@ -56,6 +71,17 @@ class Kitify_Nova_Menu_Cart extends Kitify_Base {
                 'value' => 'dlicon shopping_cart-simple',
                 'library' => 'dlicon',
             ),
+        )
+    );
+    $this->add_control(
+        'show_label',
+        array(
+            'label'        => esc_html__( 'Show Label', 'kitify' ),
+            'type'         => Controls_Manager::SWITCHER,
+            'label_on'     => esc_html__( 'Yes', 'kitify' ),
+            'label_off'    => esc_html__( 'No', 'kitify' ),
+            'return_value' => 'true',
+            'default'      => '',
         )
     );
     $this->end_controls_section();
@@ -107,6 +133,38 @@ class Kitify_Nova_Menu_Cart extends Kitify_Base {
         ),
         50
     );
+    $this->_add_control(
+      'novacart_icon_bg',
+      array(
+        'label'     => esc_html__( 'Background Color', 'kitify' ),
+        'type'      => Controls_Manager::COLOR,
+        'selectors' => array(
+          '{{WRAPPER}} ' . $css_scheme['cart_icon'] => 'background-color: {{VALUE}}',
+        ),
+      )
+    );
+    $this->_add_group_control(
+      Group_Control_Border::get_type(),
+      array(
+        'name'        => 'novacart_icon_border',
+        'label'       => esc_html__( 'Border', 'kitify' ),
+        'placeholder' => '0',
+        'default'     => '0',
+        'selector'    => '{{WRAPPER}} ' . $css_scheme['cart_icon'],
+      )
+    );
+
+    $this->_add_responsive_control(
+      'novacart_icon_border_radius',
+      array(
+        'label'      => __( 'Border Radius', 'kitify' ),
+        'type'       => Controls_Manager::DIMENSIONS,
+        'size_units' => array( 'px', '%' ),
+        'selectors'  => array(
+          '{{WRAPPER}} ' . $css_scheme['cart_icon'] => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+        ),
+      )
+    );
     $this->_add_responsive_control(
         'novacart_icon_padding',
         array(
@@ -114,9 +172,8 @@ class Kitify_Nova_Menu_Cart extends Kitify_Base {
             'type'       => Controls_Manager::DIMENSIONS,
             'size_units' => array( 'px', '%', 'em' ),
             'selectors'  => array(
-              '{{WRAPPER}} ' . $css_scheme['cart_box'] => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+              '{{WRAPPER}} ' . $css_scheme['cart_icon'] => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
             ),
-            'separator' => 'before',
         ),
         25
     );
@@ -129,6 +186,7 @@ class Kitify_Nova_Menu_Cart extends Kitify_Base {
             'selectors' => array(
                 '{{WRAPPER}} ' . $css_scheme['cart_count'] => 'background-color: {{VALUE}}',
             ),
+            'separator' => 'before',
         ),
         25
     );
@@ -143,7 +201,27 @@ class Kitify_Nova_Menu_Cart extends Kitify_Base {
         ),
         25
     );
-
+    $this->end_controls_section();
+    $this->_start_controls_section(
+        'section_box_style',
+        array(
+            'label'      => esc_html__( 'Box Styles', 'kitify' ),
+            'tab'        => Controls_Manager::TAB_STYLE,
+            'show_label' => false,
+        )
+    );
+    $this->_add_responsive_control(
+        'novacart_box_padding',
+        array(
+            'label'      => esc_html__( 'Padding', 'kitify' ),
+            'type'       => Controls_Manager::DIMENSIONS,
+            'size_units' => array( 'px', '%', 'em' ),
+            'selectors'  => array(
+              '{{WRAPPER}} ' . $css_scheme['cart_box'] => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+            ),
+        ),
+        25
+    );
     $this->end_controls_section();
 
   }

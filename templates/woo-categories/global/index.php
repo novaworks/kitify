@@ -4,6 +4,7 @@
  */
 
  $this->add_render_attribute( 'main-container', 'class', 'kitify-product-categories' );
+ $this->add_render_attribute( 'main-container', 'class', 'kitify-product-categories__style--'.$this->get_settings_for_display('preset') );
  $this->add_render_attribute( 'list-wrapper', 'class', 'kitify-product-categories__wrapper' );
  $this->add_render_attribute( 'list-container', 'class', 'kitify-product-categories__list' );
 

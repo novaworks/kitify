@@ -90,7 +90,7 @@
     label="<?php _e('Access Token', 'kitify'); ?>"
     description="<?php
     echo sprintf(esc_html__('Read more about how to get Instagram Access Token %1$s', 'kitify'),
-        htmlspecialchars('<a href="https://la-studioweb.com/tip-trick/how-to-get-instagram-access-token/" target="_blank">here</a>', ENT_QUOTES)
+        htmlspecialchars('<a href="https://nova-works.gitbook.io/kitify/api/how-to-get-instagram-access-token" target="_blank">here</a>', ENT_QUOTES)
     ); ?>"
     :wrapper-css="[ 'equalwidth' ]"
     size="fullwidth"
@@ -101,7 +101,7 @@
     label="<?php _e('Business Access Token', 'kitify'); ?>"
     description="<?php
     echo sprintf(esc_html__('Read more about how to get Business Instagram Access Token %1$s', 'kitify'),
-        htmlspecialchars('<a href="https://la-studioweb.com/tip-trick/kitify-how-to-display-instagram-tagged-photos/" target="_blank">here</a>', ENT_QUOTES)
+        htmlspecialchars('<a href="https://nova-works.gitbook.io/kitify/api/how-to-get-instagram-access-token" target="_blank">here</a>', ENT_QUOTES)
     ); ?>"
     :wrapper-css="[ 'equalwidth' ]"
     size="fullwidth"
@@ -112,24 +112,10 @@
     label="<?php _e('Business User ID', 'kitify'); ?>"
     description="<?php
     echo sprintf(esc_html__('Read more about how to get Business User ID %1$s', 'kitify'),
-        htmlspecialchars('<a href="https://la-studioweb.com/tip-trick/kitify-how-to-display-instagram-tagged-photos/" target="_blank">here</a>', ENT_QUOTES)
+        htmlspecialchars('<a href="https://nova-works.gitbook.io/kitify/api/how-to-get-instagram-access-token" target="_blank">here</a>', ENT_QUOTES)
     ); ?>"
     :wrapper-css="[ 'equalwidth' ]"
     size="fullwidth"
     v-model="pageOptions.insta_business_user_id.value"></cx-vui-input>
 
-  <div
-    class="cx-vui-subtitle cx-vui-subtitle--divider"
-    v-html="'<?php _e('Weatherbit.io API', 'kitify'); ?>'"></div>
-
-  <cx-vui-input
-    name="weatherstack-api-key"
-    label="<?php _e('Weatherbit.io API Key', 'kitify'); ?>"
-    description="<?php
-    echo sprintf(esc_html__('Create own Weatherbit.io API key, more info %1$s', 'kitify'),
-        htmlspecialchars('<a href="https://www.weatherbit.io/" target="_blank">here</a>', ENT_QUOTES)
-    ); ?>"
-    :wrapper-css="[ 'equalwidth' ]"
-    size="fullwidth"
-    v-model="pageOptions.weather_api_key.value"></cx-vui-input>
 </div>

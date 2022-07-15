@@ -236,9 +236,6 @@ if ( ! class_exists( 'Kitify_Settings' ) ) {
                 'insta_business_user_id' => [
                     'value' => $this->get( 'insta_business_user_id', '' ),
                 ],
-                'weather_api_key'         => [
-                    'value' => $this->get( 'weather_api_key', '' ),
-                ],
                 'avaliable_widgets'       => [
                     'value'   => $active_widgets,
                     'options' => $avaliable_widgets,
@@ -462,6 +459,9 @@ if ( ! class_exists( 'Kitify_Settings' ) ) {
 				self::$instance = new self;
 			}
 			return self::$instance;
+		}
+		public function is_combine_js_css(){
+			return false;
 		}
 	}
 }

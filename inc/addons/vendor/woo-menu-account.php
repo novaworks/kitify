@@ -58,6 +58,17 @@ class Kitify_Woo_Menu_Account extends Kitify_Base {
             ),
         )
     );
+    $this->add_control(
+        'show_label',
+        array(
+            'label'        => esc_html__( 'Show Label', 'kitify' ),
+            'type'         => Controls_Manager::SWITCHER,
+            'label_on'     => esc_html__( 'Yes', 'kitify' ),
+            'label_off'    => esc_html__( 'No', 'kitify' ),
+            'return_value' => 'true',
+            'default'      => '',
+        )
+    );
     $this->end_controls_section();
 
     $css_scheme = \apply_filters(
@@ -65,6 +76,7 @@ class Kitify_Woo_Menu_Account extends Kitify_Base {
         array(
             'acc_box'    => '.kitify-menu-account__box',
             'acc_icon'    => '.kitify-menu-account__icon  i',
+            'acc_label'    => '.kitify-menu-account__label',
             'acc_sub_menu'    => '.kitify-menu-account__box .sub-menu',
             'acc_sub_menu_item'    => '.kitify-menu-account__box .sub-menu li a',
             'acc_sub_menu_item_hover'    => '.kitify-menu-account__box .sub-menu li a:hover',
@@ -107,8 +119,28 @@ class Kitify_Woo_Menu_Account extends Kitify_Base {
                 '{{WRAPPER}} ' . $css_scheme['acc_icon'] => 'font-size: {{SIZE}}{{UNIT}};',
             ),
         ),
-        50
+        25
     );
+    $this->_add_control(
+        'acc_label_color',
+        array(
+            'label'  => esc_html__( 'Label Color', 'kitify' ),
+            'type'   => Controls_Manager::COLOR,
+            'separator' => 'before',
+            'selectors' => array(
+                '{{WRAPPER}} ' . $css_scheme['acc_label'] => 'color: {{VALUE}}',
+            ),
+        ),
+        25
+    );
+    $this->add_group_control(
+        Group_Control_Typography::get_type(),
+        array(
+            'name'     => 'acc_label_typography',
+            'selector' => '{{WRAPPER}} ' . $css_scheme['acc_label'],
+        )
+    );
+
     $this->_add_responsive_control(
         'acc_icon_padding',
         array(

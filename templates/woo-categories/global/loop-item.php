@@ -21,5 +21,5 @@ else{
 
 ?>
 <div class="<?php echo esc_attr(join(' ', $post_classes)); ?>">
-a
+
 </div>

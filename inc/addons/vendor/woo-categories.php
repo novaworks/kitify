@@ -40,6 +40,12 @@ class Kitify_Woo_Categories extends Kitify_Base {
       return 'eicon-product-categories';
   }
   protected function register_controls() {
+    $preset_type = apply_filters(
+        'kitify/woo-categories/control/preset',
+        array(
+            'default' => esc_html__( 'Default', 'kitify' ),
+        )
+    );
     $this->start_controls_section(
       'section_general_field',
       array(
@@ -83,18 +89,24 @@ class Kitify_Woo_Categories extends Kitify_Base {
         ),
       )
     );
+    $this->_add_control(
+        'cat_count_label',
+        array(
+            'label' => esc_html__('Count Label', 'kitify'),
+            'type' => Controls_Manager::TEXT,
+            'separator' => 'before',
+            'label_block' => true,
+        )
+    );
     $this->add_control(
-      'cat_title_position',
-      array(
-        'label'        => __( 'Title/Count Position', 'kitify' ),
-        'type'         => Controls_Manager::SELECT,
-        'default'      => 'default',
-        'options'      => array(
-          'default'     => __( 'Default', 'kitify' ),
-          'below-image' => __( 'Below Image', 'kitify' ),
-        ),
-        'prefix_class' => 'kitify-woo-cat-title-pos-',
-      )
+        'preset',
+        array(
+            'label'   => esc_html__( 'Preset', 'kitify' ),
+            'type'    => Controls_Manager::SELECT,
+            'default' => 'default',
+            'options' => $preset_type,
+            'separator' => 'before',
+        )
     );
     $this->end_controls_section();
     $this->start_controls_section(

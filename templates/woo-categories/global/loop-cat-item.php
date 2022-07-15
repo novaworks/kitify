@@ -3,6 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 $enable_carousel    = filter_var( $this->get_settings_for_display('enable_carousel'), FILTER_VALIDATE_BOOLEAN );
+$cat_count_label =  $this->get_settings_for_display('cat_count_label');
 
 $post_classes = ['kitify-product-categories__item'];
 
@@ -18,9 +19,14 @@ $cat_thumb_url = wp_get_attachment_image_src( $cat_thumb_id, 'woocommerce_thumbn
 <div class="<?php echo esc_attr(join(' ', $post_classes)) ?>">
   <div class="kitify-product-categories__item--inner">
 		<div class="cat-count">
-			<span><?php echo $category->count ?></span>
+			<span class="count"><?php echo $category->count ?></span>
+			<?php if($cat_count_label):?>
+				<span class="count-items"><?php echo esc_html($cat_count_label) ?></span>
+			<?php endif;?>
 		</div>
     <div class="cat-image">
+			<div class="cat-image-overlay"></div>
+			<a class="overlay-url" href="<?php echo esc_url( get_category_link( $category->term_id ) ); ?>"></a>
 			<?php if($cat_thumb_url):?>
       	<a href="<?php echo esc_url( get_category_link( $category->term_id ) ); ?>"><img src="<?php echo $cat_thumb_url[0]; ?>" alt=""></a>
 			<?php endif?>

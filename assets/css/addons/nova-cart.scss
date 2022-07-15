@@ -1,0 +1,43 @@
+.kitify-nova-cart {
+  padding: 16px;
+  .header-cart-box {
+    position: relative;
+    .count-badge {
+      position: absolute;
+      top: 0px;
+      right: -6px;
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
+      border-radius: 50%;
+      text-align: center;
+      font-size: rem-calc(12);
+      font-weight: 500;
+      color: #FFF;
+      background-color: var(--site-accent-color);
+    }
+  }
+  &.kitify-nova-cart-label-on {
+    .count-text {
+      display: none;
+    }
+    @media screen and (min-width: 1550px){
+    .header-cart-box {
+      display: flex;
+      align-items: center;
+      .cart-text {
+        margin-left: 12px;
+        .count-text {
+          display: block;
+          font-size: 14px;
+          color: #999999;
+          text-transform: uppercase;
+        }
+      }
+      .count-badge {
+        position: static;
+      }
+    }
+  }
+  }
+}

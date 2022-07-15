@@ -151,7 +151,7 @@ class Kitify_Search extends Kitify_Base {
                 'popup_close'             => '.kitify-search__popup-close',
                 'popup_close_icon'        => '.kitify-search__popup-close-icon',
                 'popup_trigger_container' => '.kitify-search__popup-trigger-container',
-                'popup_trigger'           => '.kitify-search__popup-trigger',
+                'popup_trigger'           => '.kitify-search__popup-trigger #js_header_search_modal',
                 'popup_trigger_icon'      => '.kitify-search__popup-trigger-icon',
             )
         );

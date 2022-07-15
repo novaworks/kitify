@@ -1749,6 +1749,12 @@
             Kitifys.initCarousel($scope);
             Kitifys.initMasonry($scope);
         });
+
+        elementor.hooks.addAction('frontend/element_ready/kitify-instagram-feed.default', function ($scope) {
+            Kitifys.initCarousel($scope);
+            Kitifys.initMasonry($scope);
+        });
+
         elementor.hooks.addAction('frontend/element_ready/kitify-wooproduct-datatabs.default', function ($scope) {
             $scope.foundation();
         });

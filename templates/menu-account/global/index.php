@@ -7,13 +7,16 @@ $classes = [
 ];
 
 $class_string = implode( ' ', $classes );
-
+$show_label = $this->get_settings( 'show_label' );
 ?>
 <div class="<?php echo $class_string; ?>">
 	<?php if ( is_user_logged_in() ){ ?>
 		<div class="kitify-menu-account__box">
 			<a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>">
 				<?php $this->_icon( 'acc_icon', '<span class="kitify-menu-account__icon kitify-blocks-icon">%s</span>' ); ?>
+        <?php if($show_label):?>
+          <span class="kitify-menu-account__label"><?php echo esc_html__('My account','kitify')?></span>
+        <?php endif;?>
 			</a>
 			<ul class="sub-menu">
 			<?php foreach ( wc_get_account_menu_items() as $endpoint => $label ) : ?>
@@ -27,6 +30,9 @@ $class_string = implode( ' ', $classes );
     <div class="kitify-menu-account__box">
     <a<?php if ( Nova_OP::getOption('header_user_action') == 'account-page' ) : ?> href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>"<?php endif; ?><?php if ( Nova_OP::getOption('header_user_action') == 'modal' ) : ?> data-toggle="AcccountCanvas"<?php endif; ?>>
       	<?php $this->_icon( 'acc_icon', '<span class="kitify-menu-account__icon kitify-blocks-icon">%s</span>' ); ?>
+      	<?php if($show_label):?>
+          <span class="kitify-menu-account__label"><?php echo esc_html__('My account','kitify')?></span>
+        <?php endif;?>
     </a>
     </div>
 <?php } ?>

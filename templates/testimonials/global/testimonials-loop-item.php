@@ -5,6 +5,7 @@
 
 
 $preset = $this->get_settings( 'preset' );
+$full_width = $this->get_settings( 'enable_image_full_width' );
 
 $item_image = $this->_loop_item( array( 'item_image', 'url' ), '%s' );
 $item_image = apply_filters('kitify_wp_get_attachment_image_url', $item_image);
@@ -29,7 +30,11 @@ else{
             if(!empty($item_image)){
                 echo '<div class="kitify-testimonials__figure">';
                 do_action('kitify/testimonials/output/before_image', $preset);
-                echo sprintf('<span class="kitify-testimonials__tag-img"><span style="background-image: url(\'%1$s\')"></span></span>', $item_image );
+                if($full_width) {
+                  echo sprintf('<span class="kitify-testimonials__tag-img"><img src="%1$s" /></span>', $item_image );
+                }else {
+                  echo sprintf('<span class="kitify-testimonials__tag-img"><span style="background-image: url(\'%1$s\')"></span></span>', $item_image );
+                }
                 do_action('kitify/testimonials/output/after_image', $preset);
                 echo '</div>';
             }

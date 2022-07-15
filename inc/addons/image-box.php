@@ -1497,7 +1497,7 @@ class Kitify_Image_Box extends Kitify_Base {
             [
                 'label' =>esc_html__( 'Border Radius', 'kitify' ),
                 'type' => Controls_Manager::DIMENSIONS,
-                'size_units' => [ 'px'],
+                'size_units' => [ 'px', '%', 'em' ],
                 'default' => [
                     'top' => '',
                     'right' => '',
