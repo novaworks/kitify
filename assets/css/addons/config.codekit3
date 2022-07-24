@@ -21,6 +21,21 @@
       "oF" : 0,
       "pg" : 0
     },
+    "\/advanced-carousel.scss" : {
+      "aP" : 0,
+      "bl" : 0,
+      "co" : 0,
+      "dP" : 10,
+      "ec" : 1,
+      "ft" : 4,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/advanced-carousel.css",
+      "oF" : 0,
+      "oS" : 0,
+      "pg" : 0,
+      "sct" : 0
+    },
     "\/animated-box.css" : {
       "aP" : 1,
       "bl" : 0,
@@ -189,6 +204,18 @@
       "ma" : 0,
       "oA" : 0,
       "oAP" : "\/images-layout-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
+    "\/instagram-feed.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/instagram-feed-min.css",
       "oF" : 0,
       "pg" : 0
     },

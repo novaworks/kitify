@@ -92,6 +92,7 @@ class Kitify_Nova_Menu_Cart extends Kitify_Base {
             'cart_box'    => '.kitify-nova-cart',
             'cart_icon'    => '.kitify-nova-cart__icon',
             'cart_count'    => '.kitify-nova-cart .header-cart-box .count-badge',
+            'cart_label'    => '.kitify-nova-cart .header-cart-box .cart-text .count-text',
         )
     );
 
@@ -197,6 +198,18 @@ class Kitify_Nova_Menu_Cart extends Kitify_Base {
             'type'   => Controls_Manager::COLOR,
             'selectors' => array(
                 '{{WRAPPER}} ' . $css_scheme['cart_count'] => 'color: {{VALUE}}',
+            ),
+        ),
+        25
+    );
+    $this->_add_control(
+        'novacart_label_text',
+        array(
+            'label'  => esc_html__( 'Label Color', 'kitify' ),
+            'type'   => Controls_Manager::COLOR,
+            'separator' => 'before',
+            'selectors' => array(
+                '{{WRAPPER}} ' . $css_scheme['cart_label'] => 'color: {{VALUE}}',
             ),
         ),
         25

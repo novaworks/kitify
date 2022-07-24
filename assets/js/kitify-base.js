@@ -1813,7 +1813,22 @@
         elementor.hooks.addAction('frontend/element_ready/kitify-wooproduct-datatabs.default', function ($scope) {
             Kitifys.wooTabs($scope);
         });
+        elementor.hooks.addAction('frontend/element_ready/kitify-image-comparison.default', function ($scope) {
+          var $target              = $scope.find( '.kitify-image-comparison__instance' ),
+    				instance             = null,
+    				imageComparisonItems = $( '.kitify-image-comparison__container', $target ),
+    				settings             = $target.data( 'settings' ),
+    				elementId            = $scope.data( 'id' );
 
+    			if ( ! $target.length ) {
+    				return;
+    			}
+
+    			window.juxtapose.scanPage( '.kitify-juxtapose' );
+
+
+    			Kitifys.initCarousel( $scope );
+        });
         elementor.hooks.addAction('frontend/element_ready/section', function ($scope) {
             if( $scope.hasClass('elementor-top-section') ) {
                 $scope.trigger('kitify/section/calculate-container-width');

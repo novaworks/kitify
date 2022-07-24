@@ -27,6 +27,9 @@
       align-items: center;
       .cart-text {
         margin-left: 12px;
+        .count-badge {
+          background-color: transparent !important;
+        }
         .count-text {
           display: block;
           font-size: 14px;

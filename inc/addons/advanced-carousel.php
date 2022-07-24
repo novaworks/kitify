@@ -905,6 +905,17 @@ class Kitify_Advanced_Carousel extends Kitify_Base {
 
         $this->_end_controls_tabs();
 
+        $this->_add_responsive_control(
+          'items_content_radius',
+          [
+            'label' =>esc_html__( 'Border Radius', 'kitify' ),
+            'type' => Controls_Manager::DIMENSIONS,
+            'size_units' => [ 'px'],
+            'selectors' => [
+              '{{WRAPPER}} ' . $css_scheme['banner'] =>  'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+            ],
+          ]
+        );
         $this->_end_controls_section();
 
 	    $this->_start_controls_section(

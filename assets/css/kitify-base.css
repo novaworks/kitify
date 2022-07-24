@@ -42,7 +42,7 @@ body:not(.elementor-editor-active) .elementor-location-header .elementor-sticky.
 }
 .elementor-location-header {
 	position: relative;
-	z-index: 9;
+	z-index: 99;
 }
 .kitify-logo .kitify-logo-light{
 	display: none;

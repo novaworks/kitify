@@ -464,7 +464,20 @@ if ( ! class_exists( 'Kitify_Integration' ) ) {
             wp_register_script(  'kitify-header-vertical' , kitify()->plugin_url('assets/js/addons/header-sidebar.js') , [ 'elementor-frontend' ],  kitify()->get_version() , true );
 
             wp_register_script(  'jquery-isotope' , kitify()->plugin_url('assets/js/lib/isotope.pkgd.min.js') , ['imagesloaded'],  kitify()->get_version() , true );
-
+						// Register vendor juxtapose.js script
+						wp_register_script(
+							'kitify-juxtapose',
+							kitify()->plugin_url( 'assets/js/lib/juxtapose/juxtapose.min.js' ),
+							array(),
+							'1.3.1',
+							true
+						);
+						wp_register_style(
+							'kitify-juxtapose-css',
+							kitify()->plugin_url( 'assets/css/lib/juxtapose/juxtapose.min.css' ),
+							false,
+							'1.3.1'
+						);
             $polyfill_data = apply_filters('kitify/filter/js_polyfill_data', [
                 'kitify-polyfill-resizeobserver' => [
                     'condition' => '\'ResizeObserver\' in window',

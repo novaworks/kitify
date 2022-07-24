@@ -1,20 +1,17 @@
 .kitify-carousel--simple.kitify-equal-cols .kitify-carousel__item-inner,
 .kitify-carousel--simple.kitify-equal-cols .kitify-carousel__item-link {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
-
 .kitify-carousel--simple.kitify-equal-cols .kitify-carousel__item-img {
-  flex-grow: 1;
+    flex-grow: 1;
 }
-
 a.kitify-carousel__item-link {
-  display: block;
+    display: block;
 }
-
 .kitify-carousel__item-img {
-  display: inline-block;
-  width: 100%;
-  object-fit: cover;
+    display: inline-block;
+    width: 100%;
+    object-fit: cover;
 }

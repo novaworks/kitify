@@ -29,6 +29,9 @@
   .kitify-nova-cart.kitify-nova-cart-label-on .header-cart-box .cart-text {
     margin-left: 12px;
   }
+  .kitify-nova-cart.kitify-nova-cart-label-on .header-cart-box .cart-text .count-badge {
+    background-color: transparent !important;
+  }
   .kitify-nova-cart.kitify-nova-cart-label-on .header-cart-box .cart-text .count-text {
     display: block;
     font-size: 14px;
