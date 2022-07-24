@@ -31,7 +31,7 @@ else{
                 echo '<div class="kitify-testimonials__figure">';
                 do_action('kitify/testimonials/output/before_image', $preset);
                 if($full_width) {
-                  echo sprintf('<span class="kitify-testimonials__tag-img"><img src="%1$s" /></span>', $item_image );
+                  echo sprintf('<span class="kitify-testimonials__tag-img"><img alt="Kitify Testimonials" src="%1$s" /></span>', $item_image );
                 }else {
                   echo sprintf('<span class="kitify-testimonials__tag-img"><span style="background-image: url(\'%1$s\')"></span></span>', $item_image );
                 }
