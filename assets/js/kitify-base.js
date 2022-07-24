@@ -1,5 +1,25 @@
 (function ($, elementor) {
     "use strict";
+    var getElementSettings = function( $element ) {
+      var elementSettings = {},
+        modelCID 		= $element.data( 'model-cid' );
+
+      if ( isEditMode && modelCID ) {
+        var settings     = elementorFrontend.config.elements.data[ modelCID ],
+          settingsKeys = elementorFrontend.config.elements.keys[ settings.attributes.widgetType || settings.attributes.elType ];
+
+        jQuery.each( settings.getActiveControls(), function( controlKey ) {
+          if ( -1 !== settingsKeys.indexOf( controlKey ) ) {
+            elementSettings[ controlKey ] = settings.attributes[ controlKey ];
+          }
+        } );
+      } else {
+        elementSettings = $element.data('settings') || {};
+      }
+
+      return elementSettings;
+    };
+    var isEditMode = false;
 
     function getHeaderHeight(){
         var _height = 0;
@@ -903,6 +923,64 @@
                     }
                 })
         },
+        ImageScrollHandler: function($scope) {
+        var elementSettings  = getElementSettings( $scope ),
+			      scrollElement    = $scope.find('.kitify-image-scroll-container'),
+            scrollOverlay    = scrollElement.find('.kitify-image-scroll-overlay'),
+            scrollVertical   = scrollElement.find('.kitify-image-scroll-vertical'),
+            imageScroll      = scrollElement.find('.kitify-image-scroll-image img'),
+            direction        = elementSettings.direction_type,
+            reverse			 = elementSettings.reverse,
+            trigger			 = elementSettings.trigger_type,
+            transformOffset  = null;
+
+        function startTransform() {
+            imageScroll.css('transform', (direction === 'vertical' ? 'translateY' : 'translateX') + '( -' +  transformOffset + 'px)');
+        }
+
+        function endTransform() {
+            imageScroll.css('transform', (direction === 'vertical' ? 'translateY' : 'translateX') + '(0px)');
+        }
+
+        function setTransform() {
+            if( direction === 'vertical' ) {
+                transformOffset = imageScroll.height() - scrollElement.height();
+            } else {
+                transformOffset = imageScroll.width() - scrollElement.width();
+            }
+        }
+
+        if ( trigger === 'scroll' ) {
+            scrollElement.addClass('kitify-container-scroll');
+            if ( direction === 'vertical' ) {
+                scrollVertical.addClass('kitify-image-scroll-ver');
+            } else {
+                scrollElement.imagesLoaded(function() {
+                  scrollOverlay.css( { 'width': imageScroll.width(), 'height': imageScroll.height() } );
+                });
+            }
+        } else {
+            if ( reverse === 'yes' ) {
+                scrollElement.imagesLoaded(function() {
+                    scrollElement.addClass('kitify-container-scroll-instant');
+                    setTransform();
+                    startTransform();
+                });
+            }
+            if ( direction === 'vertical' ) {
+                scrollVertical.removeClass('kitify-image-scroll-ver');
+            }
+            scrollElement.mouseenter(function() {
+                scrollElement.removeClass('kitify-container-scroll-instant');
+                setTransform();
+                reverse === 'yes' ? endTransform() : startTransform();
+            });
+
+            scrollElement.mouseleave(function() {
+                reverse === 'yes' ? startTransform() : endTransform();
+            });
+        }
+    },
         isEditMode: function () {
             return Boolean(elementorFrontend.isEditMode());
         },
@@ -1760,6 +1838,9 @@
         });
         elementor.hooks.addAction('frontend/element_ready/kitify-woo-categories.default', function ($scope) {
             Kitifys.initCarousel($scope);
+        });
+        elementor.hooks.addAction('frontend/element_ready/kitify-scroll-image.default', function ($scope) {
+            Kitifys.ImageScrollHandler($scope);
         });
         elementor.hooks.addAction('frontend/element_ready/kitify-search.default', function ($scope) {
             Kitifys.onSearchSectionActivated($scope);

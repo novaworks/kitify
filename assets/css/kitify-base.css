@@ -1117,3 +1117,20 @@ body:not(.elementor-editor-active) .kitify-disable-relative-yes .elementor-widge
  {
 	position: static !important;
 }
+.kitify-media-content,
+.kitify-media-overlay,
+.kitify-image-overlay,
+.kitify-media-background {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+.kitify-media-overlay {
+
+}
+.kitify-media-background {
+	background-color: rgba(0, 0, 0, 0.2);
+    background-size: cover;
+}
