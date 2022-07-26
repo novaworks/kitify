@@ -36,7 +36,7 @@ class Kitify_Woo_Menu_Cart extends Kitify_Base {
     }
 
     public function get_icon() {
-        return 'kitify-icon-woo-cart';
+        return 'kitify-icon-cart';
     }
 
     protected function register_controls() {

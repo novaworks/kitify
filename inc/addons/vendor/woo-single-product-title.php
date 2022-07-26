@@ -39,8 +39,7 @@ class Kitify_Woo_Single_Product_Title extends Kitify_Post_Title {
     }
 
     public function get_icon() {
-        return 'eicon-product-title';
-        return 'kitify-icon-woocommerce-pages';
+      return 'kitify-icon-archive-title';
     }
 
     protected function register_controls() {

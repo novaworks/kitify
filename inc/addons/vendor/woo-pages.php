@@ -49,7 +49,6 @@ class Kitify_Woo_Pages extends Kitify_Base {
     }
 
     public function get_icon() {
-        return 'eicon-product-pages';
         return 'kitify-icon-woocommerce-pages';
     }
 
@@ -119,7 +118,7 @@ class Kitify_Woo_Pages extends Kitify_Base {
 
         $this->_end_controls_section();
     }
-    
+
     private function get_shortcode() {
         $settings = $this->get_settings();
 

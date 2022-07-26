@@ -39,8 +39,7 @@ class Kitify_Woo_Single_Product_AddToCart extends Kitify_Base {
     }
 
     public function get_icon() {
-        return 'eicon-product-add-to-cart';
-        return 'kitify-icon-woocommerce-pages';
+        return 'kitify-icon-woo-add-to-cart';
     }
 
     protected function render() {

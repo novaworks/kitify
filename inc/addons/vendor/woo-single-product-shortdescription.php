@@ -39,8 +39,7 @@ class Kitify_Woo_Single_Product_ShortDescription extends Kitify_Base {
     }
 
     public function get_icon() {
-        return 'eicon-product-description';
-        return 'kitify-icon-woocommerce-pages';
+        return 'kitify-icon-woo-shorttext';
     }
 
     protected function register_controls() {

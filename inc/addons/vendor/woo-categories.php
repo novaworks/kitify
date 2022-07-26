@@ -37,7 +37,7 @@ class Kitify_Woo_Categories extends Kitify_Base {
   }
 
   public function get_icon() {
-      return 'eicon-product-categories';
+      return 'kitify-icon-post-terms';
   }
   protected function register_controls() {
     $preset_type = apply_filters(

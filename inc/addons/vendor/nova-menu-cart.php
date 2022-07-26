@@ -33,7 +33,7 @@ class Kitify_Nova_Menu_Cart extends Kitify_Base {
   }
 
   public function get_icon() {
-      return 'eicon-cart';
+      return 'kitify-icon-cart';
   }
 
   protected function register_controls() {

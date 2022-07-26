@@ -39,8 +39,7 @@ class Kitify_Woo_Single_Product_Images extends Kitify_Base {
     }
 
     public function get_icon() {
-        return 'eicon-product-images';
-        return 'kitify-icon-woocommerce-pages';
+        return 'kitify-icon-product-images';
     }
 
     protected function register_controls() {

@@ -41,7 +41,6 @@ class Kitify_Woo_Add_To_Cart extends Widget_Button {
     }
 
     public function get_icon() {
-        return 'eicon-woocommerce';
         return 'kitify-icon-woo-add-to-cart';
     }
 
@@ -236,7 +235,7 @@ class Kitify_Woo_Add_To_Cart extends Widget_Button {
         remove_filter( 'woocommerce_get_stock_html', '__return_empty_string' );
         remove_filter( 'esc_html', [ $this, 'unescape_html' ] );
     }
-    
+
     protected function content_template() {}
 
 }

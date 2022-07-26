@@ -39,8 +39,7 @@ class Kitify_Woo_Single_Product_Datatabs extends Kitify_Base {
     }
 
     public function get_icon() {
-        return 'eicon-product-tabs';
-        return 'kitify-icon-woocommerce-pages';
+        return 'kitify-icon-woocommerce-tabs';
     }
 
     protected function register_controls() {

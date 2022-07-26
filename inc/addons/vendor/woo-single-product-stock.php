@@ -39,8 +39,7 @@ class Kitify_Woo_Single_Product_Stock extends Kitify_Base {
     }
 
     public function get_icon() {
-        return 'eicon-product-stock';
-        return 'kitify-icon-woocommerce-pages';
+        return 'kitify-icon-woo-stock';
     }
 
     protected function register_controls() {

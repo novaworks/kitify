@@ -39,8 +39,7 @@ class Kitify_Woo_Single_Product_Rating extends Kitify_Base {
     }
 
     public function get_icon() {
-        return 'eicon-product-rating';
-        return 'kitify-icon-woocommerce-pages';
+        return 'kitify-icon-woo-rating';
     }
 
     protected function register_controls() {

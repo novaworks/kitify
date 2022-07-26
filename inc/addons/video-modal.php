@@ -67,9 +67,9 @@ class Kitify_Video_Modal extends Kitify_Base {
   	 *
   	 * @return string Widget icon.
   	 */
-  	public function get_icon() {
-  		return 'eicon-video-playlist';
-  	}
+     public function get_icon() {
+         return 'kitify-icon-video';
+     }
 
   	/**
   	 * Register video modal widget controls.

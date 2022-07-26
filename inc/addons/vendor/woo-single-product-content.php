@@ -43,7 +43,6 @@ class Kitify_Woo_Single_Product_Content extends Kitify_Post_Content {
     }
 
     public function get_icon() {
-        return 'eicon-post-content';
         return 'kitify-icon-woocommerce-pages';
     }
 

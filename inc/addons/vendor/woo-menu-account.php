@@ -33,7 +33,7 @@ class Kitify_Woo_Menu_Account extends Kitify_Base {
   }
 
   public function get_icon() {
-      return 'eicon-person';
+      return 'kitify-icon-author-box';
   }
 
   protected function register_controls() {

@@ -27,7 +27,7 @@ class Kitify_Contact_Form7 extends Kitify_Base {
     }
 
     public function get_icon() {
-        return 'eicon-form-horizontal';
+        return 'kitify-icon-form7';
     }
 
     protected function register_controls() {

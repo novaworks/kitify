@@ -39,8 +39,7 @@ class Kitify_Woo_Single_Product_Meta extends Kitify_Base {
     }
 
     public function get_icon() {
-        return 'eicon-product-meta';
-        return 'kitify-icon-woocommerce-pages';
+        return 'kitify-icon-woo-meta';
     }
 
     protected function register_controls() {

@@ -39,8 +39,7 @@ class Kitify_Woo_Single_Product_Price extends Kitify_Base {
     }
 
     public function get_icon() {
-        return 'eicon-product-price';
-        return 'kitify-icon-woocommerce-pages';
+        return 'kitify-icon-woo-price';
     }
 
 
