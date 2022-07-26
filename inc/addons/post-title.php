@@ -31,7 +31,7 @@ class Kitify_Post_Title extends Kitify_Base {
     }
 
     public function get_icon() {
-        return 'eicon-archive-title';
+        return 'kitify-icon-archive-title';
     }
 
     public function get_categories() {

@@ -38,7 +38,7 @@ class Kitify_Team_Member extends Kitify_Base {
     }
 
     public function get_icon() {
-        return 'eicon-person';
+        return 'kitify-icon-person';
     }
 
     protected function register_controls() {

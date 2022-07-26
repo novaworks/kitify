@@ -28,7 +28,7 @@ class Kitify_Table_Of_Contents extends Kitify_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-table-of-contents';
+		return 'kitify-icon-table-of-contents';
 	}
 
 	public function get_keywords() {
@@ -278,7 +278,7 @@ class Kitify_Table_Of_Contents extends Kitify_Base {
 				],
 			]
 		);
-		
+
 		$breakpoints = kitify_helper()->get_active_breakpoints();
 
 		$this->add_control(

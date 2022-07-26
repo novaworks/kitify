@@ -33,7 +33,7 @@ class Kitify_Author_Box extends Kitify_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-person';
+		return 'kitify-icon-author-box';
 	}
 
 	public function get_keywords() {

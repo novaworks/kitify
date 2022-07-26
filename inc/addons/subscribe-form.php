@@ -33,7 +33,7 @@ class Kitify_Subscribe_Form extends Kitify_Base {
     }
 
     public function get_icon() {
-        return 'eicon-form-horizontal';
+        return 'kitify-icon-form';
     }
 
     public function get_keywords() {

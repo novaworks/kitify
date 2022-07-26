@@ -33,7 +33,7 @@ class Kitify_Testimonials extends Kitify_Base {
     }
 
     public function get_icon() {
-        return 'eicon-testimonial-carousel';
+        return 'kitify-icon-testimonial';
     }
 
     protected function register_controls() {

@@ -46,7 +46,7 @@ class Kitify_Google_Maps extends Kitify_Base {
     }
 
     public function get_icon() {
-        return 'eicon-google-maps';
+        return 'kitify-icon-google-maps';
     }
 
 

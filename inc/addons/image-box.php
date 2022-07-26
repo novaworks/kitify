@@ -33,7 +33,7 @@ class Kitify_Image_Box extends Kitify_Base {
     }
 
     public function get_icon() {
-        return 'eicon-image-box';
+        return 'kitify-icon-image-box';
     }
 
     protected function register_controls() {

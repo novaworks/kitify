@@ -31,7 +31,7 @@ class Kitify_Post_Date extends Kitify_Base {
     }
 
     public function get_icon() {
-        return 'far fa-clock';
+        return 'kitify-icon-post-date';
     }
 
     public function get_categories() {
@@ -302,5 +302,5 @@ class Kitify_Post_Date extends Kitify_Base {
         #>
         <?php
     }
-    
+
 }

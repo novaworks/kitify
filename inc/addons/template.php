@@ -27,7 +27,7 @@ class Kitify_Template extends Kitify_Base {
     }
 
     public function get_icon() {
-        return 'eicon-document-file';
+        return 'kitify-icon-template';
     }
 
     protected function register_controls() {

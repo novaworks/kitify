@@ -40,7 +40,7 @@ class Kitify_Progress_Bar extends Kitify_Base {
     }
 
     public function get_icon() {
-        return 'eicon-skill-bar';
+        return 'kitify-icon-skill-bar';
     }
 
 	protected function register_controls() {

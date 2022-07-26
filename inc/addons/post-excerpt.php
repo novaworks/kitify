@@ -31,7 +31,7 @@ class Kitify_Post_Excerpt extends Kitify_Base {
     }
 
     public function get_icon() {
-        return 'eicon-post-excerpt';
+        return 'kitify-icon-post-excerpt';
     }
 
     public function get_categories() {
@@ -262,5 +262,5 @@ class Kitify_Post_Excerpt extends Kitify_Base {
         #>
         <?php
     }
-    
+
 }

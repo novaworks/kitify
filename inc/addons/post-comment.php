@@ -31,7 +31,7 @@ class Kitify_Post_Comment extends Kitify_Base {
     }
 
     public function get_icon() {
-        return 'eicon-comments';
+        return 'kitify-icon-comments';
     }
 
     public function get_categories() {
@@ -79,5 +79,5 @@ class Kitify_Post_Comment extends Kitify_Base {
         endif;
 
     }
-    
+
 }

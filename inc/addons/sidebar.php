@@ -61,7 +61,7 @@ class Kitify_Sidebar extends Kitify_Base {
   	 * @return string Widget icon.
   	 */
   	public function get_icon() {
-  		return 'eicon-sidebar';
+  		return 'kitify-icon-sidebar';
   	}
 
   	/**

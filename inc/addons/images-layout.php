@@ -18,7 +18,7 @@ use Elementor\Modules\DynamicTags\Module as TagsModule;
  * Images_Layout Widget
  */
 class Kitify_Images_Layout extends Kitify_Base {
-    
+
     /**
      * [$item_counter description]
      * @var integer
@@ -42,7 +42,7 @@ class Kitify_Images_Layout extends Kitify_Base {
     }
 
     public function get_icon() {
-        return 'eicon-gallery-grid';
+        return 'kitify-icon-image-layout';
     }
 
 

@@ -43,7 +43,9 @@ class Kitify_Portfolio extends Kitify_Posts {
 	protected function get_widget_title() {
 		return esc_html__( 'Portfolio', 'kitify' );
 	}
-
+	public function get_icon() {
+			return 'kitify-icon-image-layout';
+	}
 	public function get_keywords() {
 		return [ 'portfolio' ];
 	}

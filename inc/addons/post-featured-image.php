@@ -31,7 +31,7 @@ class Kitify_Post_Featured_Image extends Kitify_Base {
     }
 
     public function get_icon() {
-        return 'eicon-featured-image';
+        return 'kitify-icon-featured-image';
     }
 
     public function get_categories() {
@@ -442,5 +442,5 @@ class Kitify_Post_Featured_Image extends Kitify_Base {
         <?php
 
     }
-    
+
 }

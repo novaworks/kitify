@@ -31,7 +31,7 @@ class Kitify_Post_Terms extends Kitify_Base {
     }
 
     public function get_icon() {
-        return 'eicon-sitemap';
+        return 'kitify-icon-post-terms';
     }
 
     public function get_categories() {
@@ -388,5 +388,5 @@ class Kitify_Post_Terms extends Kitify_Base {
         #>
         <?php
     }
-    
+
 }

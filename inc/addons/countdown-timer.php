@@ -21,7 +21,7 @@ class Kitify_Countdown_Timer extends Kitify_Base {
 
         wp_register_script(  $this->get_name() , kitify()->plugin_url('assets/js/addons/countdown-timer.js') , null,  kitify()->get_version() , true );
         wp_register_style( $this->get_name(), kitify()->plugin_url('assets/css/addons/countdown-timer.css'), null, kitify()->get_version());
-        
+
         $this->add_style_depends( $this->get_name() );
         $this->add_script_depends( $this->get_name() );
     }
@@ -35,7 +35,7 @@ class Kitify_Countdown_Timer extends Kitify_Base {
     }
 
     public function get_icon() {
-        return 'eicon-countdown';
+        return 'kitify-icon-countdown';
     }
 
     protected function register_controls() {

@@ -27,12 +27,8 @@ class Kitify_Scroll_Image extends Kitify_Base {
 	}
 
 	public function get_icon() {
-		return 'kitify-icon-logo';
+		return 'kitify-icon-scroll-image';
 	}
-
-    public function get_categories() {
-        return [ 'kitify-builder' ];
-    }
 
 	protected function register_controls() {
     /* Content Tab */

@@ -121,7 +121,7 @@ class Kitify_Social_Share extends Kitify_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-share';
+		return 'kitify-icon-share';
 	}
 
     public function get_keywords() {

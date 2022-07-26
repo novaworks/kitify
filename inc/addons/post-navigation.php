@@ -33,7 +33,7 @@ class Kitify_Post_Navigation extends Kitify_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-post-navigation';
+		return 'kitify-icon-post-navigation';
 	}
     public function get_categories() {
         return [ 'kitify-builder' ];

@@ -31,7 +31,7 @@ class Kitify_Archive_Description extends Kitify_Base {
     }
 
     public function get_icon() {
-        return 'eicon-product-description';
+        return 'kitify-icon-cat-description';
     }
 
     public function get_categories() {
@@ -283,5 +283,5 @@ class Kitify_Archive_Description extends Kitify_Base {
         #>
         <?php
     }
-    
+
 }

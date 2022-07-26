@@ -31,8 +31,8 @@ class Kitify_Post_Author extends Kitify_Base {
     }
 
     public function get_icon() {
-        return 'eicon-person';
-    }
+  		return 'kitify-icon-author-box';
+  	}
 
     public function get_categories() {
         return [ 'kitify-builder' ];
@@ -453,5 +453,5 @@ class Kitify_Post_Author extends Kitify_Base {
         }
 
     }
-    
+
 }

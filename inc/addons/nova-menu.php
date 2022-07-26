@@ -35,7 +35,7 @@ class Kitify_Nova_Menu extends Kitify_Base {
   }
 
   public function get_icon() {
-      return 'eicon-nav-menu';
+      return 'kitify-icon-nav-menu';
   }
 
   protected function register_controls() {
