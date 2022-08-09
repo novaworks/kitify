@@ -77,7 +77,22 @@ class Motion_Effects
             'kitify-sticky-js'
         ], kitify()->get_version(), true);
     }
+    public function enqueue_frontend_scripts(){
+        if ( $this->is_assets_loader_exist() ) {
+            $this->register_assets();
+        }
+    }
+    private function register_assets() {
+      $assets = $this->get_assets();
 
+      if ( $assets ) {
+          kitify()->elementor()->assets_loader->add_assets( $assets );
+      }
+    }
+
+  private function is_assets_loader_exist() {
+      return ! ! kitify()->elementor()->assets_loader;
+  }
     public function enqueue_preview_scripts() {
         wp_enqueue_style('kitify-motion-fx');
         wp_enqueue_script('kitify-motion-fx');
