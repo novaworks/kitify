@@ -533,7 +533,7 @@ body:not(.elementor-editor-active) .elementor-location-header .elementor-sticky.
 }
 .kitify-blocks-icon {
 	display: inline-block;
-	line-height: 1;
+	line-height: 0;
 	text-align: center
 }
 .kitify-blocks-icon svg{

@@ -18,12 +18,19 @@ class Element_Visibility {
             'init_module'
         ]);
 
+		    add_action('elementor/element/container/section_layout/after_section_end', [
+            $this,
+            'init_module'
+        ]);
+
         add_filter( 'elementor/widget/render_content', [ $this, 'content_change' ], 999, 2 );
-        add_filter( 'elementor/section/render_content', [ $this, 'content_change' ], 999, 2 );
+//        add_filter( 'elementor/section/render_content', [ $this, 'content_change' ], 999, 2 );
+//        add_filter( 'elementor/container/render_content', [ $this, 'content_change' ], 999, 2 );
 
         add_filter( 'elementor/frontend/section/should_render', [ $this, 'item_should_render' ], 10, 2 );
         add_filter( 'elementor/frontend/widget/should_render', [ $this, 'item_should_render' ], 10, 2 );
         add_filter( 'elementor/frontend/repeater/should_render', [ $this, 'item_should_render' ], 10, 2 );
+        add_filter( 'elementor/frontend/container/should_render', [ $this, 'item_should_render' ], 10, 2 );
     }
 
     private function get_roles() {
@@ -49,7 +56,7 @@ class Element_Visibility {
 
     public function init_module($element) {
         $element->start_controls_section('section_kitify_vlogic', [
-            'label' => esc_html__('KITIFY Visibility Logic', 'kitify'),
+            'label' => esc_html__('Kitify Visibility Logic', 'kitify'),
             'tab' => \Elementor\Controls_Manager::TAB_ADVANCED,
         ]);
         $element->add_control('kitify_vlogic_enabled', [
@@ -66,12 +73,22 @@ class Element_Visibility {
             'type' => \Elementor\Controls_Manager::SELECT2,
             'render_type' => 'none',
             'options'     => $this->get_roles(),
-            'default'     => [],
             'multiple'    => true,
             'label_block' => true,
-            'condition'   => [
-                'kitify_vlogic_enabled'     => 'yes',
-                'kitify_vlogic_role_hidden' => [],
+            'conditions' => [
+	            'relation' => 'and',
+	            'terms' => [
+		            [
+			            'name' => 'kitify_vlogic_enabled',
+			            'operator' => '==',
+			            'value' => 'yes'
+		            ],
+		            [
+			            'name' => 'kitify_vlogic_role_hidden',
+			            'operator' => '==',
+			            'value' => ''
+		            ]
+	            ]
             ],
         ]);
         $element->add_control('kitify_vlogic_role_hidden', [
@@ -79,12 +96,22 @@ class Element_Visibility {
             'type' => \Elementor\Controls_Manager::SELECT2,
             'render_type' => 'none',
             'options'     => $this->get_roles(),
-            'default'     => [],
             'multiple'    => true,
             'label_block' => true,
-            'condition'   => [
-                'kitify_vlogic_enabled'     => 'yes',
-                'kitify_vlogic_role_visible' => [],
+            'conditions' => [
+	            'relation' => 'and',
+	            'terms' => [
+		            [
+			            'name' => 'kitify_vlogic_enabled',
+			            'operator' => '==',
+			            'value' => 'yes'
+		            ],
+		            [
+			            'name' => 'kitify_vlogic_role_visible',
+			            'operator' => '==',
+			            'value' => ''
+		            ]
+	            ]
             ],
         ]);
         $element->end_controls_section();

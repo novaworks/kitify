@@ -17,6 +17,7 @@
 .kitify-search__field[type=search] {
 	box-sizing: border-box;
 	-webkit-appearance: none;
+	-moz-appearance: none;
 	appearance: none;
 	transition: none
 }
@@ -53,45 +54,63 @@
 	left: 0
 }
 .kitify-search__popup.kitify-search__popup--move-up-effect:not(.kitify-search__popup--full-screen) {
+	-webkit-transform: translateY(-20px);
 	transform: translateY(-20px);
-	transition: opacity 200ms linear, transform 200ms linear
+	transition: opacity 200ms linear, -webkit-transform 200ms linear;
+	transition: opacity 200ms linear, transform 200ms linear;
+	transition: opacity 200ms linear, transform 200ms linear, -webkit-transform 200ms linear
 }
 .kitify-search-popup-active .kitify-search__popup.kitify-search__popup--move-up-effect:not(.kitify-search__popup--full-screen) {
+	-webkit-transform: translateY(0);
 	transform: translateY(0)
 }
 .kitify-transition-out .kitify-search__popup.kitify-search__popup--move-up-effect:not(.kitify-search__popup--full-screen) {
+	-webkit-transform: translateY(-20px);
 	transform: translateY(-20px)
 }
 .kitify-transition-in .kitify-search__popup.kitify-search__popup--move-up-effect:not(.kitify-search__popup--full-screen) {
+	-webkit-transform: translateY(0);
 	transform: translateY(0)
 }
 .kitify-search__popup.kitify-search__popup--move-down-effect:not(.kitify-search__popup--full-screen) {
+	-webkit-transform: translateY(20px);
 	transform: translateY(20px);
-	transition: opacity 200ms linear, transform 200ms linear
+	transition: opacity 200ms linear, -webkit-transform 200ms linear;
+	transition: opacity 200ms linear, transform 200ms linear;
+	transition: opacity 200ms linear, transform 200ms linear, -webkit-transform 200ms linear
 }
 .kitify-search-popup-active .kitify-search__popup.kitify-search__popup--move-down-effect:not(.kitify-search__popup--full-screen) {
+	-webkit-transform: translateY(0);
 	transform: translateY(0)
 }
 .kitify-transition-out .kitify-search__popup.kitify-search__popup--move-down-effect:not(.kitify-search__popup--full-screen) {
+	-webkit-transform: translateY(20px);
 	transform: translateY(20px)
 }
 .kitify-transition-in .kitify-search__popup.kitify-search__popup--move-down-effect:not(.kitify-search__popup--full-screen) {
+	-webkit-transform: translateY(0);
 	transform: translateY(0)
 }
 .kitify-search__popup.kitify-search__popup--fade-effect {
 	transition: opacity 200ms linear
 }
 .kitify-search__popup.kitify-search__popup--scale-effect {
+	-webkit-transform: scale(0);
 	transform: scale(0);
-	transition: opacity 200ms linear, transform 200ms linear
+	transition: opacity 200ms linear, -webkit-transform 200ms linear;
+	transition: opacity 200ms linear, transform 200ms linear;
+	transition: opacity 200ms linear, transform 200ms linear, -webkit-transform 200ms linear
 }
 .kitify-search-popup-active .kitify-search__popup.kitify-search__popup--scale-effect {
+	-webkit-transform: scale(1);
 	transform: scale(1)
 }
 .kitify-transition-out .kitify-search__popup.kitify-search__popup--scale-effect {
+	-webkit-transform: scale(0);
 	transform: scale(0)
 }
 .kitify-transition-in .kitify-search__popup.kitify-search__popup--scale-effect {
+	-webkit-transform: scale(1);
 	transform: scale(1)
 }
 .kitify-search__popup-content {
@@ -115,50 +134,68 @@
 	width: auto;
 	padding: 30px;
 	background-color: rgba(0, 0, 0, 0.7);
+	-webkit-transform: scale(0);
 	transform: scale(0)
 }
 .kitify-search-popup-active .kitify-search__popup--full-screen {
+	-webkit-transform: scale(1);
 	transform: scale(1)
 }
 .kitify-transition-out .kitify-search__popup--full-screen.kitify-search__popup--none-effect {
+	-webkit-transform: scale(0);
 	transform: scale(0)
 }
 .kitify-transition-in .kitify-search__popup--full-screen.kitify-search__popup--none-effect {
+	-webkit-transform: scale(1);
 	transform: scale(1)
 }
 .kitify-transition-in .kitify-search__popup--full-screen.kitify-search__popup--fade-effect, .kitify-transition-out .kitify-search__popup--full-screen.kitify-search__popup--fade-effect {
+	-webkit-transform: scale(1);
 	transform: scale(1)
 }
 .kitify-search__popup--full-screen.kitify-search__popup--move-down-effect, .kitify-search__popup--full-screen.kitify-search__popup--move-up-effect {
 	transition: opacity 200ms linear
 }
 .kitify-transition-in .kitify-search__popup--full-screen.kitify-search__popup--move-down-effect, .kitify-transition-in .kitify-search__popup--full-screen.kitify-search__popup--move-up-effect, .kitify-transition-out .kitify-search__popup--full-screen.kitify-search__popup--move-down-effect, .kitify-transition-out .kitify-search__popup--full-screen.kitify-search__popup--move-up-effect {
+	-webkit-transform: scale(1);
 	transform: scale(1)
 }
 .kitify-search__popup--full-screen.kitify-search__popup--move-up-effect .kitify-search__form {
+	-webkit-transform: translateY(-20px);
 	transform: translateY(-20px);
-	transition: transform 200ms linear
+	transition: -webkit-transform 200ms linear;
+	transition: transform 200ms linear;
+	transition: transform 200ms linear, -webkit-transform 200ms linear
 }
 .kitify-search-popup-active .kitify-search__popup--full-screen.kitify-search__popup--move-up-effect .kitify-search__form {
+	-webkit-transform: translateY(0);
 	transform: translateY(0)
 }
 .kitify-transition-out .kitify-search__popup--full-screen.kitify-search__popup--move-up-effect .kitify-search__form {
+	-webkit-transform: translateY(-20px);
 	transform: translateY(-20px)
 }
 .kitify-transition-in .kitify-search__popup--full-screen.kitify-search__popup--move-up-effect .kitify-search__form {
+	-webkit-transform: translateY(0);
 	transform: translateY(0)
 }
 .kitify-search__popup--full-screen.kitify-search__popup--move-down-effect .kitify-search__form {
+	-webkit-transform: translateY(20px);
 	transform: translateY(20px);
-	transition: transform 200ms linear
+	transition: -webkit-transform 200ms linear;
+	transition: transform 200ms linear;
+	transition: transform 200ms linear, -webkit-transform 200ms linear
 }
 .kitify-search-popup-active .kitify-search__popup--full-screen.kitify-search__popup--move-down-effect .kitify-search__form {
+	-webkit-transform: translateY(0);
 	transform: translateY(0)
 }
 .kitify-transition-out .kitify-search__popup--full-screen.kitify-search__popup--move-down-effect .kitify-search__form {
+	-webkit-transform: translateY(20px);
 	transform: translateY(20px)
 }
 .kitify-transition-in .kitify-search__popup--full-screen.kitify-search__popup--move-down-effect .kitify-search__form {
+	-webkit-transform: translateY(0);
 	transform: translateY(0)
 }
 .kitify-search__popup--full-screen .kitify-search__popup-content {

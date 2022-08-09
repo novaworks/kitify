@@ -865,7 +865,7 @@ class Kitify_Slides extends Kitify_Base {
                 'type' => Controls_Manager::SLIDER,
                 'size_units' => [ 'px', 'em', '%', 'vw', 'vh' ],
                 'selectors' => [
-                    '{{WRAPPER}} .kitify-slide-inner .kitify-slide-heading:not(:last-child)' => 'margin-bottom: {{SIZE}}{{UNIT}}',
+                    '{{WRAPPER}} .kitify-slide-inner .kitify-slide-heading' => 'margin-bottom: {{SIZE}}{{UNIT}}',
                 ],
             ]
         );

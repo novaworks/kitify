@@ -344,6 +344,24 @@ class Kitify_Search extends Kitify_Base {
         $this->_end_controls_tabs();
 
         $this->_add_responsive_control(
+            'form_input_height',
+            array(
+                'label'      => esc_html__( 'Height', 'kitify' ),
+                'type'       => Controls_Manager::SLIDER,
+                'size_units' => array( 'px' ),
+                'range'      => array(
+                    'px' => array(
+                        'min' => 10,
+                        'max' => 100,
+                    ),
+                ),
+                'selectors'  => array(
+                    '{{WRAPPER}} ' . $css_scheme['form_input'] => 'height: {{SIZE}}{{UNIT}};',
+                ),
+            ),
+            50
+        );
+        $this->_add_responsive_control(
             'form_input_padding',
             array(
                 'label'      => esc_html__( 'Padding', 'kitify' ),

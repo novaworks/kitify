@@ -41,12 +41,14 @@ abstract class Theme_Document extends Library_Document {
 
 		$class_name = static::get_class_full_name();
 
-		$reflection = new \ReflectionClass( $class_name );
-		$method = $reflection->getMethod( 'get_site_editor_type' );
+		if (method_exists($class_name, "get_site_editor_type")) {
+		    $reflection = new \ReflectionClass( $class_name );
+		    $method = $reflection->getMethod( 'get_site_editor_type' );
 
-		// It's own method, use it.
-		if ( $class_name === $method->class ) {
-			return static::get_site_editor_type();
+		    // It's own method, use it.
+		    if ( $class_name === $method->class ) {
+		        return static::get_site_editor_type();
+		    }
 		}
 
 		// _deprecated_function( 'get_name', '3.0.0', 'get_site_editor_type' );

@@ -16,7 +16,7 @@ class Sticky_Column {
     public function __construct() {
 
         add_action( 'elementor/element/column/section_advanced/after_section_end', array( $this, 'after_column_section_layout' ), 10, 2 );
-
+        add_action( 'elementor/element/container/section_layout/after_section_end', array( $this, 'after_column_section_layout' ), 10, 2 );
         add_action( 'elementor/frontend/column/before_render', array( $this, 'column_before_render' ) );
 
         add_action( 'elementor/frontend/element/before_render', array( $this, 'column_before_render' ) );

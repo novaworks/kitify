@@ -210,6 +210,25 @@ class Kitify_Advanced_Carousel extends Kitify_Base {
                 ),
             )
         );
+        $simple_style = apply_filters(
+            'kitify/banner/control/simple_style',
+            array(
+              'none'   => esc_html__( 'None', 'kitify' ),
+            )
+        );
+        $this->_add_control(
+            'simple_style',
+            array(
+                'label'   => esc_html__( 'Simple Style', 'kitify' ),
+                'type'    => Controls_Manager::SELECT,
+                'default' => 'none',
+                'options' => $simple_style,
+                'condition' => array(
+                    'item_layout' => 'simple',
+                ),
+            )
+        );
+
         $animation_effect = apply_filters(
             'kitify/banner/control/animation_effect',
             array(

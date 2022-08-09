@@ -1,52 +1,59 @@
-/**
- * Foundation for Sites
- * Version 6.6.3
- * https://get.foundation
- * Licensed under MIT Open Source
- */
 .kitify-menu-account__box {
   position: relative;
-  padding: 15px; }
-  .kitify-menu-account__box .kitify-menu-account__icon {
-    font-size: 1.125rem; }
-  .kitify-menu-account__box .sub-menu {
-    position: absolute;
-    opacity: 0;
-    background: #fff;
-    top: 100%;
-    left: -50%;
-    min-width: 12.5rem;
-    margin: 0;
-    padding: 1.25rem;
-    transform: translate(0, 20px);
-    transition: transform 0.3s, opacity 0.3s;
-    box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.05);
-    z-index: 1000;
-    pointer-events: none; }
-    .kitify-menu-account__box .sub-menu li {
-      display: flex;
-      padding: 0.3125rem 1.25rem;
-      margin: 0; }
-      .kitify-menu-account__box .sub-menu li a {
-        display: block;
-        font-size: 0.875rem;
-        padding: 0.3125rem 0; }
-        .kitify-menu-account__box .sub-menu li a:before {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          width: 100%;
-          height: 1px;
-          transform: scaleX(0);
-          transform-origin: right;
-          transition: transform 0.2s ease-out; }
-        .kitify-menu-account__box .sub-menu li a:hover:before {
-          height: 1px;
-          background-color: v(site-link-hover-color);
-          transform: scaleX(1);
-          transform-origin: left; }
-  .kitify-menu-account__box:hover .sub-menu {
-    opacity: 1;
-    transform: translate(0, 0);
-    pointer-events: initial; }
+  padding: 15px;
+  line-height: 0;
+}
+.kitify-menu-account__box a {
+  display: inline-block;
+  line-height: 0;
+}
+.kitify-menu-account__box .kitify-menu-account__icon {
+  font-size: 1.125rem;
+}
+.kitify-menu-account__box .sub-menu {
+  position: absolute;
+  opacity: 0;
+  background: #fff;
+  top: 100%;
+  left: -50%;
+  min-width: 12.5rem;
+  margin: 0;
+  padding: 1.25rem;
+  transform: translate(0, 20px);
+  transition: transform 0.3s, opacity 0.3s;
+  box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.05);
+  z-index: 1000;
+  pointer-events: none;
+}
+.kitify-menu-account__box .sub-menu li {
+  display: flex;
+  padding: 0.3125rem 1.25rem;
+  margin: 0;
+}
+.kitify-menu-account__box .sub-menu li a {
+  display: block;
+  font-size: 0.875rem;
+  padding: 0.3125rem 0;
+}
+.kitify-menu-account__box .sub-menu li a:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.2s ease-out;
+}
+.kitify-menu-account__box .sub-menu li a:hover:before {
+  height: 1px;
+  background-color: v(site-link-hover-color);
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.kitify-menu-account__box:hover .sub-menu {
+  opacity: 1;
+  transform: translate(0, 0);
+  pointer-events: initial;
+}

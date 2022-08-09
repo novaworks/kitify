@@ -5,54 +5,69 @@ if (!defined('ABSPATH'))
     exit; // Exit if accessed directly
 class Motion_Effects
 {
-    public function __construct() {
-        if (!defined('ELEMENTOR_PRO_VERSION')) {
-            add_action('elementor/element/section/section_effects/after_section_start', [
-                $this,
-                'init_module'
-            ]);
-            add_action('elementor/element/column/section_effects/after_section_start', [
-                $this,
-                'init_module'
-            ]);
-            add_action('elementor/element/common/section_effects/after_section_start', [
-                $this,
-                'init_module'
-            ]);
-            add_action('elementor/element/section/section_background/before_section_end', [
-                $this,
-                'init_module_in_background'
-            ]);
-            add_action('elementor/element/column/section_style/before_section_end', [
-                $this,
-                'init_module_in_background'
-            ]);
-            add_action('elementor/element/section/section_effects/after_section_start', [
-                $this,
-                'init_sticky'
-            ]);
-            add_action('elementor/element/common/section_effects/after_section_start', [
-                $this,
-                'init_sticky'
-            ]);
-            add_action('elementor/frontend/after_register_styles', [
-                $this,
-                'register_enqueue_scripts'
-            ]);
-            add_action('elementor/preview/enqueue_scripts', [
-                $this,
-                'enqueue_preview_scripts'
-            ]);
-            add_action('elementor/frontend/before_render', [
-                $this,
-                'enqueue_in_widget'
-            ]);
-            add_action('elementor/controls/controls_registered', array(
-                $this,
-                'register_controls'
-            ));
-        }
-    }
+  public function __construct() {
+      if (!defined('ELEMENTOR_PRO_VERSION')) {
+          add_action('elementor/element/section/section_effects/after_section_start', [
+              $this,
+              'init_module'
+          ]);
+          add_action('elementor/element/column/section_effects/after_section_start', [
+              $this,
+              'init_module'
+          ]);
+          add_action('elementor/element/common/section_effects/after_section_start', [
+              $this,
+              'init_module'
+          ]);
+          add_action('elementor/element/section/section_background/before_section_end', [
+              $this,
+              'init_module_in_background'
+          ]);
+          add_action('elementor/element/column/section_style/before_section_end', [
+              $this,
+              'init_module_in_background'
+          ]);
+          add_action('elementor/element/section/section_effects/after_section_start', [
+              $this,
+              'init_sticky'
+          ]);
+          add_action('elementor/element/common/section_effects/after_section_start', [
+              $this,
+              'init_sticky'
+          ]);
+          add_action('elementor/frontend/after_register_styles', [
+              $this,
+              'register_enqueue_scripts'
+          ]);
+          add_action('elementor/preview/enqueue_scripts', [
+              $this,
+              'enqueue_preview_scripts'
+          ]);
+          add_action('elementor/frontend/before_render', [
+              $this,
+              'enqueue_in_widget'
+          ]);
+          add_action('elementor/controls/controls_registered', array(
+              $this,
+              'register_controls'
+          ));
+
+        add_action('elementor/element/container/section_effects/after_section_start', [
+          $this,
+          'init_module'
+        ]);
+        add_action('elementor/element/container/section_effects/after_section_start', [
+          $this,
+          'init_sticky'
+        ]);
+        add_action('elementor/element/container/section_background/before_section_end', [
+          $this,
+          'init_module_in_background'
+        ]);
+
+          add_action( 'elementor/frontend/before_enqueue_scripts', [ $this, 'enqueue_frontend_scripts' ] );
+      }
+  }
 
     public function register_enqueue_scripts() {
         wp_register_style('kitify-motion-fx', kitify()->plugin_url('assets/css/addons/motion-fx.css'), [], kitify()->get_version());

@@ -75,7 +75,7 @@ class Kitify_Woo_Menu_Account extends Kitify_Base {
         'kitify/woo-menu-acc/css-scheme',
         array(
             'acc_box'    => '.kitify-menu-account__box',
-            'acc_icon'    => '.kitify-menu-account__icon  i',
+            'acc_icon'    => '.kitify-menu-account__icon  i, .kitify-menu-account__icon  svg',
             'acc_label'    => '.kitify-menu-account__label',
             'acc_sub_menu'    => '.kitify-menu-account__box .sub-menu',
             'acc_sub_menu_item'    => '.kitify-menu-account__box .sub-menu li a',
