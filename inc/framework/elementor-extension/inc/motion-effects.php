@@ -89,7 +89,19 @@ class Motion_Effects
           kitify()->elementor()->assets_loader->add_assets( $assets );
       }
     }
-
+    private function get_assets() {
+        return [
+            'scripts' => [
+                'e-sticky' => [
+                    'src' => kitify()->plugin_url('assets/js/lib/jquery.sticky.min.js'),
+                    'version' => kitify()->get_version(true),
+                    'dependencies' => [
+                        'jquery',
+                    ],
+                ],
+            ],
+        ];
+    }
   private function is_assets_loader_exist() {
       return ! ! kitify()->elementor()->assets_loader;
   }
