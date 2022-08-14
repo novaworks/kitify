@@ -15,6 +15,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Module extends \Elementor\Core\Base\Module {
 
+    const WOOCOMMERCE_GROUP = 'woocommerce';
+
 	protected $docs_types = [];
 
 	public static function is_active() {
@@ -28,6 +30,35 @@ class Module extends \Elementor\Core\Base\Module {
 	public function get_name() {
 		return 'woocommerce';
 	}
+
+    public function register_tags() {
+        $tags = [
+            'Product_Gallery',
+            'Product_Image',
+            'Product_Price',
+            'Product_Rating',
+            'Product_Sale',
+            'Product_Short_Description',
+            'Product_SKU',
+            'Product_Stock',
+            'Product_Terms',
+            'Product_Title',
+            'Category_Image',
+        ];
+
+        /** @var \Elementor\Core\DynamicTags\Manager $module */
+        $module = kitify()->elementor()->dynamic_tags;
+
+        $module->register_group( self::WOOCOMMERCE_GROUP, [
+            'title' => esc_html__( 'WooCommerce', 'kitify' ),
+        ] );
+
+        foreach ( $tags as $tag ) {
+            $tag = '\KitifyThemeBuilder\\Modules\\Woocommerce\\tags\\' . $tag;
+
+            $module->register( new $tag() );
+        }
+    }
 
 	public function register_wc_hooks() {
 		wc()->frontend_includes();
@@ -209,29 +240,25 @@ class Module extends \Elementor\Core\Base\Module {
 	public function __construct() {
 		parent::__construct();
 
-		add_action( 'elementor/editor/before_enqueue_scripts', [ $this, 'maybe_init_cart' ] );
-		
-		add_action( 'elementor/documents/register', [ $this, 'register_documents' ] );
-		add_action( 'elementor/theme/register_conditions', [ $this, 'register_conditions' ] );
-
-		add_filter( 'elementor/theme/need_override_location', [ $this, 'theme_template_include' ], 10, 2 );
-
-		add_filter( 'elementor/frontend/localize_settings', [ $this, 'localized_settings_frontend' ] );
-
-		// On Editor - Register WooCommerce frontend hooks before the Editor init.
-		// Priority = 5, in order to allow plugins remove/add their wc hooks on init.
-		if ( ! empty( $_REQUEST['action'] ) && 'elementor' === $_REQUEST['action'] && is_admin() ) {
-			add_action( 'init', [ $this, 'register_wc_hooks' ], 5 );
-		}
+        if(!kitify()->has_elementor_pro()){
+            add_action( 'elementor/editor/before_enqueue_scripts', [ $this, 'maybe_init_cart' ] );
+            add_action( 'elementor/dynamic_tags/register', [ $this, 'register_tags' ] );
+            add_action( 'elementor/documents/register', [ $this, 'register_documents' ] );
+            add_action( 'elementor/theme/register_conditions', [ $this, 'register_conditions' ] );
+            add_filter( 'elementor/theme/need_override_location', [ $this, 'theme_template_include' ], 10, 2 );
+            add_filter( 'elementor/frontend/localize_settings', [ $this, 'localized_settings_frontend' ] );
+            // On Editor - Register WooCommerce frontend hooks before the Editor init.
+            // Priority = 5, in order to allow plugins remove/add their wc hooks on init.
+            if ( ! empty( $_REQUEST['action'] ) && 'elementor' === $_REQUEST['action'] && is_admin() ) {
+                add_action( 'init', [ $this, 'register_wc_hooks' ], 5 );
+            }
+        }
 
 		add_filter( 'elementor/widgets/wordpress/widget_args', [ $this, 'woocommerce_wordpress_widget_css_class' ], 10, 2 );
-
         add_filter( 'woocommerce_product_loop_start', [ $this, 'woocommerce_product_loop_start' ], -1001 );
         add_filter( 'woocommerce_product_loop_end', [ $this, 'woocommerce_product_loop_end' ], 1001  );
-
         add_filter( 'woocommerce_post_class', [ $this, 'add_css_class_to_product_item_class' ], 1001, 2 );
         add_filter( 'product_cat_class', [ $this, 'add_css_class_to_product_cat_item' ], 1001, 1 );
-
         add_action('woocommerce_after_single_product', [ $this, 'add_quickview_resource' ] );
         add_action( 'woocommerce_shortcode_current_query_loop_no_results', 'wc_no_products_found');
 

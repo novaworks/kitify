@@ -22,10 +22,10 @@ class Shop_Page extends ThemeBuilder\Conditions\Condition_Base {
 	}
 
 	public function get_label() {
-		return esc_html__( 'Shop Page', 'kitify' );
+		return __( 'Shop Page', 'kitify' );
 	}
 
 	public function check( $args ) {
-		return is_shop();
+		return \is_shop();
 	}
 }

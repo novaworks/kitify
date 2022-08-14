@@ -11,17 +11,21 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 
     private static $has_init = false;
 
+		const DEFAULT_COLUMNS_AND_ROWS = 4;
+
+		protected function get_limit(){
+			$settings = $this->settings;
+			$rows = ! empty( $settings['rows'] ) ? $settings['rows'] : self::DEFAULT_COLUMNS_AND_ROWS;
+			$columns = ! empty( $settings['columns'] ) ? $settings['columns'] : self::DEFAULT_COLUMNS_AND_ROWS;
+
+			return intval( $columns * $rows );
+		}
 	/**
 	 * Override original `get_content` that returns an HTML wrapper even if no results found.
 	 *
 	 * @return string Products HTML
 	 */
 	public function get_content() {
-		$result = $this->get_query_results();
-
-		if ( empty( $result->total ) && $this->get_type() !== 'current_query' ) {
-			return '';
-		}
 
 		$layout = !empty($this->settings['layout']) ? $this->settings['layout'] : 'grid';
 		$preset = !empty($this->settings[ $layout.'_style']) ? $this->settings[ $layout.'_style'] : '1';

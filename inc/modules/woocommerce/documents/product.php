@@ -19,7 +19,7 @@ class Product extends Single_Base {
 		return $properties;
 	}
 
-	protected static function get_site_editor_type() {
+	public static function get_type() {
 		return 'product';
 	}
 
@@ -40,7 +40,7 @@ class Product extends Single_Base {
 			'title' => __( 'What is a Single Product Template?', 'kitify' ),
 			'content' => __( 'A single product template allows you to easily design the layout and style of WooCommerce single product pages, and apply that template to various conditions that you assign.', 'kitify' ),
 			'tip' => __( 'You can create multiple single product templates, and assign each to different types of products, enabling a custom design for each group of similar products.', 'kitify' ),
-			'docs' => 'https://go.elementor.com/app-theme-builder-product',
+			'docs' => 'https://trk.elementor.com/app-theme-builder-product',
 			'video_url' => 'https://www.youtube.com/embed/PjhoB1RWkBM',
 		];
 	}
@@ -140,8 +140,8 @@ class Product extends Single_Base {
 	protected static function get_editor_panel_categories() {
 		$categories = [
 			// Move to top as active.
-			'kitify-woo-product' => [
-				'title' => __( 'Kitify Product', 'kitify' ),
+			'lastudiokit-woo-product' => [
+				'title' => __( 'LaStudio Kit Product', 'kitify' ),
 				'active' => true,
 			],
 		];

@@ -7,24 +7,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Products_Renderer extends Base_Products_Renderer {
 
-
-	private $is_added_product_filter = false;
 	const QUERY_CONTROL_NAME = 'query'; //Constraint: the class that uses the renderer, must use the same name
-	const DEFAULT_COLUMNS_AND_ROWS = 4;
 
     public static $displayed_ids = [];
 
 	public function __construct( $settings = [], $type = 'products' ) {
 
-		$this->settings = $settings;
-		$this->type = $type;
-		$this->attributes = $this->parse_attributes( [
-			'columns' => $settings['columns'],
-			'rows' => $settings['rows'],
-			'paginate' => $settings['paginate'],
-			'cache' => false,
-		] );
-		$this->query_args = $this->parse_query_args();
+        $this->settings = $settings;
+        $this->type = $type;
+        $this->attributes = $this->parse_attributes( [
+            'columns' => $settings['columns'],
+            'rows' => $settings['rows'],
+            'paginate' => $settings['paginate'],
+            'cache' => false,
+        ] );
+        $this->query_args = $this->parse_query_args();
 
         $this->override_hook_to_init();
 	}
@@ -37,6 +34,75 @@ class Products_Renderer extends Base_Products_Renderer {
 	 * @return bool|mixed|object
 	 */
 
+    protected function override_query_results(){
+
+        $is_filtered = false;
+
+        if(isset($this->settings['is_filter_container'])){
+            $is_filtered = wc_string_to_bool( $this->settings['is_filter_container'] ) === true;
+        }
+
+        if( !empty($this->settings['query_post_type']) && in_array( $this->settings['query_post_type'], ['related', 'upsells'] )){
+            $is_filtered = false;
+        }
+
+        if($is_filtered){
+            $cache = false;
+        }
+        else{
+            $transient_name    = $this->get_transient_name();
+            $transient_version = \WC_Cache_Helper::get_transient_version( 'product_query' );
+            $cache             = wc_string_to_bool( $this->attributes['cache'] ) === true;
+        }
+
+        $transient_value   = $cache ? get_transient( $transient_name ) : false;
+
+        if ( isset( $transient_value['value'], $transient_value['version'] ) && $transient_value['version'] === $transient_version ) {
+            $results = $transient_value['value'];
+        }
+        else {
+
+            $query = new \WP_Query( $this->get_query_args() );
+
+            $paginated = ! $query->get( 'no_found_rows' );
+
+            $posts = $query->posts;
+
+            if($is_filtered){
+                WC()->query->product_query($query);
+                $posts = $query->get_posts();
+            }
+
+            $results = (object) array(
+                'ids'          => wp_parse_id_list( $posts ),
+                'total'        => $paginated ? (int) $query->found_posts : count( $posts ),
+                'total_pages'  => $paginated ? (int) $query->max_num_pages : 1,
+                'per_page'     => (int) $query->get( 'posts_per_page' ),
+                'current_page' => $paginated ? (int) max( 1, $query->get( 'paged', 1 ) ) : 1,
+            );
+
+            if ( $cache ) {
+                $transient_value = array(
+                    'version' => $transient_version,
+                    'value'   => $results,
+                );
+                set_transient( $transient_name, $transient_value, DAY_IN_SECONDS * 30 );
+            }
+        }
+
+        // Remove ordering query arguments which may have been added by get_catalog_ordering_args.
+        WC()->query->remove_ordering_args();
+
+        /**
+         * Filter shortcode products query results.
+         *
+         * @since 4.0.0
+         * @param \stdClass $results Query results.
+         * @param \WC_Shortcode_Products $this WC_Shortcode_Products instance.
+         */
+        return apply_filters( 'woocommerce_shortcode_products_query_results', $results, $this );
+    }
+
 	protected function get_query_results() {
 
         $prefix = self::QUERY_CONTROL_NAME . '_';
@@ -48,12 +114,8 @@ class Products_Renderer extends Base_Products_Renderer {
             }
         }
 
-		$results = parent::get_query_results();
-		// Start edit.
-		if ( $this->is_added_product_filter ) {
-			remove_action( 'pre_get_posts', [ wc()->query, 'product_query' ] );
-		}
-		// End edit.
+//		$results = parent::get_query_results();
+		$results = $this->override_query_results();
 
         if ( $results && $results->ids ) {
             self::add_to_avoid_list($results->ids);
@@ -62,17 +124,9 @@ class Products_Renderer extends Base_Products_Renderer {
 		return $results;
 	}
 
-	protected function get_limit(){
-        $settings = &$this->settings;
-        $rows = ! empty( $settings['rows'] ) ? $settings['rows'] : self::DEFAULT_COLUMNS_AND_ROWS;
-        $columns = ! empty( $settings['columns'] ) ? $settings['columns'] : self::DEFAULT_COLUMNS_AND_ROWS;
-
-        return intval( $columns * $rows );
-    }
-
 	protected function parse_query_args() {
 		$prefix = self::QUERY_CONTROL_NAME . '_';
-		$settings = &$this->settings;
+		$settings = $this->settings;
 
 		$query_args = [
 			'post_type' => 'product',
@@ -88,7 +142,7 @@ class Products_Renderer extends Base_Products_Renderer {
 
 		$front_page = is_front_page();
 
-		if ( 'yes' === $settings['paginate'] && 'yes' === $settings['allow_order'] && ! $front_page ) {
+		if ( 'yes' === $settings['paginate'] && ( isset($settings['allow_order']) && 'yes' === $settings['allow_order']) && ! $front_page ) {
 			$ordering_args = WC()->query->get_catalog_ordering_args();
 		} else {
 			$ordering_args = WC()->query->get_catalog_ordering_args( $query_args['orderby'], $query_args['order'] );
@@ -117,6 +171,9 @@ class Products_Renderer extends Base_Products_Renderer {
 			$this->{"set_{$this->type}_query_args"}( $query_args );
 		}
 
+        // Attributes.
+        $this->set_attributes_query_args( $query_args );
+
 		// Categories & Tags
 		$this->set_terms_query_args( $query_args );
 
@@ -140,20 +197,26 @@ class Products_Renderer extends Base_Products_Renderer {
                 $page_key .= '-' . $this->settings['unique_id'];
             }
 
-			$page = absint( empty( $_GET[$page_key] ) ? 1 : $_GET[$page_key] );
+			$page = absint( empty( $_REQUEST[$page_key] ) ? 1 : $_REQUEST[$page_key] );
 
 			if ( $page > 1 ) {
 				$query_args['paged'] = $page;
                 $this->attributes['page'] = $page;
 			}
 
-			if ( 'yes' !== $settings['allow_order'] || $front_page ) {
-				remove_action( 'nova_woocommerce_catalog_ordering', 'woocommerce_catalog_ordering', 30 );
-			}
+            if( kitify()->get_theme_support('elementor::product-grid-v2') ){
+                remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
+                remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
+            }
+            else{
+                if ( 'yes' !== $settings['allow_order'] || $front_page ) {
+                    remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
+                }
 
-			if ( 'yes' !== $settings['show_result_count'] ) {
-				remove_action( 'nova_woocommerce_result_count', 'woocommerce_result_count', 20 );
-			}
+                if ( 'yes' !== $settings['show_result_count'] ) {
+                    remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
+                }
+            }
 		}
 		// fallback to the widget's default settings in case settings was left empty:
 		$query_args['posts_per_page'] = $this->get_limit();
@@ -206,6 +269,7 @@ class Products_Renderer extends Base_Products_Renderer {
 			}
 		}
 		$tax_query = [];
+
 		foreach ( $terms as $taxonomy => $ids ) {
 			$query = [
 				'taxonomy' => $taxonomy,
@@ -343,5 +407,25 @@ class Products_Renderer extends Base_Products_Renderer {
 
     public static function get_avoid_list_ids() {
         return self::$displayed_ids;
+    }
+
+    /**
+     * Set attributes query args.
+     *
+     * @since 2.0.0
+     * @param array $query_args Query args.
+     */
+    protected function set_attributes_query_args( &$query_args ) {
+
+        // Layered nav filters on terms.
+        foreach ( \WC_Query::get_layered_nav_chosen_attributes() as $taxonomy => $data ) {
+            $query_args['tax_query'][] = array(
+                'taxonomy'         => $taxonomy,
+                'field'            => 'slug',
+                'terms'            => $data['terms'],
+                'operator'         => 'and' === $data['query_type'] ? 'AND' : 'IN',
+                'include_children' => false,
+            );
+        }
     }
 }

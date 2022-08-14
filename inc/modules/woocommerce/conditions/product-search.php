@@ -23,7 +23,7 @@ class Product_Search extends ThemeBuilder\Conditions\Condition_Base {
 	}
 
 	public function get_label() {
-		return esc_html__( 'Search Results', 'kitify' );
+		return __( 'Search Results', 'kitify' );
 	}
 
 	public function check( $args ) {

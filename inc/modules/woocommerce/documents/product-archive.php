@@ -18,7 +18,7 @@ class Product_Archive extends Archive {
 		return $properties;
 	}
 
-	protected static function get_site_editor_type() {
+	public static function get_type() {
 		return 'product-archive';
 	}
 
@@ -48,7 +48,7 @@ class Product_Archive extends Archive {
 			'title' => __( 'What is a Products Archive Template?', 'kitify' ),
 			'content' => __( 'A products archive template allows you to easily design the layout and style of your WooCommerce shop page or other product archive pages - those pages that show a list of products, which may be filtered by terms such as categories, tags, etc.', 'kitify' ),
 			'tip' => __( 'You can create multiple products archive templates, and assign each to different categories of products. This gives you the freedom to customize the appearance for each type of product being shown.', 'kitify' ),
-			'docs' => 'https://go.elementor.com/app-theme-builder-products-archive',
+			'docs' => 'https://trk.elementor.com/app-theme-builder-products-archive',
 			'video_url' => 'https://www.youtube.com/embed/cQLeirgkguA',
 		];
 	}

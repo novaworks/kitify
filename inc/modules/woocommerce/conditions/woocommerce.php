@@ -19,11 +19,11 @@ class Woocommerce extends ThemeBuilder\Conditions\Condition_Base {
 	}
 
 	public function get_label() {
-		return esc_html__( 'WooCommerce', 'kitify' );
+		return __( 'WooCommerce', 'kitify' );
 	}
 
 	public function get_all_label() {
-		return esc_html__( 'Entire Shop', 'kitify' );
+		return __( 'Entire Shop', 'kitify' );
 	}
 
 	public function register_sub_conditions() {
@@ -38,6 +38,6 @@ class Woocommerce extends ThemeBuilder\Conditions\Condition_Base {
 	}
 
 	public function check( $args ) {
-		return is_woocommerce() || Module::is_product_search();
+		return \is_woocommerce() || Module::is_product_search();
 	}
 }
