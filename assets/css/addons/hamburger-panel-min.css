@@ -142,10 +142,14 @@ body:not(.kitify--js-ready) .kitify-hamburger-panel__instance {
 	right: 0
 }
 .kitify-hamburger-panel.kitify-hamburger-panel-slide-effect.kitify-hamburger-panel-right-position .kitify-hamburger-panel__inner {
+	-webkit-transform: translateX(100%);
 	transform: translateX(100%);
-	transition: transform 0.4s cubic-bezier(0.6, 0.17, 0.45, 0.88)
+	transition: -webkit-transform 0.4s cubic-bezier(0.6, 0.17, 0.45, 0.88);
+	transition: transform 0.4s cubic-bezier(0.6, 0.17, 0.45, 0.88);
+	transition: transform 0.4s cubic-bezier(0.6, 0.17, 0.45, 0.88), -webkit-transform 0.4s cubic-bezier(0.6, 0.17, 0.45, 0.88)
 }
 .kitify-hamburger-panel.kitify-hamburger-panel-slide-effect.kitify-hamburger-panel-right-position.open-state .kitify-hamburger-panel__inner {
+	-webkit-transform: translateX(0%);
 	transform: translateX(0%)
 }
 .kitify-hamburger-panel.kitify-hamburger-panel-slide-effect.kitify-hamburger-panel-left-position .kitify-hamburger-panel__instance {
@@ -160,10 +164,14 @@ body:not(.kitify--js-ready) .kitify-hamburger-panel__instance {
 	z-index: 2;
 }
 .kitify-hamburger-panel.kitify-hamburger-panel-slide-effect.kitify-hamburger-panel-left-position .kitify-hamburger-panel__inner {
+	-webkit-transform: translateX(-100%);
 	transform: translateX(-100%);
+	transition: visibility cubic-bezier(0.6, 0.17, 0.45, 0.88), -webkit-transform 0.4s cubic-bezier(0.6, 0.17, 0.45, 0.88);
 	transition: transform 0.4s cubic-bezier(0.6, 0.17, 0.45, 0.88), visibility cubic-bezier(0.6, 0.17, 0.45, 0.88);
+	transition: transform 0.4s cubic-bezier(0.6, 0.17, 0.45, 0.88), visibility cubic-bezier(0.6, 0.17, 0.45, 0.88), -webkit-transform 0.4s cubic-bezier(0.6, 0.17, 0.45, 0.88);
 }
 .kitify-hamburger-panel.kitify-hamburger-panel-slide-effect.kitify-hamburger-panel-left-position.open-state .kitify-hamburger-panel__inner {
+	-webkit-transform: translateX(0%);
 	transform: translateX(0%)
 }
 .kitify-hamburger-panel.kitify-hamburger-panel-fade-effect.kitify-hamburger-panel-right-position .kitify-hamburger-panel__instance {
@@ -187,11 +195,15 @@ body:not(.kitify--js-ready) .kitify-hamburger-panel__instance {
 }
 .kitify-hamburger-panel.kitify-hamburger-panel-zoom-effect.kitify-hamburger-panel-right-position .kitify-hamburger-panel__inner {
 	opacity: 0;
+	-webkit-transform: scale(0.75);
 	transform: scale(0.75);
-	transition: opacity 0.3s cubic-bezier(0.6, 0.17, 0.45, 0.88), transform 0.4s cubic-bezier(0.31, 0.86, 0.62, 0.99), visibility cubic-bezier(0.6, 0.17, 0.45, 0.88)
+	transition: opacity 0.3s cubic-bezier(0.6, 0.17, 0.45, 0.88), visibility cubic-bezier(0.6, 0.17, 0.45, 0.88), -webkit-transform 0.4s cubic-bezier(0.31, 0.86, 0.62, 0.99);
+	transition: opacity 0.3s cubic-bezier(0.6, 0.17, 0.45, 0.88), transform 0.4s cubic-bezier(0.31, 0.86, 0.62, 0.99), visibility cubic-bezier(0.6, 0.17, 0.45, 0.88);
+	transition: opacity 0.3s cubic-bezier(0.6, 0.17, 0.45, 0.88), transform 0.4s cubic-bezier(0.31, 0.86, 0.62, 0.99), visibility cubic-bezier(0.6, 0.17, 0.45, 0.88), -webkit-transform 0.4s cubic-bezier(0.31, 0.86, 0.62, 0.99)
 }
 .kitify-hamburger-panel.kitify-hamburger-panel-zoom-effect.kitify-hamburger-panel-right-position.open-state .kitify-hamburger-panel__inner {
 	opacity: 1;
+	-webkit-transform: scale(1);
 	transform: scale(1)
 }
 .kitify-hamburger-panel.kitify-hamburger-panel-zoom-effect.kitify-hamburger-panel-left-position .kitify-hamburger-panel__instance {
@@ -199,29 +211,37 @@ body:not(.kitify--js-ready) .kitify-hamburger-panel__instance {
 }
 .kitify-hamburger-panel.kitify-hamburger-panel-zoom-effect.kitify-hamburger-panel-left-position .kitify-hamburger-panel__instance .kitify-hamburger-panel__inner {
 	opacity: 0;
+	-webkit-transform: scale(0.75);
 	transform: scale(0.75);
-	transition: opacity 0.3s cubic-bezier(0.6, 0.17, 0.45, 0.88), transform 0.4s cubic-bezier(0.31, 0.86, 0.62, 0.99), visibility cubic-bezier(0.6, 0.17, 0.45, 0.88)
+	transition: opacity 0.3s cubic-bezier(0.6, 0.17, 0.45, 0.88), visibility cubic-bezier(0.6, 0.17, 0.45, 0.88), -webkit-transform 0.4s cubic-bezier(0.31, 0.86, 0.62, 0.99);
+	transition: opacity 0.3s cubic-bezier(0.6, 0.17, 0.45, 0.88), transform 0.4s cubic-bezier(0.31, 0.86, 0.62, 0.99), visibility cubic-bezier(0.6, 0.17, 0.45, 0.88);
+	transition: opacity 0.3s cubic-bezier(0.6, 0.17, 0.45, 0.88), transform 0.4s cubic-bezier(0.31, 0.86, 0.62, 0.99), visibility cubic-bezier(0.6, 0.17, 0.45, 0.88), -webkit-transform 0.4s cubic-bezier(0.31, 0.86, 0.62, 0.99)
 }
 .kitify-hamburger-panel.kitify-hamburger-panel-zoom-effect.kitify-hamburger-panel-left-position.open-state .kitify-hamburger-panel__inner {
 	opacity: 1;
+	-webkit-transform: scale(1);
 	transform: scale(1)
 }
 .kitify-hamburger-panel.kitify-hamburger-panel-slide-effect.kitify-hamburger-panel-top-position .kitify-hamburger-panel__inner {
 	left: 0;
 	top: 0;
+	-webkit-transform: translateY(-100%);
 	transform: translateY(-100%);
 	transition: all 0.3s cubic-bezier(0.6, 0.17, 0.45, 0.88);
 }
 .kitify-hamburger-panel.kitify-hamburger-panel-slide-effect.kitify-hamburger-panel-top-position.open-state .kitify-hamburger-panel__inner {
+	-webkit-transform: translateY(0%);
 	transform: translateY(0%)
 }
 .kitify-hamburger-panel.kitify-hamburger-panel-slide-effect.kitify-hamburger-panel-bottom-position .kitify-hamburger-panel__inner {
 	left: 0;
 	top: 0;
+	-webkit-transform: translateY(100%);
 	transform: translateY(100%);
 	transition: all 0.3s cubic-bezier(0.6, 0.17, 0.45, 0.88);
 }
 .kitify-hamburger-panel.kitify-hamburger-panel-slide-effect.kitify-hamburger-panel-bottom-position.open-state .kitify-hamburger-panel__inner {
+	-webkit-transform: translateY(0%);
 	transform: translateY(0%)
 }
 .kitify-burger-wrapall > .elementor-element > .elementor-widget-container {
@@ -281,13 +301,26 @@ html.kitify-hamburger-panel-visible {
 	border-top-style: solid;
 	border-top-color: #fff;
 	border-radius: 50%;
+	-webkit-animation: spCircRot 0.6s infinite linear;
 	animation: spCircRot 0.6s infinite linear
 }
-@keyframes spCircRot {
+@-webkit-keyframes spCircRot {
 	0% {
+		-webkit-transform: rotate(0deg);
 		transform: rotate(0deg)
 	}
 	to {
+		-webkit-transform: rotate(359deg);
+		transform: rotate(359deg)
+	}
+}
+@keyframes spCircRot {
+	0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg)
+	}
+	to {
+		-webkit-transform: rotate(359deg);
 		transform: rotate(359deg)
 	}
 }

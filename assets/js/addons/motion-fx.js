@@ -487,7 +487,7 @@
                     $wpAdminBar = elementorFrontend.elements.$wpAdminBar;
 
                 if (elementSettings.sticky_parent) {
-                    stickyOptions.parent = '.elementor-widget-wrap';
+                    stickyOptions.parent = '.e-container, .elementor-widget-wrap';
                 }
 
                 if ($wpAdminBar.length && 'top' === elementSettings.sticky && 'fixed' === $wpAdminBar.css('position')) {
@@ -2157,6 +2157,7 @@
         module.exports = function () {
             elementorFrontend.hooks.addAction('frontend/element_ready/section', __webpack_require__(10));
             elementorFrontend.hooks.addAction('frontend/element_ready/widget', __webpack_require__(10));
+            elementorFrontend.hooks.addAction('frontend/element_ready/container', __webpack_require__(10));
         };
 
         /***/

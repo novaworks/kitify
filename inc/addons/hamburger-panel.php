@@ -12,10 +12,12 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 class Kitify_Hamburger_Panel extends Kitify_Base {
 
     protected function enqueue_addon_resources(){
-        wp_register_style( $this->get_name(), kitify()->plugin_url('assets/css/addons/hamburger-panel.css'), ['kitify-base'], kitify()->get_version());
+	    if(!kitify_settings()->is_combine_js_css()) {
+		    wp_register_style( $this->get_name(), kitify()->plugin_url( 'assets/css/addons/hamburger-panel.css' ), [ 'kitify-base' ], kitify()->get_version() );
 
-        $this->add_style_depends( $this->get_name() );
-        $this->add_script_depends( 'kitify-base' );
+		    $this->add_style_depends( $this->get_name() );
+		    $this->add_script_depends( 'kitify-base' );
+	    }
     }
 
 	public function get_name() {
@@ -63,10 +65,10 @@ class Kitify_Hamburger_Panel extends Kitify_Base {
                 'label_block' => false,
                 'skin'        => 'inline',
                 'file'        => '',
-                'default'     => 'novaicon-menu-8-1',
+                'default'     => 'lastudioicon-menu-8-1',
                 'fa5_default' => array(
-                    'value'   => 'novaicon-menu-8-1',
-                    'library' => 'novaicon',
+                    'value'   => 'lastudioicon-menu-8-1',
+                    'library' => 'lastudioicon',
                 ),
             )
         );
@@ -79,10 +81,10 @@ class Kitify_Hamburger_Panel extends Kitify_Base {
                 'label_block' => false,
                 'skin'        => 'inline',
                 'file'        => '',
-                'default'     => 'novaicon-e-remove',
+                'default'     => 'lastudioicon-e-remove',
                 'fa5_default' => array(
-                    'value'   => 'novaicon-e-remove',
-                    'library' => 'novaicon',
+                    'value'   => 'lastudioicon-e-remove',
+                    'library' => 'lastudioicon',
                 ),
             )
         );
@@ -95,10 +97,10 @@ class Kitify_Hamburger_Panel extends Kitify_Base {
                 'label_block' => false,
                 'skin'        => 'inline',
                 'file'        => '',
-                'default'     => 'novaicon-e-remove',
+                'default'     => 'lastudioicon-e-remove',
                 'fa5_default' => array(
-                    'value'   => 'novaicon-e-remove',
-                    'library' => 'novaicon',
+                    'value'   => 'lastudioicon-e-remove',
+                    'library' => 'lastudioicon',
                 ),
             )
         );
@@ -142,7 +144,7 @@ class Kitify_Hamburger_Panel extends Kitify_Base {
             array(
                 'label'       => esc_html__( 'Choose Template', 'kitify' ),
                 'label_block' => 'true',
-                'type'        => 'kitify-query',
+                'type'        => 'lastudiokit-query',
                 'object_type' => \Elementor\TemplateLibrary\Source_Local::CPT,
                 'filter_type' => 'by_id',
             )
@@ -362,7 +364,7 @@ class Kitify_Hamburger_Panel extends Kitify_Base {
         );
 
         $this->_add_group_control(
-            \Kitify_Extension\Controls\Group_Control_Box_Style::get_type(),
+            \KitifyExtensions\Elementor\Controls\Group_Control_Box_Style::get_type(),
             array(
                 'label'    => esc_html__( 'Close Icon', 'kitify' ),
                 'name'     => 'close_icon_box',
@@ -381,7 +383,7 @@ class Kitify_Hamburger_Panel extends Kitify_Base {
         );
 
         $this->_add_group_control(
-            \Kitify_Extension\Controls\Group_Control_Box_Style::get_type(),
+            \KitifyExtensions\Elementor\Controls\Group_Control_Box_Style::get_type(),
             array(
                 'label'    => esc_html__( 'Close Icon', 'kitify' ),
                 'name'     => 'close_icon_box_hover',
@@ -554,7 +556,7 @@ class Kitify_Hamburger_Panel extends Kitify_Base {
         );
 
         $this->_add_group_control(
-            \Kitify_Extension\Controls\Group_Control_Box_Style::get_type(),
+            \KitifyExtensions\Elementor\Controls\Group_Control_Box_Style::get_type(),
             array(
                 'label'    => esc_html__( 'Toggle Icon', 'kitify' ),
                 'name'     => 'toggle_icon_box',
@@ -573,7 +575,7 @@ class Kitify_Hamburger_Panel extends Kitify_Base {
         );
 
         $this->_add_group_control(
-            \Kitify_Extension\Controls\Group_Control_Box_Style::get_type(),
+            \KitifyExtensions\Elementor\Controls\Group_Control_Box_Style::get_type(),
             array(
                 'label'    => esc_html__( 'Toggle Icon', 'kitify' ),
                 'name'     => 'toggle_icon_box_hover',
@@ -747,7 +749,10 @@ class Kitify_Hamburger_Panel extends Kitify_Base {
                     } else if ( ! $ajax_template ) {
                         $content_html = $this->no_templates_message();
                     } else {
-                        $content_html .= '<div class="kitify-hamburger-panel-loader kitify-tpl-panel-loader"></div>';
+	                    $this->add_render_attribute( 'kitify-hamburger-panel__content', array(
+		                    'data-kitify_ajax_loadtemplate' => 'true',
+	                    ) );
+                        $content_html .= '<span class="kitify-css-loader"></span>';
                     }
 
                     echo sprintf( '<div %1$s>%2$s</div>', $this->get_render_attribute_string( 'kitify-hamburger-panel__content' ), $content_html );
@@ -767,7 +772,7 @@ class Kitify_Hamburger_Panel extends Kitify_Base {
         return '<div id="elementor-widget-template-empty-templates">
 				<div class="elementor-widget-template-empty-templates-icon"><i class="eicon-nerd"></i></div>
 				<div class="elementor-widget-template-empty-templates-title">' . esc_html__( 'You Haven’t Saved Templates Yet.', 'kitify' ) . '</div>
-				<div class="elementor-widget-template-empty-templates-footer">' . esc_html__( 'What is Library?', 'kitify' ) . ' <a class="elementor-widget-template-empty-templates-footer-url" href="https://go.elementor.com/docs-library/" target="_blank">' . esc_html__( 'Read our tutorial on using Library templates.', 'kitify' ) . '</a></div>
+				<div class="elementor-widget-template-empty-templates-footer">' . esc_html__( 'What is Library?', 'kitify' ) . ' <a class="elementor-widget-template-empty-templates-footer-url" href="https://trk.elementor.com/docs-library/" target="_blank">' . esc_html__( 'Read our tutorial on using Library templates.', 'kitify' ) . '</a></div>
 				</div>';
     }
 
