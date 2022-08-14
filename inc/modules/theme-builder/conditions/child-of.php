@@ -22,7 +22,7 @@ class Child_Of extends Condition_Base {
 	}
 
 	public function get_label() {
-		return esc_html__( 'Direct Child Of', 'kitify' );
+		return __( 'Direct Child Of', 'kitify' );
 	}
 
 	public function check( $args ) {

@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class Single_Page extends Single_Base {
-	protected static function get_site_editor_type() {
+	public static function get_type() {
 		return 'single-page';
 	}
 
@@ -15,7 +15,7 @@ class Single_Page extends Single_Base {
 	}
 
 	public static function get_title() {
-		return esc_html__( 'Single Page', 'kitify' );
+		return __( 'Single Page', 'kitify' );
 	}
 
 	protected static function get_site_editor_icon() {
@@ -24,10 +24,10 @@ class Single_Page extends Single_Base {
 
 	protected static function get_site_editor_tooltip_data() {
 		return [
-			'title' => esc_html__( 'What is a Single Page Template?', 'kitify' ),
-			'content' => esc_html__( 'A single page template allows you to easily create the layout and style of pages, ensuring design consistency across all the pages of your site.', 'kitify' ),
-			'tip' => esc_html__( 'You can create multiple single page templates, and assign each to different areas of your site.', 'kitify' ),
-			'docs' => 'https://go.elementor.com/app-theme-builder-page',
+			'title' => __( 'What is a Single Page Template?', 'kitify' ),
+			'content' => __( 'A single page template allows you to easily create the layout and style of pages, ensuring design consistency across all the pages of your site.', 'kitify' ),
+			'tip' => __( 'You can create multiple single page templates, and assign each to different areas of your site.', 'kitify' ),
+			'docs' => 'https://trk.elementor.com/app-theme-builder-page',
 			'video_url' => 'https://www.youtube.com/embed/_y5eZ60lVoY',
 		];
 	}

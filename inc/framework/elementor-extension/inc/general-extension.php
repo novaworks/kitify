@@ -153,7 +153,7 @@ class General_Extensions {
 
     public function add_breakpoint_visible_control( $stack, $section_id ){
         if( '_section_responsive' === $section_id ) {
-            if(lastudio_kit()->elementor()->breakpoints->get_active_breakpoints('laptop')){
+            if(kitify()->elementor()->breakpoints->get_active_breakpoints('laptop')){
                 $stack->add_control(
                     'hide_laptop',
                     [
@@ -167,7 +167,7 @@ class General_Extensions {
                     ]
                 );
             }
-            if(lastudio_kit()->elementor()->breakpoints->get_active_breakpoints('mobile_extra')){
+            if(kitify()->elementor()->breakpoints->get_active_breakpoints('mobile_extra')){
                 $stack->add_control(
                     'hide_mobile_extra',
                     [

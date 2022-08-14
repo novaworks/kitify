@@ -13,8 +13,9 @@ final class Modules_Manager {
 
 	public function __construct() {
 		$modules = [
-			'theme-builder',
-      'woocommerce',
+						'theme-builder',
+            'woocommerce',
+						'dynamic-tags',
 		];
 
 		foreach ( $modules as $module_name ) {
@@ -23,9 +24,9 @@ final class Modules_Manager {
 			$class_name = '\KitifyThemeBuilder\Modules\\' . $class_name . '\Module';
 
 			/** @var Module_Base $class_name */
-			if ( $class_name::is_active() ) {
-				$this->modules[ $module_name ] = $class_name::instance();
-			}
+            if( ( $class_name::is_active() && ( !kitify()->has_elementor_pro() || $module_name == 'woocommerce' ) ) ){
+                $this->modules[ $module_name ] = $class_name::instance();
+            }
 		}
 	}
 

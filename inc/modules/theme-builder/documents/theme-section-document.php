@@ -26,7 +26,7 @@ abstract class Theme_Section_Document extends Theme_Document {
 	public static function get_preview_as_options() {
 		return array_merge(
 			[
-				'' => esc_html__( 'Select...', 'kitify' ),
+				'' => __( 'Select...', 'kitify' ),
 			],
 			Archive::get_preview_as_options(),
 			Single::get_preview_as_options()

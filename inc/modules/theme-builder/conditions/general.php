@@ -21,11 +21,11 @@ class General extends Condition_Base {
 	}
 
 	public function get_label() {
-		return esc_html__( 'General', 'kitify' );
+		return __( 'General', 'kitify' );
 	}
 
 	public function get_all_label() {
-		return esc_html__( 'Entire Site', 'kitify' );
+		return __( 'Entire Site', 'kitify' );
 	}
 
 	public function check( $args ) {

@@ -55,7 +55,7 @@ class Taxonomy extends Condition_Base {
 				'section' => 'settings',
 				'type' => QueryModule::QUERY_CONTROL_ID,
 				'options' => [
-					'' => esc_html__( 'All', 'kitify' ),
+					'' => __( 'All', 'kitify' ),
 				],
 				'autocomplete' => [
 					'object' => QueryModule::QUERY_OBJECT_TAX,

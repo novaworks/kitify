@@ -18,12 +18,12 @@ class Archive extends Archive_Single_Base {
 		return $properties;
 	}
 
-	protected static function get_site_editor_type() {
+	public static function get_type() {
 		return 'archive';
 	}
 
 	public static function get_title() {
-		return esc_html__( 'Archive', 'kitify' );
+		return __( 'Archive', 'kitify' );
 	}
 
 	protected static function get_site_editor_icon() {
@@ -32,10 +32,10 @@ class Archive extends Archive_Single_Base {
 
 	protected static function get_site_editor_tooltip_data() {
 		return [
-			'title' => esc_html__( 'What is an Archive Template?', 'kitify' ),
-			'content' => esc_html__( 'An archive template allows you to easily design the layout and style of archive pages - those pages that show a list of posts (e.g. a blog’s list of recent posts), which may be filtered by terms such as authors, categories, tags, search results, etc.', 'kitify' ),
-			'tip' => esc_html__( 'If you’d like a different style for a specific category, it’s easy to create a separate archive template whose condition is to only display when users are viewing that category’s list of posts.', 'kitify' ),
-			'docs' => 'https://go.elementor.com/app-theme-builder-archive',
+			'title' => __( 'What is an Archive Template?', 'kitify' ),
+			'content' => __( 'An archive template allows you to easily design the layout and style of archive pages - those pages that show a list of posts (e.g. a blog’s list of recent posts), which may be filtered by terms such as authors, categories, tags, search results, etc.', 'kitify' ),
+			'tip' => __( 'If you’d like a different style for a specific category, it’s easy to create a separate archive template whose condition is to only display when users are viewing that category’s list of posts.', 'kitify' ),
+			'docs' => 'https://trk.elementor.com/app-theme-builder-archive',
 			'video_url' => 'https://www.youtube.com/embed/wxElpEh9bfA',
 		];
 	}
@@ -43,7 +43,7 @@ class Archive extends Archive_Single_Base {
 	protected static function get_editor_panel_categories() {
 		$categories = [
 			'theme-elements-archive' => [
-				'title' => esc_html__( 'Archive', 'kitify' ),
+				'title' => __( 'Archive', 'kitify' ),
 			],
 		];
 
@@ -91,7 +91,7 @@ class Archive extends Archive_Single_Base {
 
 		return [
 			'archive' => [
-				'label' => esc_html__( 'Archive', 'kitify' ),
+				'label' => __( 'Archive', 'kitify' ),
 				'options' => $options,
 			],
 		];

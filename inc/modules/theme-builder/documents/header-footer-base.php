@@ -17,11 +17,11 @@ abstract class Header_Footer_Base extends Theme_Section_Document {
 		// Move to top as active.
 		$categories = [
 			'kitify-builder' => [
-				'title' => esc_html__( 'Kitify Builder', 'kitify' ),
+				'title' => __( 'Kitify Builder', 'kitify' ),
 				'active' => true,
 			],
-    	'kitify' => [
-				'title' => esc_html__( 'Kitify', 'kitify' ),
+            'kitify' => [
+				'title' => __( 'Kitify', 'kitify' ),
 				'active' => true,
 			],
 		];
@@ -37,7 +37,7 @@ abstract class Header_Footer_Base extends Theme_Section_Document {
 		$this->update_control(
 			'section_page_style',
 			[
-				'label' => esc_html__( 'Style', 'kitify' ),
+				'label' => __( 'Style', 'kitify' ),
 			]
 		);
 	}

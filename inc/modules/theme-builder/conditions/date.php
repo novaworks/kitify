@@ -20,7 +20,7 @@ class Date extends Condition_Base {
 	}
 
 	public function get_label() {
-		return esc_html__( 'Date Archive', 'kitify' );
+		return __( 'Date Archive', 'kitify' );
 	}
 
 	public function check( $args ) {

@@ -105,6 +105,21 @@ add_action('elementor/element/accordion/section_title_style/before_section_end',
         ]
     );
 }, 10);
+add_action('elementor/element/accordion/section_toggle_style_title/before_section_end', function ( $element ){
+	$element->add_control(
+		'active_title_background',
+		[
+			'label' => __( 'Active Background', 'kitify' ),
+			'type' => \Elementor\Controls_Manager::COLOR,
+			'selectors' => [
+				'{{WRAPPER}} .elementor-active.elementor-tab-title' => 'background-color: {{VALUE}};',
+			],
+		],
+		[
+			'index' => 18
+		]
+	);
+});
 
 /**
  * Add `Icon Vertical Space` for `Accordion` widget of Elementor
@@ -118,6 +133,22 @@ add_action('elementor/element/accordion/section_toggle_style_icon/before_section
             'selectors' => [
                 '{{WRAPPER}} .elementor-accordion .elementor-accordion-icon' => 'margin-top: {{SIZE}}{{UNIT}};',
             ],
+        ]
+    );
+}, 10);
+
+/**
+ * Add `Close All` for `Accordion` widget of Elementor
+ */
+add_action('elementor/element/accordion/section_title/before_section_end', function ( $element ){
+    $element->add_control(
+        'close_all',
+        [
+            'label' => __( 'Close All ?', 'kitify' ),
+            'type' => \Elementor\Controls_Manager::SWITCHER,
+	        'return_value' => 'accordion-close-all',
+	        'prefix_class' => '',
+            'separator' => 'before',
         ]
     );
 }, 10);
@@ -153,6 +184,7 @@ add_action('elementor/element/divider/section_divider_style/before_section_end',
 /**
  * Modify Icon List - Text Indent control
  */
+
 add_action('elementor/element/icon-list/section_text_style/before_section_end', function( $element ){
     $element->remove_control('text_indent');
     $element->update_control('icon_color', [
@@ -177,6 +209,15 @@ add_action('elementor/element/icon-list/section_text_style/before_section_end', 
         ]
     );
 }, 10 );
+
+add_action('elementor/element/icon-list/section_icon_list/before_section_end', function( $element ){
+	$element->update_control('divider_height', [
+		'selectors' => [
+			'{{WRAPPER}}' => '--divider-height: {{SIZE}}{{UNIT}}',
+			'{{WRAPPER}} .elementor-icon-list-item:not(:last-child):after' => 'height: {{SIZE}}{{UNIT}}',
+		]
+	]);
+});
 
 /**
  * Modify Counter - Visible control
@@ -306,9 +347,58 @@ add_action('elementor/element/spacer/section_spacer/before_section_end', functio
 	        'label_off'    => esc_html__( 'No', 'kitify' ),
 	        'return_value' => 'yes',
 	        'selectors' => [
-		        '{{WRAPPER}}, {{WRAPPER}} .elementor-widget-container, {{WRAPPER}} .elementor-spacer, {{WRAPPER}} .elementor-spacer, .elementor-spacer-inner' => 'height: 100%',
+	        	'{{WRAPPER}}' => 'display: flex;height: 100%',
+	        	'{{WRAPPER}} .elementor-widget-container' => 'width: 100%'
 	        ],
         ]
     );
 
 }, 10 );
+
+/**
+ * Modify Heading - Color Hover
+ */
+add_action('elementor/element/heading/section_title_style/before_section_end', function( $element ){
+	$element->add_control(
+		'title_hover_color',
+		[
+			'label' => __( 'Text Hover Color', 'kitify' ),
+			'type' => \Elementor\Controls_Manager::COLOR,
+			'selectors' => [
+				'{{WRAPPER}} .elementor-heading-title:hover' => 'color: {{VALUE}};',
+			],
+		]
+	);
+}, 10 );
+
+/**
+ * Modify Image Box - Color Hover
+ */
+add_action('elementor/element/image-box/section_style_content/before_section_end', function ( $element ){
+	$element->add_control(
+		'title_hover_color',
+		[
+			'label' => __( 'Hover Color', 'kitify' ),
+			'type' => \Elementor\Controls_Manager::COLOR,
+			'selectors' => [
+				'{{WRAPPER}} .elementor-image-box-wrapper:hover .elementor-image-box-title' => 'color: {{VALUE}};',
+			],
+		],
+		[
+			'index' => 39
+		]
+	);
+	$element->add_control(
+		'description_hover_color',
+		[
+			'label' => __( 'Hover Color', 'kitify' ),
+			'type' => \Elementor\Controls_Manager::COLOR,
+			'selectors' => [
+				'{{WRAPPER}} .elementor-image-box-wrapper:hover .elementor-image-box-description' => 'color: {{VALUE}};',
+			],
+		],
+		[
+			'index' => 53
+		]
+	);
+});

@@ -20,7 +20,7 @@ abstract class Single_Base extends Archive_Single_Base {
 	}
 
 	public static function get_title() {
-		return esc_html__( 'Single', 'kitify' );
+		return __( 'Single', 'kitify' );
 	}
 
 	public static function get_editor_panel_config() {
@@ -36,7 +36,7 @@ abstract class Single_Base extends Archive_Single_Base {
 	protected static function get_editor_panel_categories() {
 		$categories = [
 			'theme-elements-single' => [
-				'title' => esc_html__( 'Single', 'kitify' ),
+				'title' => __( 'Single', 'kitify' ),
 			],
 		];
 
@@ -127,10 +127,10 @@ abstract class Single_Base extends Archive_Single_Base {
 
 		return [
 			'single' => [
-				'label' => esc_html__( 'Single', 'kitify' ),
+				'label' => __( 'Single', 'kitify' ),
 				'options' => $post_types_options,
 			],
-			'page/404' => esc_html__( '404', 'kitify' ),
+			'page/404' => __( '404', 'kitify' ),
 		];
 	}
 
@@ -165,11 +165,11 @@ abstract class Single_Base extends Archive_Single_Base {
 
 		wp_localize_script( 'elementor-frontend', 'elementorPreviewErrorArgs', [
 			/* translators: %s: is the widget name. */
-			'headerMessage' => sprintf( esc_html__( 'The %s Widget was not found in your template.', 'kitify' ), $depended_widget_title ),
+			'headerMessage' => sprintf( __( 'The %s Widget was not found in your template.', 'kitify' ), $depended_widget_title ),
 			/* translators: %1$s: is the widget name. %2$s: is the template name.  */
-			'message' => sprintf( esc_html__( 'You must include the %1$s Widget in your template (%2$s), in order for Elementor to work on this page.', 'kitify' ), $depended_widget_title, '<strong>' . static::get_title() . '</strong>' ),
+			'message' => sprintf( __( 'You must include the %1$s Widget in your template (%2$s), in order for Elementor to work on this page.', 'kitify' ), $depended_widget_title, '<strong>' . static::get_title() . '</strong>' ),
 			'strings' => [
-				'confirm' => esc_html__( 'Edit Template', 'kitify' ),
+				'confirm' => __( 'Edit Template', 'kitify' ),
 			],
 			'confirmURL' => $this->get_edit_url(),
 		] );

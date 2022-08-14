@@ -42,12 +42,12 @@ abstract class Theme_Page_Document extends Theme_Document {
 		$this->add_control(
 			'page_template',
 			[
-				'label' => esc_html__( 'Page Layout', 'kitify' ),
+				'label' => __( 'Page Layout', 'kitify' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => [
 					'' => __( 'Default', 'kitify' ),
-					PageTemplatesModule::TEMPLATE_CANVAS => esc_html__( 'Elementor Canvas', 'kitify' ),
-					PageTemplatesModule::TEMPLATE_HEADER_FOOTER => esc_html__( 'Elementor Full Width', 'kitify' ),
+					PageTemplatesModule::TEMPLATE_CANVAS => __( 'Elementor Canvas', 'kitify' ),
+					PageTemplatesModule::TEMPLATE_HEADER_FOOTER => __( 'Elementor Full Width', 'kitify' ),
 				],
 			]
 		);
@@ -56,7 +56,7 @@ abstract class Theme_Page_Document extends Theme_Document {
 			'page_template_default_description',
 			[
 				'type' => Controls_Manager::RAW_HTML,
-				'raw' => esc_html__( 'Default Page Template from your theme', 'kitify' ),
+				'raw' => __( 'Default Page Template from your theme', 'kitify' ),
 				'separator' => 'none',
 				'content_classes' => 'elementor-descriptor',
 				'condition' => [
@@ -69,7 +69,7 @@ abstract class Theme_Page_Document extends Theme_Document {
 			'page_template_canvas_description',
 			[
 				'type' => Controls_Manager::RAW_HTML,
-				'raw' => esc_html__( 'No header, no footer, just Elementor', 'kitify' ),
+				'raw' => __( 'No header, no footer, just Elementor', 'kitify' ),
 				'separator' => 'none',
 				'content_classes' => 'elementor-descriptor',
 				'condition' => [
@@ -82,7 +82,7 @@ abstract class Theme_Page_Document extends Theme_Document {
 			'page_template_header_footer_description',
 			[
 				'type' => Controls_Manager::RAW_HTML,
-				'raw' => esc_html__( 'This template includes the header, full-width content and footer', 'kitify' ),
+				'raw' => __( 'This template includes the header, full-width content and footer', 'kitify' ),
 				'separator' => 'none',
 				'content_classes' => 'elementor-descriptor',
 				'condition' => [
@@ -118,6 +118,7 @@ abstract class Theme_Page_Document extends Theme_Document {
 		}
 
 		if ( $add_body_class ) {
+			$body_classes[] = 'elementor-page';
 			$body_classes[] = 'elementor-page-' . $this->get_main_id();
 		}
 

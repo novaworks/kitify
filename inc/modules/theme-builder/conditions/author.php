@@ -22,7 +22,7 @@ class Author extends Condition_Base {
 	}
 
 	public function get_label() {
-		return esc_html__( 'Author Archive', 'kitify' );
+		return __( 'Author Archive', 'kitify' );
 	}
 
 	public function check( $args = null ) {

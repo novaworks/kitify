@@ -34,11 +34,11 @@ class Post_Type_Archive extends Condition_Base {
 	}
 
 	public function get_label() {
-		return sprintf( esc_html__( '%s Archive', 'kitify' ), $this->post_type->label );
+		return sprintf( __( '%s Archive', 'kitify' ), $this->post_type->label );
 	}
 
 	public function get_all_label() {
-		return sprintf( esc_html__( '%s Archive', 'kitify' ), $this->post_type->label );
+		return sprintf( __( '%s Archive', 'kitify' ), $this->post_type->label );
 	}
 
 	public function register_sub_conditions() {

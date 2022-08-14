@@ -12,7 +12,7 @@ class Any_Child_Of extends Child_Of {
 	}
 
 	public function get_label() {
-		return esc_html__( 'Any Child Of', 'kitify' );
+		return __( 'Any Child Of', 'kitify' );
 	}
 
 	public function check( $args ) {

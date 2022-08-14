@@ -12,6 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Conditions_Cache {
 
 	const OPTION_NAME = 'kitify_theme_builder_conditions';
+	//const OPTION_NAME = 'elementor_pro_theme_builder_conditions';
 
 	protected $conditions = [];
 

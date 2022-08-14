@@ -11,12 +11,16 @@ class Search_Results extends Archive {
 		return 'search-results';
 	}
 
-	public static function get_sub_type() {
+    public static function get_type() {
+        return 'search-results';
+    }
+
+    public static function get_sub_type() {
 		return 'search';
 	}
 
 	public static function get_title() {
-		return esc_html__( 'Search Results', 'kitify' );
+		return __( 'Search Results', 'kitify' );
 	}
 
 	protected static function get_site_editor_icon() {
@@ -25,10 +29,10 @@ class Search_Results extends Archive {
 
 	protected static function get_site_editor_tooltip_data() {
 		return [
-			'title' => esc_html__( 'What is a Search Results Template?', 'kitify' ),
-			'content' => esc_html__( 'You can easily control the layout and design of the Search Results page with the Search Results template, which is simply a special archive template just for displaying search results.', 'kitify' ),
-			'tip' => esc_html__( 'You can customize the message if there are no results for the search term.', 'kitify' ),
-			'docs' => 'https://go.elementor.com/app-theme-builder-search-results',
+			'title' => __( 'What is a Search Results Template?', 'kitify' ),
+			'content' => __( 'You can easily control the layout and design of the Search Results page with the Search Results template, which is simply a special archive template just for displaying search results.', 'kitify' ),
+			'tip' => __( 'You can customize the message if there are no results for the search term.', 'kitify' ),
+			'docs' => 'https://trk.elementor.com/app-theme-builder-search-results',
 			'video_url' => 'https://www.youtube.com/embed/KKkIU_L5sDo',
 		];
 	}

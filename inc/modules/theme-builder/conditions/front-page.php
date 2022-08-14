@@ -20,7 +20,7 @@ class Front_Page extends Condition_Base {
 	}
 
 	public function get_label() {
-		return esc_html__( 'Front Page', 'kitify' );
+		return __( 'Front Page', 'kitify' );
 	}
 
 	public function check( $args ) {

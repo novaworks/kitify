@@ -79,6 +79,12 @@ class Locations_Manager {
 				// Don't enqueue current post here (let the  preview/frontend components to handle it)
 				if ( $current_post_id !== $post_id ) {
 					$css_file = new Post_CSS( $post_id );
+					/* Fix Dynamic tag issue - we should render css content before enqueue */
+					$metadata = $css_file->get_meta();
+					if(empty($metadata['status'])){
+						$css_file->get_content();
+					}
+					/* Fix Dynamic tag issue */
 					$css_files[] = $css_file;
 				}
 			}
@@ -239,6 +245,7 @@ class Locations_Manager {
 	public function do_location( $location ) {
 
         $documents_by_conditions = apply_filters('kitify/prepare-do-location', null, $location);
+
         if(is_null($documents_by_conditions)){
             /** @var Theme_Document[] $documents_by_conditions */
             $documents_by_conditions = Module::instance()->get_conditions_manager()->get_documents_for_location( $location );

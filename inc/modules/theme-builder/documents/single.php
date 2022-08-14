@@ -7,12 +7,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Single extends Single_Base {
 
-	protected static function get_site_editor_type() {
+	public static function get_type() {
 		return 'single';
 	}
 
 	public static function get_title() {
-		return esc_html__( 'Single', 'kitify' );
+		return __( 'Single', 'kitify' );
 	}
 
 	protected function get_remote_library_config() {

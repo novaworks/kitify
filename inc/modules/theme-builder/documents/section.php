@@ -10,12 +10,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Section extends Theme_Section_Document {
 
-	public function get_name() {
+    public static function get_type()
+    {
+        return 'section';
+    }
+
+    public function get_name() {
 		return 'section';
 	}
 
 	public static function get_title() {
-		return esc_html__( 'Section', 'kitify' );
+		return __( 'Section', 'kitify' );
 	}
 
 	public static function get_properties() {
@@ -43,7 +48,7 @@ class Section extends Theme_Section_Document {
 		$this->start_controls_section(
 			'location_settings',
 			[
-				'label' => esc_html__( 'Location Settings', 'kitify' ),
+				'label' => __( 'Location Settings', 'kitify' ),
 				'tab' => Controls_Manager::TAB_SETTINGS,
 			]
 		);
@@ -59,7 +64,7 @@ class Section extends Theme_Section_Document {
 		$this->add_control(
 			'location',
 			[
-				'label' => esc_html__( 'Location', 'kitify' ),
+				'label' => __( 'Location', 'kitify' ),
 				'label_block' => true,
 				'type' => Controls_Manager::SELECT,
 				'default' => $this->get_location(),
@@ -73,7 +78,7 @@ class Section extends Theme_Section_Document {
 			[
 				'type' => Controls_Manager::BUTTON,
 				'label' => '',
-				'text' => esc_html__( 'Apply', 'kitify' ),
+				'text' => __( 'Apply', 'kitify' ),
 				'separator' => 'none',
 				'event' => 'elementorThemeBuilder:ApplyPreview',
 			]

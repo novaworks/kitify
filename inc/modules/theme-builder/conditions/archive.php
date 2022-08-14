@@ -28,11 +28,11 @@ class Archive extends Condition_Base {
 	}
 
 	public function get_label() {
-		return esc_html__( 'Archives', 'kitify' );
+		return __( 'Archives', 'kitify' );
 	}
 
 	public function get_all_label() {
-		return esc_html__( 'All Archives', 'kitify' );
+		return __( 'All Archives', 'kitify' );
 	}
 
 	public function register_sub_conditions() {

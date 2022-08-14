@@ -174,7 +174,6 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
         wc_set_loop_prop('kitify_preset', $preset);
         wc_set_loop_prop('kitify_type', $this->type );
         wc_set_loop_prop('grid_style', $this->settings['grid_style'] );
-        wc_set_loop_prop('enable_p_rating', $this->settings['enable_p_rating'] );
         wc_set_loop_prop('kitify_enable_carousel', $enable_carousel );
 
         $item_html_tag = !empty($this->settings['item_html_tag']) ? $this->settings['item_html_tag'] : 'h2';

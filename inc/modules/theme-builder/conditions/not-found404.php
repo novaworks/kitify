@@ -20,7 +20,7 @@ class Not_Found404 extends Condition_Base {
 	}
 
 	public function get_label() {
-		return esc_html__( '404 Page', 'kitify' );
+		return __( '404 Page', 'kitify' );
 	}
 
 	public function check( $args ) {

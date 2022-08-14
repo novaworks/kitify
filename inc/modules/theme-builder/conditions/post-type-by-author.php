@@ -30,7 +30,7 @@ class Post_Type_By_Author extends Condition_Base {
 	}
 
 	public function get_label() {
-		return sprintf( esc_html__( '%s By Author', 'kitify' ), $this->post_type->label );
+		return sprintf( __( '%s By Author', 'kitify' ), $this->post_type->label );
 	}
 
 	public function check( $args = null ) {

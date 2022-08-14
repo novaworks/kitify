@@ -22,7 +22,7 @@ class By_Author extends Condition_Base {
 	}
 
 	public function get_label() {
-		return esc_html__( 'By Author', 'kitify' );
+		return __( 'By Author', 'kitify' );
 	}
 
 	public function check( $args = null ) {

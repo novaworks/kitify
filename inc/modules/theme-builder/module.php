@@ -106,7 +106,7 @@ class Module extends \Elementor\Core\Base\Module {
 				'view_live_site' => __( 'View Live Site', 'kitify' ),
 			],
             'urls' => [
-                'modules' => kitify()->plugin_url('')
+                'modules' => kitify()->plugin_url('/inc/modules/')
             ]
 		] );
 
@@ -144,7 +144,7 @@ class Module extends \Elementor\Core\Base\Module {
 	public function register_controls() {
 		$controls_manager = kitify()->elementor()->controls_manager;
 
-		$controls_manager->register_control( Classes\Conditions_Repeater::CONTROL_TYPE, new Classes\Conditions_Repeater() );
+		$controls_manager->register( new Classes\Conditions_Repeater() );
 	}
 
 	public function create_new_dialog_types( $types ) {
@@ -364,7 +364,7 @@ class Module extends \Elementor\Core\Base\Module {
 
         wp_enqueue_script(
             'kitify-editor-conditions',
-            kitify()->plugin_url( 'assets/js/kitify-editor-conditions.js' ),
+            kitify()->plugin_url( 'assets/js/kitify-editor-conditions.min.js' ),
             [
                 'backbone-marionette',
                 'elementor-common',
@@ -404,7 +404,7 @@ class Module extends \Elementor\Core\Base\Module {
 		add_filter( 'kitify_pro/admin/localize_settings', [ $this, 'localize_settings' ] );
 		add_filter( 'elementor/editor/localize_settings', [ $this, 'localize_settings' ] );
 		add_filter( 'elementor/document/config', [ $this, 'document_config' ], 10, 2 );
-    add_action( 'elementor/editor/before_enqueue_scripts', [ $this, 'enqueue_editor_scripts' ] );
+        add_action( 'elementor/editor/before_enqueue_scripts', [ $this, 'enqueue_editor_scripts' ] );
 
 		// Admin
 		add_action( 'admin_head', [ $this, 'admin_head' ] );
