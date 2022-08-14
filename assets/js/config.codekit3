@@ -9,6 +9,17 @@
   ],
   "creatorBuild" : "34214",
   "files" : {
+    "\/addons\/animated-text-min.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/addons\/animated-text-min-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
     "\/addons\/animated-text.js" : {
       "bF" : 0,
       "ft" : 64,
@@ -93,6 +104,17 @@
       "mi" : 1,
       "oA" : 0,
       "oAP" : "\/addons\/motion-fx.min-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
+    "\/addons\/nav-menu-min.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/addons\/nav-menu-min-min.js",
       "oF" : 0,
       "sC" : 3,
       "tS" : 0
@@ -229,6 +251,17 @@
       "sC" : 3,
       "tS" : 0
     },
+    "\/addons\/timeline-horizontal-min.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/addons\/timeline-horizontal-min-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
     "\/addons\/timeline-horizontal.js" : {
       "bF" : 0,
       "ft" : 64,
@@ -236,6 +269,17 @@
       "mi" : 1,
       "oA" : 0,
       "oAP" : "\/addons\/timeline-horizontal-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
+    "\/addons\/timeline-vertical-min.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/addons\/timeline-vertical-min-min.js",
       "oF" : 0,
       "sC" : 3,
       "tS" : 0
@@ -258,6 +302,17 @@
       "mi" : 1,
       "oA" : 0,
       "oAP" : "\/addons\/toggle-sidebar-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
+    },
+    "\/addons\/twitter-min.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/addons\/twitter-min-min.js",
       "oF" : 0,
       "sC" : 3,
       "tS" : 0

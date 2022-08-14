@@ -46,7 +46,7 @@
                 selector: '.menu-item-has-children'
             });
 
-            if ( Kitifys.mobileAndTabletCheck() ) {
+            if ( Kitify.mobileAndTabletCheck() ) {
                 $scope.find( '.kitify-nav:not(.kitify-nav--vertical-sub-bottom)' ).on( 'touchstart.kitifyNavMenu', '.menu-item > a', touchStartItem );
                 $scope.find( '.kitify-nav:not(.kitify-nav--vertical-sub-bottom)' ).on( 'touchend.kitifyNavMenu', '.menu-item > a', touchEndItem );
 
@@ -56,7 +56,7 @@
                 $scope.find( '.kitify-nav:not(.kitify-nav--vertical-sub-bottom)' ).on( 'click.kitifyNavMenu', '.menu-item > a', clickItem );
             }
 
-            if ( ! Kitifys.isEditMode() ) {
+            if ( ! Kitify.isEditMode() ) {
                 initMenuAnchorsHandler();
             }
 
@@ -349,7 +349,7 @@
                 observer.observe( $anchor[0] );
             }
 
-            if ( Kitifys.isEditMode() ) {
+            if ( Kitify.isEditMode() ) {
                 $scope.data( 'initialized', false );
             }
         } );

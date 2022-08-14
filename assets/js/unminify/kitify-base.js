@@ -50,7 +50,7 @@
         slider.viewport.closest('.woocommerce-product-gallery').css('--singleproduct-thumbs-height', slider.viewport.height() + 'px');
     });
 
-    var Kitifys = {
+    var Kitify = {
         log: function (...data){
             var args = Array.prototype.slice.call(arguments)
             console.log(...data);
@@ -72,18 +72,18 @@
              **/
             data:{},
             remove: function (url) {
-                delete Kitifys.localCache.data[url];
+                delete Kitify.localCache.data[url];
             },
             exist: function (url) {
-                return !!Kitifys.localCache.data[url] && ((Date.now() - Kitifys.localCache.data[url]._) / 1000 < Kitifys.localCache.timeout2);
+                return !!Kitify.localCache.data[url] && ((Date.now() - Kitify.localCache.data[url]._) / 1000 < Kitify.localCache.timeout2);
             },
             get: function (url) {
-                Kitifys.log('Get cache for ' + url);
-                return Kitifys.localCache.data[url].data;
+                Kitify.log('Get cache for ' + url);
+                return Kitify.localCache.data[url].data;
             },
             set: function (url, cachedData, callback) {
-                Kitifys.localCache.remove(url);
-                Kitifys.localCache.data[url] = {
+                Kitify.localCache.remove(url);
+                Kitify.localCache.data[url] = {
                     _: Date.now(),
                     data: cachedData
                 };
@@ -106,14 +106,14 @@
             },
             validCache: function ( force ){
                 var expiry = typeof KitifySettings.local_ttl !== "undefined" && parseInt(KitifySettings.local_ttl) > 0 ? parseInt(KitifySettings.local_ttl) : 60 * 30; // 30 mins
-                var cacheKey = Kitifys.localCache.cache_key + '_cache_timeout' + Kitifys.localCache.hashCode(KitifySettings.homeURL);
+                var cacheKey = Kitify.localCache.cache_key + '_cache_timeout' + Kitify.localCache.hashCode(KitifySettings.homeURL);
                 try{
                     var whenCached = localStorage.getItem(cacheKey);
                     if (whenCached !== null || force) {
                         var age = (Date.now() - whenCached) / 1000;
                         if (age > expiry || force) {
                             Object.keys(localStorage).forEach(function (key) {
-                                if (key.indexOf(Kitifys.localCache.cache_key) === 0) {
+                                if (key.indexOf(Kitify.localCache.cache_key) === 0) {
                                     localStorage.removeItem(key);
                                 }
                             });
@@ -124,7 +124,7 @@
                     }
                 }
                 catch (ex) {
-                    Kitifys.log(ex);
+                    Kitify.log(ex);
                 }
             }
         },
@@ -362,10 +362,10 @@
 
             function findAsForObj(value, key) {
                 var _found = [];
-                for (var i = 0; i < Kitifys.carouselAsFor.length; i++) {
-                    if (Kitifys.carouselAsFor[i][key] == value) {
-                        Kitifys.carouselAsFor[i]['index'] = i;
-                        _found.push(Kitifys.carouselAsFor[i]);
+                for (var i = 0; i < Kitify.carouselAsFor.length; i++) {
+                    if (Kitify.carouselAsFor[i][key] == value) {
+                        Kitify.carouselAsFor[i]['index'] = i;
+                        _found.push(Kitify.carouselAsFor[i]);
                         break;
                     }
                 }
@@ -388,7 +388,7 @@
                         swiper: _thumb_swiper,
                     }
                 } else {
-                    Kitifys.carouselAsFor.push({
+                    Kitify.carouselAsFor.push({
                         main: carousel_id,
                         thumb: elementSettings.asFor,
                         main_init: false,
@@ -633,7 +633,7 @@
                         };
 
                         var url_request = $('a.next', $parentNav).get(0).href.replace(/^\//, '');
-                        url_request = Kitifys.removeURLParameter(url_request, '_');
+                        url_request = Kitify.removeURLParameter(url_request, '_');
 
                         var ajaxOpts = {
                             url: url_request,
@@ -760,21 +760,21 @@
 
                     if( ajaxType == 'load_widget' ){
                         var _tmpURL = url_request;
-                        url_request = Kitifys.addQueryArg(KitifySettings.widgetApiUrl, 'template_id', templateId);
-                        url_request = Kitifys.addQueryArg(url_request, 'widget_id', widgetId);
-                        url_request = Kitifys.addQueryArg(url_request, 'dev', KitifySettings.devMode);
-                        url_request = Kitifys.addQueryArg(url_request, pagedKey, Kitifys.getUrlParameter(pagedKey, _tmpURL));
-                        url_request = Kitifys.addQueryArg(url_request, 'kitifypagedkey', pagedKey);
+                        url_request = Kitify.addQueryArg(KitifySettings.widgetApiUrl, 'template_id', templateId);
+                        url_request = Kitify.addQueryArg(url_request, 'widget_id', widgetId);
+                        url_request = Kitify.addQueryArg(url_request, 'dev', KitifySettings.devMode);
+                        url_request = Kitify.addQueryArg(url_request, pagedKey, Kitify.getUrlParameter(pagedKey, _tmpURL));
+                        url_request = Kitify.addQueryArg(url_request, 'kitifypagedkey', pagedKey);
                     }
 
-                    url_request = Kitifys.removeURLParameter(url_request, '_');
+                    url_request = Kitify.removeURLParameter(url_request, '_');
 
                     var ajaxOpts = {
                         url: url_request,
                         type: "GET",
                         cache: true,
                         dataType: 'html',
-                        ajax_request_id: Kitifys.getUrlParameter(pagedKey, url_request),
+                        ajax_request_id: Kitify.getUrlParameter(pagedKey, url_request),
                         success: function (res) {
                             if(ajaxType == 'load_widget'){
                                 success_func(res, true);
@@ -1007,7 +1007,7 @@
         },
         loadStyle: function (style, uri) {
 
-            if (Kitifys.addedStyles.hasOwnProperty(style) && Kitifys.addedStyles[style] === uri) {
+            if (Kitify.addedStyles.hasOwnProperty(style) && Kitify.addedStyles[style] === uri) {
                 return style;
             }
 
@@ -1015,7 +1015,7 @@
                 return;
             }
 
-            Kitifys.addedStyles[style] = uri;
+            Kitify.addedStyles[style] = uri;
 
             return new Promise(function (resolve, reject) {
                 var tag = document.createElement('link');
@@ -1036,13 +1036,13 @@
             });
         },
         loadScriptAsync: function (script, uri, callback, async) {
-            if (Kitifys.addedScripts.hasOwnProperty(script)) {
+            if (Kitify.addedScripts.hasOwnProperty(script)) {
                 return script;
             }
             if (!uri) {
                 return;
             }
-            Kitifys.addedScripts[script] = uri;
+            Kitify.addedScripts[script] = uri;
             return new Promise(function (resolve, reject) {
                 var tag = document.createElement('script');
 
@@ -1107,108 +1107,81 @@
         },
         hamburgerPanel: function ($scope) {
 
-            var wid = $scope.data('id');
+            var wid = $scope.data('id'),
+                _wid_tpl_id = $scope.find('.kitify-hamburger-panel__content').attr('data-template-id'),
+                _need_add_remove = true,
+                $wContent = $scope.find('>.elementor-widget-container').clone();
 
-            if ($('.kitify-site-wrapper > .elementor-location-header > .elementor-section-wrap > .kitify-burger-wrapall').length == 0) {
-                $(document.createElement('div')).addClass('kitify-burger-wrapall').appendTo($('.kitify-site-wrapper > .elementor-location-header > .elementor-section-wrap'));
+            if( !!$scope.data('hamburgerTemplateId') && ( _wid_tpl_id == $scope.data('hamburgerTemplateId') ) ){
+                _need_add_remove = false;
+            }
+            else{
+                $scope.data('hamburgerTemplateId', _wid_tpl_id);
+            }
+
+            if ($('.kitify-site-wrapper > .elementor-location-header >.kitify-burger-wrapall').length == 0) {
+                $('<div/>').addClass('kitify-burger-wrapall').appendTo($('.kitify-site-wrapper > .elementor-location-header'));
             }
 
             var $burger_wrap_all = $('.kitify-burger-wrapall');
 
-            if ($('.elementor-element-' + wid, $burger_wrap_all).length) {
+            if ( _need_add_remove && $('.elementor-element-' + wid, $burger_wrap_all).length) {
                 $('.elementor-element-' + wid, $burger_wrap_all).remove();
             }
 
-            var $new_el = $(document.createElement('div')).addClass('elementor-element elementor-element-' + wid).append($scope.find('>.elementor-widget-container').clone()).appendTo($burger_wrap_all);
+            var $new_scope = $scope;
 
-            //$burger_wrap_all.append('<div class="elementor-element elementor-element-'+wid+'">'+$scope.find('>.elementor-widget-container').html()+'</div>');
+            if($scope.closest('.elementor-location-header').length){
+                if(_need_add_remove){
+                    $('<div/>').addClass('elementor-element elementor-element-' + wid).append($wContent).appendTo($burger_wrap_all);
+                }
+                $('.lastudio-kit.elementor-element-' + wid + ' .kitify-hamburger-panel__instance').remove();
+                $new_scope = $('.elementor-element-' + wid, $burger_wrap_all);
+                $('.kitify-hamburger-panel__toggle', $new_scope).remove();
+            }
 
-            var $new_scope = $('.elementor-element-' + wid, $burger_wrap_all);
-            $('.kitify-hamburger-panel__instance', $scope).remove();
-            $('.kitify-hamburger-panel__toggle', $new_scope).remove();
-
-            var $panel_old = $('.kitify-hamburger-panel', $scope),
-                $panel = $('.kitify-hamburger-panel', $new_scope),
+            var $panel = $('.kitify-hamburger-panel', $new_scope),
                 $toggleButton = $('.kitify-hamburger-panel__toggle', $scope),
                 $instance = $('.kitify-hamburger-panel__instance', $new_scope),
                 $cover = $('.kitify-hamburger-panel__cover', $new_scope),
                 $inner = $('.kitify-hamburger-panel__inner', $new_scope),
                 $closeButton = $('.kitify-hamburger-panel__close-button', $new_scope),
-                $panelContent = $('.kitify-hamburger-panel__content', $new_scope),
-                scrollOffset,
-                timer,
                 $html = $('html'),
-                settings = $panel.data('settings') || {};
+                settings = $panel.data('settings') || {},
+                $panelInstance = $('.elementor-element-' + wid + ' .kitify-hamburger-panel');
 
-            if ('ontouchend' in window || 'ontouchstart' in window) {
-                $toggleButton.on('touchstart', function (event) {
-                    scrollOffset = $(window).scrollTop();
-                });
-
-                $toggleButton.on('touchend', function (event) {
-                    if (scrollOffset !== $(window).scrollTop()) {
-                        return false;
-                    }
-
-                    if (timer) {
-                        clearTimeout(timer);
-                    }
-
-                    if (!$panel.hasClass('open-state')) {
-                        timer = setTimeout(function () {
-                            $panel.addClass('open-state');
-                            $panel_old.addClass('open-state');
-                        }, 10);
-                        $html.addClass('kitify-hamburger-panel-visible');
-                        Kitifys.elementorFrontendInit($inner);
-
-                        if (settings['ajaxTemplate']) {
-                            Kitifys.ajaxLoadTemplate($panelContent, $panel);
-                        }
-                    } else {
-                        $panel.removeClass('open-state');
-                        $panel_old.removeClass('open-state');
-                        $html.removeClass('kitify-hamburger-panel-visible');
-                    }
-                });
-
-            } else {
-                $toggleButton.on('click', function (event) {
-
-                    if (!$panel.hasClass('open-state')) {
-                        $panel.addClass('open-state');
-                        $panel_old.addClass('open-state');
-                        $html.addClass('kitify-hamburger-panel-visible');
-                        Kitifys.elementorFrontendInit($inner);
-
-                        if (settings['ajaxTemplate']) {
-                            Kitifys.ajaxLoadTemplate($panelContent, $panel);
-                        }
-                    } else {
-                        $panel.removeClass('open-state');
-                        $panel_old.removeClass('open-state');
-                        $html.removeClass('kitify-hamburger-panel-visible');
-                    }
-                });
+            if (!settings['ajaxTemplate']) {
+                Kitify.elementorFrontendInit($inner, false);
             }
 
-            $closeButton.on('click', function (event) {
-
+            $toggleButton.on('click', function (e) {
+                e.preventDefault();
                 if (!$panel.hasClass('open-state')) {
-                    $panel.addClass('open-state');
-                    $panel_old.addClass('open-state');
+                    $panelInstance.addClass('open-state');
                     $html.addClass('kitify-hamburger-panel-visible');
-                    Kitifys.initAnimationsHandlers($inner);
+                    Kitify.initAnimationsHandlers($inner);
                 } else {
-                    $panel.removeClass('open-state');
-                    $panel_old.removeClass('open-state');
+                    $panelInstance.removeClass('open-state');
+                    $html.removeClass('kitify-hamburger-panel-visible');
+                }
+            });
+            $closeButton.on('click', function (e) {
+                e.preventDefault();
+                if (!$panel.hasClass('open-state')) {
+                    $panelInstance.addClass('open-state');
+                    $html.addClass('kitify-hamburger-panel-visible');
+                    Kitify.initAnimationsHandlers($inner);
+                }
+                else {
+                    $panelInstance.removeClass('open-state');
                     $html.removeClass('kitify-hamburger-panel-visible');
                 }
             });
 
             $(document).on('click.kitifyHamburgerPanel', function (event) {
-                if (($(event.target).closest($toggleButton).length || $(event.target).closest($instance).length)
-                    && !$(event.target).closest($cover).length
+
+                if (($(event.target).closest('.kitify-hamburger-panel__toggle').length || $(event.target).closest('.kitify-hamburger-panel__instance').length)
+                    && !$(event.target).closest('.kitify-hamburger-panel__cover').length
                 ) {
                     return;
                 }
@@ -1217,8 +1190,7 @@
                     return;
                 }
 
-                $panel.removeClass('open-state');
-                $panel_old.removeClass('open-state');
+                $('.elementor-element-' + wid + ' .kitify-hamburger-panel').removeClass('open-state');
 
                 if (!$(event.target).closest('.kitify-hamburger-panel__toggle').length) {
                     $html.removeClass('kitify-hamburger-panel-visible');
@@ -1267,20 +1239,20 @@
 
                     for (var scriptHandler in templateScripts) {
                         if($( '#' + scriptHandler + '-js').length == 0){
-                            Kitifys.addedAssetsPromises.push(Kitifys.loadScriptAsync(scriptHandler, templateScripts[scriptHandler], '', true));
+                            Kitify.addedAssetsPromises.push(Kitify.loadScriptAsync(scriptHandler, templateScripts[scriptHandler], '', true));
                         }
                     }
 
                     for (var styleHandler in templateStyles) {
                         if($('#' + styleHandler + '-css').length == 0) {
-                            Kitifys.addedAssetsPromises.push(Kitifys.loadStyle(styleHandler, templateStyles[styleHandler]));
+                            Kitify.addedAssetsPromises.push(Kitify.loadStyle(styleHandler, templateStyles[styleHandler]));
                         }
                     }
 
-                    Promise.all(Kitifys.addedAssetsPromises).then(function (value) {
+                    Promise.all(Kitify.addedAssetsPromises).then(function (value) {
                         loader.remove();
                         $contentHolder.append(templateContent);
-                        Kitifys.elementorFrontendInit($contentHolder);
+                        Kitify.elementorFrontendInit($contentHolder);
 
                         $(document).trigger('kitify/ajax-load-template/after', {
                             target: $target,
@@ -1291,7 +1263,7 @@
                         console.log(`An error occurred while insert the asset resources, however we still need to insert content. Reason detail: "${reason}"`);
                         loader.remove();
                         $contentHolder.append(templateContent);
-                        Kitifys.elementorFrontendInit($contentHolder);
+                        Kitify.elementorFrontendInit($contentHolder);
 
                         $(document).trigger('kitify/ajax-load-template/after', {
                             target: $target,
@@ -1401,7 +1373,7 @@
             }
         },
         wooGallery: function ($scope) {
-            if (Kitifys.isEditMode()) {
+            if (Kitify.isEditMode()) {
                 $('.woocommerce-product-gallery', $scope).wc_product_gallery();
             }
 
@@ -1636,11 +1608,11 @@
             processInsertData: function ($el, templateContent, template_id){
                 if (templateContent) {
                     $el.html(templateContent);
-                    Kitifys.elementorFrontendInit($el);
+                    Kitify.elementorFrontendInit($el);
 
                     if($el.find('div[data-kitify_ajax_loadtemplate]:not(.template-loaded,.is-loading)').length){
-                        Kitifys.log('found template in ajax content');
-                        Kitifys.ajaxTemplateHelper.init();
+                        Kitify.log('found template in ajax content');
+                        Kitify.ajaxTemplateHelper.init();
                     }
                 }
                 $('.elementor-motion-effects-element').trigger('resize');
@@ -1652,11 +1624,11 @@
                 });
             },
             elementorContentRender: function ( $el, templateContent, template_id ){
-                Promise.all(Kitifys.addedAssetsPromises).then(function (value) {
-                    Kitifys.ajaxTemplateHelper.processInsertData($el, templateContent, template_id);
+                Promise.all(Kitify.addedAssetsPromises).then(function (value) {
+                    Kitify.ajaxTemplateHelper.processInsertData($el, templateContent, template_id);
                 }, function (reason){
-                    Kitifys.log(`An error occurred while insert the asset resources, however we still need to insert content. Reason detail: "${reason}"`);
-                    Kitifys.ajaxTemplateHelper.processInsertData($el, templateContent, template_id);
+                    Kitify.log(`An error occurred while insert the asset resources, however we still need to insert content. Reason detail: "${reason}"`);
+                    Kitify.ajaxTemplateHelper.processInsertData($el, templateContent, template_id);
                 })
             },
             templateRenderCallback: function ( response, template_id ){
@@ -1667,20 +1639,20 @@
 
                 for (var scriptHandler in templateScripts) {
                     if($( '#' + scriptHandler + '-js').length == 0) {
-                        Kitifys.addedAssetsPromises.push(Kitifys.loadScriptAsync(scriptHandler, templateScripts[scriptHandler], '', true));
+                        Kitify.addedAssetsPromises.push(Kitify.loadScriptAsync(scriptHandler, templateScripts[scriptHandler], '', true));
                     }
                 }
 
                 for (var styleHandler in templateStyles) {
                     if($( '#' + styleHandler + '-css').length == 0) {
-                        Kitifys.addedAssetsPromises.push(Kitifys.loadStyle(styleHandler, templateStyles[styleHandler]));
+                        Kitify.addedAssetsPromises.push(Kitify.loadStyle(styleHandler, templateStyles[styleHandler]));
                     }
                 }
 
                 document.querySelectorAll('body:not(.elementor-editor-active) div[data-kitify_ajax_loadtemplate][data-cache-id="' + template_id + '"]:not(.template-loaded)').forEach(function (elm) {
                     elm.classList.remove('is-loading');
                     elm.classList.add('template-loaded');
-                    Kitifys.ajaxTemplateHelper.elementorContentRender($(elm), templateContent, template_id);
+                    Kitify.ajaxTemplateHelper.elementorContentRender($(elm), templateContent, template_id);
                 });
 
                 var wpbar = document.querySelectorAll('#wp-admin-bar-elementor_edit_page ul');
@@ -1713,16 +1685,16 @@
                         var cached_key = 'kitifyTpl_' + templateId;
                         var cached_key2 = 'kitifyTplExist_' + templateId;
 
-                        if(Kitifys.localCache.exist(cached_key2)){
-                            if(Kitifys.localCache.exist(cached_key)){
-                                Kitifys.ajaxTemplateHelper.templateRenderCallback(Kitifys.localCache.get(cached_key), templateId);
+                        if(Kitify.localCache.exist(cached_key2)){
+                            if(Kitify.localCache.exist(cached_key)){
+                                Kitify.ajaxTemplateHelper.templateRenderCallback(Kitify.localCache.get(cached_key), templateId);
                             }
                             return;
                         }
-                        Kitifys.localCache.set(cached_key2, 'yes');
+                        Kitify.localCache.set(cached_key2, 'yes');
 
-                        if(Kitifys.localCache.exist(cached_key)){
-                            Kitifys.ajaxTemplateHelper.templateRenderCallback(Kitifys.localCache.get(cached_key), templateId);
+                        if(Kitify.localCache.exist(cached_key)){
+                            Kitify.ajaxTemplateHelper.templateRenderCallback(Kitify.localCache.get(cached_key), templateId);
                         }
                         else{
 
@@ -1730,8 +1702,8 @@
                                 target_id: templateId
                             });
 
-                            var browserCacheKey = Kitifys.localCache.cache_key + '_' + Kitifys.localCache.hashCode(templateId);
-                            var expiry = Kitifys.localCache.timeout;
+                            var browserCacheKey = Kitify.localCache.cache_key + '_' + Kitify.localCache.hashCode(templateId);
+                            var expiry = Kitify.localCache.timeout;
                             var ajaxData = {
                                 'id': templateId,
                                 'current_url': window.location.href,
@@ -1746,15 +1718,15 @@
                                     dataType: 'json',
                                     data: ajaxData,
                                     success: function (response, textStatus, jqXHR) {
-                                        Kitifys.localCache.set(cached_key, response);
-                                        Kitifys.ajaxTemplateHelper.templateRenderCallback(response, templateId);
+                                        Kitify.localCache.set(cached_key, response);
+                                        Kitify.ajaxTemplateHelper.templateRenderCallback(response, templateId);
                                         try{
-                                            Kitifys.log('setup browser cache for ' + browserCacheKey);
+                                            Kitify.log('setup browser cache for ' + browserCacheKey);
                                             localStorage.setItem(browserCacheKey, JSON.stringify(response));
                                             localStorage.setItem(browserCacheKey + ':ts', Date.now());
                                         }
                                         catch (ajax_ex1){
-                                            Kitifys.log('Cannot setup browser cache');
+                                            Kitify.log('Cannot setup browser cache');
                                         }
                                     }
                                 });
@@ -1767,22 +1739,22 @@
                                 if (browserCached !== null && browserWhenCached !== null) {
                                     var age = (Date.now() - browserWhenCached) / 1000;
                                     if (age < expiry) {
-                                        Kitifys.log('render from cache for ' + browserCacheKey);
-                                        Kitifys.ajaxTemplateHelper.templateRenderCallback(JSON.parse(browserCached), templateId);
+                                        Kitify.log('render from cache for ' + browserCacheKey);
+                                        Kitify.ajaxTemplateHelper.templateRenderCallback(JSON.parse(browserCached), templateId);
                                         return;
                                     }
                                     else {
-                                        Kitifys.log('clear browser cache key for ' + browserCacheKey);
+                                        Kitify.log('clear browser cache key for ' + browserCacheKey);
                                         // We need to clean up this old key
                                         localStorage.removeItem(browserCacheKey);
                                         localStorage.removeItem(browserCacheKey + ':ts');
                                     }
                                 }
-                                Kitifys.log('run ajaxCalling() for ' + templateId);
+                                Kitify.log('run ajaxCalling() for ' + templateId);
                                 ajaxCalling();
                             }
                             catch (ajax_ex) {
-                                Kitifys.log('Cannot setup browser cache ajaxCalling() for ' + templateId);
+                                Kitify.log('Cannot setup browser cache ajaxCalling() for ' + templateId);
                                 ajaxCalling();
                             }
                         }
@@ -1796,54 +1768,54 @@
     $(window).on('elementor/frontend/init', function () {
 
         elementor.hooks.addAction('frontend/element_ready/kitify-advanced-carousel.default', function ($scope) {
-            Kitifys.initCarousel($scope);
+            Kitify.initCarousel($scope);
         });
 
         elementor.hooks.addAction('frontend/element_ready/kitify-slides.default', function ($scope) {
-            Kitifys.initCarousel($scope);
+            Kitify.initCarousel($scope);
         });
 
         elementor.hooks.addAction('frontend/element_ready/kitify-posts.default', function ($scope) {
-            Kitifys.initCarousel($scope);
-            Kitifys.initMasonry($scope);
+            Kitify.initCarousel($scope);
+            Kitify.initMasonry($scope);
         });
 
         elementor.hooks.addAction('frontend/element_ready/kitify-portfolio.default', function ($scope) {
-            Kitifys.initCarousel($scope);
-            Kitifys.initMasonry($scope);
+            Kitify.initCarousel($scope);
+            Kitify.initMasonry($scope);
         });
 
         elementor.hooks.addAction('frontend/element_ready/kitify-images-layout.default', function ($scope) {
-            Kitifys.initCarousel($scope);
-            Kitifys.initMasonry($scope);
+            Kitify.initCarousel($scope);
+            Kitify.initMasonry($scope);
         });
 
         elementor.hooks.addAction('frontend/element_ready/kitify-team-member.default', function ($scope) {
-            Kitifys.initCarousel($scope);
-            Kitifys.initMasonry($scope);
+            Kitify.initCarousel($scope);
+            Kitify.initMasonry($scope);
         });
 
         elementor.hooks.addAction('frontend/element_ready/kitify-testimonials.default', function ($scope) {
-            Kitifys.initCarousel($scope);
-            Kitifys.initMasonry($scope);
+            Kitify.initCarousel($scope);
+            Kitify.initMasonry($scope);
         });
 
         elementor.hooks.addAction('frontend/element_ready/kitify-instagram-feed.default', function ($scope) {
-            Kitifys.initCarousel($scope);
-            Kitifys.initMasonry($scope);
+            Kitify.initCarousel($scope);
+            Kitify.initMasonry($scope);
         });
 
         elementor.hooks.addAction('frontend/element_ready/kitify-wooproduct-datatabs.default', function ($scope) {
             $scope.foundation();
         });
         elementor.hooks.addAction('frontend/element_ready/kitify-woo-categories.default', function ($scope) {
-            Kitifys.initCarousel($scope);
+            Kitify.initCarousel($scope);
         });
         elementor.hooks.addAction('frontend/element_ready/kitify-scroll-image.default', function ($scope) {
-            Kitifys.ImageScrollHandler($scope);
+            Kitify.ImageScrollHandler($scope);
         });
         elementor.hooks.addAction('frontend/element_ready/kitify-search.default', function ($scope) {
-            Kitifys.onSearchSectionActivated($scope);
+            Kitify.onSearchSectionActivated($scope);
             $(document).on('click', function (event) {
 
                 var $widget = $scope.find('.kitify-search'),
@@ -1871,28 +1843,28 @@
         });
 
         elementor.hooks.addAction('frontend/element_ready/kitify-hamburger-panel.default', function ($scope) {
-            Kitifys.hamburgerPanel($scope);
+            Kitify.hamburgerPanel($scope);
         });
 
         elementor.hooks.addAction('frontend/element_ready/kitify-menucart.default', function ($scope) {
-            Kitifys.wooCard($scope);
+            Kitify.wooCard($scope);
         });
 
         elementor.hooks.addAction('frontend/element_ready/kitify-animated-box.default', function ($scope) {
-            Kitifys.animatedBoxHandler($scope);
+            Kitify.animatedBoxHandler($scope);
         });
 
         elementor.hooks.addAction('frontend/element_ready/kitify-wooproducts.default', function ($scope) {
-            Kitifys.initCarousel($scope);
-            Kitifys.initMasonry($scope);
+            Kitify.initCarousel($scope);
+            Kitify.initMasonry($scope);
         });
 
         elementor.hooks.addAction('frontend/element_ready/kitify-wooproduct-images.default', function ($scope) {
-            Kitifys.wooGallery($scope);
+            Kitify.wooGallery($scope);
         });
 
         elementor.hooks.addAction('frontend/element_ready/kitify-wooproduct-datatabs.default', function ($scope) {
-            Kitifys.wooTabs($scope);
+            Kitify.wooTabs($scope);
         });
         elementor.hooks.addAction('frontend/element_ready/kitify-image-comparison.default', function ($scope) {
           var $target              = $scope.find( '.kitify-image-comparison__instance' ),
@@ -1908,7 +1880,7 @@
     			window.juxtapose.scanPage( '.kitify-juxtapose' );
 
 
-    			Kitifys.initCarousel( $scope );
+    			Kitify.initCarousel( $scope );
         });
         elementor.hooks.addAction('frontend/element_ready/section', function ($scope) {
             if( $scope.hasClass('elementor-top-section') ) {
@@ -1916,24 +1888,24 @@
             }
         });
 
-        Kitifys.initCustomHandlers();
+        Kitify.initCustomHandlers();
 
     });
 
-    window.Kitifys = Kitifys;
+    window.Kitify = Kitify;
 
     $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
         if (options.cache) {
             //Here is our identifier for the cache. Maybe have a better, safer ID (it depends on the object string representation here) ?
             // on $.ajax call we could also set an ID in originalOptions
-            var id = Kitifys.removeURLParameter(originalOptions.url, '_') + ("undefined" !== typeof originalOptions.ajax_request_id ? JSON.stringify(originalOptions.ajax_request_id) : "undefined" !== typeof originalOptions.data ? JSON.stringify(originalOptions.data) : '');
-            id = Kitifys.localCache.hashCode(id.replace(/null$/g, ''));
+            var id = Kitify.removeURLParameter(originalOptions.url, '_') + ("undefined" !== typeof originalOptions.ajax_request_id ? JSON.stringify(originalOptions.ajax_request_id) : "undefined" !== typeof originalOptions.data ? JSON.stringify(originalOptions.data) : '');
+            id = Kitify.localCache.hashCode(id.replace(/null$/g, ''));
             options.cache = false;
 
             options.beforeSend = function () {
-                if (!Kitifys.localCache.exist(id)) {
+                if (!Kitify.localCache.exist(id)) {
                     jqXHR.promise().done(function (data, textStatus) {
-                        Kitifys.localCache.set(id, data);
+                        Kitify.localCache.set(id, data);
                     });
                 }
                 return true;
@@ -1942,15 +1914,15 @@
     });
     $.ajaxTransport("+*", function (options, originalOptions, jqXHR) {
         //same here, careful because options.url has already been through jQuery processing
-        var id = Kitifys.removeURLParameter(originalOptions.url, '_') + ("undefined" !== typeof originalOptions.ajax_request_id ? JSON.stringify(originalOptions.ajax_request_id) : "undefined" !== typeof originalOptions.data ? JSON.stringify(originalOptions.data) : '');
+        var id = Kitify.removeURLParameter(originalOptions.url, '_') + ("undefined" !== typeof originalOptions.ajax_request_id ? JSON.stringify(originalOptions.ajax_request_id) : "undefined" !== typeof originalOptions.data ? JSON.stringify(originalOptions.data) : '');
         options.cache = false;
-        id = Kitifys.localCache.hashCode(id.replace(/null$/g, ''));
+        id = Kitify.localCache.hashCode(id.replace(/null$/g, ''));
 
-        if (Kitifys.localCache.exist(id)) {
+        if (Kitify.localCache.exist(id)) {
             return {
                 send: function (headers, completeCallback) {
                     setTimeout(function () {
-                        completeCallback(200, "OK", [Kitifys.localCache.get(id)]);
+                        completeCallback(200, "OK", [Kitify.localCache.get(id)]);
                     }, 50);
                 },
                 abort: function () {
@@ -1961,9 +1933,9 @@
     });
 
     document.addEventListener('DOMContentLoaded', function () {
-        if(!Kitifys.isPageSpeed()){
-            Kitifys.localCache.validCache(false);
-            Kitifys.ajaxTemplateHelper.init();
+        if(!Kitify.isPageSpeed()){
+            Kitify.localCache.validCache(false);
+            Kitify.ajaxTemplateHelper.init();
         }
     });
 

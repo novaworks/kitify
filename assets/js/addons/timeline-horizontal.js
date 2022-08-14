@@ -34,14 +34,14 @@
                 };
 
             if ('ontouchstart' in window || 'ontouchend' in window) {
-                $items.on('touchend.KitifysTimeLineHorizontal', function (event) {
+                $items.on('touchend.KitifyTimeLineHorizontal', function (event) {
                     var itemId = $(this).data('item-id');
 
                     $scope.find('.elementor-repeater-item-' + itemId).toggleClass('is-hover');
                 });
             }
             else {
-                $items.on('mouseenter.KitifysTimeLineHorizontal mouseleave.KitifysTimeLineHorizontal', function (event) {
+                $items.on('mouseenter.KitifyTimeLineHorizontal mouseleave.KitifyTimeLineHorizontal', function (event) {
                     if (firstMouseEvent && 'mouseleave' === event.type) {
                         return;
                     }
@@ -55,7 +55,7 @@
 
             // Set Line Position
             setLinePosition();
-            $(window).on('resize.KitifysTimeLineHorizontal orientationchange.KitifysTimeLineHorizontal', setLinePosition);
+            $(window).on('resize.KitifyTimeLineHorizontal orientationchange.KitifyTimeLineHorizontal', setLinePosition);
 
             function setLinePosition() {
                 var $line = $scope.find('.kitify-htimeline__line'),
@@ -93,7 +93,7 @@
             }
 
             if ($arrows[0]) {
-                $arrows.on('click.KitifysTimeLineHorizontal', function (event) {
+                $arrows.on('click.KitifyTimeLineHorizontal', function (event) {
                     var $this = $(this),
                         direction = $this.hasClass('next-arrow') ? 'next' : 'prev',
                         currentDeviceMode = elementorFrontend.getCurrentDeviceMode();
@@ -132,8 +132,8 @@
             }
 
             setArrowPosition();
-            $(window).on('resize.KitifysTimeLineHorizontal orientationchange.KitifysTimeLineHorizontal', setArrowPosition);
-            $(window).on('resize.KitifysTimeLineHorizontal orientationchange.KitifysTimeLineHorizontal', timelineSliderResizeHandler);
+            $(window).on('resize.KitifyTimeLineHorizontal orientationchange.KitifyTimeLineHorizontal', setArrowPosition);
+            $(window).on('resize.KitifyTimeLineHorizontal orientationchange.KitifyTimeLineHorizontal', timelineSliderResizeHandler);
 
             function setArrowPosition() {
                 if (!$arrows[0]) {

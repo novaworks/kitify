@@ -65,10 +65,10 @@ class Kitify_Hamburger_Panel extends Kitify_Base {
                 'label_block' => false,
                 'skin'        => 'inline',
                 'file'        => '',
-                'default'     => 'kitifyicon-menu-8-1',
+                'default'     => 'icofont-close-line',
                 'fa5_default' => array(
-                    'value'   => 'kitifyicon-menu-8-1',
-                    'library' => 'kitifyicon',
+                    'value'   => 'icofont-close-line',
+                    'library' => 'icofont',
                 ),
             )
         );
@@ -81,10 +81,10 @@ class Kitify_Hamburger_Panel extends Kitify_Base {
                 'label_block' => false,
                 'skin'        => 'inline',
                 'file'        => '',
-                'default'     => 'kitifyicon-e-remove',
+                'default'     => 'icofont-close-line',
                 'fa5_default' => array(
-                    'value'   => 'kitifyicon-e-remove',
-                    'library' => 'kitifyicon',
+                    'value'   => 'icofont-close-line',
+                    'library' => 'icofont',
                 ),
             )
         );
@@ -144,7 +144,7 @@ class Kitify_Hamburger_Panel extends Kitify_Base {
             array(
                 'label'       => esc_html__( 'Choose Template', 'kitify' ),
                 'label_block' => 'true',
-                'type'        => 'kitifykit-query',
+                'type'        => 'kitify-query',
                 'object_type' => \Elementor\TemplateLibrary\Source_Local::CPT,
                 'filter_type' => 'by_id',
             )

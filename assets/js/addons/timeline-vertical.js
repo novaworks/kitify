@@ -7,7 +7,7 @@
      *
      * @return {void}
      */
-    window.KitifysTimeLineVertical = function ($element) {
+    window.KitifyTimeLineVertical = function ($element) {
         var $viewport = $(window),
             self = this,
             $line = $element.find('.kitify-vtimeline__line'),
@@ -108,8 +108,8 @@
 
         self.init = function () {
             $(document).ready(self.onScroll);
-            $(window).on('scroll.KitifysTimeLineVertical', self.onScroll);
-            $(window).on('resize.KitifysTimeLineVertical orientationchange.KitifysTimeLineVertical', self.debounce(50, self.onResize));
+            $(window).on('scroll.KitifyTimeLineVertical', self.onScroll);
+            $(window).on('resize.KitifyTimeLineVertical orientationchange.KitifyTimeLineVertical', self.debounce(50, self.onResize));
         };
     }
 
@@ -124,7 +124,7 @@
                 return;
             }
 
-            instance = new KitifysTimeLineVertical($target);
+            instance = new KitifyTimeLineVertical($target);
             instance.init();
 
         });

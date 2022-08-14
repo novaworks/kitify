@@ -2,7 +2,7 @@
 
     "use strict";
 
-    var KitifysAnimatedText = function ($selector, settings) {
+    var KitifyAnimatedText = function ($selector, settings) {
         var self = this,
             $instance = $selector,
             $animatedTextContainer = $('.kitify-animated-text__animated-text', $instance),
@@ -438,7 +438,7 @@
             }
 
             settings = $target.data('settings');
-            instance = new KitifysAnimatedText($target, settings);
+            instance = new KitifyAnimatedText($target, settings);
             instance.init();
         });
     });

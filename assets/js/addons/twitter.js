@@ -107,7 +107,7 @@
                     html += '</div>';
                 }
                 $('#'+_config.uniqueid).html(html);
-                Kitifys.initCarousel($scope);
+                Kitify.initCarousel($scope);
             }
 
             twitterFetcher.fetch(configProfile);
