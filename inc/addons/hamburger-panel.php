@@ -65,10 +65,10 @@ class Kitify_Hamburger_Panel extends Kitify_Base {
                 'label_block' => false,
                 'skin'        => 'inline',
                 'file'        => '',
-                'default'     => 'lastudioicon-menu-8-1',
+                'default'     => 'kitifyicon-menu-8-1',
                 'fa5_default' => array(
-                    'value'   => 'lastudioicon-menu-8-1',
-                    'library' => 'lastudioicon',
+                    'value'   => 'kitifyicon-menu-8-1',
+                    'library' => 'kitifyicon',
                 ),
             )
         );
@@ -81,10 +81,10 @@ class Kitify_Hamburger_Panel extends Kitify_Base {
                 'label_block' => false,
                 'skin'        => 'inline',
                 'file'        => '',
-                'default'     => 'lastudioicon-e-remove',
+                'default'     => 'kitifyicon-e-remove',
                 'fa5_default' => array(
-                    'value'   => 'lastudioicon-e-remove',
-                    'library' => 'lastudioicon',
+                    'value'   => 'kitifyicon-e-remove',
+                    'library' => 'kitifyicon',
                 ),
             )
         );
@@ -97,10 +97,10 @@ class Kitify_Hamburger_Panel extends Kitify_Base {
                 'label_block' => false,
                 'skin'        => 'inline',
                 'file'        => '',
-                'default'     => 'lastudioicon-e-remove',
+                'default'     => 'kitifyicon-e-remove',
                 'fa5_default' => array(
-                    'value'   => 'lastudioicon-e-remove',
-                    'library' => 'lastudioicon',
+                    'value'   => 'kitifyicon-e-remove',
+                    'library' => 'kitifyicon',
                 ),
             )
         );
@@ -144,7 +144,7 @@ class Kitify_Hamburger_Panel extends Kitify_Base {
             array(
                 'label'       => esc_html__( 'Choose Template', 'kitify' ),
                 'label_block' => 'true',
-                'type'        => 'lastudiokit-query',
+                'type'        => 'kitifykit-query',
                 'object_type' => \Elementor\TemplateLibrary\Source_Local::CPT,
                 'filter_type' => 'by_id',
             )
@@ -364,7 +364,7 @@ class Kitify_Hamburger_Panel extends Kitify_Base {
         );
 
         $this->_add_group_control(
-            \KitifyExtensions\Elementor\Controls\Group_Control_Box_Style::get_type(),
+            \Kitify_Extension\Controls\Group_Control_Box_Style::get_type(),
             array(
                 'label'    => esc_html__( 'Close Icon', 'kitify' ),
                 'name'     => 'close_icon_box',
@@ -383,7 +383,7 @@ class Kitify_Hamburger_Panel extends Kitify_Base {
         );
 
         $this->_add_group_control(
-            \KitifyExtensions\Elementor\Controls\Group_Control_Box_Style::get_type(),
+            \Kitify_Extension\Controls\Group_Control_Box_Style::get_type(),
             array(
                 'label'    => esc_html__( 'Close Icon', 'kitify' ),
                 'name'     => 'close_icon_box_hover',
@@ -556,7 +556,7 @@ class Kitify_Hamburger_Panel extends Kitify_Base {
         );
 
         $this->_add_group_control(
-            \KitifyExtensions\Elementor\Controls\Group_Control_Box_Style::get_type(),
+            \Kitify_Extension\Controls\Group_Control_Box_Style::get_type(),
             array(
                 'label'    => esc_html__( 'Toggle Icon', 'kitify' ),
                 'name'     => 'toggle_icon_box',
@@ -575,7 +575,7 @@ class Kitify_Hamburger_Panel extends Kitify_Base {
         );
 
         $this->_add_group_control(
-            \KitifyExtensions\Elementor\Controls\Group_Control_Box_Style::get_type(),
+            \Kitify_Extension\Controls\Group_Control_Box_Style::get_type(),
             array(
                 'label'    => esc_html__( 'Toggle Icon', 'kitify' ),
                 'name'     => 'toggle_icon_box_hover',
