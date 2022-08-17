@@ -39,7 +39,6 @@
       });
       $(document).on('click', '.js-column-toggle', function() {
         $('.kitify-toggle-sidebar').toggleClass('opened');
-        console.log("a");
       });
 
     });
