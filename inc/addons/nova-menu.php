@@ -528,7 +528,7 @@ class Kitify_Nova_Menu extends Kitify_Base {
         75
     );
 
-    $this->_add_control(
+    $this->_add_responsive_control(
         'mobile_trigger_width',
         array(
             'label'      => esc_html__( 'Width', 'kitify' ),
@@ -552,7 +552,7 @@ class Kitify_Nova_Menu extends Kitify_Base {
         50
     );
 
-    $this->_add_control(
+    $this->_add_responsive_control(
         'mobile_trigger_height',
         array(
             'label'      => esc_html__( 'Height', 'kitify' ),
@@ -571,7 +571,7 @@ class Kitify_Nova_Menu extends Kitify_Base {
         50
     );
 
-    $this->_add_control(
+    $this->_add_responsive_control(
         'mobile_trigger_icon_size',
         array(
             'label'      => esc_html__( 'Icon Size', 'kitify' ),
