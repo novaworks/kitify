@@ -119,6 +119,19 @@ class General_Extensions {
 			    ]
 		    )
 	    );
+      $stack->add_control(
+        'kitify_col_disable_relative',
+        [
+          'label' => __( 'Disable Column Relative', 'kitify' ),
+          'type'    => Controls_Manager::SELECT,
+          'default' => 'no',
+          'prefix_class' => 'kitify-disable-relative-',
+          'options' => array(
+				    'no'      => esc_html__( 'No', 'kitify' ),
+				    'yes'      => esc_html__( 'Yes', 'kitify' ),
+			    ),
+        ]
+      );
     }
 
     public function add_order_into_widget( $stack, $section_id ) {
