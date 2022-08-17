@@ -20,6 +20,10 @@
         }
         checkActiveToggle();
         $(window).on('resize', checkActiveToggle);
+        $(document).on('click', '.js-column-toggle', function() {
+          $('.kitify-toggle-sidebar').toggleClass('opened');
+          console.log("a");
+        });
       });
       elementor.hooks.addAction( 'frontend/element_ready/kitify-wooproducts.default', function ( $scope ){
         _has_btn_bkp = false;
@@ -36,10 +40,6 @@
         }
         checkActiveToggle();
         $(window).on('resize', checkActiveToggle);
-      });
-      $(document).on('click', '.js-column-toggle', function() {
-        $('.kitify-toggle-sidebar').toggleClass('opened');
-
       });
 
     });
