@@ -202,6 +202,14 @@ class Kitify_Nova_Menu_Cart extends Kitify_Base {
         ),
         25
     );
+
+    $this->_add_group_control(
+        Group_Control_Typography::get_type(),
+        [
+            'name' => 'novacart_label_typography',
+            'selector' => '{{WRAPPER}} ' . $css_scheme['cart_label'],
+        ]
+    );
     $this->_add_control(
         'novacart_label_text',
         array(
@@ -213,6 +221,42 @@ class Kitify_Nova_Menu_Cart extends Kitify_Base {
             ),
         ),
         25
+    );
+    $this->_add_responsive_control(
+        'novacart_label_top',
+        array(
+            'label'      => esc_html__( 'Position Top', 'kitify' ),
+            'type'       => Controls_Manager::SLIDER,
+            'size_units' => array( 'px','%' ),
+            'range'      => array(
+                'px' => array(
+                    'min' => -50,
+                    'max' => 50,
+                ),
+            ),
+            'selectors'  => array(
+                '{{WRAPPER}} ' . $css_scheme['cart_label'] => 'top: {{SIZE}}{{UNIT}};',
+            ),
+        ),
+        50
+    );
+    $this->_add_responsive_control(
+        'novacart_label_left',
+        array(
+            'label'      => esc_html__( 'Position Left', 'kitify' ),
+            'type'       => Controls_Manager::SLIDER,
+            'size_units' => array( 'px','%' ),
+            'range'      => array(
+                'px' => array(
+                  'min' => -50,
+                  'max' => 50,
+                ),
+            ),
+            'selectors'  => array(
+                '{{WRAPPER}} ' . $css_scheme['cart_label'] => 'left: {{SIZE}}{{UNIT}};',
+            ),
+        ),
+        50
     );
     $this->end_controls_section();
     $this->_start_controls_section(
