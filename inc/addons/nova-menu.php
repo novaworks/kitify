@@ -415,7 +415,41 @@ class Kitify_Nova_Menu extends Kitify_Base {
             'show_label' => false,
         )
     );
-
+    $this->_add_responsive_control(
+        'nova_menu_trigger_alignment',
+        array(
+            'label'   => esc_html__( 'Menu Alignment', 'kitify' ),
+            'type'    => Controls_Manager::CHOOSE,
+            'default' => 'flex-start',
+            'options' => array(
+                'flex-start' => array(
+                    'title' => esc_html__( 'Left', 'kitify' ),
+                    'icon'  => 'eicon-h-align-left',
+                ),
+                'center' => array(
+                    'title' => esc_html__( 'Center', 'kitify' ),
+                    'icon'  => 'eicon-h-align-center',
+                ),
+                'flex-end' => array(
+                    'title' => esc_html__( 'Right', 'kitify' ),
+                    'icon'  => 'eicon-h-align-right',
+                ),
+                'space-between' => array(
+                    'title' => esc_html__( 'Justified', 'kitify' ),
+                    'icon'  => 'eicon-h-align-stretch',
+                ),
+            ),
+            'selectors_dictionary' => array(
+                'flex-start'    => 'justify-content: flex-start; text-align: left;',
+                'center'        => 'justify-content: center; text-align: center;',
+                'flex-end'      => 'justify-content: flex-end; text-align: right;',
+                'space-between' => 'justify-content: space-between; text-align: left;',
+            ),
+            'selectors' => array(
+                '{{WRAPPER}} .kitify-nova-menu.kitify-active--mbmenu .kitify-nova-menu__mobile-trigger' => '{{VALUE}}',
+            )
+        )
+    );
     $this->_start_controls_tabs( 'tabs_mobile_trigger_style' );
 
     $this->_start_controls_tab(
