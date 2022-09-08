@@ -13,7 +13,7 @@
   line-height: 20px;
   border-radius: 50%;
   text-align: center;
-  font-size: rem-calc(12);
+  font-size: 0.75rem;
   font-weight: 500;
   color: #FFF;
   background-color: var(--site-accent-color);
@@ -23,8 +23,12 @@
 }
 @media screen and (min-width: 1550px) {
   .kitify-nova-cart.kitify-nova-cart-label-on .header-cart-box {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
   }
   .kitify-nova-cart.kitify-nova-cart-label-on .header-cart-box .cart-text {
     margin-left: 12px;
@@ -42,3 +46,4 @@
     position: static;
   }
 }
+/*# sourceMappingURL=nova-cart.css.map */
