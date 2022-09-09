@@ -1,0 +1,149 @@
+.kitify-toggle-sidebar.kitify-active-sidebar-toggle {
+  position: relative;
+}
+.kitify-toggle-sidebar.kitify-active-sidebar-toggle .kitify-toggle-sidebar__container {
+  position: relative;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+  padding: 60px 30px 30px 30px !important;
+  max-width: none;
+  overflow-y: visible;
+  width: 400px;
+  z-index: 99999;
+  transition: -webkit-transform 0.5s ease;
+  -webkit-transition: -webkit-transform 0.5s ease;
+  transition: transform 0.5s ease;
+  transition: transform 0.5s ease, -webkit-transform 0.5s ease;
+  -webkit-transform: translate3d(-400px, 0, 0);
+  transform: translate3d(-400px, 0, 0);
+}
+.kitify-toggle-sidebar.kitify-active-sidebar-toggle .toggle-column-btn__wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 400px;
+  background-color: #fff;
+  padding: 0.9375rem;
+  z-index: 1;
+}
+@media print, screen and (max-width: 39.99875em) {
+  .kitify-toggle-sidebar.kitify-active-sidebar-toggle .toggle-column-btn__wrap {
+    width: 100%;
+  }
+}
+.kitify-toggle-sidebar.kitify-active-sidebar-toggle .toggle-column-btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+  width: 40px;
+  height: 40px;
+  margin-left: auto;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  border: var(--site-border-color) solid 1px;
+  background-color: #fff;
+  text-align: center;
+  border-radius: 50%;
+}
+@media print, screen and (max-width: 39.99875em) {
+  .kitify-toggle-sidebar.kitify-active-sidebar-toggle .toggle-column-btn {
+    margin-right: 0.9375rem;
+  }
+}
+.kitify-toggle-sidebar.kitify-active-sidebar-toggle .toggle-column-btn:before {
+  font-family: "iNova" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  vertical-align: -0.125em;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "\ea13";
+  font-size: 1.125rem;
+  color: var(--site-heading-color);
+  line-height: 38px;
+}
+.kitify-toggle-sidebar__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1112;
+  opacity: 0;
+  visibility: hidden;
+  background-color: rgba(0, 0, 0, 0.2);
+  -webkit-transition: opacity 0.5s ease, visibility 0.5s ease;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+.kitify-toggle-sidebar__inner {
+  height: 98%;
+}
+.kitify-toggle-sidebar__toggle {
+  display: none;
+  position: absolute;
+  top: 40%;
+  right: -40px;
+  width: 40px;
+  height: 40px;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  border: #ccc solid 1px;
+  border-left-width: 0;
+  background-color: #fff;
+  text-align: center;
+}
+.kitify-toggle-sidebar__toggle:before {
+  font-family: "iNova" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  vertical-align: -0.125em;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "\ea37";
+  font-size: 1.5rem;
+  color: var(--site-heading-color);
+  line-height: 38px;
+}
+.kitify-toggle-sidebar.kitify-active-sidebar-toggle .kitify-toggle-sidebar__toggle {
+  display: block;
+}
+.kitify-toggle-sidebar.opened .kitify-toggle-sidebar__overlay {
+  opacity: 1;
+  visibility: visible;
+}
+.kitify-toggle-sidebar.opened .kitify-toggle-sidebar__container {
+  -webkit-transform: none;
+          transform: none;
+}
+@media print, screen and (max-width: 39.99875em) {
+  .kitify-toggle-sidebar.opened .kitify-toggle-sidebar__container {
+    width: 100%;
+  }
+}
+
+.nova-overlay-global.opened {
+  opacity: 0.3;
+  visibility: visible;
+}

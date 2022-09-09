@@ -1,24 +1,5 @@
-$rem-base: 16px;
-
-@function strip-unit($num) {
-  @return $num / ($num * 0 + 1);
-}
-
-@function convert-to-rem($value, $base-value: $rem-base)  {
-  $value: strip-unit($value) / strip-unit($base-value) * 1rem;
-  @if ($value == 0rem) { $value: 0; } // Turn 0rem into 0
-  @return $value;
-}
-
-@function rem-calc($values, $base-value: $rem-base) {
-  $max: length($values);
-  @if $max == 1 { @return convert-to-rem(nth($values, 1), $base-value); }
-  $remValues: ();
-  @for $i from 1 through $max {
-    $remValues: append($remValues, convert-to-rem(nth($values, $i), $base-value));
-  }
-  @return $remValues;
-}
+@import '_foundation';
+@import '_settings';
 @mixin transition($property, $duration, $easing: linear) {
 	transition: $property $duration $easing;
 	-webkit-transition: $property $duration $easing;
@@ -26,4 +7,21 @@ $rem-base: 16px;
 }
 @mixin global_transition() {
 	transition: all 0.3s ease-in-out;
+}
+@mixin nova_icon($icon) {
+  font-family: "iNova" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  vertical-align: -.125em;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+	content: $icon;
+}
+@function v($var) {
+  @return var(--#{$var});
 }

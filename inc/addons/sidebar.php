@@ -15,6 +15,7 @@ use Elementor\Core\Schemes\Typography as Scheme_Typography;
 class Kitify_Sidebar extends Kitify_Base {
 
   protected function enqueue_addon_resources(){
+      wp_register_style( $this->get_name(), kitify()->plugin_url('assets/css/addons/toggle-sidebar.css'),[], kitify()->get_version());
       wp_register_script(
         $this->get_name(),
         kitify()->plugin_url( 'assets/js/addons/toggle-sidebar.js' ),
@@ -22,6 +23,7 @@ class Kitify_Sidebar extends Kitify_Base {
         kitify()->get_version(),
         true
       );
+      $this->add_style_depends( $this->get_name() );
       $this->add_script_depends( $this->get_name() );
   }
   /**

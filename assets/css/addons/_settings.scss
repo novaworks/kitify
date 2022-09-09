@@ -1,0 +1,296 @@
+@import 'foundation/scss/util/util';
+@import 'foundation/scss/global';
+
+// ======================================================================
+// Theme Mood & Transparency
+// ======================================================================
+
+$wrapper-background					: #fff;
+$content-background					: #fff;
+$primary-color							: #000;
+$secondary-color						: #666;
+$accent-color								: inherit;
+$active-star-color					: #ffc21f;
+
+$opacity-dark          			: .75;
+$opacity-medium        			: .5;
+$opacity-light         			: .25;
+$opacity-ultra-light   			: .1;
+
+$overlay-opacity-dark 			: rgba(#000, $opacity-dark);
+$overlay-opacity-medium 		: rgba(#000, $opacity-medium);
+$overlay-opacity-light 			: rgba(#000, $opacity-light);
+$overlay-opacity-ultra-light	: rgba(#000, $opacity-ultra-light);
+
+$sale-badge-color				: #FFF000;
+$heading-font-weight : var(--heading-font-weight);
+
+// ======================================================================
+// Foundation
+// ======================================================================
+
+$global-font-size: 16px;
+$global-lineheight: 1.4;
+$global-width: 1280px;
+
+$global-flexbox: true;
+
+$global-radius: 0;
+
+$foundation-palette: (
+	primary: $primary-color,
+	secondary: $secondary-color,
+	success: #6DD09D,
+	warning: #FFAE00,
+	alert: #DE7878
+);
+
+@include add-foundation-colors;
+
+$dark-gray: rgba($primary-color, $opacity-dark );
+$medium-gray: rgba($primary-color, $opacity-medium );
+$light-gray: rgba($primary-color, $opacity-light );
+$ultra-light-gray: rgba($primary-color, $opacity-ultra-light );
+
+$anchor-color: $accent-color;
+$anchor-color-hover: none;
+
+$body-background: $wrapper-background;
+$body-font-color: $primary-color;
+
+$white: #fff;
+$black: #000;
+
+
+// Grid
+
+$grid-column-count: 12;
+$grid-column-gutter: 24px;
+$grid-column-align-edge: false;
+
+$breakpoints: (
+	small: 0,
+	medium: 640px,
+	medium-ex: 768px,
+	large: 1024px,
+	xlarge: 1280px,
+	xxlarge: 1440px,
+	xxxlarge: 1920px,
+);
+
+$breakpoint-classes: (small medium medium-ex large xlarge xxlarge xxxlarge);
+
+
+// Base Typography
+
+$header-font-weight: inherit;
+$header-lineheight: 1.4;
+$header-lineheight-small: 1.3;
+$header-margin-top: 0;
+$header-margin-bottom: rem-calc(20);
+$header-font-family: inherit;
+$header-color: $secondary-color;
+
+$header-styles: (
+
+	'small': (
+		'h0': ('fs': 2rem, 	   	'lh': $header-lineheight-small, 'mt': $header-margin-top, 'mb': $header-margin-bottom),
+		'h1': ('fs': 1.8rem,   	'lh': $header-lineheight-small, 'mt': $header-margin-top, 'mb': $header-margin-bottom),
+		'h2': ('fs': 1.6rem,   	'lh': $header-lineheight-small, 'mt': $header-margin-top, 'mb': $header-margin-bottom),
+		'h3': ('fs': 1.42rem,  	'lh': $header-lineheight-small, 'mt': $header-margin-top, 'mb': $header-margin-bottom),
+		'h4': ('fs': 1.26rem,  	'lh': $header-lineheight-small, 'mt': $header-margin-top, 'mb': $header-margin-bottom),
+		'h5': ('fs': 1.125rem, 	'lh': $header-lineheight-small, 'mt': $header-margin-top, 'mb': $header-margin-bottom),
+		'h6': ('fs': 1rem,		'lh': $header-lineheight-small, 'mt': $header-margin-top, 'mb': $header-margin-bottom)
+	),
+
+	'medium': (
+		'h0': ('fs': 2rem,		'lh': $header-lineheight-small, 'mt': $header-margin-top, 'mb': $header-margin-bottom),
+		'h1': ('fs': 1.8rem,   	'lh': $header-lineheight-small, 'mt': $header-margin-top, 'mb': $header-margin-bottom),
+		'h2': ('fs': 1.6rem,   	'lh': $header-lineheight-small, 'mt': $header-margin-top, 'mb': $header-margin-bottom),
+		'h3': ('fs': 1.42rem,  	'lh': $header-lineheight-small, 'mt': $header-margin-top, 'mb': $header-margin-bottom),
+		'h4': ('fs': 1.26rem,  	'lh': $header-lineheight-small, 'mt': $header-margin-top, 'mb': $header-margin-bottom),
+		'h5': ('fs': 1.125rem, 	'lh': $header-lineheight-small, 'mt': $header-margin-top, 'mb': $header-margin-bottom),
+		'h6': ('fs': 1rem,   	'lh': $header-lineheight-small, 'mt': $header-margin-top, 'mb': $header-margin-bottom)
+	),
+
+	'large': (
+		'h0': ('fs': 3rem, 		'lh': $header-lineheight, 'mt': $header-margin-top, 'mb': $header-margin-bottom),
+		'h1': ('fs': 2.5rem, 	'lh': $header-lineheight, 'mt': $header-margin-top, 'mb': $header-margin-bottom),
+		'h2': ('fs': 2.1rem, 	'lh': $header-lineheight, 'mt': $header-margin-top, 'mb': $header-margin-bottom),
+		'h3': ('fs': 1.74rem, 	'lh': $header-lineheight, 'mt': $header-margin-top, 'mb': $header-margin-bottom),
+		'h4': ('fs': 1.44rem, 	'lh': $header-lineheight, 'mt': $header-margin-top, 'mb': $header-margin-bottom),
+		'h5': ('fs': 1.2rem, 	'lh': $header-lineheight, 'mt': $header-margin-top, 'mb': $header-margin-bottom),
+		'h6': ('fs': 1rem, 		'lh': $header-lineheight, 'mt': $header-margin-top, 'mb': $header-margin-bottom)
+	)
+
+);
+
+$paragraph-lineheight: 1.625;
+$paragraph-margin-bottom: rem-calc(32);
+
+
+// Blockquotes
+
+$blockquote-color: inherit;
+$blockquote-padding: 0 0 0 rem-calc(30);
+$blockquote-border: 2px solid $accent-color;
+$cite-font-size : rem-calc(14);
+$cite-color: inherit;
+
+
+// Code
+
+$code-color: $primary-color;
+$code-background: $content-background;
+$code-border: 0;
+$code-padding: rem-calc(2 10 3);
+
+
+// Forms
+
+$form_border_color: #D1D1D6;
+$form-label-font-size: rem-calc(14);
+$form-label-font-weight: inherit;
+$form-label-line-height: 1;
+$form-label-color: inherit;
+
+$form-spacing: rem-calc($grid-column-gutter/2);
+
+$input-prefix-color: inherit;
+$input-prefix-background: transparent;
+$input-prefix-border: 1px solid $primary-color;
+$input-prefix-padding: 1rem;
+
+$input-border: 1px solid $primary-color;
+$input-border-focus: 1px solid $primary-color;
+
+$input-shadow: none;
+$input-shadow-focus: 0 0 5px #ddd;
+
+//$input-font-size: rem-calc(16);
+$input-font-line-height: 1.4;
+$input-color: inherit;
+$input-placeholder-color: inherit;
+$input-font-family: inherit;
+$input-font-weight: inherit;
+$input-background: transparent;
+$input-background-focus: rgba($primary-color, $opacity-ultra-light);
+$input-background-disabled: $primary-color;
+$input-transition: all 0.3s;
+$input-number-spinners: true;
+$input-radius: $global-radius;
+
+$select-background: $input-background;
+$select-radius: $input-radius;
+$select-triangle-color: #ddd;
+
+
+// Buttons
+
+$button-padding: rem-calc(16) rem-calc(32) rem-calc(15);
+$button-margin: 0;
+$button-fill: solid;
+$button-background: $primary-color;
+$button-background-hover: none;
+$button-color: $content-background;
+$button-color-alt: $primary-color;
+$button-radius: $global-radius;
+$button-sizes: (
+	tiny: rem-calc(9),
+	small: rem-calc(10),
+	default: rem-calc(13),
+	large: rem-calc(14),
+);
+$button-palette: $foundation-palette;
+$button-opacity-disabled: $opacity-medium;
+$button-background-hover-lightness: 0;
+$button-hollow-hover-lightness: 0;
+$button-transition: $input-transition;
+
+
+// Tables
+
+$table-background: transparent;
+$table-is-striped: false;
+$table-head-font-color: inherit;
+$table-foot-font-color: inherit;
+
+
+// Drilldown Menu
+
+$drilldown-arrows: false;
+$drilldown-padding: 0;
+$drilldown-transition: all 0.2s linear;
+
+
+// Dropdown Menu
+
+$dropdown-background: $body-background;
+$dropdown-border: 0;
+$dropdown-font-size: inherit;
+
+
+// Dropdown Menu
+
+$dropdownmenu-arrows: false;
+$dropdownmenu-min-width: 282px;
+$dropdownmenu-border: none;
+$dropdownmenu-padding: 0 1.2em;
+$dropdownmenu-submenu-padding: 0;
+$dropdown-menu-item-color-active: inherit;
+$dropdown-menu-item-background-active: none;
+
+
+// Responsive Embeds
+
+$responsive-embed-ratios: (
+	default: 16 by 9,
+	vertical: 9 by 16,
+	panorama: 256 by 81,
+	square: 1 by 1,
+);
+
+
+// Accordion
+
+$accordion-background: $white;
+$accordion-plusminus: true;
+$accordion-title-font-size: rem-calc(13);
+$accordion-item-color: $primary-color;
+$accordion-item-background-hover: none;
+$accordion-item-padding: rem-calc(18) 0 rem-calc(16);
+$accordion-content-background: $white;
+$accordion-content-border: none;
+$accordion-content-color: $body-font-color;
+$accordion-content-padding: rem-calc(8) 0 0;
+
+
+// ======================================================================
+// Theme
+// ======================================================================
+
+$content-padding: (
+	small:  $grid-column-gutter - $grid-column-gutter/6,
+	medium: $grid-column-gutter,
+	large:  $grid-column-gutter + $grid-column-gutter/3,
+	xlarge: $grid-column-gutter + $grid-column-gutter/2,
+);
+$nova-content-padding: (
+	small:  5,
+	medium: 15,
+	large:  30,
+	xlarge: 65,
+);
+$xlg-widget-title-font: rem-calc(20);
+$lg-widget-title-font: rem-calc(20);
+$md-widget-title-font: rem-calc(20);
+
+
+// ======================================================================
+// Slick Slider
+// ======================================================================
+
+$slick-font-family: "iNova";
+$slick-loader-path: "../images/";
+$slick-prev-character: "\ea0c";
+$slick-next-character: "\ea0d";

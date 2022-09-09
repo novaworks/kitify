@@ -61,7 +61,7 @@
 }
 .kitify-menu-account__box .sub-menu li a:hover:before {
   height: 1px;
-  background-color: v(site-link-hover-color);
+  background-color: var(--site-link-hover-color);
   -webkit-transform: scaleX(1);
           transform: scaleX(1);
   -webkit-transform-origin: left;
