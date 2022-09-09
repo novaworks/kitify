@@ -260,8 +260,8 @@ position:relative .kitify-team-member__inner-box {
 }
 
 .kitify-team-member.preset-type-4 .kitify-team-member__image {
-  -webkit-filter: grayscale(100);
-          filter: grayscale(100);
+  /* -webkit-filter: grayscale(100);
+          filter: grayscale(100); */
 }
 
 .kitify-team-member.preset-type-4 .kitify-team-member__name {

@@ -933,7 +933,7 @@ class Kitify_Team_Member extends Kitify_Base {
                 'label'  => esc_html__( 'Color', 'kitify' ),
                 'type'   => Controls_Manager::COLOR,
                 'selectors' => array(
-                    '{{WRAPPER}} ' . $css_scheme['title'] => 'color: {{VALUE}}',
+                    '{{WRAPPER}} ' . $css_scheme['title'] .' a' => 'color: {{VALUE}}',
                 ),
             )
         );
@@ -944,7 +944,7 @@ class Kitify_Team_Member extends Kitify_Base {
                 'label'  => esc_html__( 'Color Hover', 'kitify' ),
                 'type'   => Controls_Manager::COLOR,
                 'selectors' => array(
-                    '{{WRAPPER}} ' . $css_scheme['title'] . ':hover' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} ' . $css_scheme['title'] . ' a:hover' => 'color: {{VALUE}}',
                 ),
             )
         );
