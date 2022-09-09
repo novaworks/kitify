@@ -1,3 +1,4 @@
+@import '_mixins';
 .elementor-kitify-banner:after {
   clear: both;
   width: 100%;
@@ -36,9 +37,11 @@
     line-height: 1;
     width: 100%;
   }
+
   .kitify-banner__button {
     align-self: center;
   }
+
   &__overlay {
     position: absolute;
     top: 0;
@@ -71,6 +74,67 @@
       justify-content: center;
       align-items: center;
       margin: 0;
+    }
+  }
+  //Hiden content
+
+  &.kitify-effect-hidden-content {
+    .kitify-banner__content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      right: 0;
+      bottom: 0;
+      width: auto;
+      height: auto;
+      opacity: 0;
+      @include transition( opacity, 0.35s );
+    }
+
+    .kitify-banner__button,
+    .kitify-banner__text,
+    .kitify-banner__title {
+      opacity: 0;
+      will-change: transform;
+      transform: translateY(30%);
+      box-sizing: border-box;
+      transition: transform 0.3s 0.07s,opacity 0.3s 0.07s;
+    }
+
+    .kitify-banner__img {
+      transition: all 2s;
+
+      .mm-menu-custom-block & {
+        transition-duration: 0.3s;
+      }
+    }
+
+    &:hover {
+      .kitify-banner__content {
+        opacity: 1;
+      }
+
+      .kitify-banner__title {
+        transform: translateY(0);
+        opacity: 1;
+        transition-delay: 0.1s;
+      }
+
+      .kitify-banner__text {
+        transform: translateY(0);
+        opacity: 1;
+        transition-delay: 0.14s;
+      }
+
+      .kitify-banner__button {
+        transform: translateY(0);
+        opacity: 1;
+        transition-delay: 0.17s;
+      }
+
+      .kitify-banner__img {
+        transform: scale(1.1);
+      }
     }
   }
   //Lily
@@ -139,6 +203,7 @@
       }
     }
   }
+
   //Sadie
   &.kitify-effect-sadie {
     .kitify-banner__title {

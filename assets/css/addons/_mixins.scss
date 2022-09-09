@@ -19,3 +19,11 @@ $rem-base: 16px;
   }
   @return $remValues;
 }
+@mixin transition($property, $duration, $easing: linear) {
+	transition: $property $duration $easing;
+	-webkit-transition: $property $duration $easing;
+	-moz-transition: $property $duration $easing;
+}
+@mixin global_transition() {
+	transition: all 0.3s ease-in-out;
+}
