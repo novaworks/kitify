@@ -36,9 +36,9 @@ class Kitify_Woo_Size_Guide extends Kitify_Base {
         'kitify/woo-size-guide/css-scheme',
         array(
             'panel'    => '.kitify-woo-size-guide .kitify-offcanvas',
-            'toggle'   => '.kitify-woo-size-guide [type=button]',
-            'icon'     => '.kitify-woo-size-guide [type=button] .kitify-offcanvas__toggle-icon',
-            'label'    => '.kitify-woo-size-guide [type=button] .kitify-offcanvas__toggle-label',
+            'toggle'   => '.kitify-woo-size-guide button.button-toogle',
+            'icon'     => '.kitify-woo-size-guide button.button-toogle .kitify-offcanvas__toggle-icon',
+            'label'    => '.kitify-woo-size-guide button.button-toogle .kitify-offcanvas__toggle-label',
         )
     );
     $this->start_controls_section(
@@ -423,7 +423,7 @@ class Kitify_Woo_Size_Guide extends Kitify_Base {
     $toggle_close_icon = $this->_get_icon( 'sizeguide_close_icon', '<span class="kitify-offcanvas__icon kitify-blocks-icon">%s</span>' );
     ?>
     <div class="kitify-woo-size-guide">
-    <button type="button" name="button" data-toggle="SizeGuide_<?php echo $sizeguide_id; ?>" aria-expanded="false" aria-controls="SizeGuide_<?php echo $sizeguide_id; ?>">
+    <button class="button-toogle" type="button" name="button" data-toggle="SizeGuide_<?php echo $sizeguide_id; ?>" aria-expanded="false" aria-controls="SizeGuide_<?php echo $sizeguide_id; ?>">
     <?php
     if ( ! empty( $toggle_icon ) ) {
         echo sprintf( '<span class="kitify-offcanvas__toggle-icon">%1$s</span>', $toggle_icon);
