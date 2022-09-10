@@ -1135,7 +1135,7 @@
                 if(_need_add_remove){
                     $('<div/>').addClass('elementor-element elementor-element-' + wid).append($wContent).appendTo($burger_wrap_all);
                 }
-                $('.lastudio-kit.elementor-element-' + wid + ' .kitify-hamburger-panel__instance').remove();
+                $('.kitify.elementor-element-' + wid + ' .kitify-hamburger-panel__instance').remove();
                 $new_scope = $('.elementor-element-' + wid, $burger_wrap_all);
                 $('.kitify-hamburger-panel__toggle', $new_scope).remove();
             }
