@@ -1,0 +1,106 @@
+.kitify-offcanvas {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 1.875rem;
+}
+.kitify-offcanvas h2.title {
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  padding-bottom: 1.5625rem;
+  border-bottom: solid 1px var(--site-border-color);
+}
+.kitify-offcanvas h2.title .count-item-canvas {
+  position: relative;
+  top: -4px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 1.875rem;
+  height: 1.875rem;
+  margin-left: 0.625rem;
+  background: var(--site-accent-color);
+  color: #fff;
+  font-size: 0.875rem;
+  border-radius: 50%;
+}
+.kitify-offcanvas__content {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+.kitify-offcanvas.position-right {
+  top: 0;
+  right: 0;
+  width: 470px;
+  height: 100%;
+  -webkit-transform: translateX(470px);
+          transform: translateX(470px);
+  position: fixed;
+  z-index: 99999;
+  -webkit-transition: -webkit-transform 0.5s ease;
+  transition: -webkit-transform 0.5s ease;
+  transition: transform 0.5s ease;
+  transition: transform 0.5s ease, -webkit-transform 0.5s ease;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
+@media print, screen and (max-width: 47.99875em) {
+  .kitify-offcanvas.position-right {
+    width: 100%;
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+  }
+}
+.kitify-offcanvas.is-open {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+}
+.kitify-offcanvas .close-button {
+  font-size: 1.25rem;
+  position: absolute;
+  right: 30px;
+  top: 33px;
+  left: auto;
+  background-color: transparent;
+  color: var(--dropdown-text-color);
+  padding: 0;
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+  transition: transform 0.3s, -webkit-transform 0.3s;
+  display: inline-block;
+}
+.kitify-offcanvas .close-button:hover {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+.kitify-offcanvas .close-button svg {
+  width: 15px;
+  height: 15px;
+}
+
+.kitify-offcanvas__toggle-icon {
+  margin-right: 0.3125rem;
+}
+
+@media print, screen and (min-width: 64em) {
+  .admin-bar .kitify-offcanvas {
+    margin-top: 32px;
+  }
+}
+@media print, screen and (max-width: 47.99875em) {
+  .admin-bar .kitify-offcanvas {
+    margin-top: 0;
+  }
+}

@@ -25,3 +25,11 @@
 @function v($var) {
   @return var(--#{$var});
 }
+@mixin rotate_close_btn() {
+	transition: transform 0.3s;
+	display: inline-block;
+
+	&:hover {
+		transform: rotate(90deg);
+	}
+}

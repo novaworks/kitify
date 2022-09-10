@@ -1,0 +1,79 @@
+@import '_mixins';
+.kitify-offcanvas {
+  display: flex;
+  flex-direction: column;
+  padding: rem-calc(30);
+  h2.title {
+    font-size: rem-calc(20);
+    text-transform: uppercase;
+    padding-bottom: rem-calc(25);
+    border-bottom: solid 1px v(site-border-color);
+    .count-item-canvas {
+      position: relative;
+      top: -4px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: rem-calc(30);
+      height: rem-calc(30);
+      margin-left: rem-calc(10);
+      background: v(site-accent-color);
+      color: #fff;
+      font-size: rem-calc(14);
+      border-radius: 50%;
+    }
+  }
+  &__content {
+    flex: 1;
+
+  }
+  &.position-right {
+    top: 0;
+    right: 0;
+    width: 470px;
+    height: 100%;
+    transform: translateX(470px);
+    position: fixed;
+    z-index: 99999;
+    transition: transform 0.5s ease;
+    backface-visibility: hidden;
+    @include breakpoint(medium down) {
+      width: 100%;
+      transform: translateX(100%);
+    }
+  }
+
+  &.is-open {
+    transform: translateX(0);
+  }
+
+  .close-button {
+    font-size: rem-calc(20);
+    position: absolute;
+    right: 30px;
+    top: 33px;
+    left: auto;
+    background-color: transparent;
+    color: v(dropdown-text-color);
+    padding: 0;
+    @include rotate_close_btn();
+
+    svg {
+      width: 15px;
+      height: 15px;
+    }
+  }
+}
+.kitify-offcanvas__toggle-icon {
+  margin-right: rem-calc(5);
+}
+.admin-bar .kitify-offcanvas {
+	@include breakpoint(large up)
+	{
+		margin-top:32px;
+	}
+	@include breakpoint(medium down)
+	{
+		margin-top:0;
+	}
+}

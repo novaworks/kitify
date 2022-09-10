@@ -1,0 +1,36 @@
+.kitify-offcanvas {
+  --panel-width: 650px;
+  --panel-left-width: -650px;
+}
+.kitify-offcanvas.sizeguide-canvas.position-left {
+  width: var(--panel-width);
+  -webkit-transform: translateX(var(--panel-left-width));
+          transform: translateX(var(--panel-left-width));
+}
+@media print, screen and (max-width: 47.99875em) {
+  .kitify-offcanvas.sizeguide-canvas.position-left {
+    width: 100%;
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+  }
+}
+.kitify-offcanvas.sizeguide-canvas.position-left.is-open {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+}
+.kitify-offcanvas.sizeguide-canvas.position-right {
+  width: var(--panel-width);
+  -webkit-transform: translateX(var(--panel-width));
+          transform: translateX(var(--panel-width));
+}
+@media print, screen and (max-width: 47.99875em) {
+  .kitify-offcanvas.sizeguide-canvas.position-right {
+    width: 100%;
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+  }
+}
+.kitify-offcanvas.sizeguide-canvas.position-right.is-open {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+}

@@ -196,6 +196,12 @@ if ( ! class_exists( 'Kitify_Integration' ) ) {
                         ),
                         'conditional' => $woo_conditional,
                     ),
+										'woo_size_guide' => array(
+												'file' => kitify()->plugin_path(
+														'inc/addons/vendor/woo-size-guide.php'
+												),
+												'conditional' => $woo_conditional,
+										),
                     'woo_categories' => array(
                         'file' => kitify()->plugin_path(
                             'inc/addons/vendor/woo-categories.php'
@@ -460,6 +466,7 @@ if ( ! class_exists( 'Kitify_Integration' ) ) {
         public function frontend_enqueue(){
 
             wp_register_style( 'kitify-base', kitify()->plugin_url('assets/css/kitify-base.css'), [], kitify()->get_version());
+            wp_register_style( 'kitify-canvas', kitify()->plugin_url('assets/css/addons/kitify-canvas.css'), [], kitify()->get_version());
             wp_register_script(  'kitify-base' , kitify()->plugin_url('assets/js/kitify-base.js') , [ 'elementor-frontend' ],  kitify()->get_version() , true );
             wp_register_script(  'kitify-header-vertical' , kitify()->plugin_url('assets/js/addons/header-sidebar.js') , [ 'elementor-frontend' ],  kitify()->get_version() , true );
 

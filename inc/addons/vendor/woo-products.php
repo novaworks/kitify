@@ -41,7 +41,7 @@ class Kitify_Woo_Products extends Kitify_Base {
     }
 
     public function get_icon() {
-        return 'eicon-products';
+        return 'kitify-icon-products';
     }
 
     public function get_keywords() {

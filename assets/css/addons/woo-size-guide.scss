@@ -1,0 +1,29 @@
+@import '_mixins';
+.kitify-offcanvas {
+  --panel-width: 650px;
+  --panel-left-width: -650px;
+  &.sizeguide-canvas {
+    &.position-left {
+      width: v(panel-width);
+      transform: translateX(v(panel-left-width));
+      @include breakpoint(medium down) {
+        width: 100%;
+        transform: translateX(100%);
+      }
+      &.is-open {
+        transform: translateX(0);
+      }
+    }
+    &.position-right {
+      width: v(panel-width);
+      transform: translateX(v(panel-width));
+      @include breakpoint(medium down) {
+        width: 100%;
+        transform: translateX(100%);
+      }
+      &.is-open {
+        transform: translateX(0);
+      }
+    }
+  }
+}
