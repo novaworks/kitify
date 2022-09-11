@@ -23,7 +23,7 @@ class Kitify_Woo_Size_Guide extends Kitify_Base {
       return 'kitify-woo-size-guide';
   }
   public function get_categories() {
-      return [ 'kitify-woocommerce' ];
+      return [ 'kitify-woo-product' ];
   }
   protected function get_widget_title() {
       return esc_html__( 'Size Guide', 'kitify' );
