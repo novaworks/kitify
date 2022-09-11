@@ -413,11 +413,11 @@ class Kitify_Woo_Single_Product_Meta extends Kitify_Base {
             <?php endif; ?>
 
             <?php if ( count( $product->get_category_ids() ) ) : ?>
-                <span class="posted_in detail-container"><span class="detail-label"><?php echo esc_html( $this->get_plural_or_single( $category_caption_single, $category_caption_plural, count( $product->get_category_ids() ) ) ); ?></span> <span class="detail-content"><?php echo get_the_term_list( $product->get_id(), 'product_cat', '', ', ' ); ?></span></span>
+                <span class="posted_in detail-container"><span class="detail-label"><?php echo esc_html( $this->get_plural_or_single( $category_caption_single, $category_caption_plural, count( $product->get_category_ids() ) ) ); ?></span> <span class="detail-content"><?php echo get_the_term_list( $product->get_id(), 'product_cat', '', '<span class="sept">,</span> ' ); ?></span></span>
             <?php endif; ?>
 
             <?php if ( count( $product->get_tag_ids() ) ) : ?>
-                <span class="tagged_as detail-container"><span class="detail-label"><?php echo esc_html( $this->get_plural_or_single( $tag_caption_single, $tag_caption_plural, count( $product->get_tag_ids() ) ) ); ?></span> <span class="detail-content"><?php echo get_the_term_list( $product->get_id(), 'product_tag', '', ', ' ); ?></span></span>
+                <span class="tagged_as detail-container"><span class="detail-label"><?php echo esc_html( $this->get_plural_or_single( $tag_caption_single, $tag_caption_plural, count( $product->get_tag_ids() ) ) ); ?></span> <span class="detail-content"><?php echo get_the_term_list( $product->get_id(), 'product_tag', '', '<span class="sept">,</span> ' ); ?></span></span>
             <?php endif; ?>
 
             <?php do_action( 'woocommerce_product_meta_end' ); ?>
