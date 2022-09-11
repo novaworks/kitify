@@ -434,14 +434,16 @@ class Kitify_Woo_Size_Guide extends Kitify_Base {
     ?>
     </button>
     <?php if( 0 != $template_id ):?>
-    <div class="kitify-offcanvas sizeguide-canvas site-canvas-menu off-canvas position-<?php echo $position; ?>" id="SizeGuide_<?php echo $sizeguide_id; ?>" data-off-canvas data-transition="overlap">
-      <h2 class="title"><?php echo esc_html( $content_title );?></h2>
-      <div class="nova-offcanvas__content nova_box_ps">
-        <?php echo kitify()->elementor()->frontend->get_builder_content_for_display( $template_id ); ?>
+    <div class="off-canvas-wrapper">
+      <div class="kitify-offcanvas sizeguide-canvas site-canvas-menu off-canvas position-<?php echo $position; ?>" id="SizeGuide_<?php echo $sizeguide_id; ?>" data-off-canvas data-transition="overlap">
+        <h2 class="title"><?php echo esc_html( $content_title );?></h2>
+        <div class="nova-offcanvas__content nova_box_ps">
+          <?php echo kitify()->elementor()->frontend->get_builder_content_for_display( $template_id ); ?>
+        </div>
+        <button class="close-button" aria-label="Close menu" type="button" data-close>
+          <?php echo $toggle_close_icon; ?>
+        </button>
       </div>
-      <button class="close-button" aria-label="Close menu" type="button" data-close>
-        <?php echo $toggle_close_icon; ?>
-      </button>
     </div>
     <?php endif; ?>
     </div>
