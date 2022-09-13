@@ -141,7 +141,7 @@ class Product extends Single_Base {
 		$categories = [
 			// Move to top as active.
 			'kitify-woo-product' => [
-				'title' => __( 'LaStudio Kit Product', 'kitify' ),
+				'title' => __( 'Kitify Product', 'kitify' ),
 				'active' => true,
 			],
 		];

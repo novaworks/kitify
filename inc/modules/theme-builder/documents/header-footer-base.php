@@ -17,11 +17,11 @@ abstract class Header_Footer_Base extends Theme_Section_Document {
 		// Move to top as active.
 		$categories = [
 			'kitify-builder' => [
-				'title' => __( 'LaStudio Kit Builder', 'kitify' ),
+				'title' => __( 'Kitify Builder', 'kitify' ),
 				'active' => true,
 			],
             'kitify' => [
-				'title' => __( 'LaStudio Kit', 'kitify' ),
+				'title' => __( 'Kitify', 'kitify' ),
 				'active' => true,
 			],
 		];
