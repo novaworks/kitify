@@ -9,7 +9,7 @@
 
 namespace Elementor;
 
-use Kitify_Extension\Controls\Group_Control_Related as Group_Control_Related;
+use KitifyExtensions\Elementor\Controls\Group_Control_Related as Group_Control_Related;
 
 if (!defined('WPINC')) {
 	die;

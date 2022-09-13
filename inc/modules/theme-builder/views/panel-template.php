@@ -45,7 +45,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <script type="text/template" id="tmpl-elementor-theme-builder-conditions-view">
 	<div class="elementor-template-library-blank-icon">
-		<img src="<?php echo kitify()->plugin_url('inc/modules/theme-builder/assets/images/conditions-tab.svg'); ?>">
+		<img src="<?php echo kitify()->plugin_url('includes/modules/theme-builder/assets/images/conditions-tab.svg'); ?>">
 	</div>
 	<div class="elementor-template-library-blank-title">{{{ KitifyPro.translate( 'conditions_title', [ elementor.config.document.post_type_title ] ) }}}</div>
 	<div class="elementor-template-library-blank-message">{{{ KitifyPro.translate( 'conditions_description', [ elementor.config.document.post_type_title ] ) }}}</div>

@@ -106,7 +106,7 @@ class Module extends \Elementor\Core\Base\Module {
 				'view_live_site' => __( 'View Live Site', 'kitify' ),
 			],
             'urls' => [
-                'modules' => kitify()->plugin_url('/inc/modules/')
+                'modules' => kitify()->plugin_url('/includes/modules/')
             ]
 		] );
 

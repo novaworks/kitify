@@ -4,7 +4,7 @@ namespace KitifyThemeBuilder\Modules\DynamicTags\Tags;
 use Elementor\Controls_Manager;
 use KitifyThemeBuilder\Modules\DynamicTags\Tags\Base\Data_Tag;
 use KitifyThemeBuilder\Modules\DynamicTags\Module;
-use Kitify_Extension\Controls\Control_Query as QueryModule;
+use KitifyExtensions\Elementor\Controls\Control_Query as QueryModule;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly

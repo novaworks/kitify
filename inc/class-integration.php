@@ -87,33 +87,12 @@ if ( ! class_exists( 'Kitify_Integration' ) ) {
                 'subscribe_success'           => esc_html__( 'Success', 'kitify' ),
             ) );
 
-            add_action( 'wp_ajax_kitify_elementor_subscribe_form_ajax', [ $this, 'subscribe_form_ajax' ] );
-            add_action( 'wp_ajax_nopriv_kitify_elementor_subscribe_form_ajax', [ $this, 'subscribe_form_ajax' ] );
-
-			// Init Elementor Extension module
-			$ext_module_data = kitify()->module_loader->get_included_module_data( 'elementor-extension.php' );
-
-            Kitify_Extension\Module::get_instance(
-				array(
-					'path' => $ext_module_data['path'],
-					'url'  => $ext_module_data['url'],
-				)
-			);
-
             // Set default single post template
             add_filter( 'get_post_metadata', array( $this, 'override_single_post_template' ), 10, 4 );
             add_filter( 'get_post_metadata', array( $this, 'override_single_page_template' ), 10, 4 );
 
-            // Init Mega Menu module
-            if( kitify()->get_theme_support('elementor::mega-menu') ){
-                $mega_menu = kitify()->module_loader->get_included_module_data( 'mega-menu.php' );
-                Kitify_MegaMenu::get_instance([
-                    'path' => $mega_menu['path'],
-                    'url'  => $mega_menu['url'],
-                ]);
-            }
-
             add_action( 'init', [ $this, 'register_portfolio_content_type' ] );
+						add_action('kitify/ajax/register_actions', [ $this, 'register_ajax_actions' ] );
 		}
 
 		/**
@@ -1092,6 +1071,143 @@ if ( ! class_exists( 'Kitify_Integration' ) ) {
 					'rewrite'           => array('slug' => 'portfolio-category')
 				]));
 			}
+		}
+		/**
+		 * @param Kitify_Ajax_Manager $ajax_manager
+		 */
+		public function register_ajax_actions( $ajax_manager ){
+			$ajax_manager->register_ajax_action( 'newsletter_subscribe', [ $this, 'ajax_newsletter_subscribe' ] );
+			$ajax_manager->register_ajax_action( 'elementor_template', [ $this, 'ajax_get_elementor_template' ] );
+			$ajax_manager->register_ajax_action( 'elementor_widget', [ $this, 'ajax_get_elementor_widget' ] );
+		}
+		public function ajax_newsletter_subscribe( $request ){
+
+			$return_data = [];
+
+			$api_key = apply_filters('kitify/mailchimp/api', kitify_settings()->get_option('mailchimp-api-key'));
+			$list_id = apply_filters('kitify/mailchimp/list_id', kitify_settings()->get_option('mailchimp-list-id'));
+			$double_opt = apply_filters('kitify/mailchimp/double_opt_in', kitify_settings()->get_option('mailchimp-double-opt-in'));
+
+			$double_opt_in = filter_var( $double_opt, FILTER_VALIDATE_BOOLEAN );
+
+			if ( ! $api_key ) {
+				$return_data = [
+					'type'      => 'error',
+					'message' => $this->sys_messages['mailchimp']
+				];
+				return $return_data;
+			}
+
+			if ( isset( $request['use_target_list_id'] ) &&
+					 filter_var( $request['use_target_list_id'], FILTER_VALIDATE_BOOLEAN ) &&
+					 ! empty( $request['target_list_id'] )
+			) {
+				$list_id = $request['target_list_id'];
+			}
+
+			if ( ! $list_id ) {
+				$return_data = [
+					'type'      => 'error',
+					'message' => $this->sys_messages['mailchimp']
+				];
+				return $return_data;
+			}
+
+			$mail = $request['email'];
+
+			if ( empty( $mail ) || ! is_email( $mail ) ) {
+				$return_data = [
+					'type'      => 'error',
+					'message' => $this->sys_messages['invalid_mail']
+				];
+				return $return_data;
+			}
+
+			$args = [
+				'email_address' => $mail,
+				'status'        => $double_opt_in ? 'pending' : 'subscribed',
+			];
+
+			if ( ! empty( $data['additional'] ) ) {
+
+				$additional = $data['additional'];
+
+				foreach ( $additional as $key => $value ) {
+					$merge_fields[ strtoupper( $key ) ] = $value;
+				}
+
+				$args['merge_fields'] = $merge_fields;
+
+			}
+
+			$response = $this->api_call( $api_key, $list_id, $args );
+
+			if ( false === $response ) {
+				$return_data = [
+					'type'      => 'error',
+					'message'   => $this->sys_messages['mailchimp']
+				];
+				return $return_data;
+			}
+
+			$response = json_decode( $response, true );
+
+			if ( empty( $response ) ) {
+				$return_data = [
+					'type'      => 'error',
+					'message' => $this->sys_messages['internal']
+				];
+				return $return_data;
+			}
+
+			if ( isset( $response['status'] ) && 'error' == $response['status'] ) {
+				$return_data = [
+					'type'      => 'error',
+					'message' => esc_html( $response['error'] )
+				];
+				return $return_data;
+			}
+			$return_data = [
+				'type'      => 'success',
+				'message' => $this->sys_messages['subscribe_success']
+			];
+
+			return $return_data;
+		}
+
+		public function ajax_get_elementor_template( $request ){
+			$helper = \Kitify\Template_Helper::get_instance();
+
+			$template_data = [
+				'template_content' => '',
+				'template_scripts' => [],
+				'template_styles'  => [],
+				'template_metadata' => []
+			];
+			$args = [
+				'dev' => !empty($request['dev']) ? $request['dev'] : false
+			];
+			$template_ids = !empty($request['template_ids']) ? (array) $request['template_ids'] : [];
+			if(empty($template_ids)){
+				return [ $template_data ];
+			}
+			else{
+				$returned_data = [];
+				foreach ( $template_ids as $template_id ){
+					$returned_data[$template_id] = $helper->callback( array_merge($args, ['id' => $template_id]), 'ajax' );
+				}
+				return $returned_data;
+			}
+		}
+
+		public function ajax_get_elementor_widget( $request ){
+			$helper = \Kitify\Template_Helper::get_instance();
+			$args = [
+				'template_id' => !empty($request['template_id']) ? absint($request['template_id']) : false,
+				'widget_id' => !empty($request['widget_id']) ? $request['widget_id'] : false,
+				'dev' => !empty($request['dev']) ? $request['dev'] : false
+			];
+			return $helper->widget_callback($args, 'ajax');
 		}
 
 	}

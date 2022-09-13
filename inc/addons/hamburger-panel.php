@@ -364,7 +364,7 @@ class Kitify_Hamburger_Panel extends Kitify_Base {
         );
 
         $this->_add_group_control(
-            \Kitify_Extension\Controls\Group_Control_Box_Style::get_type(),
+            \KitifyExtensions\Elementor\Controls\Group_Control_Box_Style::get_type(),
             array(
                 'label'    => esc_html__( 'Close Icon', 'kitify' ),
                 'name'     => 'close_icon_box',
@@ -383,7 +383,7 @@ class Kitify_Hamburger_Panel extends Kitify_Base {
         );
 
         $this->_add_group_control(
-            \Kitify_Extension\Controls\Group_Control_Box_Style::get_type(),
+            \KitifyExtensions\Elementor\Controls\Group_Control_Box_Style::get_type(),
             array(
                 'label'    => esc_html__( 'Close Icon', 'kitify' ),
                 'name'     => 'close_icon_box_hover',
@@ -556,7 +556,7 @@ class Kitify_Hamburger_Panel extends Kitify_Base {
         );
 
         $this->_add_group_control(
-            \Kitify_Extension\Controls\Group_Control_Box_Style::get_type(),
+            \KitifyExtensions\Elementor\Controls\Group_Control_Box_Style::get_type(),
             array(
                 'label'    => esc_html__( 'Toggle Icon', 'kitify' ),
                 'name'     => 'toggle_icon_box',
@@ -575,7 +575,7 @@ class Kitify_Hamburger_Panel extends Kitify_Base {
         );
 
         $this->_add_group_control(
-            \Kitify_Extension\Controls\Group_Control_Box_Style::get_type(),
+            \KitifyExtensions\Elementor\Controls\Group_Control_Box_Style::get_type(),
             array(
                 'label'    => esc_html__( 'Toggle Icon', 'kitify' ),
                 'name'     => 'toggle_icon_box_hover',

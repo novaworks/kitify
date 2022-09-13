@@ -3110,7 +3110,7 @@ msgid "HTML Tag"
 msgstr ""
 
 #. Author URI of the plugin
-msgid "https://la-studioweb.com/"
+msgid "https://novaworks.net/"
 msgstr ""
 
 #: inc/addons/slides.php:272 inc/addons/archive-description.php:119

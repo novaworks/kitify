@@ -739,7 +739,7 @@ class Kitify_Pricing_Table extends Kitify_Base {
         );
 
         $this->_add_group_control(
-            \Kitify_Extension\Controls\Group_Control_Box_Style::get_type(),
+            \KitifyExtensions\Elementor\Controls\Group_Control_Box_Style::get_type(),
             array(
                 'name'           => 'icon_style',
                 'label'          => esc_html__( 'Icon Style', 'kitify' ),

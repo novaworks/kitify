@@ -140,7 +140,7 @@ class Product extends Single_Base {
 	protected static function get_editor_panel_categories() {
 		$categories = [
 			// Move to top as active.
-			'lastudiokit-woo-product' => [
+			'kitify-woo-product' => [
 				'title' => __( 'LaStudio Kit Product', 'kitify' ),
 				'active' => true,
 			],

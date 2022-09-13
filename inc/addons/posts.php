@@ -13,8 +13,8 @@ if (!defined('WPINC')) {
     die;
 }
 
-use Kitify_Extension\Classes\Query_Control as Module_Query;
-use Kitify_Extension\Controls\Group_Control_Related as Group_Control_Related;
+use KitifyExtensions\Elementor\Classes\Query_Control as Module_Query;
+use KitifyExtensions\Elementor\Controls\Group_Control_Related as Group_Control_Related;
 
 
 /**

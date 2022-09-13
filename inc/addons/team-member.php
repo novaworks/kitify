@@ -11,8 +11,8 @@ if (!defined('WPINC')) {
     die;
 }
 
-use Kitify_Extension\Controls\Group_Control_Query;
-use Kitify_Extension\Classes\Query_Control as Module_Query;
+use KitifyExtensions\Elementor\Controls\Group_Control_Query;
+use KitifyExtensions\Elementor\Classes\Query_Control as Module_Query;
 
 /**
  * Team_Member Widget

@@ -1,7 +1,7 @@
 <?php
 namespace KitifyThemeBuilder\Modules\ThemeBuilder\Conditions;
 
-use Kitify_Extension\Controls\Control_Query as QueryModule;
+use KitifyExtensions\Elementor\Controls\Control_Query as QueryModule;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly

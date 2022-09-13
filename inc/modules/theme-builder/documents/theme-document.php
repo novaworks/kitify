@@ -6,7 +6,7 @@ use Elementor\Core\App\Modules\ImportExport\Module as Import_Export_Module;
 use Elementor\Modules\Library\Documents\Library_Document;
 use Elementor\TemplateLibrary\Source_Local;
 use Elementor\Utils;
-use Kitify_Extension\Controls\Control_Query as QueryModule;
+use KitifyExtensions\Elementor\Controls\Control_Query as QueryModule;
 use KitifyThemeBuilder\Modules\ThemeBuilder\Module;
 
 if ( ! defined( 'ABSPATH' ) ) {

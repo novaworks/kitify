@@ -71,15 +71,27 @@ class Template_Helper {
                 'template_styles'  => [],
                 'template_metadata' => []
             ];
-            return $type == 'rest' ? rest_ensure_response( $template_data ) : wp_send_json($template_data);
+            return $type == 'rest' ? rest_ensure_response( $template_data ) : $template_data;
         }
 
-        $transient_key = md5( sprintf( 'kitify_doc_%s', $template_id ) );
+	    $rest_allow_types = apply_filters('kitify/rest/elmenetor/allow_types', ['elementor_library', 'nav_menu_item']);
+
+        if( !in_array(get_post_type($template_id), $rest_allow_types) ){
+	        $template_data = [
+		        'template_content' => '',
+		        'template_scripts' => [],
+		        'template_styles'  => [],
+		        'template_metadata' => []
+	        ];
+	        return $type == 'rest' ? rest_ensure_response( $template_data ) : $template_data;
+        }
+
+        $transient_key = md5( sprintf( 'lakit_doc_%s', $template_id ) );
 
         $template_data = get_transient( $transient_key );
 
         if ( !empty( $template_data ) && !$dev ) {
-            return $type == 'rest' ? rest_ensure_response( $template_data ) : wp_send_json($template_data);
+            return $type == 'rest' ? rest_ensure_response( $template_data ) : $template_data;
         }
 
         $plugin = kitify()->elementor();
@@ -133,7 +145,7 @@ class Template_Helper {
         set_transient( $transient_key, $template_data, 24 * HOUR_IN_SECONDS );
         self::set_transient_key('post_type', $template_id, $transient_key );
 
-        return $type == 'rest' ? rest_ensure_response( $template_data ) : wp_send_json($template_data);
+        return $type == 'rest' ? rest_ensure_response( $template_data ) : $template_data;
     }
 
     /**
@@ -207,6 +219,10 @@ class Template_Helper {
     public function get_elementor_template_scripts( $template_id ) {
 
         $document = kitify()->elementor()->documents->get( $template_id );
+
+        if(!$document){
+        	return;
+        }
 
         $main_post = $document->get_main_post();
 
@@ -395,61 +411,58 @@ class Template_Helper {
 
     public function paginate_links( $link ){
 
-        $custom_paged_key = isset($_REQUEST['kitifypagedkey']) ? $_REQUEST['kitifypagedkey'] : false;
+        $custom_paged_key = isset($_REQUEST['lakitpagedkey']) ? $_REQUEST['lakitpagedkey'] : false;
 
-        $link = remove_query_arg(['_', 'kitifypagedkey'], $link);
+        $link = remove_query_arg(['_', 'lakitpagedkey'], $link);
         $curl = add_query_arg( null, null, false );
-        $curl = remove_query_arg(['_', 'kitifypagedkey'], $curl);
+        $curl = remove_query_arg(['_', 'lakitpagedkey'], $curl);
         if(!empty($custom_paged_key)){
             $curl = remove_query_arg($custom_paged_key, $curl);
         }
         $curl = esc_url_raw( $curl );
         $link = str_replace($curl, '', $link);
         $link = str_replace('&', '?', $link);
+
         return $link;
     }
 
-    public function widget_callback( $args ) {
+    public function widget_callback( $args, $type = 'rest' ) {
         $template_id = ! empty( $args['template_id'] ) ? $args['template_id'] : false;
         $widget_id = ! empty( $args['widget_id'] ) ? $args['widget_id'] : false;
         $is_dev = isset($args['dev']) ? $args['dev'] : false;
         $is_dev = filter_var( $is_dev, FILTER_VALIDATE_BOOLEAN );
 
         if ( (empty($template_id) && empty($widget_id)) || !defined('ELEMENTOR_VERSION' ) ) {
-            return rest_ensure_response([
-                'template_content' => ''
-            ]);
+
+	        return $type == 'rest' ? rest_ensure_response( [ 'template_content' => '' ] ) : [ 'template_content' => '' ];
         }
 
-        $transient_key = md5( sprintf( 'kitify_doc_%s_widget_%s', $template_id, $widget_id ) );
+	    if( false === get_post_type($template_id) ){
+		    return $type == 'rest' ? rest_ensure_response( [ 'template_content' => '' ] ) : [ 'template_content' => '' ];
+	    }
+
+        $transient_key = md5( sprintf( 'lakit_doc_%s_widget_%s', $template_id, $widget_id ) );
 
         $template_data = get_transient( $transient_key );
 
         if ( !empty( $template_data ) && !$is_dev ) {
-
-            return rest_ensure_response( $template_data );
+	        return $type == 'rest' ? rest_ensure_response( $template_data ) : $template_data;
         }
 
         $doc_meta = get_post_meta( $template_id, '_elementor_data', true );
 
         if(empty($doc_meta)){
-            return rest_ensure_response([
-                'template_content' => ''
-            ]);
+	        return $type == 'rest' ? rest_ensure_response( [ 'template_content' => '' ] ) : [ 'template_content' => '' ];
         }
 
         $doc_meta = @json_decode($doc_meta, true);
 
         if(empty($doc_meta)){
-            return rest_ensure_response([
-                'template_content' => ''
-            ]);
+	        return $type == 'rest' ? rest_ensure_response( [ 'template_content' => '' ] ) : [ 'template_content' => '' ];
         }
         $widget_data = $this->find_widget_data($doc_meta, $widget_id);
         if(empty($widget_data) || ( !empty($widget_data) && !is_array($widget_data) )){
-            return rest_ensure_response([
-                'template_content' => ''
-            ]);
+	        return $type == 'rest' ? rest_ensure_response( [ 'template_content' => '' ] ) : [ 'template_content' => '' ];
         }
 
         ob_start();
@@ -471,7 +484,7 @@ class Template_Helper {
             self::set_transient_key('post_type', $template_id, $transient_key );
         }
 
-        return rest_ensure_response($template_data);
+	    return $type == 'rest' ? rest_ensure_response( $template_data ) : $template_data;
     }
 
     public static function find_widget_data( $data, $widget_id ){

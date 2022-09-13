@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Kitify by Novaworks
  * Description:       A perfect plugin for Elementor
- * Version:           1.0.3
+ * Version:           1.0.4
  * Author:            Novaworks
  * Author URI:        https://kitify.app
  * License:           GPL-2.0+
@@ -69,7 +69,22 @@ if(!function_exists('Kitify')){
          */
         public $module_loader = null;
 
+        /**
+         * @var \KitifyThemeBuilder\Modules\Modules_Manager $modules_manager
+         */
         public $modules_manager;
+
+        /**
+         * @since  2.0.0
+         * @access public
+         * @var \KitifyExtensions\Manager $extensions_manager
+         */
+        public $extensions_manager;
+
+	    /**
+	     * @var Kitify_Ajax_Manager $ajax_manager;
+	     */
+        public $ajax_manager;
 
         /**
          * Holder for current Customizer module instance.
@@ -118,6 +133,8 @@ if(!function_exists('Kitify')){
 
             add_action('elementor/element/after_section_end', array( $this, 'add_size_units' ), 10, 2);
 
+            add_action( 'plugins_loaded', [ $this, 'plugins_loaded' ], 0 );
+
             // Register activation and deactivation hook.
             register_activation_hook( __FILE__, array( $this, 'activation' ) );
             register_deactivation_hook( __FILE__, array( $this, 'deactivation' ) );
@@ -140,7 +157,6 @@ if(!function_exists('Kitify')){
                     $this->plugin_path( 'inc/framework/db-updater/cx-db-updater.php' ),
                     $this->plugin_path( 'inc/framework/dashboard/dashboard.php' ),
                     $this->plugin_path( 'inc/framework/interface-builder/interface-builder.php' ),
-                    $this->plugin_path( 'inc/framework/elementor-extension/elementor-extension.php' ),
                     $this->plugin_path( 'inc/framework/post-meta/post-meta.php' ),
                     $this->plugin_path( 'inc/framework/customizer/customizer.php' ),
                     $this->plugin_path( 'inc/framework/fonts-manager/fonts-manager.php' ),
@@ -200,7 +216,7 @@ if(!function_exists('Kitify')){
                 // Init DB upgrader
                 new Kitify_DB_Upgrader();
             }
-
+            $this->extensions_manager = new KitifyExtensions\Manager();
             do_action( 'kitify/init', $this );
         }
 
@@ -327,6 +343,7 @@ if(!function_exists('Kitify')){
             require_once $this->plugin_path( 'inc/class-tools.php' );
             require_once $this->plugin_path( 'inc/settings/manager.php' );
             require_once $this->plugin_path( 'inc/class-svg-manager.php' );
+
             require_once $this->plugin_path( 'inc/rest-api/template-helper.php' );
             require_once $this->plugin_path( 'inc/rest-api/rest-api.php' );
             require_once $this->plugin_path( 'inc/rest-api/endpoints/base.php' );
@@ -465,6 +482,40 @@ if(!function_exists('Kitify')){
         }
 
         public function autoload( $class ) {
+
+        	$mappings = [
+        		'Kitify_Ajax_Manager' => 'inc/modules/ajax/manager.php',
+        		'KitifyThemeBuilder_AdminApp' => 'inc/modules/admin-app/admin-app.php',
+	        ];
+
+        	if( array_key_exists( $class, $mappings ) ){
+		        if ( ! class_exists( $class ) ) {
+			        $filename = $this->plugin_path($mappings[$class]);
+			        if ( is_readable( $filename ) ) {
+				        include( $filename );
+			        }
+		        }
+		        return;
+	        }
+
+            if ( 0 === strpos( $class, 'KitifyExtensions' ) ) {
+                if ( ! class_exists( $class ) ) {
+                    $filename_extends = strtolower(
+                        preg_replace(
+                            [ '/^' . 'KitifyExtensions' . '\\\/', '/([a-z])([A-Z])/', '/_/', '/\\\/' ],
+                            [ '', '$1-$2', '-', DIRECTORY_SEPARATOR ],
+                            $class
+                        )
+                    );
+                    $filename_extends = $this->plugin_path('inc/extensions/' . $filename_extends . '.php');
+
+                    if ( is_readable( $filename_extends ) ) {
+                        include( $filename_extends );
+                    }
+                }
+            }
+
+
             if ( 0 !== strpos( $class, 'KitifyThemeBuilder' ) ) {
                 return;
             }
@@ -568,6 +619,14 @@ if(!function_exists('Kitify')){
             ];
 
             $this->customizer = new \CX_Customizer( apply_filters('kitify/theme/customizer/options', $customizer_options) );
+        }
+        public function plugins_loaded(){
+          if( $this->has_elementor() && ($typography = $this->plugin_path('includes/integrate/typography.php')) && file_exists( $typography )){
+              require_once $typography;
+          }
+          if( $this->has_elementor() && !$this->has_elementor_pro() ){
+              new KitifyThemeBuilder_AdminApp();
+          }
         }
 
     }

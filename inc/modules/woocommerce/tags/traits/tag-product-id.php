@@ -1,7 +1,7 @@
 <?php
 namespace KitifyThemeBuilder\Modules\Woocommerce\Tags\Traits;
 
-use Kitify_Extension\Controls\Control_Query as QueryControlModule;
+use KitifyExtensions\Elementor\Controls\Control_Query as QueryControlModule;
 
 trait Tag_Product_Id {
 	public function add_product_id_control() {

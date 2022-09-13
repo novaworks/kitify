@@ -11,7 +11,7 @@ if (!defined('WPINC')) {
     die;
 }
 
-use Kitify_Extension\Controls\Group_Control_Box_Style;
+use KitifyExtensions\Elementor\Controls\Group_Control_Box_Style;
 
 /**
  * Kitify_Timeline_Horizontal Widget

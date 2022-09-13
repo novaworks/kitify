@@ -85,8 +85,8 @@ class Conditions_Manager {
 	 * @param Ajax $ajax_manager
 	 */
 	public function register_ajax_actions( $ajax_manager ) {
-		$ajax_manager->register_ajax_action( 'kitify_theme_builder_save_conditions', [ $this, 'ajax_save_theme_template_conditions' ] );
-		$ajax_manager->register_ajax_action( 'kitify_theme_builder_conditions_check_conflicts', [ $this, 'ajax_check_conditions_conflicts' ] );
+		$ajax_manager->register_ajax_action( 'lakit_theme_builder_save_conditions', [ $this, 'ajax_save_theme_template_conditions' ] );
+		$ajax_manager->register_ajax_action( 'lakit_theme_builder_conditions_check_conflicts', [ $this, 'ajax_check_conditions_conflicts' ] );
 	}
 
 	public function ajax_check_conditions_conflicts( $request ) {

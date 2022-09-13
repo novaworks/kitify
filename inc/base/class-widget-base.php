@@ -4,7 +4,7 @@ namespace Elementor;
 
 if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
-use Kitify_Extension\Controls\Group_Control_Box_Style;
+use KitifyExtensions\Elementor\Controls\Group_Control_Box_Style;
 
 abstract class Kitify_Base extends Widget_Base
 {

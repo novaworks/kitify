@@ -304,7 +304,7 @@ class Kitify_Woo_Size_Guide extends Kitify_Base {
     );
 
     $this->_add_group_control(
-        \Kitify_Extension\Controls\Group_Control_Box_Style::get_type(),
+        \KitifyExtensions\Elementor\Controls\Group_Control_Box_Style::get_type(),
         array(
             'label'    => esc_html__( 'Toggle Icon', 'kitify' ),
             'name'     => 'toggle_icon_box',
@@ -323,7 +323,7 @@ class Kitify_Woo_Size_Guide extends Kitify_Base {
     );
 
     $this->_add_group_control(
-        \Kitify_Extension\Controls\Group_Control_Box_Style::get_type(),
+        \KitifyExtensions\Elementor\Controls\Group_Control_Box_Style::get_type(),
         array(
             'label'    => esc_html__( 'Toggle Icon', 'kitify' ),
             'name'     => 'toggle_icon_box_hover',
