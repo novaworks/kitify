@@ -66,7 +66,6 @@ class Module extends Module_Base {
             'sticky_column'         => 'Sticky_Column',
             'custom_css'            => 'Custom_CSS',
         ];
-
         foreach ($this->active_extensions as $active_extension => $status){
             if(filter_var( $status, FILTER_VALIDATE_BOOLEAN ) && isset($maps[$active_extension])){
                 $class_name =  $maps[$active_extension];
@@ -74,9 +73,8 @@ class Module extends Module_Base {
                 new $instance;
             }
         }
-
         new General_Extensions();
-        new Header_Vertical();
+        new Custom_Section();
 
     }
 

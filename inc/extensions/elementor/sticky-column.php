@@ -202,4 +202,3 @@ class Sticky_Column {
       }
     }
 }
-new Sticky_Column();

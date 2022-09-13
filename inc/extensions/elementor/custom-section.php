@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 use Elementor\Controls_Manager;
 
-class Header_Vertical {
+class Custom_Section {
     public function __construct() {
         add_action('elementor/theme/before_do_header', [ $this, 'add_open_wrap' ], 0 );
         add_action('wp_footer', [ $this, 'add_close_wrap' ], -1001 );

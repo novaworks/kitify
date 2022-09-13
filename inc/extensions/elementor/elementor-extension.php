@@ -114,7 +114,7 @@ if ( ! class_exists( 'KitifyExtensions\Elementor\Module' ) ) {
                 'wrapper_link'          => false,
                 'element_visibility'    => true,
                 'custom_css'            => true,
-                'column_sticky'         => true,
+                'sticky_column'         => true,
             ]);
 
             if( !empty($avaliable_extension['floating_effects']) && filter_var( $avaliable_extension['floating_effects'], FILTER_VALIDATE_BOOLEAN ) ){
@@ -142,7 +142,7 @@ if ( ! class_exists( 'KitifyExtensions\Elementor\Module' ) ) {
                 require trailingslashit( $this->path ) . 'inc/element-visibility.php';
             }
 
-            if( !empty($avaliable_extension['column_sticky']) && filter_var( $avaliable_extension['column_sticky'], FILTER_VALIDATE_BOOLEAN ) ){
+            if( !empty($avaliable_extension['sticky_column']) && filter_var( $avaliable_extension['sticky_column'], FILTER_VALIDATE_BOOLEAN ) ){
                 require trailingslashit( $this->path ) . 'inc/sticky-column.php';
             }
 
