@@ -15,7 +15,7 @@
 class Kitify_Woo_Menu_Account extends Kitify_Base {
 
   protected function enqueue_addon_resources(){
-      wp_register_style( $this->get_name(), kitify()->plugin_url('assets/css/addons/menu-account.css'), ['kitify-base'], kitify()->get_version());
+      wp_register_style( $this->get_name(), kitify()->plugin_url('assets/css/addons/menu-account.css'), ['kitify-base','kitify-canvas'], kitify()->get_version());
       $this->add_style_depends( $this->get_name() );
       $this->add_script_depends('kitify-base' );
   }
@@ -203,6 +203,10 @@ class Kitify_Woo_Menu_Account extends Kitify_Base {
       $this->_open_wrap();
       include $this->_get_global_template( 'index' );
       $this->_close_wrap();
+      add_action('kitify/theme/canvas_panel', [ $this, 'add_panel' ] );
 
+  }
+  public function add_panel() {
+    include $this->_get_global_template( 'panel' );
   }
 }
