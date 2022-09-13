@@ -26,7 +26,7 @@ abstract class Single_Base extends Archive_Single_Base {
 	public static function get_editor_panel_config() {
 		$config = parent::get_editor_panel_config();
 
-		$config['widgets_settings']['lakit-post-content'] = [
+		$config['widgets_settings']['kitify-post-content'] = [
 			'show_in_panel' => true,
 		];
 
@@ -135,7 +135,7 @@ abstract class Single_Base extends Archive_Single_Base {
 	}
 
 	public function get_depended_widget() {
-		return kitify()->elementor()->widgets_manager->get_widget_types( 'lakit-post-content' );
+		return kitify()->elementor()->widgets_manager->get_widget_types( 'kitify-post-content' );
 	}
 
 	public function get_elements_data( $status = Document::STATUS_PUBLISH ) {

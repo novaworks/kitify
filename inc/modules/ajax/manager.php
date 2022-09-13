@@ -305,7 +305,7 @@ if (!class_exists('Kitify_Ajax_Manager')) {
 	    }
 
 	    /**
-	     * Set Lakit AJAX constant and headers.
+	     * Set Kitify AJAX constant and headers.
 	     */
 	    public static function define_ajax() {
 		    // phpcs:disable
@@ -324,7 +324,7 @@ if (!class_exists('Kitify_Ajax_Manager')) {
 	    }
 
 	    /**
-	     * Check for Lakit Ajax request and fire action.
+	     * Check for Kitify Ajax request and fire action.
 	     */
 	    public static function do_kitify_ajax() {
 
@@ -338,7 +338,7 @@ if (!class_exists('Kitify_Ajax_Manager')) {
 	    }
 
 	    /**
-	     * Send headers for Lakit Ajax Requests.
+	     * Send headers for Kitify Ajax Requests.
 	     *
 	     * @since 1.0.0
 	     */

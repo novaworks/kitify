@@ -86,7 +86,7 @@ class Template_Helper {
 	        return $type == 'rest' ? rest_ensure_response( $template_data ) : $template_data;
         }
 
-        $transient_key = md5( sprintf( 'lakit_doc_%s', $template_id ) );
+        $transient_key = md5( sprintf( 'kitify_doc_%s', $template_id ) );
 
         $template_data = get_transient( $transient_key );
 
@@ -411,11 +411,11 @@ class Template_Helper {
 
     public function paginate_links( $link ){
 
-        $custom_paged_key = isset($_REQUEST['lakitpagedkey']) ? $_REQUEST['lakitpagedkey'] : false;
+        $custom_paged_key = isset($_REQUEST['kitifypagedkey']) ? $_REQUEST['kitifypagedkey'] : false;
 
-        $link = remove_query_arg(['_', 'lakitpagedkey'], $link);
+        $link = remove_query_arg(['_', 'kitifypagedkey'], $link);
         $curl = add_query_arg( null, null, false );
-        $curl = remove_query_arg(['_', 'lakitpagedkey'], $curl);
+        $curl = remove_query_arg(['_', 'kitifypagedkey'], $curl);
         if(!empty($custom_paged_key)){
             $curl = remove_query_arg($custom_paged_key, $curl);
         }
@@ -441,7 +441,7 @@ class Template_Helper {
 		    return $type == 'rest' ? rest_ensure_response( [ 'template_content' => '' ] ) : [ 'template_content' => '' ];
 	    }
 
-        $transient_key = md5( sprintf( 'lakit_doc_%s_widget_%s', $template_id, $widget_id ) );
+        $transient_key = md5( sprintf( 'kitify_doc_%s_widget_%s', $template_id, $widget_id ) );
 
         $template_data = get_transient( $transient_key );
 
