@@ -1067,7 +1067,16 @@ if(!class_exists('Kitify_Posts')) {
 					),
 				)
 			);
-
+      $this->_add_group_control(
+				Group_Control_Border::get_type(),
+				array(
+					'name'        => 'button_border',
+					'label'       => esc_html__( 'Border', 'kitify' ),
+					'placeholder' => '',
+					'default'     => '',
+					'selector'    => '{{WRAPPER}} ' . $css_scheme['title'],
+				)
+			);
 			$this->_end_controls_tab();
 
 			$this->_start_controls_tab(
