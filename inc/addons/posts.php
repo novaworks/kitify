@@ -1063,6 +1063,7 @@ if(!class_exists('Kitify_Posts')) {
 					'type'      => Controls_Manager::COLOR,
 					'selectors' => array(
 						'{{WRAPPER}} ' . $css_scheme['title'] => 'color: {{VALUE}}',
+						'{{WRAPPER}} ' . $css_scheme['title'] .' a'=> 'color: {{VALUE}}',
 					),
 				)
 			);
@@ -1083,6 +1084,8 @@ if(!class_exists('Kitify_Posts')) {
 					'type'      => Controls_Manager::COLOR,
 					'selectors' => array(
 						'{{WRAPPER}} ' . $css_scheme['title'] . ':hover' => 'color: {{VALUE}}',
+						'{{WRAPPER}} ' . $css_scheme['title'] . ':hover a' => 'color: {{VALUE}}',
+						'{{WRAPPER}} ' . $css_scheme['title'] . ' a:hover' => 'color: {{VALUE}}',
 					),
 				)
 			);
