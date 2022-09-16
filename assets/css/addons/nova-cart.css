@@ -1,9 +1,12 @@
 .kitify-nova-cart {
   padding: 16px;
 }
+
 .kitify-nova-cart .header-cart-box {
   position: relative;
+  line-height: 0;
 }
+
 .kitify-nova-cart .header-cart-box .count-badge {
   position: absolute;
   top: 0px;
@@ -18,9 +21,11 @@
   color: #FFF;
   background-color: var(--site-accent-color);
 }
+
 .kitify-nova-cart.kitify-nova-cart-label-on .count-text {
   display: none;
 }
+
 @media screen and (min-width: 1550px) {
   .kitify-nova-cart.kitify-nova-cart-label-on .header-cart-box {
     display: -webkit-box;

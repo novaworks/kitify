@@ -2,12 +2,12 @@
 	/**
 	 * Loop item template
 	 */
-
+	
 	$target = $this->_loop_item( array( 'item_link_target' ), ' target="%s"' );
 	$rel = $this->_loop_item( array( 'item_link_rel' ), ' rel="%s"' );
-
+	
 	$item_settings = $this->_processed_item;
-
+	
 	$content_type = ! empty( $item_settings['item_content_type'] ) ? $item_settings['item_content_type'] : 'default';
 
 	$img = $this->get_advanced_carousel_img( 'kitify-banner__img' );
@@ -34,8 +34,9 @@
     <?php if(empty($img) && $content_type == 'template') :?>
         <div class="kitify-template-wrapper"><?php echo $this->_loop_item_template_content();?></div>
     <?php else: ?>
-    <figure class="kitify-banner"><?php
+    <figure class="kitify-banner kitify-effect-<?php echo esc_attr( $this->get_settings_for_display( 'animation_effect' ) ); ?>"><?php
         printf('<a class="%1$s" %2$s>', 'kitify-banner__link', $a_link_attribute);
+        echo '<div class="kitify-banner__overlay"></div>';
         echo $img;
         echo '<figcaption class="kitify-banner__content">';
             echo '<div class="kitify-banner__content-wrap">';

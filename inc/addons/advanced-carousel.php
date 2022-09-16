@@ -197,17 +197,20 @@ class Kitify_Advanced_Carousel extends Kitify_Base {
                 'label' => esc_html__( 'Settings', 'kitify' ),
             )
         );
-
+        $item_layout = apply_filters(
+            'kitify/advanced_carousel/control/item_layout',
+            array(
+              'banners'   => esc_html__( 'Banners', 'kitify' ),
+              'simple' => esc_html__( 'Simple', 'kitify' ),
+            )
+        );
         $this->_add_control(
             'item_layout',
             array(
                 'label'   => esc_html__( 'Items Layout', 'kitify' ),
                 'type'    => Controls_Manager::SELECT,
                 'default' => 'simple',
-                'options' => array(
-                    'banners'=> esc_html__( 'Banners', 'kitify' ),
-                    'simple' => esc_html__( 'Simple', 'kitify' ),
-                ),
+                'options' => $item_layout,
             )
         );
         $simple_style = apply_filters(

@@ -274,7 +274,7 @@ class Kitify_Nova_Menu_Cart extends Kitify_Base {
             'type'       => Controls_Manager::DIMENSIONS,
             'size_units' => array( 'px', '%', 'em' ),
             'selectors'  => array(
-              '{{WRAPPER}} ' . $css_scheme['cart_count'] => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+              '{{WRAPPER}} ' . $css_scheme['cart_box'] => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
             ),
         ),
         25
