@@ -1,0 +1,17 @@
+.kitify-nova-menu {
+  &.kitify-nova-menu--style {
+    &-left_dot {
+      .main-navigation > ul > li > a:before {
+        content: ".";
+        position: absolute;
+        background: none;
+        left: -12px;
+        top: calc(50% - 11px);
+        font-size: rem-calc(48);
+        line-height: 0;
+        width: 5px;
+        height: 5px;
+      }
+    }
+  }
+}

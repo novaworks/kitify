@@ -46,6 +46,105 @@ class Kitify_Woo_Categories extends Kitify_Base {
             'default' => esc_html__( 'Default', 'kitify' ),
         )
     );
+    $datasource = apply_filters(
+        'kitify/woo-categories/control/data-source',
+        array(
+            'product_cat' => __( 'Product Categories', 'kitify' ),
+            'custom' => __( 'Custom', 'kitify' ),
+        )
+    );
+    /** Data Source section */
+    $this->start_controls_section(
+        'section_data_source',
+        array(
+            'label' => esc_html__( 'Data Source', 'kitify' ),
+        )
+    );
+
+    $this->add_control(
+        'data_source',
+        array(
+            'label'     => esc_html__( 'Data Source', 'kitify' ),
+            'type'      => Controls_Manager::SELECT,
+            'default'   => 'product_cat',
+            'options'   => $datasource
+        )
+    );
+    $repeater = new Repeater();
+    $repeater->add_control(
+        'item_image',
+        array(
+            'label'   => esc_html__( 'Image', 'kitify' ),
+            'type'    => Controls_Manager::MEDIA,
+            'default' => array(
+                'url' => Utils::get_placeholder_image_src(),
+            ),
+            'dynamic' => array( 'active' => true )
+        )
+    );
+    $repeater->add_control(
+        'item_title',
+        [
+            'label' => __( 'Title', 'kitify' ),
+            'type' => Controls_Manager::TEXT,
+            'default' => __( 'Category #1', 'kitify' ),
+            'dynamic' => array( 'active' => true ),
+        ]
+    );
+    $repeater->add_control(
+        'count_text',
+        [
+            'label' => __( 'Count text', 'kitify' ),
+            'type' => Controls_Manager::TEXT,
+            'default' => __( '12 items', 'kitify' ),
+            'dynamic' => array( 'active' => true ),
+        ]
+    );
+    $repeater->add_control(
+        'item_link',
+        [
+            'label' => __( 'Link', 'kitify' ),
+            'type' => Controls_Manager::URL,
+            'placeholder' => __( 'https://your-link.com', 'kitify' ),
+        ]
+    );
+    $this->add_control(
+        'items',
+        [
+            'label' => __( 'Custom Category List', 'kitify' ),
+            'type' => Controls_Manager::REPEATER,
+            'show_label' => true,
+            'fields' => $repeater->get_controls(),
+            'title_field' => '{{{ item_title }}}',
+            'default' => [
+                [
+                    'item_title' => __( 'Category #1', 'kitify' ),
+                    'count_text' => __( '12 items', 'kitify' ),
+                    'item_link'  => '#',
+                ],
+                [
+                    'item_title' => __( 'Category #2', 'kitify' ),
+                    'count_text' => __( '12 items', 'kitify' ),
+                    'item_link'  => '#',
+                ],
+                [
+                    'item_title' => __( 'Category #3', 'kitify' ),
+                    'count_text' => __( '12 items', 'kitify' ),
+                    'item_link'  => '#',
+                ],
+                [
+                    'item_title' => __( 'Category #4', 'kitify' ),
+                    'count_text' => __( '12 items', 'kitify' ),
+                    'item_link'  => '#',
+                ]
+            ],
+            'condition' => [
+                'data_source' => 'custom'
+            ]
+        ]
+    );
+    $this->end_controls_section();
+
     $this->start_controls_section(
       'section_general_field',
       array(
@@ -70,6 +169,9 @@ class Kitify_Woo_Categories extends Kitify_Base {
         'label'     => __( 'Categories Count', 'kitify' ),
         'type'      => Controls_Manager::NUMBER,
         'default'   => '8',
+        'condition' => [
+            'data_source' => 'product_cat'
+        ],
       )
     );
     $this->add_control(
@@ -84,6 +186,9 @@ class Kitify_Woo_Categories extends Kitify_Base {
         'selectors_dictionary' => array(
           'yes' => 'display: none',
         ),
+        'condition' => [
+            'data_source' => 'product_cat'
+        ],
         'selectors'            => array(
           '{{WRAPPER}} .kitify-product-categories .kitify-product-categories__item .cat-count' => '{{VALUE}}',
         ),
@@ -96,6 +201,9 @@ class Kitify_Woo_Categories extends Kitify_Base {
             'type' => Controls_Manager::TEXT,
             'separator' => 'before',
             'label_block' => true,
+            'condition' => [
+                'data_source' => 'product_cat'
+            ]
         )
     );
     $this->add_control(
@@ -110,10 +218,42 @@ class Kitify_Woo_Categories extends Kitify_Base {
     );
     $this->end_controls_section();
     $this->start_controls_section(
+        'section_button',
+        array(
+            'label' => esc_html__( 'Button', 'kitify' ),
+            'condition' => [
+                'data_source' => 'custom'
+            ]
+        )
+    );
+    $this->_add_advanced_icon_control(
+        'button_icon',
+        array(
+            'label'       => esc_html__( 'Icon', 'kitify' ),
+            'type'        => Controls_Manager::ICON,
+            'label_block' => false,
+            'skin'        => 'inline',
+            'file'        => '',
+        )
+    );
+    $this->add_control(
+    'button_text',
+        array(
+            'label'   => esc_html__( 'Label', 'kitify' ),
+            'type'    => Controls_Manager::TEXT,
+            'default' => '',
+        )
+    );
+    $this->end_controls_section();
+
+    $this->start_controls_section(
       'section_filter_field',
       array(
         'label' => __( 'Filters', 'kitify' ),
         'tab'   => Controls_Manager::TAB_CONTENT,
+        'condition' => [
+            'data_source' => 'product_cat'
+        ]
       )
     );
     $this->add_control(
@@ -210,16 +350,61 @@ protected function register_style_category_controls() {
           'size_units'  => array( 'px' ),
           'selectors'   => array(
               '{{WRAPPER}} .kitify-product-categories__item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-              '{{WRAPPER}} ' => '--kitify-carousel-item-top-space: {{TOP}}{{UNIT}}; --kitify-carousel-item-right-space: {{RIGHT}}{{UNIT}};--kitify-carousel-item-bottom-space: {{BOTTOM}}{{UNIT}};--kitify-carousel-item-left-space: {{LEFT}}{{UNIT}};--kitify-gcol-top-space: {{TOP}}{{UNIT}}; --kitify-gcol-right-space: {{RIGHT}}{{UNIT}};--kitify-gcol-bottom-space: {{BOTTOM}}{{UNIT}};--kitify-gcol-left-space: {{LEFT}}{{UNIT}};',
+              '{{WRAPPER}} .kitify-custom-categories__item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
           ),
       )
   );
   $this->end_controls_section();
-
   $this->start_controls_section(
-    'section_design_cat_content',
+    'section_design_cat_box',
     array(
-      'label' => __( 'Category Content', 'kitify' ),
+      'label' => __( 'Box', 'kitify' ),
+      'tab'   => Controls_Manager::TAB_STYLE,
+    )
+  );
+  $this->add_control(
+    'cat_content_alignment',
+    array(
+      'label'        => __( 'Alignment', 'kitify' ),
+      'type'         => Controls_Manager::CHOOSE,
+      'label_block'  => false,
+      'options' => array(
+          'flex-start' => array(
+              'title' => esc_html__( 'Start', 'kitify' ),
+              'icon'  => ! is_rtl() ? 'eicon-h-align-left' : 'eicon-h-align-right',
+          ),
+          'center' => array(
+              'title' => esc_html__( 'Center', 'kitify' ),
+              'icon'  => 'eicon-h-align-center',
+          ),
+          'flex-end' => array(
+              'title' => esc_html__( 'End', 'kitify' ),
+              'icon'  => ! is_rtl() ? 'eicon-h-align-right' : 'eicon-h-align-left',
+          ),
+      ),
+      'default'      => 'center',
+      'selectors' => array(
+        '{{WRAPPER}} .kitify-custom-categories__content-wrap' => 'align-items: {{VALUE}};',
+      ),
+    )
+  );
+  $this->add_responsive_control(
+    'cat_content_padding',
+    array(
+      'label'      => __( 'Padding', 'kitify' ),
+      'type'       => Controls_Manager::DIMENSIONS,
+      'size_units' => array( 'px', 'em', '%' ),
+      'selectors'  => array(
+        '{{WRAPPER}} .kitify-woo-categories li.product .kitify-category__title-wrap' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+        '{{WRAPPER}} .kitify-custom-categories__content-wrap' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+      ),
+    )
+  );
+  $this->end_controls_section();
+  $this->start_controls_section(
+    'section_design_cat_title',
+    array(
+      'label' => __( 'Title', 'kitify' ),
       'tab'   => Controls_Manager::TAB_STYLE,
     )
   );
@@ -240,170 +425,318 @@ protected function register_style_category_controls() {
       'default' => 'h2',
     )
   );
-
-    $this->add_control(
-      'cat_content_alignment',
-      array(
-        'label'        => __( 'Alignment', 'kitify' ),
-        'type'         => Controls_Manager::CHOOSE,
-        'label_block'  => false,
-        'options' => array(
-            'flex-start' => array(
-                'title' => esc_html__( 'Start', 'kitify' ),
-                'icon'  => ! is_rtl() ? 'eicon-h-align-left' : 'eicon-h-align-right',
-            ),
-            'center' => array(
-                'title' => esc_html__( 'Center', 'kitify' ),
-                'icon'  => 'eicon-h-align-center',
-            ),
-            'flex-end' => array(
-                'title' => esc_html__( 'End', 'kitify' ),
-                'icon'  => ! is_rtl() ? 'eicon-h-align-right' : 'eicon-h-align-left',
-            ),
-        ),
-        'default'      => 'center',
-        'prefix_class' => 'kitify-woo-cat--align-',
-        'separator'    => 'after',
-      )
-    );
-
-    $this->start_controls_tabs( 'cat_content_tabs_style' );
-
-      $this->start_controls_tab(
-        'cat_content_normal',
-        array(
-          'label' => __( 'Normal', 'kitify' ),
-        )
-      );
-
-        $this->add_control(
-          'cat_content_color',
-          array(
-            'label'     => __( 'Color', 'kitify' ),
-            'type'      => Controls_Manager::COLOR,
-            'selectors' => array(
-              '{{WRAPPER}} .kitify-woo-categories li.product .woocommerce-loop-category__title, {{WRAPPER}} .kitify-woo-categories li.product .kitify-category__title-wrap .kitify-count' => 'color: {{VALUE}};',
-            ),
-          )
-        );
-        $this->add_control(
-          'cat_content_background_color',
-          array(
-            'label'     => __( 'Background Color', 'kitify' ),
-            'type'      => Controls_Manager::COLOR,
-            'selectors' => array(
-              '{{WRAPPER}} .kitify-woo-categories li.product .kitify-category__title-wrap' => 'background-color: {{VALUE}};',
-            ),
-          )
-        );
-
-      $this->end_controls_tab();
-
-      $this->start_controls_tab(
-        'cat_content_hover',
-        array(
-          'label' => __( 'Hover', 'kitify' ),
-        )
-      );
-
-        $this->add_control(
-          'cat_content_hover_color',
-          array(
-            'label'     => __( 'Text Hover Color', 'kitify' ),
-            'type'      => Controls_Manager::COLOR,
-            'selectors' => array(
-              '{{WRAPPER}} .kitify-woo-categories li.product-category > a:hover .woocommerce-loop-category__title, {{WRAPPER}} .kitify-woo-categories li.product-category > a:hover .kitify-category__title-wrap .kitify-count' => 'color: {{VALUE}};',
-            ),
-          )
-        );
-
-        $this->add_control(
-          'cat_content_background_hover_color',
-          array(
-            'label'     => __( 'Background Hover Color', 'kitify' ),
-            'type'      => Controls_Manager::COLOR,
-            'selectors' => array(
-              '{{WRAPPER}} .kitify-woo-categories li.product-category > a:hover .kitify-category__title-wrap' => 'background-color: {{VALUE}};',
-            ),
-          )
-        );
-
-      $this->end_controls_tab();
-
-    $this->end_controls_tabs();
-
-    $this->add_control(
-      'cat_content_padding',
-      array(
-        'label'      => __( 'Padding', 'kitify' ),
-        'type'       => Controls_Manager::DIMENSIONS,
-        'size_units' => array( 'px', 'em', '%' ),
-        'default'    => array(
-          'top'      => '10',
-          'right'    => '',
-          'bottom'   => '10',
-          'left'     => '',
-          'isLinked' => false,
-        ),
-        'selectors'  => array(
-          '{{WRAPPER}} .kitify-woo-categories li.product .kitify-category__title-wrap' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-        ),
-        'separator'  => 'before',
-      )
-    );
-
-    $this->add_control(
-      'cat_content_typography',
-      array(
-        'label'     => __( 'Typography', 'kitify' ),
-        'type'      => Controls_Manager::HEADING,
-        'separator' => 'before',
-      )
-    );
-
-    $this->add_group_control(
-      Group_Control_Typography::get_type(),
-      array(
-        'name'     => 'cat_content_title_typography',
-        'label'    => __( 'Title', 'kitify' ),
-        'selector' => '{{WRAPPER}} .kitify-woo-categories li.product .woocommerce-loop-category__title',
-      )
-    );
-
-    $this->add_group_control(
-      Group_Control_Typography::get_type(),
-      array(
-        'name'      => 'cat_content_count_typography',
-        'label'     => __( 'Count', 'kitify' ),
-        'selector'  => '{{WRAPPER}} .kitify-woo-categories li.product .kitify-category__title-wrap .kitify-count',
-        'global'    => array(
-          'default' => Global_Typography::TYPOGRAPHY_ACCENT,
-        ),
-        'separator' => 'after',
-        'condition' => array(
-          'products_layout_type' => 'grid',
-          'cat_hide_count!'      => 'yes',
-        ),
-      )
-    );
-
   $this->add_group_control(
     Group_Control_Typography::get_type(),
     array(
-      'name'      => 'cat_slider_content_count_typography',
-      'label'     => __( 'Count', 'kitify' ),
-      'selector'  => '{{WRAPPER}} .kitify-woo-categories li.product .kitify-category__title-wrap .kitify-count',
-      'global'    => array(
-        'default' => Global_Typography::TYPOGRAPHY_ACCENT,
-      ),
-      'separator' => 'after',
-      'condition' => array(
-        'products_layout_type'  => 'slider',
-        'cat_slide_hide_count!' => 'yes',
+      'name'     => 'cat_content_title_typography',
+      'label'    => __( 'Title', 'kitify' ),
+      'selector' => '{{WRAPPER}} .kitify-woo-categories li.product .woocommerce-loop-category__title,{{WRAPPER}} .kitify-custom-categories__item-inner .kitify-custom-categories__content-wrap .kitify-custom-categories__title',
+    )
+  );
+  $this->add_control(
+    'cat_content_title_color',
+    array(
+      'label'     => __( 'Color', 'kitify' ),
+      'type'      => Controls_Manager::COLOR,
+      'selectors' => array(
+        '{{WRAPPER}} .kitify-woo-categories li.product .woocommerce-loop-category__title,{{WRAPPER}} .kitify-custom-categories__item-inner .kitify-custom-categories__content-wrap .kitify-custom-categories__title' => 'color: {{VALUE}};',
       ),
     )
   );
+  $this->add_responsive_control(
+    'cat_content_title_margin',
+    array(
+      'label'      => __( 'Margin', 'kitify' ),
+      'type'       => Controls_Manager::DIMENSIONS,
+      'size_units' => array( 'px', 'em', '%' ),
+      'selectors'  => array(
+        '{{WRAPPER}} .kitify-woo-categories li.product .woocommerce-loop-category__title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+        '{{WRAPPER}} .kitify-custom-categories__item-inner .kitify-custom-categories__content-wrap .kitify-custom-categories__title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+      ),
+    )
+  );
+  $this->end_controls_section();
+  $this->start_controls_section(
+    'section_design_cat_count',
+    array(
+      'label' => __( 'Count text', 'kitify' ),
+      'tab'   => Controls_Manager::TAB_STYLE,
+    )
+  );
+  $this->_add_group_control(
+      Group_Control_Typography::get_type(),
+      [
+          'name' => 'count_typography',
+          'selector'  => '{{WRAPPER}} .kitify-woo-categories li.product .kitify-category__title-wrap .kitify-count,{{WRAPPER}} .kitify-custom-categories__count',
+      ]
+  );
+  $this->add_control(
+    'cat_content_count_color',
+    array(
+      'label'     => __( 'Color', 'kitify' ),
+      'type'      => Controls_Manager::COLOR,
+      'selectors'  => array(
+        '{{WRAPPER}} .kitify-woo-categories li.product .kitify-category__title-wrap .kitify-count' => 'color: {{VALUE}};',
+        '{{WRAPPER}} .kitify-custom-categories__count' => 'color: {{VALUE}};',
+      ),
+    )
+  );
+  $this->add_responsive_control(
+    'cat_content_count_padding',
+    array(
+      'label'      => __( 'Padding', 'kitify' ),
+      'type'       => Controls_Manager::DIMENSIONS,
+      'size_units' => array( 'px', 'em', '%' ),
+      'selectors'  => array(
+        '{{WRAPPER}} .kitify-woo-categories li.product .kitify-category__title-wrap .kitify-count' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+        '{{WRAPPER}} .kitify-custom-categories__count' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+      ),
+    )
+  );
+  $this->end_controls_section();
+  $this->start_controls_section(
+    'section_design_cat_button',
+    array(
+      'label' => __( 'Button', 'kitify' ),
+      'tab'   => Controls_Manager::TAB_STYLE,
+    )
+  );
+  $this->add_control(
+    'cat_content_button_alignment',
+    array(
+      'label'        => __( 'Alignment', 'kitify' ),
+      'type'         => Controls_Manager::CHOOSE,
+      'label_block'  => false,
+      'options' => array(
+          'flex-start' => array(
+              'title' => esc_html__( 'Start', 'kitify' ),
+              'icon'  => ! is_rtl() ? 'eicon-h-align-left' : 'eicon-h-align-right',
+          ),
+          'center' => array(
+              'title' => esc_html__( 'Center', 'kitify' ),
+              'icon'  => 'eicon-h-align-center',
+          ),
+          'flex-end' => array(
+              'title' => esc_html__( 'End', 'kitify' ),
+              'icon'  => ! is_rtl() ? 'eicon-h-align-right' : 'eicon-h-align-left',
+          ),
+      ),
+      'default'      => 'center',
+      'selectors' => array(
+        '{{WRAPPER}} .kitify-custom-categories__item-inner .kitify-custom-categories__button-wrap' => 'align-items: {{VALUE}};',
+      ),
+    )
+  );
+  $this->add_responsive_control(
+    'cat_button_spacing',
+    array(
+      'label'      => __( 'Wrap Padding', 'kitify' ),
+      'type'       => Controls_Manager::DIMENSIONS,
+      'size_units' => array( 'px', 'em', '%' ),
+      'selectors'  => array(
+        '{{WRAPPER}} .kitify-custom-categories__item-inner .kitify-custom-categories__button-wrap' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+      ),
+      'separator'    => 'after',
+    )
+  );
+  $this->_add_control(
+      'button_icon_align',
+      [
+          'label' => __( 'Icon Position', 'kitify' ),
+          'type' => Controls_Manager::SELECT,
+          'default' => 'left',
+          'options' => [
+              'left' => __( 'Before', 'kitify' ),
+              'right' => __( 'After', 'kitify' ),
+          ],
+          'prefix_class' => 'icon-align-',
+      ]
+  );
+  $this->_add_responsive_control(
+      'button_icon_size',
+      [
+          'label' => __( 'Icon Size', 'kitify' ),
+          'type' => Controls_Manager::SLIDER,
+          'size_units' => [ 'px', '%', 'em' ],
+          'selectors' => [
+              '{{WRAPPER}} a.kitify-custom-categories__button .kitify-custom-categories__button-icon' => 'font-size: {{SIZE}}{{UNIT}};',
+          ],
+      ]
+  );
+  $this->_add_responsive_control(
+      'button_icon_indent',
+      [
+          'label' => __( 'Icon Spacing', 'kitify' ),
+          'type' => Controls_Manager::DIMENSIONS,
+          'size_units' => [ 'px', '%', 'em' ],
+          'selectors' => [
+              '{{WRAPPER}} a.kitify-custom-categories__button .kitify-custom-categories__button-icon' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+          ],
+          'separator'    => 'after',
+      ]
+  );
+  $this->_add_responsive_control(
+      'button_text_padding',
+      [
+          'label' => __( 'Padding', 'kitify' ),
+          'type' => Controls_Manager::DIMENSIONS,
+          'size_units' => [ 'px', 'em', '%' ],
+          'selectors' => [
+              '{{WRAPPER}} a.kitify-custom-categories__button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+          ],
+      ]
+  );
+  $this->_add_group_control(
+      Group_Control_Typography::get_type(),
+      [
+          'name' => 'button_typography',
+          'selector' => '{{WRAPPER}} a.kitify-custom-categories__button',
+      ]
+  );
+  $this->_start_controls_tabs( 'tabs_button_style' );
+  $this->_start_controls_tab(
+      'tab_button_normal',
+      [
+          'label' => __( 'Normal', 'kitify' ),
+      ]
+  );
+  $this->_add_group_control(
+      Group_Control_Background::get_type(),
+      [
+          'name' => 'background',
+          'label' => __( 'Background', 'kitify' ),
+          'types' => [ 'classic', 'gradient' ],
+          'exclude' => [ 'image' ],
+          'selector' => '{{WRAPPER}} a.kitify-custom-categories__button',
+          'fields_options' => [
+              'background' => [
+                  'default' => 'classic',
+              ]
+          ],
+          'separator'    => 'after',
+      ]
+  );
+  $this->_add_control(
+      'button_text_color',
+      [
+          'label' => __( 'Text Color', 'kitify' ),
+          'type' => Controls_Manager::COLOR,
+          'selectors' => [
+              '{{WRAPPER}} a.kitify-custom-categories__button' => 'color: {{VALUE}};',
+          ],
+      ]
+  );
+  $this->_add_control(
+      'button_icon_color',
+      [
+          'label' => __( 'Icon Color', 'kitify' ),
+          'type' => Controls_Manager::COLOR,
+          'selectors' => [
+              '{{WRAPPER}} a.kitify-custom-categories__button .kitify-custom-categories__button-icon' => 'color: {{VALUE}};',
+          ],
+      ]
+  );
+  $this->_add_group_control(
+      Group_Control_Border::get_type(),
+      [
+          'name' => 'button_border',
+          'selector' => '{{WRAPPER}} a.kitify-custom-categories__button',
+          'separator' => 'before',
+      ]
+  );
 
+  $this->_add_control(
+      'button_border_radius',
+      [
+          'label' => __( 'Border Radius', 'kitify' ),
+          'type' => Controls_Manager::DIMENSIONS,
+          'size_units' => [ 'px', '%', 'em' ],
+          'selectors' => [
+              '{{WRAPPER}} a.kitify-custom-categories__button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+          ],
+      ]
+  );
+  $this->_add_group_control(
+      Group_Control_Box_Shadow::get_type(),
+      [
+          'name' => 'button_shadow',
+          'selector' => '{{WRAPPER}} a.kitify-custom-categories__button',
+      ]
+  );
+  $this->_end_controls_tab();
+
+  $this->_start_controls_tab(
+      'tab_button_hover',
+      [
+          'label' => __( 'Hover', 'kitify' ),
+      ]
+  );
+  $this->_add_group_control(
+      Group_Control_Background::get_type(),
+      [
+          'name' => 'background_hover',
+          'label' => __( 'Background', 'kitify' ),
+          'types' => [ 'classic', 'gradient' ],
+          'exclude' => [ 'image' ],
+          'selector' => '{{WRAPPER}} a.kitify-custom-categories__button:hover',
+          'fields_options' => [
+              'background' => [
+                  'default' => 'classic',
+              ]
+          ],
+          'separator'    => 'after',
+      ]
+  );
+  $this->_add_control(
+      'button_text_color_hover',
+      [
+          'label' => __( 'Text Color', 'kitify' ),
+          'type' => Controls_Manager::COLOR,
+          'selectors' => [
+              '{{WRAPPER}} a.kitify-custom-categories__button:hover' => 'color: {{VALUE}};',
+          ],
+      ]
+  );
+  $this->_add_control(
+      'button_icon_color_hover',
+      [
+          'label' => __( 'Icon Color', 'kitify' ),
+          'type' => Controls_Manager::COLOR,
+          'selectors' => [
+              '{{WRAPPER}} a.kitify-custom-categories__button:hover .kitify-custom-categories__button-icon' => 'color: {{VALUE}};',
+          ],
+      ]
+  );
+  $this->_add_group_control(
+      Group_Control_Border::get_type(),
+      [
+          'name' => 'button_border_hover',
+          'selector' => '{{WRAPPER}} a.kitify-custom-categories__button:hover',
+          'separator' => 'before',
+      ]
+  );
+
+  $this->_add_control(
+      'button_border_radius_hover',
+      [
+          'label' => __( 'Border Radius', 'kitify' ),
+          'type' => Controls_Manager::DIMENSIONS,
+          'size_units' => [ 'px', '%', 'em' ],
+          'selectors' => [
+              '{{WRAPPER}} a.kitify-custom-categories__button:hover' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+          ],
+      ]
+  );
+  $this->_add_group_control(
+      Group_Control_Box_Shadow::get_type(),
+      [
+          'name' => 'button_shadow_hover',
+          'selector' => '{{WRAPPER}} a.kitify-custom-categories__button:hover',
+      ]
+  );
+  $this->_end_controls_tab();
+
+  $this->_end_controls_tabs();
   $this->end_controls_section();
   $this->register_carousel_arrows_dots_style_section( [ 'enable_carousel' => 'yes' ] );
 }
@@ -515,9 +848,32 @@ protected function register_style_category_controls() {
 
   protected function render() {
     $this->_context = 'render';
+    $data_source = $this->get_settings_for_display('data_source');
+    if($data_source == 'custom'){
+        $this->_open_wrap();
+        include $this->_get_global_template( 'custom' );
+        $this->_close_wrap();
+    }else {
+      $this->_open_wrap();
+      include $this->_get_global_template( 'index' );
+      $this->_close_wrap();
+    }
+  }
+  public function _get_cat_image( $image_item ) {
 
-    $this->_open_wrap();
-    include $this->_get_global_template( 'index' );
-    $this->_close_wrap();
+      $item_settings = [];
+      $item_settings['item_image'] = $image_item;
+
+      if(empty( $item_settings['item_image']['url'] )){
+          return;
+      }
+
+      $img_html = Group_Control_Image_Size::get_attachment_image_html( $item_settings, 'item_image' );
+
+      $class = 'kitify-custom-categories__image-instance wp-post-image';
+
+      $img_html = str_replace('class="', 'class="' . $class . ' ', $img_html);
+
+      return sprintf('<figure class="figure__object_fit kitify-custom-categories__image">%1$s</figure>', $img_html);
   }
 }

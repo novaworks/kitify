@@ -169,6 +169,7 @@ class Kitify_Video_Modal extends Kitify_Base {
                ),
                'selectors' => array(
                    '{{WRAPPER}} ' . $css_scheme['icon_play'] => 'width: {{SIZE}}{{UNIT}};',
+                   '{{WRAPPER}} ' . $css_scheme['icon_play'] . ' svg' => 'width: {{SIZE}}{{UNIT}};',
                ),
            )
        );
@@ -195,6 +196,7 @@ class Kitify_Video_Modal extends Kitify_Base {
                ),
                'selectors' => array(
                    '{{WRAPPER}} ' . $css_scheme['icon_play'] => 'height: {{SIZE}}{{UNIT}};',
+                   '{{WRAPPER}} ' . $css_scheme['icon_play'] . ' svg' => 'height: {{SIZE}}{{UNIT}};',
                ),
            )
        );

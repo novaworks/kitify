@@ -1,0 +1,536 @@
+@mixin clearfix(){
+    &::before,
+    &::after {
+        content: ' ';
+        display: table;
+        flex-basis: 0;
+        order: 1;
+    }
+    &::after {
+        clear: both;
+    }
+}
+
+@mixin size($width, $height: $width) {
+    width: $width;
+    height: $height;
+}
+
+// Box Sizing
+@mixin box-sizing( $args ) {
+    box-sizing: $args;
+}
+
+// Display Flex
+@mixin ad_display() {
+    display: -ms-flexbox;
+    display: flex;
+}
+
+@mixin ad_flex($args: 1){
+    -ms-flex: $args;
+    flex: $args;
+}
+
+// Flex Wrap
+@mixin flex-wrap( $args ) {
+    -webkit-flex-wrap: $args;
+    @if $args == nowrap {
+        -ms-flex-wrap: none;
+    } @else {
+        -ms-flex-wrap: $args;
+    }
+    flex-wrap: $args;
+}
+
+// Flex Flow
+@mixin flex-flow( $args ) {
+    -webkit-flex-flow: $args;
+    -ms-flex-flow: $args;
+    flex-flow: $args;
+}
+
+// Flex Direction
+@mixin flex-direction( $args ) {
+    @if $args == row-reverse {
+        -webkit-box-direction: reverse;
+        -webkit-box-orient: horizontal;
+    } @else if $args == column {
+        -webkit-box-direction: normal;
+        -webkit-box-orient: vertical;
+    } @else if $args == column-reverse {
+        -webkit-box-direction: reverse;
+        -webkit-box-orient: vertical;
+    } @else {
+        -webkit-box-direction: normal;
+        -webkit-box-orient: horizontal;
+    }
+    -webkit-flex-direction: $args;
+    -ms-flex-direction: $args;
+    flex-direction: $args;
+}
+
+// Align Items
+@mixin align-items( $args ) {
+    @if $args == flex-start {
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+    } @else if $args == flex-end {
+        -webkit-box-align: end;
+        -ms-flex-align: end;
+    } @else {
+        -webkit-box-align: $args;
+        -ms-flex-align: $args;
+    }
+    align-items: $args;
+}
+
+// Align Items
+@mixin align-self( $args ) {
+    -webkit-align-self: $args;
+    @if $args == flex-start {
+        -ms-flex-item-align: start;
+    } @else if $args == flex-end {
+        -ms-flex-item-align: end;
+    } @else {
+        -ms-flex-item-align: $args;
+    }
+    align-self: $args;
+}
+
+// Align Content
+@mixin align-content( $args ) {
+    -webkit-align-content: $args;
+    @if $args == flex-start {
+        -ms-flex-line-pack: start;
+    } @else if $args == flex-end {
+        -ms-flex-line-pack: end;
+    } @else {
+        -ms-flex-line-pack: $args;
+    }
+    align-content: $args;
+}
+
+// Justify Content
+@mixin justify-content( $args ) {
+    @if $args == flex-start {
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
+    } @else if $args == flex-end {
+        -webkit-box-pack: end;
+        -ms-flex-pack: end;
+    } @else if $args == space-between {
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+    } @else if $args == space-around {
+        -ms-flex-pack: distribute;
+    } @else {
+        -webkit-box-pack: $args;
+        -ms-flex-pack: $args;
+    }
+    -webkit-justify-content: $args;
+    justify-content: $args;
+}
+
+// Flex shrink
+@mixin flex-shrink( $args ) {
+    -webkit-flex-shrink: $args;
+    -ms-flex-negative: $args;
+    flex-shrink: $args;
+}
+// Flex grow
+@mixin flex-grow( $args ) {
+    -webkit-box-flex: $args;
+    -webkit-flex-grow: $args;
+    -ms-flex-positive: $args;
+    flex-grow: $args;
+}
+
+// Flex basis
+@mixin flex-basis( $args ) {
+    -webkit-flex-basis: $args;
+    -ms-flex-preferred-size: $args;
+    flex-basis: $args;
+}
+
+@mixin order( $args ) {
+    -webkit-box-ordinal-group: $args + 1;
+    -webkit-order: $args;
+    -ms-flex-order: $args;
+    order: $args;
+}
+
+// Animation
+@mixin animation( $args ) {
+    -webkit-animation: $args;
+	animation: $args;
+}
+
+// Animation Delay
+@mixin animation-delay( $args ) {
+    -webkit-animation-delay: $args;
+	animation-delay: $args;
+}
+
+// Transform
+@mixin transform( $args... ) {
+    -webkit-transform: $args;
+    transform: $args;
+}
+
+@mixin translate2d($x,$y){
+    @include transform(translate($x,$y));
+}
+@mixin translate3d($tx, $ty, $tz) {
+    @include transform(translate3d($tx, $ty, $tz));
+}
+@mixin box-shadow($var){
+    box-shadow: $var;
+}
+
+// Transition
+@mixin transition( $args...) {
+    transition: $args;
+}
+
+@mixin scale( $scale... ){
+    @include transform(scale($scale));
+}
+
+@mixin rotate ($deg) {
+    @include transform(rotate(#{$deg}deg));
+}
+
+@mixin skew($skew){
+    @include transform(skew($skew));
+}
+
+@mixin translateX($translateX){
+    @include transform(translateX($translateX));
+}
+
+@mixin translateY($translateY){
+    @include transform(translateY($translateY));
+}
+
+// Transition Duration
+@mixin transition-duration( $args ) {
+    transition-duration: $args;
+}
+
+// Transition Delay
+@mixin transition-delay( $args ) {
+    transition-delay: $args;
+}
+
+// Opacity
+@mixin opacity( $args ) {
+    opacity: $args;
+}
+
+// Border radius
+@mixin border-radius( $args ) {
+    border-radius: $args;
+}
+
+// Font Awesome CSS
+@mixin font-awesome() {
+    font-family: 'FontAwesome';
+    font-weight: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+// Font NovaworksIcon
+@mixin novaworks-icon() {
+    font-family: 'NovaworksIcons';
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+@mixin responsive-visibility($parent) {
+    #{$parent} {
+        display: block !important;
+    }
+    table#{$parent}  { display: table !important; }
+    tr#{$parent}     { display: table-row !important; }
+    th#{$parent},
+    td#{$parent}     { display: table-cell !important; }
+}
+
+// [converter] $parent hack
+@mixin responsive-invisibility($parent) {
+    #{$parent} {
+        display: none !important;
+    }
+}
+
+// Centered container element
+@mixin container-fixed($gutter: $grid-gutter-width) {
+    margin-right: auto;
+    margin-left: auto;
+    @include clearfix;
+}
+
+// Creates a wrapper for a series of columns
+@mixin make-row($gutter: $grid-gutter-width) {
+    margin-left:-15px;
+    margin-right:-15px;
+    @include clearfix;
+}
+
+// Generate the extra small columns
+@mixin make-xs-column($columns, $gutter: $grid-gutter-width) {
+    position: relative;
+    float: left;
+    width: percentage(($columns / $grid-columns));
+    min-height: 1px;
+    padding-left:  ($gutter / 2);
+    padding-right: ($gutter / 2);
+}
+@mixin make-xs-column-offset($columns) {
+    margin-left: percentage(($columns / $grid-columns));
+}
+@mixin make-xs-column-push($columns) {
+    left: percentage(($columns / $grid-columns));
+}
+@mixin make-xs-column-pull($columns) {
+    right: percentage(($columns / $grid-columns));
+}
+
+// Generate the small columns
+@mixin make-sm-column($columns, $gutter: $grid-gutter-width) {
+    position: relative;
+    min-height: 1px;
+    padding-left:  ($gutter / 2);
+    padding-right: ($gutter / 2);
+
+    @media (min-width: $screen-sm-min) {
+        float: left;
+        width: percentage(($columns / $grid-columns));
+    }
+}
+@mixin make-sm-column-offset($columns) {
+    @media (min-width: $screen-sm-min) {
+        margin-left: percentage(($columns / $grid-columns));
+    }
+}
+@mixin make-sm-column-push($columns) {
+    @media (min-width: $screen-sm-min) {
+        left: percentage(($columns / $grid-columns));
+    }
+}
+@mixin make-sm-column-pull($columns) {
+    @media (min-width: $screen-sm-min) {
+        right: percentage(($columns / $grid-columns));
+    }
+}
+
+// Generate the medium columns
+@mixin make-md-column($columns, $gutter: $grid-gutter-width) {
+    position: relative;
+    min-height: 1px;
+    padding-left:  ($gutter / 2);
+    padding-right: ($gutter / 2);
+
+    @media (min-width: $screen-md-min) {
+        float: left;
+        width: percentage(($columns / $grid-columns));
+    }
+}
+@mixin make-md-column-offset($columns) {
+    @media (min-width: $screen-md-min) {
+        margin-left: percentage(($columns / $grid-columns));
+    }
+}
+@mixin make-md-column-push($columns) {
+    @media (min-width: $screen-md-min) {
+        left: percentage(($columns / $grid-columns));
+    }
+}
+@mixin make-md-column-pull($columns) {
+    @media (min-width: $screen-md-min) {
+        right: percentage(($columns / $grid-columns));
+    }
+}
+
+// Generate the large columns
+@mixin make-lg-column($columns, $gutter: $grid-gutter-width) {
+    position: relative;
+    min-height: 1px;
+    padding-left:  ($gutter / 2);
+    padding-right: ($gutter / 2);
+
+    @media (min-width: $screen-lg-min) {
+        float: left;
+        width: percentage(($columns / $grid-columns));
+    }
+}
+@mixin make-lg-column-offset($columns) {
+    @media (min-width: $screen-lg-min) {
+        margin-left: percentage(($columns / $grid-columns));
+    }
+}
+@mixin make-lg-column-push($columns) {
+    @media (min-width: $screen-lg-min) {
+        left: percentage(($columns / $grid-columns));
+    }
+}
+@mixin make-lg-column-pull($columns) {
+    @media (min-width: $screen-lg-min) {
+        right: percentage(($columns / $grid-columns));
+    }
+}
+
+
+@mixin make-grid-columns($i: 1, $list: ".col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}") {
+    @for $i from (1 + 1) through $grid-columns {
+        $list: "#{$list}, .col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}";
+    }
+    #{$list} {
+        position: relative;
+        // Prevent columns from collapsing when empty
+        min-height: 1px;
+        // Inner gutter via padding
+        padding-left:  ceil(($grid-gutter-width / 2));
+        padding-right: floor(($grid-gutter-width / 2));
+    }
+}
+
+
+// [converter] This is defined recursively in LESS, but Sass supports real loops
+@mixin float-grid-columns($class, $i: 1, $list: ".col-#{$class}-#{$i}") {
+    @for $i from (1 + 1) through $grid-columns {
+        $list: "#{$list}, .col-#{$class}-#{$i}";
+    }
+    #{$list} {
+        float: left;
+    }
+}
+
+
+@mixin calc-grid-column($index, $class, $type) {
+    @if ($type == width) and ($index > 0) {
+        .col-#{$class}-#{$index} {
+            width: percentage(($index / $grid-columns));
+        }
+    }
+    @if ($type == push) and ($index > 0) {
+        .col-#{$class}-push-#{$index} {
+            left: percentage(($index / $grid-columns));
+        }
+    }
+    @if ($type == push) and ($index == 0) {
+        .col-#{$class}-push-0 {
+            left: auto;
+        }
+    }
+    @if ($type == pull) and ($index > 0) {
+        .col-#{$class}-pull-#{$index} {
+            right: percentage(($index / $grid-columns));
+        }
+    }
+    @if ($type == pull) and ($index == 0) {
+        .col-#{$class}-pull-0 {
+            right: auto;
+        }
+    }
+    @if ($type == offset) {
+        .col-#{$class}-offset-#{$index} {
+            margin-left: percentage(($index / $grid-columns));
+        }
+    }
+}
+
+// [converter] This is defined recursively in LESS, but Sass supports real loops
+@mixin loop-grid-columns($columns, $class, $type) {
+    @for $i from 0 through $columns {
+        @include calc-grid-column($i, $class, $type);
+    }
+}
+
+
+// Create grid for specific class
+@mixin make-grid($class) {
+    @include float-grid-columns($class);
+    @include loop-grid-columns($grid-columns, $class, width);
+    @include loop-grid-columns($grid-columns, $class, pull);
+    @include loop-grid-columns($grid-columns, $class, push);
+    @include loop-grid-columns($grid-columns, $class, offset);
+}
+
+@mixin excerpt($font-size: $body-font-style, $line-height: 1.4, $lines-to-show: 3, $excerpt-bg: transparent) {
+    background: $excerpt-bg;
+    display: block; /* Fallback for non-webkit */
+    display: -webkit-box;
+    max-height: $font-size*$line-height*$lines-to-show; /* Fallback for non-webkit */
+    font-size: $font-size;
+    line-height: $line-height;
+    -webkit-line-clamp: $lines-to-show;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    // Fallback for non-webkit
+    @media screen and (min--moz-device-pixel-ratio:0),
+    screen and (-ms-high-contrast: active),
+    screen and (-ms-high-contrast: none) {
+        overflow: hidden;
+        position: relative;
+        &:before {
+            background: $excerpt-bg;
+            bottom: 0;
+            position: absolute;
+            right: 0;
+            float: right;
+            content: '\2026';
+            margin-left: -3rem;
+            width: 3rem;
+        }
+        &:after {
+            content: '';
+            background: $excerpt-bg;
+            position: absolute;
+            height: 50px;
+            width: 100%;
+            z-index: 1;
+        }
+    }
+}
+// Center Align
+//--------------------------------------------//
+@mixin center($position) {
+  position: absolute;
+
+  @if $position == 'vertical' {
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+  @else if $position == 'horizontal' {
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translate(-50%);
+  }
+
+  @else if $position == 'both' {
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+}

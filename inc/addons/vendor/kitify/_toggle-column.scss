@@ -1,0 +1,127 @@
+.kitify-toggle-sidebar {
+  &.kitify-active-sidebar-toggle {
+    position: relative;
+
+    .kitify-toggle-sidebar__container {
+      position: relative;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      background: #fff;
+      padding: 60px 30px 30px 30px !important;
+      max-width: none;
+      overflow-y: visible;
+      width: 400px;
+      z-index: 99999;
+      transition: -webkit-transform 0.5s ease;
+      transition: transform 0.5s ease;
+      transition: transform 0.5s ease, -webkit-transform 0.5s ease;
+      -webkit-transform: translate3d(-400px,0,0);
+      transform: translate3d(-400px,0,0);
+    }
+
+    .toggle-column-btn__wrap {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 400px;
+      background-color: #fff;
+      @include breakpoint(small down) {
+        width: 100%;
+      }
+      padding: rem-calc(15);
+      z-index: 1;
+    }
+
+    .toggle-column-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      order: 1;
+      width: 40px;
+      height: 40px;
+      margin-left: auto;
+      transition: all 0.2s;
+      border: v(site-border-color) solid 1px;
+      background-color: #fff;
+      text-align: center;
+      border-radius: 50%;
+      @include breakpoint(small down) {
+        margin-right: rem-calc(15);
+      }
+
+      &:before {
+        @include nova_icon('\ea13');
+        font-size: rem-calc(18);
+        color: v(site-heading-color);
+        line-height: 38px;
+      }
+    }
+  }
+
+  &__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1112;
+    opacity: 0;
+    visibility: hidden;
+    background-color: rgba(0, 0, 0, 0.2);
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+  }
+
+  &__inner {
+    height: 98%;
+  }
+
+  &__toggle {
+    display: none;
+    position: absolute;
+    top: 40%;
+    right: -40px;
+    width: 40px;
+    height: 40px;
+    transition: all 0.2s;
+    border: #ccc solid 1px;
+    border-left-width: 0;
+    background-color: #fff;
+    text-align: center;
+
+    &:before {
+      @include nova_icon('\ea37');
+      font-size: rem-calc(24);
+      color: v(site-heading-color);
+      line-height: 38px;
+    }
+  }
+
+  &.kitify-active-sidebar-toggle {
+    .kitify-toggle-sidebar__toggle {
+      display: block;
+    }
+  }
+
+  &.opened {
+    .kitify-toggle-sidebar__overlay {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .kitify-toggle-sidebar__container {
+      transform: none;
+      @include breakpoint(small down) {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.nova-overlay-global {
+  &.opened {
+    opacity: 0.3;
+    visibility: visible;
+  }
+}

@@ -1,0 +1,146 @@
+.kitify-product-categories {
+  &.kitify-product-categories__style--type-01 {
+    .kitify-product-categories__item--inner {
+      display: flex;
+      flex-direction: column;
+      background-color: #fff;
+      padding: rem-calc(30);
+      border-radius: 5px;
+
+      .cat-count {
+        position: static;
+        background-color: transparent;
+        width: auto;
+        height: auto;
+        order: 3;
+        margin-top: rem-calc(16);
+        box-shadow: 0 0 0 0;
+
+        span {
+          font-size: rem-calc(14);
+          font-weight: 300;
+          color: v(site-accent-color);
+          text-transform: uppercase;
+        }
+
+        .count-items {
+          margin-left: rem-calc(2);
+        }
+      }
+
+      .cat-image {
+        position: relative;
+        order: 2;
+
+        .cat-image-overlay {
+          position: absolute;
+          opacity: 0;
+          background: v(site-accent-color);
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 1;
+        }
+
+        .overlay-url {
+          position: absolute;
+          opacity: 0;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 2;
+
+          &:after {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            @include nova_icon('\ea25');
+            color: #fff;
+            font-size: rem-calc(20);
+            transform: translate(-50%, -50%);
+          }
+        }
+      }
+
+      .cat-name {
+        order: 1;
+
+        h2 {
+          font-size: rem-calc(20);
+          font-weight: 300;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+        }
+      }
+
+      &:hover {
+        .cat-image-overlay {
+          opacity: 0.5;
+        }
+
+        .overlay-url {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  &.kitify-product-categories__style--type-02 {
+    .kitify-product-categories__item--inner {
+      .cat-image {
+        border-radius: 0;
+        z-index: 2;
+
+        img {
+          left: 50%;
+          top: auto;
+          bottom: 0;
+          transform: translateX(-50%);
+        }
+      }
+
+      .cat-name {
+        display: inline-block;
+        margin-top: -20px;
+
+        a {
+          position: relative;
+          display: block;
+
+          h2 {
+            padding: 15px 30px;
+            margin: 0;
+            font-family: inherit;
+            font-size: rem-calc(16);
+            font-weight: 400;
+            border: solid 1px v(site-accent-color);
+            border-radius: 50%;
+            text-transform: uppercase;
+            z-index: 1;
+          }
+
+          &:hover {
+            &:before {
+              content: "";
+              position: absolute;
+              background: v(site-accent-color);
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              border-radius: 50%;
+              z-index: -1;
+            }
+
+            h2 {
+              color: #fff;
+              transform: rotate(10deg);
+            }
+          }
+        }
+      }
+    }
+  }
+}

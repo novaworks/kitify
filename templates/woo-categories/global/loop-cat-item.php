@@ -24,13 +24,7 @@ $cat_thumb_url = wp_get_attachment_image_src( $cat_thumb_id, 'woocommerce_thumbn
 				<span class="count-items"><?php echo esc_html($cat_count_label) ?></span>
 			<?php endif;?>
 		</div>
-    <div class="cat-image">
-			<div class="cat-image-overlay"></div>
-			<a class="overlay-url" href="<?php echo esc_url( get_category_link( $category->term_id ) ); ?>"></a>
-			<?php if($cat_thumb_url):?>
-      	<a href="<?php echo esc_url( get_category_link( $category->term_id ) ); ?>"><img src="<?php echo $cat_thumb_url[0]; ?>" alt=""></a>
-			<?php endif?>
-    </div>
+		<?php echo sprintf('<%1$s %2$s>%3$s</%1$s>', $tag_link, $this->get_render_attribute_string( $link_key ), $this->_get_member_image( $member_image )); ?>
     <div class="cat-name">
       <a href="<?php echo esc_url( get_category_link( $category->term_id ) ); ?>">
         <h2><?php echo $category->name ?></h2>

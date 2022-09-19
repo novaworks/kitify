@@ -2,47 +2,140 @@
   position: relative;
   text-align: center;
 }
+
 .kitify-product-categories .kitify-product-categories__item .kitify-product-categories__item--inner {
   position: relative;
 }
+
 .kitify-product-categories .kitify-product-categories__item .cat-image {
   position: relative;
   overflow: hidden;
   padding-bottom: 100%;
   border-radius: 50%;
 }
+
 .kitify-product-categories .kitify-product-categories__item .cat-image img {
   position: absolute;
   display: inline-block;
   left: 0;
   top: 0;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
+
 .kitify-product-categories .kitify-product-categories__item .cat-count {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   position: absolute;
   right: 0;
   background: #fff;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   color: var(--site-heading-color);
   width: 50px;
   height: 50px;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.06);
+  -webkit-box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.06);
+          box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.06);
   border-radius: 50%;
   z-index: 2;
 }
+
 .kitify-product-categories .kitify-product-categories__item .cat-count span {
   font-size: 1rem;
   font-weight: 600;
 }
+
 .kitify-product-categories .kitify-product-categories__item .cat-name {
   margin-top: 20px;
 }
+
 .kitify-product-categories .kitify-product-categories__item .cat-name h2 {
   font-size: 1rem;
   font-weight: 600;
 }
+
 .kitify-product-categories .kitify-product-categories__item .cat-name h2:hover {
   color: var(--site-accent-color);
+}
+
+.kitify-custom-categories__item-inner {
+  position: relative;
+}
+
+.kitify-custom-categories__item-inner .kitify-custom-categories__link {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.kitify-custom-categories__item-inner .kitify-custom-categories__image-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.kitify-custom-categories__item-inner .kitify-custom-categories__content-wrap {
+  width: 100%;
+}
+
+.kitify-custom-categories__item-inner .kitify-custom-categories__content-wrap .kitify-custom-categories__title {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+
+.kitify-custom-categories__item-inner .kitify-custom-categories__content-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.kitify-custom-categories__item-inner .kitify-custom-categories__content-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.kitify-custom-categories__item-inner .kitify-custom-categories__button-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: absolute;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  bottom: 0;
+  width: 100%;
+  z-index: 3;
+}
+
+.icon-align-right .kitify-custom-categories__button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.icon-align-right .kitify-custom-categories__button .kitify-custom-categories__button-icon {
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
 }

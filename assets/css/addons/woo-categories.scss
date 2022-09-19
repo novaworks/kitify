@@ -1,3 +1,4 @@
+@import '_mixins';
 .kitify-product-categories {
   .kitify-product-categories__item {
     position: relative;
@@ -45,6 +46,58 @@
           color: var(--site-accent-color);
         }
       }
+    }
+  }
+}
+.kitify-custom-categories__item {
+  &-inner {
+    position: relative;
+    .kitify-custom-categories__link {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+    }
+    .kitify-custom-categories__image-wrap {
+      position: relative;
+      width: 100%;
+    }
+    .kitify-custom-categories__content-wrap {
+      width: 100%;
+      .kitify-custom-categories__title {
+        font-size: rem-calc(24);
+        text-transform: uppercase;
+        margin-bottom: 0;
+      }
+    }
+    .kitify-custom-categories__content-wrap {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .kitify-custom-categories__content-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .kitify-custom-categories__button-wrap {
+      display: flex;
+      position: absolute;
+      flex-direction: column;
+      align-items: center;
+      bottom: 0;
+      width: 100%;
+      z-index: 3;
+    }
+  }
+
+}
+.icon-align-right {
+  .kitify-custom-categories__button {
+    display: flex;
+    align-items: center;
+    .kitify-custom-categories__button-icon {
+      order: 2;
     }
   }
 }

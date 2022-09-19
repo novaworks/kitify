@@ -1,0 +1,18 @@
+.theme-robeto {
+  .kitify-team-member.preset-type-5 {
+    .kitify-team-member__inner-box {
+      position: relative;
+    }
+    .kitify-team-member__content {
+      align-items: flex-start;
+      padding: rem-calc(30);
+      .kitify-team-member__name {
+        order: 2;
+      }
+      .kitify-team-member__position {
+        order: 1;
+        margin-bottom: rem-calc(10);
+      }
+    }
+  }
+}
