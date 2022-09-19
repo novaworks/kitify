@@ -51,7 +51,7 @@
   object-fit: cover;
 }
 .enable-original-size-true .kitify-bannerlist__image-instance {
-  object-fit: none;
+  object-fit: contain;
 }
 .enable-original-size-true .kitify-bannerlist__item {
   display: flex;
