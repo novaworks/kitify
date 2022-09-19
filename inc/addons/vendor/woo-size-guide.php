@@ -412,16 +412,14 @@ class Kitify_Woo_Size_Guide extends Kitify_Base {
     $this->end_controls_section();
   }
   protected function render() {
-    global $sizeguide_id;
     $this->_context = 'render';
     $settings = $this->get_settings();
     $button_text = $settings['btn_text'];
-    $sizeguide_id = rand();
     $toggle_icon        = $this->_get_icon( 'sizeguide_toggle_icon', '<span class="kitify-offcanvas__icon icon-normal kitify-blocks-icon">%s</span>' );
     add_action('kitify/theme/canvas_panel', [ $this, 'add_panel' ] );
     ?>
     <div class="kitify-woo-size-guide">
-    <button class="button-toogle" type="button" name="button" data-toggle="SizeGuide_<?php echo $sizeguide_id; ?>" aria-expanded="false" aria-controls="SizeGuide_<?php echo $sizeguide_id; ?>">
+    <button class="button-toogle" type="button" name="button" data-toggle="SizeGuide_<?php echo $this->get_id(); ?>" aria-expanded="false" aria-controls="SizeGuide_<?php echo $sizeguide_id; ?>">
     <?php
     if ( ! empty( $toggle_icon ) ) {
         echo sprintf( '<span class="kitify-offcanvas__toggle-icon">%1$s</span>', $toggle_icon);
@@ -435,7 +433,6 @@ class Kitify_Woo_Size_Guide extends Kitify_Base {
     <?php
   }
   public function add_panel() {
-    global $sizeguide_id;
     $settings = $this->get_settings();
     $template_id      = isset( $settings['size_template_id'] ) ? $settings['size_template_id'] : '0';
     $position         = isset( $settings['panel_position'] ) ? $settings['panel_position'] : 'right';
@@ -443,7 +440,7 @@ class Kitify_Woo_Size_Guide extends Kitify_Base {
     $toggle_close_icon = $this->_get_icon( 'sizeguide_close_icon', '<span class="kitify-offcanvas__icon kitify-blocks-icon">%s</span>' );
     ?>
     <?php if( 0 != $template_id ):?>
-      <div class="kitify-offcanvas sizeguide-canvas site-canvas-menu off-canvas position-<?php echo $position; ?>" id="SizeGuide_<?php echo $sizeguide_id; ?>" data-off-canvas data-transition="overlap">
+      <div class="kitify-offcanvas sizeguide-canvas site-canvas-menu off-canvas position-<?php echo $position; ?>" id="SizeGuide_<?php echo $this->get_id(); ?>" data-off-canvas data-transition="overlap">
         <h2 class="title"><?php echo esc_html( $content_title );?></h2>
         <div class="nova-offcanvas__content nova_box_ps">
           <?php echo kitify()->elementor()->frontend->get_builder_content_for_display( $template_id ); ?>

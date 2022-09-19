@@ -1,7 +1,7 @@
 <?php
 $settings = $this->get_settings();
 ?>
-<div class="site-canvas-menu off-canvas position-left" id="MenuOffCanvas" data-off-canvas data-transition="overlap">
+<div class="site-canvas-menu off-canvas position-left" id="MenuOffCanvas_<?php echo $this->get_id()?>" data-off-canvas data-transition="overlap">
     <div class="row has-scrollbar">
       <div class="header-mobiles-primary-menu">
         <?php

@@ -1,0 +1,93 @@
+.kitify-bannerlist__list.col-row,
+.kitify-bannerlist.kitify-carousel .kitify-bannerlist__list_wrapper,
+.kitify-bannerlist.kitify-masonry-wrapper{
+  margin-left: calc(-1 * var(--kitify-bannerlist-col-gap, 10px));
+  margin-right: calc(-1 * var(--kitify-bannerlist-col-gap, 10px));
+}
+.kitify-bannerlist.kitify-masonry-wrapper .kitify-bannerlist__list{
+  margin: 0;
+}
+
+.kitify .kitify-bannerlist__item {
+  padding: var(--kitify-bannerlist-col-gap, 10px);
+  margin-bottom: var(--kitify-bannerlist-row-gap, 0);
+}
+
+.kitify-bannerlist__link {
+  position: relative;
+  overflow: hidden;
+  display: block;
+}
+.kitify-bannerlist__image {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  width: 100%;
+}
+.kitify-bannerlist__image-instance{
+  width: 100%;
+  min-width: 50px;
+  min-height: 50px;
+  transition: transform .5s;
+  object-fit: cover;
+  transform: scale(var(--kitify-bannerlist-image-scale, 1));
+}
+.kitify-bannerlist__link:hover .kitify-bannerlist__image-instance{
+  transform: scale(var(--kitify-bannerlist-image-scale-hover, 1.15));
+}
+.kitify-bannerlist__content-inner {
+  width: var(--kitify-bannerlist-content-width, auto);
+  max-width: 100%;
+  padding: var(--kitify-bannerlist-content-padding, 0);
+  margin: var(--kitify-bannerlist-content-margin, 0);
+  border-radius: var(--kitify-bannerlist-content-radius, 0);
+}
+.enable-c-height-true .kitify-bannerlist__image-instance {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.enable-original-size-true .kitify-bannerlist__image-instance {
+  object-fit: none;
+}
+.enable-original-size-true .kitify-bannerlist__item {
+  display: flex;
+  align-items: center;
+}
+.kitify-bannerlist.layout-type-overlay .kitify-bannerlist__content{
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  flex-basis: 100%;
+  display: flex;
+  width: 100%;
+}
+.kitify-bannerlist.layout-type-overlay  .kitify-bannerlist__content-inner{
+  position: absolute;
+}
+.kitify-bannerlist__image:after {
+  content: '';
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  transition: all .4s;
+  opacity: 0;
+}
+
+.kitify-bannerlist.layout-type-overlay.kitify-masonry--cover-bg .kitify-bannerlist__image-instance{
+  height: calc( var(--item-height, auto) * 1px - var(--kitify-bannerlist-col-gap, 0) * 2);
+}
+.content-visible-hover-yes .kitify-bannerlist.layout-type-overlay .kitify-bannerlist__content{
+  opacity: 0;
+  transition: all .3s;
+}
+.content-visible-hover-yes .kitify-bannerlist.layout-type-overlay .kitify-bannerlist__inner:hover .kitify-bannerlist__content{
+  opacity: 1;
+}

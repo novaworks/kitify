@@ -1799,6 +1799,10 @@
             Kitify.initCarousel($scope);
             Kitify.initMasonry($scope);
         });
+        elementor.hooks.addAction('frontend/element_ready/kitify-banner-list.default', function ($scope) {
+            Kitify.initCarousel($scope);
+            Kitify.initMasonry($scope);
+        });
 
         elementor.hooks.addAction('frontend/element_ready/kitify-instagram-feed.default', function ($scope) {
             Kitify.initCarousel($scope);

@@ -829,16 +829,20 @@ if ( ! class_exists( 'Kitify_Integration' ) ) {
 
 			arsort($breakpoints);
 
-			$column_css = '.elementor-column.kitify-col-width-auto-__DEVICE__{width:auto!important}.elementor-column.kitify-col-width-auto-__DEVICE__.kitify-col-align-left{margin-right:auto}.elementor-column.kitify-col-width-auto-__DEVICE__.kitify-col-align-right{margin-left:auto}.elementor-column.kitify-col-width-auto-__DEVICE__.kitify-col-align-center{margin-left:auto;margin-right:auto}';
-			$widget_align_desktop_css = '[data-elementor-device-mode=desktop] .kitify-widget-align-left{margin-right:auto!important}[data-elementor-device-mode=desktop] .kitify-widget-align-right{margin-left:auto!important}[data-elementor-device-mode=desktop] .kitify-widget-align-center{margin-left:auto!important;margin-right:auto!important}';
-			$widget_align_css = '[data-elementor-device-mode=__DEVICE__] .kitify-widget-align-__DEVICE__-left{margin-right:auto!important}[data-elementor-device-mode=__DEVICE__] .kitify-widget-align-__DEVICE__-right{margin-left:auto!important}[data-elementor-device-mode=__DEVICE__] .kitify-widget-align-__DEVICE__-center{margin-left:auto!important;margin-right:auto!important}';
+			$column_css = '.elementor-element.kitify-col-width-auto-__DEVICE__{width:auto!important}.elementor-element.kitify-col-width-auto-__DEVICE__.kitify-col-align-left{margin-right:auto}.elementor-element.kitify-col-width-auto-__DEVICE__.kitify-col-align-right{margin-left:auto}.elementor-element.kitify-col-width-auto-__DEVICE__.kitify-col-align-center{margin-left:auto;margin-right:auto}';
+			if ( ! kitify()->elementor()->experiments->is_feature_active( 'container' ) ) {
+				$widget_align_desktop_css = '[data-elementor-device-mode=desktop] .kitify-widget-align-left{margin-right:auto!important}[data-elementor-device-mode=desktop] .kitify-widget-align-right{margin-left:auto!important}[data-elementor-device-mode=desktop] .kitify-widget-align-center{margin-left:auto!important;margin-right:auto!important}';
+				$widget_align_css         = '[data-elementor-device-mode=__DEVICE__] .kitify-widget-align-__DEVICE__-left{margin-right:auto!important}[data-elementor-device-mode=__DEVICE__] .kitify-widget-align-__DEVICE__-right{margin-left:auto!important}[data-elementor-device-mode=__DEVICE__] .kitify-widget-align-__DEVICE__-center{margin-left:auto!important;margin-right:auto!important}';
+			}
+			else{
+				$widget_align_desktop_css = $widget_align_css = '';
+			}
 
 			$css .= $widget_align_desktop_css;
 			foreach ($breakpoints as $device_name => $device_value){
 				$css .= str_replace('__DEVICE__', $device_name, $widget_align_css);
 				$css .= sprintf('@media(max-width: %1$spx){%2$s}', $device_value, str_replace('__DEVICE__', $device_name, $column_css));
 			}
-
 		    return $css;
         }
 
