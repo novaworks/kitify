@@ -34,7 +34,7 @@
     <?php if(empty($img) && $content_type == 'template') :?>
         <div class="kitify-template-wrapper"><?php echo $this->_loop_item_template_content();?></div>
     <?php else: ?>
-    <figure class="kitify-banner"><?php
+    <figure class="kitify-banner kitify-effect-<?php echo esc_attr( $this->get_settings_for_display( 'animation_effect' ) ); ?>"><?php
         printf('<a class="%1$s" %2$s>', 'kitify-banner__link', $a_link_attribute);
         echo $img;
         echo '<figcaption class="kitify-banner__content">';

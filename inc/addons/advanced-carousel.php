@@ -236,6 +236,7 @@ class Kitify_Advanced_Carousel extends Kitify_Base {
             'kitify/banner/control/animation_effect',
             array(
               'none'   => esc_html__( 'None', 'kitify' ),
+              'hidden-content'   => esc_html__( 'Hidden Content', 'kitify' ),
               'lily'   => esc_html__( 'Lily', 'kitify' ),
               'sadie'  => esc_html__( 'Sadie', 'kitify' ),
               'layla'  => esc_html__( 'Layla', 'kitify' ),
