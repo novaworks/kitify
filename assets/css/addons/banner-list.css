@@ -57,6 +57,9 @@
   display: flex;
   align-items: center;
 }
+.enable-original-size-true .kitify-bannerlist__list {
+  align-items: center;
+}
 .kitify-bannerlist.layout-type-overlay .kitify-bannerlist__content{
   position: absolute;
   top: 0;
