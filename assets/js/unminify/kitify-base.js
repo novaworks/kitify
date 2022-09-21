@@ -1559,6 +1559,25 @@
                 $('.wc-tab-title a', $tabs).first().trigger('click');
             }
         },
+        SearchAnimate: function ($scope) {
+          var $target = $scope.find('#js_header_search_modal');
+
+          if (!$target.length) {
+              return;
+          }
+          $("#js_header_search_modal").animatedModal({
+      			animatedIn: 'slideInDown',
+      			animatedOut: 'slideOutUp',
+      			beforeOpen: function() {
+      				window.setTimeout(function () {
+      								$(".header-search").addClass('animate');
+      				 }, 300);
+      				 window.setTimeout(function () {
+      								 $(".header-search").addClass('animate-line');
+      					}, 1000);
+      			},
+      		});
+        },
         animatedBoxHandler: function ($scope) {
 
             var $target = $scope.find('.kitify-animated-box'),
@@ -1856,6 +1875,9 @@
 
         elementor.hooks.addAction('frontend/element_ready/kitify-animated-box.default', function ($scope) {
             Kitify.animatedBoxHandler($scope);
+        });
+        elementor.hooks.addAction('frontend/element_ready/kitify-search.default.default', function ($scope) {
+            Kitify.SearchAnimate($scope);
         });
 
         elementor.hooks.addAction('frontend/element_ready/kitify-wooproducts.default', function ($scope) {

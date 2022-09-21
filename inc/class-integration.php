@@ -464,6 +464,8 @@ if ( ! class_exists( 'Kitify_Integration' ) ) {
 							false,
 							'1.3.1'
 						);
+						wp_register_script('animatedModal', 	kitify()->plugin_url('assets/js/lib/animatedModal.js/animatedModal.js'),	array(), '1.0');
+
             $polyfill_data = apply_filters('kitify/filter/js_polyfill_data', [
                 'kitify-polyfill-resizeobserver' => [
                     'condition' => '\'ResizeObserver\' in window',

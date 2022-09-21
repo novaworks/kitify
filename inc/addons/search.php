@@ -17,7 +17,11 @@ class Kitify_Search extends Kitify_Base {
         $this->add_style_depends( $this->get_name() );
         $this->add_script_depends( 'kitify-base' );
     }
-
+    public function get_script_depends() {
+  		return array(
+  			'animatedModal',
+  		);
+  	}
 	public function get_name() {
 		return 'kitify-search';
 	}
