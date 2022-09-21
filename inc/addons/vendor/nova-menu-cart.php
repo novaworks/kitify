@@ -292,6 +292,9 @@ class Kitify_Nova_Menu_Cart extends Kitify_Base {
       $this->_open_wrap();
       include $this->_get_global_template( 'index' );
       $this->_close_wrap();
-
+      add_action('kitify/theme/canvas_panel', [ $this, 'add_panel' ] );
+  }
+  public function add_panel() {
+    include $this->_get_global_template( 'panel' );
   }
 }

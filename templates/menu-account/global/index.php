@@ -28,7 +28,7 @@ $show_label = $this->get_settings( 'show_label' );
 		</div>
 	<?php }else{  ?>
     <div class="kitify-menu-account__box">
-    <a data-toggle="AcccountCanvas">
+    <a data-toggle="AcccountCanvas_<?php echo $this->get_id()?>">
       	<?php $this->_icon( 'acc_icon', '<span class="kitify-menu-account__icon kitify-blocks-icon">%s</span>' ); ?>
       	<?php if($show_label):?>
           <span class="kitify-menu-account__label"><?php echo esc_html__('My account','kitify')?></span>

@@ -26,7 +26,7 @@ if ( ( $is_edit_mode && ! wp_doing_ajax() ) || null === WC()->cart ) {
 }
 ?>
 <div class="<?php echo $class_string; ?>">
-  <a<?php if ( Nova_OP::getOption('header_cart_action') == 'cart-page' ) : ?> href="<?php echo esc_url( wc_get_cart_url() );?>"<?php endif; ?><?php if ( Nova_OP::getOption('header_cart_action') == 'mini-cart' ) : ?> href="javascript:;" data-toggle="MiniCartCanvas"<?php endif; ?>>
+  <a href="javascript:;" data-toggle="MiniCartCanvas_<?php echo $this->get_id()?>">
     <div class="header-cart-box">
       <?php $this->_icon( 'novacart_icon', '<span class="kitify-nova-cart__icon kitify-blocks-icon">%s</span>' ); ?>
       <div class="cart-text">
