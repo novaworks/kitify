@@ -53,7 +53,6 @@
     var Kitify = {
         log: function (...data){
             var args = Array.prototype.slice.call(arguments)
-            console.log(...data);
         },
         addedScripts: {},
         addedStyles: {},
@@ -1561,7 +1560,6 @@
         },
         SearchAnimate: function ($scope) {
           var $target = $scope.find('#js_header_search_modal');
-
           if (!$target.length) {
               return;
           }
@@ -1876,7 +1874,7 @@
         elementor.hooks.addAction('frontend/element_ready/kitify-animated-box.default', function ($scope) {
             Kitify.animatedBoxHandler($scope);
         });
-        elementor.hooks.addAction('frontend/element_ready/kitify-search.default.default', function ($scope) {
+        elementor.hooks.addAction('frontend/element_ready/kitify-search.default', function ($scope) {
             Kitify.SearchAnimate($scope);
         });
 
