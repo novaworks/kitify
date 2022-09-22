@@ -962,24 +962,6 @@
         mobileAndTabletCheck: function () {
             return ( (('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)) && (window.innerWidth < 1400) )
         },
-        onSearchSectionActivated: function ($scope) {
-            if (!elementor) {
-                return;
-            }
-            if (!window.KitifyEditor) {
-                return;
-            }
-            if (!window.KitifyEditor.activeSection) {
-                return;
-            }
-            var section = window.KitifyEditor.activeSection;
-            var isPopup = -1 !== ['section_popup_style', 'section_popup_close_style', 'section_form_style'].indexOf(section);
-            if (isPopup) {
-                $scope.find('.kitify-search').addClass('kitify-search-popup-active');
-            } else {
-                $scope.find('.kitify-search').removeClass('kitify-search-popup-active');
-            }
-        },
         loadStyle: function (style, uri) {
 
             if (Kitify.addedStyles.hasOwnProperty(style) && Kitify.addedStyles[style] === uri) {
@@ -1810,33 +1792,6 @@
         });
         elementor.hooks.addAction('frontend/element_ready/kitify-scroll-image.default', function ($scope) {
             Kitify.ImageScrollHandler($scope);
-        });
-        elementor.hooks.addAction('frontend/element_ready/kitify-search.default', function ($scope) {
-            Kitify.onSearchSectionActivated($scope);
-            $(document).on('click', function (event) {
-
-                var $widget = $scope.find('.kitify-search'),
-                    $popupToggle = $('.kitify-search__popup-trigger', $widget),
-                    $popupContent = $('.kitify-search__popup-content', $widget),
-                    activeClass = 'kitify-search-popup-active',
-                    transitionOut = 'kitify-transition-out';
-
-                if ($(event.target).closest($popupToggle).length || $(event.target).closest($popupContent).length) {
-                    return;
-                }
-
-                if (!$widget.hasClass(activeClass)) {
-                    return;
-                }
-
-                $widget.removeClass(activeClass);
-                $widget.addClass(transitionOut);
-                setTimeout(function () {
-                    $widget.removeClass(transitionOut);
-                }, 300);
-
-                event.stopPropagation();
-            });
         });
 
         elementor.hooks.addAction('frontend/element_ready/kitify-hamburger-panel.default', function ($scope) {
