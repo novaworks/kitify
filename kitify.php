@@ -58,7 +58,7 @@ if(!function_exists('Kitify')){
          *
          * @var string
          */
-        private $version = '1.0.0';
+        private $version = '1.0.4';
 
         /**
          * Framework component
