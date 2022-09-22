@@ -806,29 +806,6 @@
                     anchorReal.click();
                     anchorReal.remove();
                 })
-                .on('click', '.kitify-search__popup-trigger,.kitify-search__popup-close', function (e) {
-                    var $this = $(this),
-                        $widget = $this.closest('.kitify-search'),
-                        $input = $('.kitify-search__field', $widget),
-                        activeClass = 'kitify-search-popup-active',
-                        transitionIn = 'kitify-transition-in',
-                        transitionOut = 'kitify-transition-out';
-
-                    if (!$widget.hasClass(activeClass)) {
-                        $widget.addClass(transitionIn);
-                        setTimeout(function () {
-                            $widget.removeClass(transitionIn);
-                            $widget.addClass(activeClass);
-                        }, 300);
-                        $input.focus();
-                    } else {
-                        $widget.removeClass(activeClass);
-                        $widget.addClass(transitionOut);
-                        setTimeout(function () {
-                            $widget.removeClass(transitionOut);
-                        }, 300);
-                    }
-                })
                 .on('click', '.kitify-masonry_filter .kitify-masonry_filter-item', function (e){
                     e.preventDefault();
                     var $wrap = $(this).closest('.kitify-masonry_filter'),
@@ -902,7 +879,6 @@
                 })
                 .on('keyup', function (e) {
                     if(e.keyCode == 27){
-                        $('.kitify-search').removeClass('kitify-search-popup-active');
                         $('.kitify-cart').removeClass('kitify-cart-open');
                         $('.kitify-hamburger-panel').removeClass('open-state');
                         $('html').removeClass('kitify-hamburger-panel-visible');

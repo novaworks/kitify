@@ -45,14 +45,6 @@
 
 			window.KitifyEditor.activeSection = sectionName;
 
-			var isPopup = -1 !== [ 'section_popup_style', 'section_popup_close_style', 'section_form_style' ].indexOf( sectionName );
-
-			if ( isPopup ) {
-				editedElement.$el.find( '.kitify-search' ).addClass( 'kitify-search-popup-active' );
-			} else {
-				editedElement.$el.find( '.kitify-search' ).removeClass( 'kitify-search-popup-active' );
-			}
-
 		},
 
 		onTabActive: function(event, _tab_active){
