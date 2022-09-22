@@ -648,7 +648,7 @@ class Kitify_Banner extends Kitify_Base {
         'selectors' => array(
           '{{WRAPPER}} ' . $css_scheme['banner_title'] => 'justify-content: {{VALUE}};',
         ),
-      )
+      ),
 			25
 		);
 
