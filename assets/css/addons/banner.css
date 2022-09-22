@@ -11,6 +11,7 @@
   max-width: 100%;
   width: 100%;
 }
+
 .kitify-banner__content {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
@@ -22,6 +23,7 @@
   z-index: 2;
   text-align: center;
 }
+
 .kitify-banner__content-wrap {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -32,6 +34,16 @@
           flex-flow: column;
   width: 100%;
 }
+
+.kitify-banner .kitify-banner__title {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .kitify-banner .kitify-banner__text,
 .kitify-banner .kitify-banner__title {
   margin: 0;
@@ -39,11 +51,13 @@
   line-height: 1;
   width: 100%;
 }
+
 .kitify-banner .kitify-banner__button {
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
 }
+
 .kitify-banner__overlay {
   position: absolute;
   top: 0;
@@ -58,15 +72,18 @@
   -webkit-transition: opacity 0.35s;
   transition: opacity 0.35s;
 }
+
 .kitify-banner__img {
   display: block;
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
+
 .kitify-banner:hover .kitify-banner__overlay {
   opacity: 0.2;
 }
+
 .kitify-banner.kitify-effect-none .kitify-banner__content {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -79,6 +96,7 @@
           align-items: center;
   margin: 0;
 }
+
 .kitify-banner.kitify-effect-hidden-content .kitify-banner__content {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -98,6 +116,7 @@
   -webkit-transition: opacity 0.35s linear;
   -moz-transition: opacity 0.35s linear;
 }
+
 .kitify-banner.kitify-effect-hidden-content .kitify-banner__button,
 .kitify-banner.kitify-effect-hidden-content .kitify-banner__text,
 .kitify-banner.kitify-effect-hidden-content .kitify-banner__title {
@@ -107,22 +126,26 @@
           transform: translateY(30%);
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  -webkit-transition: opacity 0.3s 0.07s, -webkit-transform 0.3s 0.07s;
-  transition: opacity 0.3s 0.07s, -webkit-transform 0.3s 0.07s;
-  transition: transform 0.3s 0.07s, opacity 0.3s 0.07s;
-  transition: transform 0.3s 0.07s, opacity 0.3s 0.07s, -webkit-transform 0.3s 0.07s;
+  -webkit-transition: opacity 0.3s 0.07s,-webkit-transform 0.3s 0.07s;
+  transition: opacity 0.3s 0.07s,-webkit-transform 0.3s 0.07s;
+  transition: transform 0.3s 0.07s,opacity 0.3s 0.07s;
+  transition: transform 0.3s 0.07s,opacity 0.3s 0.07s,-webkit-transform 0.3s 0.07s;
 }
+
 .kitify-banner.kitify-effect-hidden-content .kitify-banner__img {
   -webkit-transition: all 2s;
   transition: all 2s;
 }
+
 .mm-menu-custom-block .kitify-banner.kitify-effect-hidden-content .kitify-banner__img {
   -webkit-transition-duration: 0.3s;
           transition-duration: 0.3s;
 }
+
 .kitify-banner.kitify-effect-hidden-content:hover .kitify-banner__content {
   opacity: 1;
 }
+
 .kitify-banner.kitify-effect-hidden-content:hover .kitify-banner__title {
   -webkit-transform: translateY(0);
           transform: translateY(0);
@@ -130,6 +153,7 @@
   -webkit-transition-delay: 0.1s;
           transition-delay: 0.1s;
 }
+
 .kitify-banner.kitify-effect-hidden-content:hover .kitify-banner__text {
   -webkit-transform: translateY(0);
           transform: translateY(0);
@@ -137,6 +161,7 @@
   -webkit-transition-delay: 0.14s;
           transition-delay: 0.14s;
 }
+
 .kitify-banner.kitify-effect-hidden-content:hover .kitify-banner__button {
   -webkit-transform: translateY(0);
           transform: translateY(0);
@@ -144,10 +169,12 @@
   -webkit-transition-delay: 0.17s;
           transition-delay: 0.17s;
 }
+
 .kitify-banner.kitify-effect-hidden-content:hover .kitify-banner__img {
   -webkit-transform: scale(1.1);
           transform: scale(1.1);
 }
+
 .kitify-banner.kitify-effect-lily .kitify-banner__img {
   max-width: none;
   width: calc(100% + 50px);
@@ -158,9 +185,11 @@
   -webkit-transform: translate3d(-40px, 0, 0);
           transform: translate3d(-40px, 0, 0);
 }
+
 .kitify-banner.kitify-effect-lily .kitify-banner__content {
   text-align: left;
 }
+
 .kitify-banner.kitify-effect-lily .kitify-banner__content-wrap {
   position: absolute;
   bottom: 0;
@@ -170,18 +199,21 @@
   height: 50%;
   z-index: 2;
 }
+
 .kitify-banner.kitify-effect-lily .elementor-button,
 .kitify-banner.kitify-effect-lily .kitify-banner__text,
 .kitify-banner.kitify-effect-lily .kitify-banner__title {
   -webkit-transform: translate3d(0, 40px, 0);
           transform: translate3d(0, 40px, 0);
 }
+
 .kitify-banner.kitify-effect-lily .kitify-banner__title {
   -webkit-transition: -webkit-transform 0.35s;
   transition: -webkit-transform 0.35s;
   transition: transform 0.35s;
   transition: transform 0.35s, -webkit-transform 0.35s;
 }
+
 .kitify-banner.kitify-effect-lily .kitify-banner__text {
   color: rgba(255, 255, 255, 0.8);
   opacity: 0;
@@ -190,6 +222,7 @@
   transition: opacity 0.2s, transform 0.35s;
   transition: opacity 0.2s, transform 0.35s, -webkit-transform 0.35s;
 }
+
 .kitify-banner.kitify-effect-lily .elementor-button {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -200,10 +233,12 @@
   transition: opacity 0.2s, transform 0.35s;
   transition: opacity 0.2s, transform 0.35s, -webkit-transform 0.35s;
 }
+
 .kitify-banner.kitify-effect-lily:hover .elementor-button,
 .kitify-banner.kitify-effect-lily:hover .kitify-banner__text {
   opacity: 1;
 }
+
 .kitify-banner.kitify-effect-lily:hover .elementor-button,
 .kitify-banner.kitify-effect-lily:hover .kitify-banner__img,
 .kitify-banner.kitify-effect-lily:hover .kitify-banner__text,
@@ -211,6 +246,7 @@
   -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
 }
+
 .kitify-banner.kitify-effect-lily:hover .elementor-button,
 .kitify-banner.kitify-effect-lily:hover .kitify-banner__text {
   -webkit-transition-delay: 0.05s;
@@ -218,6 +254,7 @@
   -webkit-transition-duration: 0.35s;
           transition-duration: 0.35s;
 }
+
 .kitify-banner.kitify-effect-sadie .kitify-banner__title {
   position: absolute;
   top: 50%;
@@ -231,12 +268,14 @@
   -webkit-transform: translate3d(0, -50%, 0);
   transform: translate3d(0, -50%, 0);
 }
+
 .kitify-banner.kitify-effect-sadie .kitify-banner__text {
   -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
   transition: opacity 0.35s, -webkit-transform 0.35s;
   transition: opacity 0.35s, transform 0.35s;
   transition: opacity 0.35s, transform 0.35s, -webkit-transform 0.35s;
 }
+
 .kitify-banner.kitify-effect-sadie .kitify-banner__text {
   position: absolute;
   bottom: 0;
@@ -247,15 +286,18 @@
   -webkit-transform: translate3d(0, 10px, 0);
   transform: translate3d(0, 10px, 0);
 }
+
 .kitify-banner.kitify-effect-sadie:hover .kitify-banner__title {
   -webkit-transform: translate3d(0, -50%, 0) translate3d(0, -40px, 0);
   transform: translate3d(0, -50%, 0) translate3d(0, -40px, 0);
 }
+
 .kitify-banner.kitify-effect-sadie:hover .kitify-banner__text {
   opacity: 1;
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
+
 .kitify-banner.kitify-effect-layla .kitify-banner__content {
   padding: 5%;
   display: -webkit-box;
@@ -268,6 +310,7 @@
       -ms-flex-pack: center;
           justify-content: center;
 }
+
 .kitify-banner.kitify-effect-layla .kitify-banner__content:after,
 .kitify-banner.kitify-effect-layla .kitify-banner__content:before {
   position: absolute;
@@ -275,6 +318,7 @@
   opacity: 0;
   z-index: 2;
 }
+
 .kitify-banner.kitify-effect-layla .kitify-banner__content:before {
   top: 40px;
   right: 20px;
@@ -287,6 +331,7 @@
   -webkit-transform-origin: 0 0;
           transform-origin: 0 0;
 }
+
 .kitify-banner.kitify-effect-layla .kitify-banner__content:after {
   top: 20px;
   right: 40px;
@@ -299,6 +344,7 @@
   -webkit-transform-origin: 100% 0;
           transform-origin: 100% 0;
 }
+
 .kitify-banner.kitify-effect-layla .kitify-banner__title {
   padding-top: 26%;
   -webkit-transition: -webkit-transform 0.35s;
@@ -306,6 +352,7 @@
   transition: transform 0.35s;
   transition: transform 0.35s, -webkit-transform 0.35s;
 }
+
 .kitify-banner.kitify-effect-layla .kitify-banner__text {
   padding: 0.5em 2em;
   text-transform: none;
@@ -313,10 +360,12 @@
   -webkit-transform: translate3d(0, -10px, 0);
           transform: translate3d(0, -10px, 0);
 }
+
 .kitify-banner.kitify-effect-layla .kitify-banner__title {
   -webkit-transform: translate3d(0, -30px, 0);
           transform: translate3d(0, -30px, 0);
 }
+
 .kitify-banner.kitify-effect-layla .kitify-banner__content:after,
 .kitify-banner.kitify-effect-layla .kitify-banner__content:before,
 .kitify-banner.kitify-effect-layla .kitify-banner__text {
@@ -325,27 +374,32 @@
   transition: opacity 0.35s, transform 0.35s;
   transition: opacity 0.35s, transform 0.35s, -webkit-transform 0.35s;
 }
+
 .kitify-banner.kitify-effect-layla:hover .kitify-banner__content:after,
 .kitify-banner.kitify-effect-layla:hover .kitify-banner__content:before {
   opacity: 1;
   -webkit-transform: scale(1);
           transform: scale(1);
 }
+
 .kitify-banner.kitify-effect-layla:hover .kitify-banner__text,
 .kitify-banner.kitify-effect-layla:hover .kitify-banner__title {
   opacity: 1;
   -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
 }
+
 .kitify-banner.kitify-effect-layla:hover .kitify-banner__content:after,
 .kitify-banner.kitify-effect-layla:hover .kitify-banner__text,
 .kitify-banner.kitify-effect-layla:hover .kitify-banner__title {
   -webkit-transition-delay: 0.15s;
           transition-delay: 0.15s;
 }
+
 .kitify-banner.kitify-effect-oscar .kitify-banner__content {
   padding: 3em;
 }
+
 .kitify-banner.kitify-effect-oscar .kitify-banner__content:before {
   position: absolute;
   top: 30px;
@@ -355,6 +409,7 @@
   border: 1px solid #fff;
   content: "";
 }
+
 .kitify-banner.kitify-effect-oscar .kitify-banner__title {
   margin: 20% 0 10px;
   -webkit-transition: -webkit-transform 0.35s;
@@ -364,9 +419,11 @@
   -webkit-transform: translate3d(0, 100%, 0);
           transform: translate3d(0, 100%, 0);
 }
+
 .kitify-banner.kitify-effect-oscar .kitify-banner__img {
   width: 100%;
 }
+
 .kitify-banner.kitify-effect-oscar .kitify-banner__content:before,
 .kitify-banner.kitify-effect-oscar .kitify-banner__text {
   opacity: 0;
@@ -377,19 +434,23 @@
   -webkit-transform: scale(0);
           transform: scale(0);
 }
+
 .kitify-banner.kitify-effect-oscar:hover .kitify-banner__title {
   -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
 }
+
 .kitify-banner.kitify-effect-oscar:hover .kitify-banner__content:before,
 .kitify-banner.kitify-effect-oscar:hover .kitify-banner__text {
   opacity: 1;
   -webkit-transform: scale(1);
           transform: scale(1);
 }
+
 .kitify-banner.kitify-effect-marley .kitify-banner__content {
   text-align: right;
 }
+
 .kitify-banner.kitify-effect-marley .kitify-banner__text,
 .kitify-banner.kitify-effect-marley .kitify-banner__title {
   position: absolute;
@@ -397,11 +458,13 @@
   left: 30px;
   padding: 10px 0;
 }
+
 .kitify-banner.kitify-effect-marley .kitify-banner__text {
   bottom: 30px;
   -webkit-transform: translate3d(0, 100%, 0);
           transform: translate3d(0, 100%, 0);
 }
+
 .kitify-banner.kitify-effect-marley .kitify-banner__title {
   top: 30px;
   -webkit-transition: -webkit-transform 0.35s;
@@ -411,6 +474,7 @@
   -webkit-transform: translate3d(0, 20px, 0);
           transform: translate3d(0, 20px, 0);
 }
+
 .kitify-banner.kitify-effect-marley .kitify-banner__title:after {
   position: absolute;
   top: 100%;
@@ -422,6 +486,7 @@
   -webkit-transform: translate3d(0, 40px, 0);
           transform: translate3d(0, 40px, 0);
 }
+
 .kitify-banner.kitify-effect-marley .kitify-banner__text,
 .kitify-banner.kitify-effect-marley .kitify-banner__title:after {
   opacity: 0;
@@ -430,19 +495,23 @@
   transition: opacity 0.35s, transform 0.35s;
   transition: opacity 0.35s, transform 0.35s, -webkit-transform 0.35s;
 }
+
 .kitify-banner.kitify-effect-marley:hover .kitify-banner__title {
   -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
 }
+
 .kitify-banner.kitify-effect-marley:hover .kitify-banner__text,
 .kitify-banner.kitify-effect-marley:hover .kitify-banner__title:after {
   opacity: 1;
   -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
 }
+
 .kitify-banner.kitify-effect-ruby .kitify-banner__content {
   padding: 2em;
 }
+
 .kitify-banner.kitify-effect-ruby .kitify-banner__img {
   -webkit-transition: -webkit-transform 0.35s;
   transition: -webkit-transform 0.35s;
@@ -451,6 +520,7 @@
   -webkit-transform: scale(1.15);
           transform: scale(1.15);
 }
+
 .kitify-banner.kitify-effect-ruby .kitify-banner__title {
   margin-top: 20%;
   -webkit-transition: -webkit-transform 0.35s;
@@ -460,6 +530,7 @@
   -webkit-transform: translate3d(0, 20px, 0);
   transform: translate3d(0, 20px, 0);
 }
+
 .kitify-banner.kitify-effect-ruby .kitify-banner__text {
   margin: 1em 0 0;
   padding: 1.5em;
@@ -472,19 +543,23 @@
   -webkit-transform: translate3d(0, 20px, 0) scale(1.1);
   transform: translate3d(0, 20px, 0) scale(1.1);
 }
+
 .kitify-banner.kitify-effect-ruby:hover .kitify-banner__img {
   -webkit-transform: scale(1);
           transform: scale(1);
 }
+
 .kitify-banner.kitify-effect-ruby:hover .kitify-banner__title {
   -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
 }
+
 .kitify-banner.kitify-effect-ruby:hover .kitify-banner__text {
   opacity: 1;
   -webkit-transform: translate3d(0, 0, 0) scale(1);
           transform: translate3d(0, 0, 0) scale(1);
 }
+
 .kitify-banner.kitify-effect-roxy .kitify-banner__img {
   max-width: none;
   width: calc(100% + 60px);
@@ -495,6 +570,7 @@
   -webkit-transform: translate3d(-50px, 0, 0);
           transform: translate3d(-50px, 0, 0);
 }
+
 .kitify-banner.kitify-effect-roxy .kitify-banner__content:before {
   position: absolute;
   top: 30px;
@@ -511,13 +587,16 @@
   -webkit-transform: translate3d(-20px, 0, 0);
   transform: translate3d(-20px, 0, 0);
 }
+
 .kitify-banner.kitify-effect-roxy .kitify-banner__content {
   padding: 3em;
   text-align: left;
 }
+
 .kitify-banner.kitify-effect-roxy .kitify-banner__title {
   padding: 30% 0 10px;
 }
+
 .kitify-banner.kitify-effect-roxy .kitify-banner__text {
   opacity: 0;
   -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
@@ -527,16 +606,19 @@
   -webkit-transform: translate3d(-10px, 0, 0);
   transform: translate3d(-10px, 0, 0);
 }
+
 .kitify-banner.kitify-effect-roxy:hover .kitify-banner__img {
   -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
 }
+
 .kitify-banner.kitify-effect-roxy:hover .kitify-banner__content:before,
 .kitify-banner.kitify-effect-roxy:hover .kitify-banner__text {
   opacity: 1;
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
+
 .kitify-banner.kitify-effect-bubba .kitify-banner__content:after,
 .kitify-banner.kitify-effect-bubba .kitify-banner__content:before {
   position: absolute;
@@ -551,18 +633,21 @@
   transition: opacity 0.35s, transform 0.35s;
   transition: opacity 0.35s, transform 0.35s, -webkit-transform 0.35s;
 }
+
 .kitify-banner.kitify-effect-bubba .kitify-banner__content:before {
   border-top: 1px solid #fff;
   border-bottom: 1px solid #fff;
   -webkit-transform: scale(0, 1);
   transform: scale(0, 1);
 }
+
 .kitify-banner.kitify-effect-bubba .kitify-banner__content:after {
   border-right: 1px solid #fff;
   border-left: 1px solid #fff;
   -webkit-transform: scale(1, 0);
   transform: scale(1, 0);
 }
+
 .kitify-banner.kitify-effect-bubba .kitify-banner__title {
   padding-top: 30%;
   -webkit-transition: -webkit-transform 0.35s;
@@ -572,6 +657,7 @@
   -webkit-transform: translate3d(0, -20px, 0);
   transform: translate3d(0, -20px, 0);
 }
+
 .kitify-banner.kitify-effect-bubba .kitify-banner__text {
   padding: 20px 2.5em;
   opacity: 0;
@@ -582,22 +668,26 @@
   -webkit-transform: translate3d(0, 20px, 0);
   transform: translate3d(0, 20px, 0);
 }
+
 .kitify-banner.kitify-effect-bubba:hover .kitify-banner__content:after,
 .kitify-banner.kitify-effect-bubba:hover .kitify-banner__content:before {
   opacity: 1;
   -webkit-transform: scale(1);
   transform: scale(1);
 }
+
 .kitify-banner.kitify-effect-bubba:hover .kitify-banner__text,
 .kitify-banner.kitify-effect-bubba:hover .kitify-banner__title {
   opacity: 1;
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
+
 .kitify-banner.kitify-effect-romeo {
   -webkit-perspective: 1000px;
   perspective: 1000px;
 }
+
 .kitify-banner.kitify-effect-romeo .kitify-banner__img {
   -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
   transition: opacity 0.35s, -webkit-transform 0.35s;
@@ -608,6 +698,7 @@
   -o-object-fit: cover;
      object-fit: cover;
 }
+
 .kitify-banner.kitify-effect-romeo .kitify-banner__content:after,
 .kitify-banner.kitify-effect-romeo .kitify-banner__content:before {
   position: absolute;
@@ -624,6 +715,7 @@
   -webkit-transform: translate3d(-50%, -50%, 0);
           transform: translate3d(-50%, -50%, 0);
 }
+
 .kitify-banner.kitify-effect-romeo .kitify-banner__text,
 .kitify-banner.kitify-effect-romeo .kitify-banner__title {
   position: absolute;
@@ -635,38 +727,46 @@
   transition: transform 0.35s;
   transition: transform 0.35s, -webkit-transform 0.35s;
 }
+
 .kitify-banner.kitify-effect-romeo .kitify-banner__title {
   -webkit-transform: translate3d(0, -50%, 0) translate3d(0, -150%, 0);
           transform: translate3d(0, -50%, 0) translate3d(0, -150%, 0);
 }
+
 .kitify-banner.kitify-effect-romeo .kitify-banner__text {
   padding: 0.25em 2em;
   -webkit-transform: translate3d(0, -50%, 0) translate3d(0, 150%, 0);
           transform: translate3d(0, -50%, 0) translate3d(0, 150%, 0);
 }
+
 .kitify-banner.kitify-effect-romeo:hover .kitify-banner__content:before {
   opacity: 0.5;
   -webkit-transform: translate3d(-50%, -50%, 0) rotate(45deg);
           transform: translate3d(-50%, -50%, 0) rotate(45deg);
 }
+
 .kitify-banner.kitify-effect-romeo:hover .kitify-banner__content:after {
   opacity: 0.5;
   -webkit-transform: translate3d(-50%, -50%, 0) rotate(-45deg);
           transform: translate3d(-50%, -50%, 0) rotate(-45deg);
 }
+
 .kitify-banner.kitify-effect-romeo:hover .kitify-banner__img {
   opacity: 0.6;
   -webkit-transform: scale(1);
   transform: scale(1);
 }
+
 .kitify-banner.kitify-effect-romeo:hover .kitify-banner__title {
   -webkit-transform: translate3d(0, -50%, 0) translate3d(0, -100%, 0);
           transform: translate3d(0, -50%, 0) translate3d(0, -100%, 0);
 }
+
 .kitify-banner.kitify-effect-romeo:hover .kitify-banner__text {
   -webkit-transform: translate3d(0, -50%, 0) translate3d(0, 100%, 0);
           transform: translate3d(0, -50%, 0) translate3d(0, 100%, 0);
 }
+
 .kitify-banner.kitify-effect-sarah .kitify-banner__img {
   max-width: none;
   width: calc(100% + 20px);
@@ -679,19 +779,23 @@
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
 }
+
 .kitify-banner.kitify-effect-sarah .kitify-banner__img {
   -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
 }
+
 .kitify-banner.kitify-effect-sarah .kitify-banner__content {
   text-align: left;
   padding: 2em;
 }
+
 .kitify-banner.kitify-effect-sarah .kitify-banner__title {
   position: relative;
   overflow: hidden;
   padding: 0.5em 0;
 }
+
 .kitify-banner.kitify-effect-sarah .kitify-banner__title:after {
   position: absolute;
   bottom: 0;
@@ -707,6 +811,7 @@
   -webkit-transform: translate3d(-100%, 0, 0);
           transform: translate3d(-100%, 0, 0);
 }
+
 .kitify-banner.kitify-effect-sarah .kitify-banner__text {
   padding: 1em 0;
   opacity: 0;
@@ -717,15 +822,18 @@
   -webkit-transform: translate3d(100%, 0, 0);
           transform: translate3d(100%, 0, 0);
 }
+
 .kitify-banner.kitify-effect-sarah:hover .kitify-banner__title:after {
   -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
 }
+
 .kitify-banner.kitify-effect-sarah:hover .kitify-banner__text {
   opacity: 1;
   -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
 }
+
 .kitify-banner.kitify-effect-chico .kitify-banner__img {
   -webkit-transition: -webkit-transform 0.35s;
   transition: -webkit-transform 0.35s;
@@ -734,9 +842,11 @@
   -webkit-transform: scale(1.12);
           transform: scale(1.12);
 }
+
 .kitify-banner.kitify-effect-chico .kitify-banner__content {
   padding: 3em;
 }
+
 .kitify-banner.kitify-effect-chico .kitify-banner__content:before {
   position: absolute;
   top: 30px;
@@ -747,6 +857,7 @@
   content: "";
   -webkit-transform: scale(1.1);
 }
+
 .kitify-banner.kitify-effect-chico .kitify-banner__content:before,
 .kitify-banner.kitify-effect-chico .kitify-banner__text {
   opacity: 0;
@@ -755,19 +866,23 @@
   transition: opacity 0.35s, transform 0.35s;
   transition: opacity 0.35s, transform 0.35s, -webkit-transform 0.35s;
 }
+
 .kitify-banner.kitify-effect-chico .kitify-banner__title {
   padding: 20% 0 20px;
 }
+
 .kitify-banner.kitify-effect-chico .kitify-banner__text {
   margin: 0 auto;
   max-width: 70%;
   -webkit-transform: scale(1.5);
           transform: scale(1.5);
 }
+
 .kitify-banner.kitify-effect-chico:hover .kitify-banner__img {
   -webkit-transform: scale(1);
           transform: scale(1);
 }
+
 .kitify-banner.kitify-effect-chico:hover .kitify-banner__content:before,
 .kitify-banner.kitify-effect-chico:hover .kitify-banner__text {
   opacity: 1;
@@ -781,6 +896,7 @@
   display: block;
   overflow: hidden;
 }
+
 .kitify-adv-custom-img-height-true .kitify-banner__img,
 .kitify-adv-custom-img-height-true .kitify-carousel__item-img {
   position: absolute;
@@ -789,9 +905,10 @@
   width: 100%;
   height: 100%;
 }
+
 .kitify-adv-custom-img-height-true .kitify-banner__link:before,
 .kitify-adv-custom-img-height-true .kitify-carousel__item-link:before {
-  content: "";
+  content: '';
   padding-bottom: var(--kitify-banner-image-height);
   display: block;
 }
