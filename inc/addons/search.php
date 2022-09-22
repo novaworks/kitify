@@ -11,17 +11,23 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class Kitify_Search extends Kitify_Base {
 
-    protected function enqueue_addon_resources(){
-        wp_register_style( $this->get_name(), kitify()->plugin_url('assets/css/addons/search.css'), ['kitify-base'], kitify()->get_version());
+  protected function enqueue_addon_resources(){
+      wp_register_style( $this->get_name(), kitify()->plugin_url('assets/css/addons/search.css'), ['kitify-base'], kitify()->get_version());
 
-        $this->add_style_depends( $this->get_name() );
-        $this->add_script_depends( 'kitify-base' );
-    }
-    public function get_script_depends() {
-  		return array(
-  			'animatedModal',
-  		);
-  	}
+      $this->add_style_depends( $this->get_name() );
+      $this->add_script_depends( 'kitify-base' );
+  }
+  public function get_script_depends() {
+		return array(
+			'animatedModal',
+		);
+	}
+  public function get_style_depends() {
+    return array(
+      'normalize',
+      'animate',
+   );
+  }
 	public function get_name() {
 		return 'kitify-search';
 	}
