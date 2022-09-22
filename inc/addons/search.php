@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 class Kitify_Search extends Kitify_Base {
 
   public function register_depends() {
-      wp_register_style( 'kitify-search', kitify()->plugin_url('assets/css/addons/search.css'), ['kitify-base'], kitify()->get_version());
+      wp_register_style( 'kitify-search', kitify()->plugin_url('assets/css/addons/search.css'), [], kitify()->get_version());
   }
   public function get_script_depends() {
 		return array(
