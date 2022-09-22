@@ -1113,7 +1113,8 @@ body:not(.elementor-editor-active) .kitify--disable-relative-section-yes > div,
 body:not(.elementor-editor-active) .kitify-disable-relative-yes,
 body:not(.elementor-editor-active) .kitify-disable-relative-yes .elementor-element-populated,
 body:not(.elementor-editor-active) .kitify-disable-relative-yes .elementor-kitify-nova-menu,
-body:not(.elementor-editor-active) .kitify-disable-relative-yes .elementor-widget-container
+body:not(.elementor-editor-active) .kitify-disable-relative-yes .elementor-widget-container,
+body:not(.elementor-editor-active) .kitify-disable-relative-yes .elementor-widget-wrap
  {
 	position: static !important;
 }
