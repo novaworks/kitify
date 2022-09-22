@@ -631,6 +631,7 @@ class Kitify_Banner extends Kitify_Base {
       array(
         'label'     => esc_html__( 'Alignment', 'kitify' ),
         'type'      => Controls_Manager::CHOOSE,
+        'default' => 'center',
         'options'   => array(
           'flex-start' => array(
             'title' => esc_html__( 'Top', 'kitify' ),
@@ -696,7 +697,7 @@ class Kitify_Banner extends Kitify_Base {
 			50
 		);
     $this->_add_responsive_control(
-      'title_alignment',
+      'title_text_alignment',
       array(
         'label'   => esc_html__( 'Text Align', 'kitify' ),
         'type'    => Controls_Manager::CHOOSE,
