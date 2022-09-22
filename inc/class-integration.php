@@ -474,7 +474,7 @@ if ( ! class_exists( 'Kitify_Integration' ) ) {
 							'animate',
 							kitify()->plugin_url( 'assets/css/lib/animatedModal.js/css/animate.min.css' ),
 							false,
-							'4.1.1'
+							'1.0.0'
 						);
 						wp_register_script('animatedModal', 	kitify()->plugin_url('assets/js/lib/animatedModal.js/animatedModal.js'),	array(), '1.0');
 
