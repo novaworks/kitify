@@ -1135,3 +1135,77 @@ body:not(.elementor-editor-active) .kitify-disable-relative-yes .elementor-widge
 	background-color: rgba(0, 0, 0, 0.2);
     background-size: cover;
 }
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header {
+    position: absolute;
+    left: 0;
+    top: var(--kitify-adminbar-height);
+    width: 100%
+}
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects):not(.ignore-docs-style) {
+    background-color: var(--kitify-doc-headerts-bg-color) !important;
+    box-shadow: none;
+}
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .main-color:not(.ignore-docs-style) .kitify-blocks-icon,
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .main-color:not(.ignore-docs-style) .kitify-hamburger-panel__toggle-icon,
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .main-color:not(.ignore-docs-style) .kitify-hamburger-panel__toggle-label {
+    color: inherit
+}
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .main-color:not(.ignore-docs-style) {
+    color: var(--kitify-doc-headerts-link-color, var(--kitify-secondary-color))
+}
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .main-color:not(.ignore-docs-style):hover {
+    color: var(--kitify-doc-headerts-link-hover-color, var(--kitify-primary-color))
+}
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-icon:not(.ignore-docs-style) {
+    color: var(--kitify-doc-headerts-link-color, var(--kitify-secondary-color))
+}
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-icon:hover:not(.ignore-docs-style) {
+    color: var(--kitify-doc-headerts-link-hover-color, var(--kitify-primary-color))
+}
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-heading-title:not(.ignore-docs-style),
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-kitify-search:not(.ignore-docs-style) .kitify-search__field,
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-widget-text-editor:not(.ignore-docs-style) {
+    color: var(--kitify-doc-headerts-text-color, var(--kitify-secondary-color))
+}
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-widget-divider:not(.ignore-docs-style) {
+    --divider-color: var(--kitify-doc-headerts-text-color, var(--kitify-secondary-color))
+}
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-widget-icon-list:not(.ignore-docs-style) .elementor-icon-list-item {
+    color: var(--kitify-doc-headerts-link-color, var(--kitify-secondary-color))
+}
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-widget-icon-list:not(.ignore-docs-style) .elementor-icon-list-icon i,
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-widget-icon-list:not(.ignore-docs-style) .elementor-icon-list-icon svg,
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-widget-icon-list:not(.ignore-docs-style) .elementor-icon-list-text,
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-social-icon:not(.ignore-docs-style) i,
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-social-icon:not(.ignore-docs-style) svg {
+    color: inherit !important;
+    fill: currentColor !important
+}
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-widget-icon-list:not(.ignore-docs-style) .elementor-icon-list-item:hover {
+    color: var(--kitify-doc-headerts-link-hover-color, var(--kitify-primary-color))
+}
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .kitify-nav-wrap:not(.kitify-mobile-menu-active) .current-menu-item > .menu-item-link.menu-item-link-depth-0:not(.ignore-docs-style) {
+    color: var(--kitify-doc-headerts-link-hover-color, var(--kitify-primary-color))
+}
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .kitify-nav-wrap:not(.kitify-mobile-menu-active) .menu-item-link.menu-item-link-depth-0:not(.ignore-docs-style) {
+    color: var(--kitify-doc-headerts-link-color, var(--kitify-secondary-color))
+}
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .kitify-nav-wrap:not(.kitify-mobile-menu-active) .menu-item-link.menu-item-link-depth-0:not(.ignore-docs-style):hover {
+    color: var(--kitify-doc-headerts-link-hover-color, var(--kitify-primary-color))
+}
+.kitify-doc-enable-header-transparency.kitify-doc-swap-logo .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .kitify-logo__n {
+    display: none
+}
+.kitify-doc-enable-header-transparency.kitify-doc-swap-logo .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .kitify-logo__t {
+    display: inherit
+}
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-button:not(.ignore-docs-style) {
+    color: var(--kitify-doc-headerts-button-color, var(--kitify-secondary-color));
+    border-color: var(--kitify-doc-headerts-button-border-color, var(--kitify-secondary-color));
+    background-color: var(--kitify-doc-headerts-button-bgcolor, transparent);
+}
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-button:not(.ignore-docs-style):hover {
+    border-color: var(--kitify-doc-headerts-button-hover-border-color, var(--kitify-doc-headerts-link-hover-color));
+    color: var(--kitify-doc-headerts-button-hover-color, var(--kitify-doc-headerts-link-hover-color));
+    background-color: var(--kitify-doc-headerts-button-hover-bgcolor, transparent);
+}

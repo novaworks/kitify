@@ -433,9 +433,9 @@ public function body_class( $classes ){
   if(!empty($matches[1])){
     $settings = get_post_meta( $matches[1], '_elementor_page_settings', true );
     if(!empty($settings['kitify_doc_enable_header_transparency']) && $settings['kitify_doc_enable_header_transparency'] == 'yes'){
-      $classes[] = 'kitifydoc-enable-header-transparency';
+      $classes[] = 'kitify-doc-enable-header-transparency';
       if(!empty($settings['kitify_doc_swap_logo']) && $settings['kitify_doc_swap_logo'] == 'yes'){
-        $classes[] = 'kitifydoc-swap-logo';
+        $classes[] = 'kitify-doc-swap-logo';
       }
     }
           $classes[] = 'kitify--enabled';
