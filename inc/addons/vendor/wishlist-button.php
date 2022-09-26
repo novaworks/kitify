@@ -174,7 +174,7 @@ class Kitify_Wishlist_Button extends Kitify_Base {
               'type'       => Controls_Manager::DIMENSIONS,
               'size_units' => array( 'px', '%' ),
               'selectors'  => array(
-                  '.kitify {{WRAPPER}} ' . $css_scheme['button'] => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                  '{{WRAPPER}} ' . $css_scheme['button'] => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
               ),
           ),
           25
@@ -184,7 +184,7 @@ class Kitify_Wishlist_Button extends Kitify_Base {
           array(
               'name'        => 'toggle_border',
               'label'       => esc_html__( 'Border', 'kitify' ),
-              'selector'    => '.kitify {{WRAPPER}} ' . $css_scheme['button'],
+              'selector'    => '{{WRAPPER}} ' . $css_scheme['button'],
           ),
           25
       );
@@ -196,8 +196,57 @@ class Kitify_Wishlist_Button extends Kitify_Base {
               'type'       => Controls_Manager::DIMENSIONS,
               'size_units' => array( 'px', '%' ),
               'selectors'  => array(
-                  '.kitify {{WRAPPER}} ' . $css_scheme['button'] => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                  '{{WRAPPER}} ' . $css_scheme['button'] => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
               ),
+          ),
+          25
+      );
+      $this->_add_control(
+          'button_icon_color',
+          array(
+              'label'     => esc_html__( 'Icon Color', 'kitify' ),
+              'type'      => Controls_Manager::COLOR,
+              'separator'  => 'before',
+              'selectors' => array(
+                  '{{WRAPPER}} ' . $css_scheme['icon'] => 'color: {{VALUE}}',
+              ),
+          ),
+          25
+      );
+      $this->_add_responsive_control(
+          'button_icon_size',
+          [
+              'label' => esc_html__( 'Icon Size', 'kitify' ),
+              'type' => Controls_Manager::SLIDER,
+              'range' => [
+                  'px' => [
+                      'min' => 6,
+                      'max' => 300,
+                  ],
+              ],
+              'selectors' => [
+                  '{{WRAPPER}} ' . $css_scheme['icon'] => 'font-size: {{SIZE}}{{UNIT}};',
+              ],
+          ]
+      );
+      $this->_add_control(
+          'button_label_color',
+          array(
+              'label'     => esc_html__( 'Label Color', 'kitify' ),
+              'type'      => Controls_Manager::COLOR,
+              'separator'  => 'before',
+              'selectors' => array(
+                  '{{WRAPPER}} ' . $css_scheme['label'] => 'color: {{VALUE}}',
+              ),
+          ),
+          25
+      );
+
+      $this->_add_group_control(
+          Group_Control_Typography::get_type(),
+          array(
+              'name'     => 'button_label_typography',
+              'selector' => '{{WRAPPER}} '. $css_scheme['label'],
           ),
           25
       );
