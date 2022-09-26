@@ -13,7 +13,6 @@ class Kitify_Search extends Kitify_Base {
   protected function enqueue_addon_resources(){
 
       wp_register_style( $this->get_name(), kitify()->plugin_url('assets/css/addons/search.css'), ['kitify-base'], kitify()->get_version());
-      $this->add_style_depends( 'normalize' );
       $this->add_style_depends( 'animate' );
       $this->add_style_depends( $this->get_name() );
       $this->add_script_depends( 'animatedModal' );
