@@ -80,6 +80,19 @@ class General_Extensions {
 			)
 		);
     $stack->add_control(
+      'kitify_ignore_docs_style',
+      [
+        'label' => __( 'Ignore Document Style', 'kitify' ),
+        'type'    => Controls_Manager::SELECT,
+        'default' => 'no',
+        'prefix_class' => 'ignore-docs-style-',
+        'options' => array(
+          'no'      => esc_html__( 'No', 'kitify' ),
+          'yes'      => esc_html__( 'Yes', 'kitify' ),
+        ),
+      ]
+    );
+    $stack->add_control(
       'kitify_col_disable_relative',
       [
         'label' => __( 'Remove Postion Relative', 'kitify' ),

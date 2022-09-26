@@ -52,7 +52,9 @@
 
     var Kitify = {
         log: function (...data){
-            var args = Array.prototype.slice.call(arguments)
+            if(window.KitifySettings.devMode === 'true'){
+                console.log(...data);
+            }
         },
         addedScripts: {},
         addedStyles: {},
@@ -1023,8 +1025,37 @@
                 document.head.appendChild(tag);
             });
         },
-        elementorFrontendInit: function ($container) {
-            $(window).trigger('elementor/frontend/init');
+        detectWidgetsNotInHeader: function (){
+            var itemDetected = ['.elementor-widget-icon-list', '.main-color', '.elementor-icon', '.elementor-heading-title', '.elementor-widget-text-editor', '.elementor-widget-divider', '.elementor-icon-list-item', '.elementor-social-icon', '.elementor-button', '.lakit-nav-wrap', '.lakit-nav', '.menu-item-link-depth-0'];
+            itemDetected.forEach(function ( _item ){
+                if($(_item).each(function (){
+                    if( $(this).closest('.lakit-nav__sub').length ){
+                        $(this).addClass('ignore-docs-style-yes');
+                    }
+                }));
+            });
+
+
+            $('.elementor-widget-icon-list .elementor-icon-list-item').each(function (){
+                var $child_a = $('>a', $(this)),
+                    _href = $child_a.attr('href');
+                if($(this).closest('.lakit-nav__sub').length && $(this).closest('.menu-item.need-check-active').length){
+                    if(window.location.href == _href){
+                        $(this).addClass('current-menu-item')
+                    }
+                }
+            })
+        },
+
+        elementorFrontendInit: function ($container, reinit_global_trigger) {
+            if( typeof window.elementorFrontend.hooks === "undefined"){
+                return;
+            }
+            Kitify.detectWidgetsNotInHeader();
+            if(reinit_global_trigger){
+                $(window).trigger('elementor/frontend/init');
+            }
+            $container.removeClass('need-reinit-js');
             $container.find('[data-element_type]').each(function () {
                 var $this = $(this),
                     elementType = $this.data('element_type');
@@ -1034,7 +1065,6 @@
                 }
 
                 try {
-
                     if ('widget' === elementType) {
                         elementType = $this.data('widget_type');
                         window.elementorFrontend.hooks.doAction('frontend/element_ready/widget', $this, $);
@@ -1044,7 +1074,7 @@
                     window.elementorFrontend.hooks.doAction('frontend/element_ready/' + elementType, $this, $);
 
                 } catch (err) {
-                    console.log(err);
+                    Kitify.log(err);
                     $this.remove();
                     return false;
                 }
