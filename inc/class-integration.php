@@ -292,6 +292,15 @@ if ( ! class_exists( 'Kitify_Integration' ) ) {
                             'arg' => 'WPCF7',
                         ],
                     ),
+                    'wishlist_button' => array(
+                        'file' => kitify()->plugin_path(
+                            'inc/addons/vendor/wishlist-button.php'
+                        ),
+                        'conditional' => [
+                            'cb'  => 'class_exists',
+                            'arg' => 'YITH_WCWL',
+                        ],
+                    ),
                 )
             );
 
@@ -463,12 +472,6 @@ if ( ! class_exists( 'Kitify_Integration' ) ) {
 							kitify()->plugin_url( 'assets/css/lib/juxtapose/juxtapose.min.css' ),
 							false,
 							'1.3.1'
-						);
-						wp_register_style(
-							'normalize',
-							kitify()->plugin_url( 'assets/css/lib/animatedModal.js/css/normalize.min.css' ),
-							false,
-							'3.0.2'
 						);
 						wp_register_style(
 							'animate',
