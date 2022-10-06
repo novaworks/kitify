@@ -46,7 +46,6 @@
         <?php
 					$items = $this->get_settings_for_display('items');
 					$button_icon = $this->_get_icon( 'button_icon', '<span class="kitify-custom-categories__button-icon">%s</span>' );
-					$button_label = $this->_get_html( 'button_text', '<span class="kitify-custom-categories__button-label">%s</span>' );
 					$enable_carousel    = filter_var( $this->get_settings_for_display('enable_carousel'), FILTER_VALIDATE_BOOLEAN );
           $title_html_tag = $this->get_settings_for_display('category_name_tag');
 
@@ -59,24 +58,29 @@
 					if($items){
 						foreach ($items as $index => $item) {
 							$item_title        = !empty($item['item_title']) ? $item['item_title'] : '';
-							$item_count        = !empty($item['item_title']) ? $item['count_text'] : '';
+							$item_count        = !empty($item['count_text']) ? $item['count_text'] : '';
+							$item_desc         = !empty($item['item_desc']) ? $item['item_desc'] : '';
               $item_link         = !empty($item['item_link']) ? $item['item_link'] : '';
+              $button_label      = !empty($item['item_link']) ? $item['item_link_text'] : '';
               $item_image = $item['item_image'];
 							?>
 							<div class="<?php echo esc_attr(join(' ', $post_classes)) ?>">
 							  <div class="kitify-custom-categories__item-inner">
-									<?php echo sprintf('<a href="%1$s" class="kitify-custom-categories__link cat_overlay"></a>', $item_link['url']); ?>
-									<?php echo sprintf('<div class="kitify-custom-categories__image-wrap">%1$s</div>', $this->_get_cat_image( $item_image )); ?>
+                  <div class="kitify-custom-categories__thumb">
+                    <?php echo sprintf('<a href="%1$s" class="kitify-custom-categories__link cat_overlay"></a>', $item_link['url']); ?>
+                    <?php echo sprintf('<div class="kitify-custom-categories__image-wrap">%1$s</div>', $this->_get_cat_image( $item_image )); ?>
+                    <div class="kitify-custom-categories__button-wrap">
+                      <?php
+                      if (!empty($button_icon) || !empty($button_label) ){
+                        echo sprintf('<a href="%1$s" class="button kitify-custom-categories__button">%2$s %3$s</a>', $item_link['url'], $button_icon, $button_label);
+                      }
+                      ?>
+                    </div>
+                  </div>
                   <div class="kitify-custom-categories__content-wrap">
                     <?php echo sprintf('<%1$s class="kitify-custom-categories__title">%2$s</%1$s>',  esc_attr($title_html_tag), $item_title); ?>
                     <?php echo sprintf('<span class="kitify-custom-categories__count">%1$s</span>', $item_count); ?>
-                  </div>
-                  <div class="kitify-custom-categories__button-wrap">
-                    <?php
-                    if (!empty($button_icon) || !empty($button_label) ){
-                      echo sprintf('<a href="%1$s" class="button kitify-custom-categories__button">%2$s %3$s</a>', $item_link['url'], $button_icon, $button_label);
-                    }
-                    ?>
+                    <?php echo sprintf('<span class="kitify-custom-categories__desc">%1$s</span>', $item_desc); ?>
                   </div>
 								</div>
               </div>

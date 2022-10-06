@@ -101,11 +101,27 @@ class Kitify_Woo_Categories extends Kitify_Base {
         ]
     );
     $repeater->add_control(
+      'item_desc',
+      array(
+        'label'   => esc_html__( 'Description', 'kitify' ),
+        'type'    => Controls_Manager::TEXTAREA,
+        'dynamic' => array( 'active' => true ),
+      )
+    );
+    $repeater->add_control(
         'item_link',
         [
             'label' => __( 'Link', 'kitify' ),
             'type' => Controls_Manager::URL,
             'placeholder' => __( 'https://your-link.com', 'kitify' ),
+        ]
+    );
+    $repeater->add_control(
+        'item_link_text',
+        [
+            'label' => __( 'Text Link', 'kitify' ),
+            'type' => Controls_Manager::TEXT,
+            'dynamic' => array( 'active' => true ),
         ]
     );
     $this->add_control(
@@ -234,14 +250,6 @@ class Kitify_Woo_Categories extends Kitify_Base {
             'label_block' => false,
             'skin'        => 'inline',
             'file'        => '',
-        )
-    );
-    $this->add_control(
-    'button_text',
-        array(
-            'label'   => esc_html__( 'Label', 'kitify' ),
-            'type'    => Controls_Manager::TEXT,
-            'default' => '',
         )
     );
     $this->end_controls_section();
@@ -402,6 +410,26 @@ protected function register_style_category_controls() {
   );
   $this->end_controls_section();
   $this->start_controls_section(
+    'section_design_cat_image',
+    array(
+      'label' => __( 'Image', 'kitify' ),
+      'tab'   => Controls_Manager::TAB_STYLE,
+    )
+  );
+  $this->add_responsive_control(
+      'cat_image_border_radius',
+      array(
+          'label'      => __( 'Border Radius', 'kitify' ),
+          'type'       => Controls_Manager::DIMENSIONS,
+          'size_units' => array( 'px', '%' ),
+          'selectors'  => array(
+              '{{WRAPPER}} .kitify-product-categories .kitify-custom-categories__item .kitify-custom-categories__image-wrap:before' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+              '{{WRAPPER}} .kitify-product-categories .kitify-custom-categories__item .kitify-custom-categories__image' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+          ),
+      )
+  );
+  $this->end_controls_section();
+  $this->start_controls_section(
     'section_design_cat_title',
     array(
       'label' => __( 'Title', 'kitify' ),
@@ -490,6 +518,44 @@ protected function register_style_category_controls() {
       'selectors'  => array(
         '{{WRAPPER}} .kitify-woo-categories li.product .kitify-category__title-wrap .kitify-count' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
         '{{WRAPPER}} .kitify-custom-categories__count' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+      ),
+    )
+  );
+  $this->end_controls_section();
+  $this->start_controls_section(
+    'section_design_cat_desc',
+    array(
+      'label' => __( 'Description', 'kitify' ),
+      'tab'   => Controls_Manager::TAB_STYLE,
+    )
+  );
+  $this->add_group_control(
+    Group_Control_Typography::get_type(),
+    array(
+      'name'     => 'cat_content_desc_typography',
+      'label'    => __( 'Title', 'kitify' ),
+      'selector' => '{{WRAPPER}} .kitify-woo-categories li.product .woocommerce-loop-category__desc,{{WRAPPER}} .kitify-custom-categories__item-inner .kitify-custom-categories__content-wrap .kitify-custom-categories__desc',
+    )
+  );
+  $this->add_control(
+    'cat_content_desc_color',
+    array(
+      'label'     => __( 'Color', 'kitify' ),
+      'type'      => Controls_Manager::COLOR,
+      'selectors' => array(
+        '{{WRAPPER}} .kitify-woo-categories li.product .woocommerce-loop-category__desc,{{WRAPPER}} .kitify-custom-categories__item-inner .kitify-custom-categories__content-wrap .kitify-custom-categories__desc' => 'color: {{VALUE}};',
+      ),
+    )
+  );
+  $this->add_responsive_control(
+    'cat_content_desc_margin',
+    array(
+      'label'      => __( 'Margin', 'kitify' ),
+      'type'       => Controls_Manager::DIMENSIONS,
+      'size_units' => array( 'px', 'em', '%' ),
+      'selectors'  => array(
+        '{{WRAPPER}} .kitify-woo-categories li.product .woocommerce-loop-category__desc' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+        '{{WRAPPER}} .kitify-custom-categories__item-inner .kitify-custom-categories__content-wrap .kitify-custom-categories__desc' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
       ),
     )
   );

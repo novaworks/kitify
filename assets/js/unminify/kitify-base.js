@@ -1470,9 +1470,18 @@
                     $gallery_target = $scope.find('.woocommerce-product-gallery');
                 }
             }
-
-            $scope.find('.woocommerce-product-gallery__image a').attr('data-elementor-open-lightbox', 'no');
-            $scope.find('.woocommerce-product-gallery__image').wrapInner('<div class="zoomouter"><div class="zoominner"></div></div>');
+            if( $scope.find('.kitify-product-images').hasClass('layout-type-5') || $scope.find('.kitify-product-images').hasClass('layout-type-6') ){
+                $scope.find('.woocommerce-product-gallery__image a').attr('data-elementor-open-lightbox', 'yes');
+                $scope.find('.woocommerce-product-gallery__image a').attr('data-elementor-lightbox-slideshow', $scope.data('id'));
+            }
+            else{
+                $scope.find('.woocommerce-product-gallery__image a').attr('data-elementor-open-lightbox', 'no');
+            }
+            $scope.find('.woocommerce-product-gallery__image').each(function (){
+                if( $(this).find('.zoominner').length == 0 ){
+                    $(this).wrapInner('<div class="zoomouter"><div class="zoominner"></div></div>');
+                }
+            })
             var initZoom = function (zoomTarget) {
 
                 var zoom_enabled = $.isFunction($.fn.zoom) && wc_single_product_params.zoom_enabled;

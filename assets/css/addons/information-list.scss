@@ -1,0 +1,94 @@
+@import '_mixins';
+.elementor-widget {
+  .kitify-information-list {
+    &__items {
+      display: flex;
+      flex-direction: column;
+      list-style: none;
+      margin: 0;
+      &.elementor-inline-items {
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-right: -8px;
+        margin-left: -8px;
+        .kitify-information-list__item {
+          margin-left: 8px;
+          margin-right: 8px;
+          &:after {
+            width: auto;
+            left: auto;
+            right: auto;
+            position: relative;
+            height: 100%;
+            border-top: 0;
+            border-bottom: 0;
+            border-right: 0;
+            border-left-width: 1px;
+            border-style: solid;
+            right: -8px;
+          }
+        }
+        .elementor-inline-item {
+          word-break: break-word;
+        }
+      }
+    }
+    &__item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 0;
+      margin: 0;
+      cursor: pointer;
+      &-icon {
+        display: flex;
+        padding-right: 5px;
+        text-align: var(--kitify-information-list-icon-align);
+        i {
+          width: 1.25em;
+          font-size: var(--kitify-information-list-icon-size, 1em);
+        }
+        svg {
+          width: var(--kitify-information-list-icon-size, 1em);
+          height: var(--kitify-information-list-icon-size, 1em);
+        }
+      }
+      &-label {
+        display: flex;
+      }
+    }
+  }
+}
+
+.elementor-widget:not(.elementor-align-right) .kitify-information-list__item:after {
+    left: 0;
+}
+.elementor-widget:not(.elementor-align-left) .kitify-information-list__item:after {
+    right: 0;
+}
+.elementor-widget.elementor-align-center .kitify-information-list__item:after {
+    margin: auto;
+}
+.elementor-widget .kitify-information-list__item:after {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+.elementor-widget.elementor-align-left .kitify-information-list__items {
+    justify-content: flex-start;
+}
+.elementor-widget.elementor-align-center .kitify-information-list__items {
+    justify-content: center;
+}
+.elementor-widget.elementor-align-right .kitify-information-list__items {
+    justify-content: flex-end;
+}
+.elementor-widget.elementor-align-left .kitify-information-list__item {
+  justify-content: flex-start;
+}
+.elementor-widget.elementor-align-center .kitify-information-list__item {
+  justify-content: center;
+}
+.elementor-widget.elementor-align-right .kitify-information-list__item {
+  justify-content: flex-end;
+}

@@ -36,7 +36,7 @@ class Kitify_Wishlist_Button extends Kitify_Base {
     }
 
     public function get_icon() {
-        return 'kitify-icon-woo-price';
+        return 'kitify-icon-wishtlist-button';
     }
 
 

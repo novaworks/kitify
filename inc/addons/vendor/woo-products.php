@@ -806,7 +806,7 @@ class Kitify_Woo_Products extends Kitify_Base {
                 'label' => esc_html__( 'Color', 'kitify' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} ul.products li.product .product_item--title' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} ul.products li.product .woocommerce-loop-product__title' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -815,7 +815,7 @@ class Kitify_Woo_Products extends Kitify_Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'title_typography',
-                'selector' => '{{WRAPPER}} ul.products li.product .product_item--title',
+                'selector' => '{{WRAPPER}} ul.products li.product .woocommerce-loop-product__title',
             ]
         );
 
@@ -826,7 +826,7 @@ class Kitify_Woo_Products extends Kitify_Base {
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => [ 'px', 'em' ],
                 'selectors' => [
-                    '{{WRAPPER}} ul.products li.product .product_item--title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+                    '{{WRAPPER}} ul.products li.product .woocommerce-loop-product__title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
                 ]
             ]
         );
@@ -1360,6 +1360,7 @@ class Kitify_Woo_Products extends Kitify_Base {
                 ),
                 'selectors'  => array(
                     '{{WRAPPER}} ul.products .product_item--info' => 'text-align: {{VALUE}};',
+                    '{{WRAPPER}} ul.products .product-item__description--info' => 'text-align: {{VALUE}};',
                 ),
             )
         );
@@ -1378,6 +1379,7 @@ class Kitify_Woo_Products extends Kitify_Base {
                 ],
                 'selectors' => [
                     '{{WRAPPER}} ul.products .product_item--info' => 'border-style: solid; border-width: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+                    '{{WRAPPER}} ul.products .product-item__description--info' => 'border-style: solid; border-width: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
                 ],
             ]
         );
@@ -1396,6 +1398,7 @@ class Kitify_Woo_Products extends Kitify_Base {
                 ],
                 'selectors' => [
                     '{{WRAPPER}} ul.products .product_item--info' => 'border-radius: {{SIZE}}{{UNIT}}',
+                    '{{WRAPPER}} ul.products .product-item__description--info' => 'border-radius: {{SIZE}}{{UNIT}}',
                 ],
             ]
         );
@@ -1408,6 +1411,7 @@ class Kitify_Woo_Products extends Kitify_Base {
                 'size_units' => [ 'px', 'em' ],
                 'selectors' => [
                     '{{WRAPPER}} ul.products .product_item--info' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+                    '{{WRAPPER}} ul.products .product-item__description--info' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
                 ]
             ]
         );
@@ -1421,6 +1425,7 @@ class Kitify_Woo_Products extends Kitify_Base {
                 'selectors' => [
                     '{{WRAPPER}}' => '--kitify-p_item--c-mt:{{TOP}}{{UNIT}}; --kitify-p_item--c-mr:{{RIGHT}}{{UNIT}}; --kitify-p_item--c-mb:{{BOTTOM}}{{UNIT}}; --kitify-p_item--c-ml:{{LEFT}}{{UNIT}} ',
                     '{{WRAPPER}} ul.products .product_item--info' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+                    '{{WRAPPER}} ul.products .product-item__description--info' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
                 ]
             ]
         );
@@ -1438,6 +1443,7 @@ class Kitify_Woo_Products extends Kitify_Base {
             [
                 'name' => 'content_shadow',
                 'selector' => '{{WRAPPER}} ul.products .product_item--info',
+                'selector' => '{{WRAPPER}} ul.products .product-item__description--info',
             ]
         );
 
@@ -1448,6 +1454,7 @@ class Kitify_Woo_Products extends Kitify_Base {
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} ul.products .product_item--info' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} ul.products .product-item__description--info' => 'background-color: {{VALUE}}',
                 ],
             ]
         );
@@ -1459,6 +1466,7 @@ class Kitify_Woo_Products extends Kitify_Base {
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} ul.products .product_item--info' => 'border-color: {{VALUE}}',
+                    '{{WRAPPER}} ul.products .product-item__description--info' => 'border-color: {{VALUE}}',
                 ],
             ]
         );
@@ -1476,6 +1484,7 @@ class Kitify_Woo_Products extends Kitify_Base {
             [
                 'name' => 'content_shadow_hover',
                 'selector' => '{{WRAPPER}} ul.products li.product:hover .product_item--info',
+                'selector' => '{{WRAPPER}} ul.products li.product:hover .product-item__description--info',
             ]
         );
 
@@ -1486,6 +1495,7 @@ class Kitify_Woo_Products extends Kitify_Base {
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} ul.products li.product:hover .product_item--info' => 'background-color: {{VALUE}}',
+                    '{{WRAPPER}} ul.products li.product:hover .product-item__description--info' => 'background-color: {{VALUE}}',
                 ],
             ]
         );
@@ -1497,6 +1507,7 @@ class Kitify_Woo_Products extends Kitify_Base {
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} ul.products li.product:hover .product_item--info' => 'border-color: {{VALUE}}',
+                    '{{WRAPPER}} ul.products li.product:hover .product-item__description--info' => 'border-color: {{VALUE}}',
                 ],
             ]
         );

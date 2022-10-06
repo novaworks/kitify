@@ -18,7 +18,7 @@ class Sticky_Column {
         add_action( 'elementor/element/column/section_advanced/after_section_end', array( $this, 'after_column_section_layout' ), 10, 2 );
         add_action( 'elementor/element/container/section_layout/after_section_end', array( $this, 'after_column_section_layout' ), 10, 2 );
         add_action( 'elementor/frontend/column/before_render', array( $this, 'column_before_render' ) );
-        add_action( 'elementor/frontend/element/before_render', array( $this, 'column_before_render' ) );
+        add_action( 'elementor/frontend/container/before_render', array( $this, 'column_before_render' ) );
         add_action( 'elementor/frontend/before_enqueue_scripts', array( $this, 'enqueue_scripts' ), 9 );
     }
     /**
@@ -127,12 +127,7 @@ class Sticky_Column {
      */
     public function column_before_render( $element ) {
       $data     = $element->get_data();
-      $type     = isset( $data['elType'] ) ? $data['elType'] : 'column';
       $settings = $data['settings'];
-
-      if ( 'column' !== $type ) {
-        return false;
-      }
 
       if ( isset( $settings['kitify_column_sticky'] ) ) {
         $active_breakpoints = kitify_helper()->get_active_breakpoints();

@@ -887,10 +887,16 @@ class Kitify_Search extends Kitify_Base {
 	protected function render() {
 
 		$this->_context = 'render';
-
+    $settings = $this->get_settings();
+    if ( 'true' === $settings['show_search_in_popup'] ) {
+      add_action('kitify/theme/canvas_panel', [ $this, 'add_panel' ] );
+    }
 		$this->_open_wrap();
 		include $this->_get_global_template( 'index' );
 		$this->_close_wrap();
 	}
+  public function add_panel() {
+    include $this->_get_global_template( 'panel' );
+  }
 
 }

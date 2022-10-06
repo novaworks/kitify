@@ -1135,6 +1135,9 @@ body:not(.elementor-editor-active) .kitify-disable-relative-yes .elementor-widge
 	background-color: rgba(0, 0, 0, 0.2);
     background-size: cover;
 }
+.e-container--column.e-container.elementor-sticky.elementor-sticky--active:not(.elementor-top-section) {
+  padding: 0;
+}
 .kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header {
     position: absolute;
     left: 0;
@@ -1173,6 +1176,16 @@ body:not(.elementor-editor-active) .kitify-disable-relative-yes .elementor-widge
 .kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-widget-icon-list:not(.ignore-docs-style-yes) .elementor-icon-list-item {
     color: var(--kitify-doc-headerts-link-color, var(--kitify-secondary-color))
 }
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .kitify-nova-mobile-menu .kitify-nova-menu__mobile-trigger a,
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-kitify-nova-cart svg,
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-kitify-nova-cart i,
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-kitify-search svg,
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-kitify-search i,
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-kitify-menu-account svg,
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-kitify-menu-account i
+ {
+    color: var(--kitify-doc-headerts-text-color, var(--kitify-secondary-color))
+}
 .kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-widget-icon-list:not(.ignore-docs-style-yes) .elementor-icon-list-icon i,
 .kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-widget-icon-list:not(.ignore-docs-style-yes) .elementor-icon-list-icon svg,
 .kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-widget-icon-list:not(.ignore-docs-style-yes) .elementor-icon-list-text,
@@ -1189,6 +1202,12 @@ body:not(.elementor-editor-active) .kitify-disable-relative-yes .elementor-widge
 }
 .kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .kitify-nav-wrap:not(.kitify-mobile-menu-active) .menu-item-link.menu-item-link-depth-0:not(.ignore-docs-style-yes) {
     color: var(--kitify-doc-headerts-link-color, var(--kitify-secondary-color))
+}
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .kitify-nova-menu .main-navigation .nav-menu > li > a {
+    color: var(--kitify-doc-headerts-link-color, var(--kitify-secondary-color))
+}
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .kitify-nova-menu .main-navigation .nav-menu > li > a:hover {
+    color: var(--kitify-doc-headerts-link-hover-color, var(--kitify-primary-color))
 }
 .kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .kitify-nav-wrap:not(.kitify-mobile-menu-active) .menu-item-link.menu-item-link-depth-0:not(.ignore-docs-style-yes):hover {
     color: var(--kitify-doc-headerts-link-hover-color, var(--kitify-primary-color))

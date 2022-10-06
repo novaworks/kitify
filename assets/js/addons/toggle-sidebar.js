@@ -21,6 +21,7 @@
         checkActiveToggle();
         $(window).on('resize', checkActiveToggle);
         $(document).on('click', '.js-column-toggle', function() {
+          $('body').toggleClass('toogle-opened');
           $('.kitify-toggle-sidebar').toggleClass('opened');
         });
       });

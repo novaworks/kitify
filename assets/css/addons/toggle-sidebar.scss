@@ -119,7 +119,14 @@
     }
   }
 }
-
+body.toogle-opened {
+  #wpadminbar {
+    z-index: 0;
+  }
+  .elementor-location-header {
+    z-index: 1;
+  }
+}
 .nova-overlay-global {
   &.opened {
     opacity: 0.3;

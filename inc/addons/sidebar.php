@@ -253,6 +253,7 @@ class Kitify_Sidebar extends Kitify_Base {
       $this->add_render_attribute( 'sidebar-wrapper', 'class', 'kitify-sidebar' );
       $this->add_render_attribute( 'sidebar-wrapper', 'class', 'kitify-sidebar-layout_0'.$settings['sidebar_style'] );
       if ( filter_var( $settings['sidebar_toggle'], FILTER_VALIDATE_BOOLEAN ) ) {
+        
         add_action('kitify/products/toolbar/filter', [ $this, 'filter_button' ] );
         $breakpoint = isset($settings['sidebar_toggle_breakpoint']) ? $settings['sidebar_toggle_breakpoint'] : 'tablet';
 
