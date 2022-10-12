@@ -106,7 +106,9 @@ i.elementor-icons-manager__tab__item__icon.dlicon {
 .elementor-location-header.elementor-edit-area.elementor-edit-mode ~ main.site-main {
   min-height: 50vh;
 }
-
+.elementor-edit-area {
+  z-index: 1;
+}
 #kitify-tabs-template-edit-modal i.dialog-close-button-icon:before{
   content: "\e803";
   display: inline-block;

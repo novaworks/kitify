@@ -40,6 +40,9 @@
 body:not(.elementor-editor-active) .elementor-location-header .elementor-sticky.elementor-sticky__spacer.kitify--transparency-yes {
 	display: none;
 }
+.elementor-edit-area {
+  z-index: 1;
+}
 .elementor-location-header {
 	position: relative;
 	z-index: 99;
