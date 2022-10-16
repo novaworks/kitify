@@ -959,7 +959,9 @@ abstract class Kitify_Base extends Widget_Base
                 'default' => 'default',
                 'options' => apply_filters('kitify/carousel_base/preset', [
                     'default' => esc_html__( 'Default', 'kitify' ),
+                    'style-01' => esc_html__( 'Style 01', 'kitify' ),
                 ]),
+                'prefix_class' => 'custom-preset-',
             )
         );
 
