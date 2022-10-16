@@ -951,6 +951,17 @@ abstract class Kitify_Base extends Widget_Base
                 ],
             )
         );
+        $this->_add_control(
+            'carousel_preset',
+            array(
+                'label' => esc_html__('Carousel Preset', 'kitify'),
+                'type' => Controls_Manager::SELECT,
+                'default' => 'default',
+                'options' => apply_filters('kitify/carousel_base/preset', [
+                    'default' => esc_html__( 'Default', 'kitify' ),
+                ]),
+            )
+        );
 
         $this->_add_responsive_control(
             'carousel_height',
