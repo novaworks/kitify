@@ -961,7 +961,7 @@ abstract class Kitify_Base extends Widget_Base
                     'default' => esc_html__( 'Default', 'kitify' ),
                     'style-01' => esc_html__( 'Style 01', 'kitify' ),
                 ]),
-                'prefix_class' => 'custom-preset-',
+                'prefix_class' => 'custom-carousel-preset-',
             )
         );
 
