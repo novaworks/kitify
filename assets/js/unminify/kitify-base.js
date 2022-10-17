@@ -270,7 +270,7 @@
                     swiperOptions.effect = 'coverflow';
                     swiperOptions.grabCursor = true;
                     swiperOptions.centeredSlides = true;
-                    swiperOptions.slidesPerView = 'auto';
+                    swiperOptions.slidesPerView = 2;
                     swiperOptions.coverflowEffect = {
                         rotate: 50,
                         stretch: 0,
@@ -278,6 +278,13 @@
                         modifier: 1,
                         slideShadows: true
                     };
+                    swiperOptions.coverflowEffect = $.extend( {}, {
+                        rotate: 0,
+                        stretch: 100,
+                        depth: 100,
+                        modifier: 2.6,
+                        slideShadows : true
+                    }, elementSettings.coverflowEffect )
                     break;
 
                 case 'cube':

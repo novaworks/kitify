@@ -1,0 +1,1234 @@
+@import '_mixins';
+:root {
+	--kitify-primary-color: #c36;
+	--kitify-secondary-color: #211E1C;
+	--kitify-body-color: #494949;
+	--kitify-border-color: #ebebeb;
+	--kitify-three-color: #979797;
+	--kitify-pagination-border-color: transparent;
+	--kitify-pagination-padding: 10px 17px;
+	--kitify-pagination-link-color: inherit;
+	--kitify-pagination-link-bg-color: transparent;
+	--kitify-pagination-link-hover-color: #fff;
+	--kitify-pagination-link-hover-bg-color: #c36;
+	--kitify-pagination-item-width: 40px;
+	--kitify-pagination-item-height: 40px;
+	--kitify-pagination-item-spacing: 5px;
+	--kitify-vheader-width: 300px;
+	--kitify-adminbar-height: 0px;
+	--kitify-header-height: 0px;
+	--kitify-content-zoom-lv: 1;
+}
+.kitify {
+	--kitify-carousel-padding-left: 0;
+	--kitify-carousel-padding-right: 0;
+	--kitify-banner-image-height: 100%;
+	--kitify-carousel-item-top-space: 0px;
+	--kitify-carousel-item-right-space: 0px;
+	--kitify-carousel-item-bottom-space: 0px;
+	--kitify-carousel-item-left-space: 0px;
+	--kitify-carousel-dot-item-space: 5px;
+	--kitify-gcol-top-space: 0;
+	--kitify-gcol-right-space: 10px;
+	--kitify-gcol-bottom-space: 0;
+	--kitify-gcol-left-space: 10px;
+}
+@media(min-width: 782px){
+	.admin-bar {
+		--kitify-adminbar-height: 32px;
+	}
+}
+body:not(.elementor-editor-active) .elementor-location-header .elementor-sticky.elementor-sticky__spacer.kitify--transparency-yes {
+	display: none;
+}
+.elementor-edit-area {
+  z-index: 1;
+}
+.elementor-location-header {
+	position: relative;
+	z-index: 99;
+}
+.kitify-logo .kitify-logo-light{
+	display: none;
+}
+.elementor-location-header .kitify--transparency-yes .kitify-logo .kitify-logo-light{
+	display: inherit;
+}
+.elementor-location-header .kitify--transparency-yes .kitify-logo .kitify-logo-default{
+	display: none;
+}
+.elementor-location-header .kitify--transparency-yes.elementor-sticky--effects .kitify-logo .kitify-logo-default{
+	display: inherit;
+}
+.elementor-location-header .kitify--transparency-yes.elementor-sticky--effects .kitify-logo .kitify-logo-light{
+	display: none;
+}
+.kitify--transparency-yes.elementor-section.elementor-sticky:not(.elementor-sticky--effects)  {
+	background: transparent !important;
+}
+.elementor-container{
+	--kitify-section-width: 1140px;
+}
+.kitify--linear-effect .swiper-wrapper{
+	transition-timing-function: linear !important;
+	-webkit-transition-timing-function: linear !important;
+}
+.kitify-carousel.kitify-carousel--simple .swiper-wrapper{
+	align-items: center;
+}
+.kitify-carousel.kitify-equal-cols .swiper-wrapper {
+	align-items: stretch;
+}
+.kitify-carousel-equalheight .swiper-slide{
+	height: auto;
+}
+.col-row {
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: calc( -1 * var(--kitify-gcol-left-space) );
+	margin-right: calc( -1 * var(--kitify-gcol-left-space) )
+}
+.col-row.disable-cols-gap div[class*=col-desk] {
+	padding-left: 0;
+	padding-right: 0
+}
+.col-row.disable-rows-gap div[class*=col-desk] {
+	padding-top: 0;
+	padding-bottom: 0
+}
+.kitify-disable-cols-style[class*="col-"] {
+	flex: 0 0 100%;
+	max-width: 100%;
+}
+.kitify-icon {
+	display: inline-block;
+	line-height: 1;
+	text-align: center
+}
+.kitify-icon svg {
+	display: block;
+	width: 1em;
+	height: 1em;
+	fill: currentColor
+}
+.kitify select {
+	appearance: none;
+	width: 100%
+}
+.kitify .kitify-edit-template-link {
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
+	display: inline-block;
+	padding: 5px;
+	background-color: var(--kitify-primary-color);
+	color: #fff;
+	border-radius: 3px;
+	font-size: 14px;
+	line-height: 1;
+	text-align: center
+}
+.kitify .kitify-edit-template-link i {
+	width: 1em;
+	height: 1em
+}
+.kitify .kitify-edit-template-link:hover {
+	background-color: var(--kitify-secondary-color);
+	color: #fff
+}
+.kitify .swiper-pagination-bullet {
+	width: 8px;
+	height: 8px
+}
+.kitify .swiper-pagination-bullet:hover,
+.kitify .swiper-pagination-bullet-active {
+	transform: scale(1.1);
+}
+.kitify-carousel {
+	position: relative;
+}
+/*.kitify-carousel-inner {*/
+/*	overflow: hidden*/
+/*}*/
+.kitify-carousel .swiper-container {
+	margin-left: calc(-1 * var(--kitify-carousel-item-left-space));
+	margin-right: calc(-1 * var(--kitify-carousel-item-right-space));
+}
+.kitify-carousel .swiper-container-vertical {
+	padding-top: var(--kitify-carousel-padding-left);
+	padding-bottom: var(--kitify-carousel-padding-right);
+}
+.kitify-carousel .swiper-container-horizontal {
+	padding-left: var(--kitify-carousel-padding-left);
+	padding-right: var(--kitify-carousel-padding-right);
+}
+.kitify-carousel__dots .swiper-pagination-bullet {
+	margin: calc(var(--kitify-carousel-dot-item-space) / 2);
+}
+.kitify-dots--vertical-yes .kitify-carousel__dots {
+	width: auto !important;
+}
+.kitify-dots-h-align-right .kitify-carousel__dots {
+	right: 0;
+}
+.kitify-dots-h-align-left .kitify-carousel__dots {
+	left: 0;
+}
+.kitify-dots-h-align-center .kitify-carousel__dots {
+	left: 50%;
+	transform: translateX(-50%);
+}
+.kitify-dots-v-align-top .kitify-carousel__dots {
+	top: 0;
+}
+.kitify-dots-v-align-bottom .kitify-carousel__dots {
+	bottom: 0;
+}
+.kitify-dots-v-align-middle .kitify-carousel__dots {
+	top: 50%;
+	transform: translateY(-50%);
+}
+.kitify-dots-h-align-center.kitify-dots-v-align-middle .kitify-carousel__dots {
+	transform: translate(-50%, -50%);
+}
+.kitify-dots--vertical-yes .kitify-carousel__dots .swiper-pagination-bullet {
+	display: block;
+	left: 0 !important;
+}
+.kitify-dots-text-right .kitify-carousel__dots {
+	text-align: right;
+}
+.kitify-dots-text-center .kitify-carousel__dots {
+	text-align: center;
+}
+.kitify-dots-text-left .kitify-carousel__dots {
+	text-align: left;
+}
+.kitify-carousel.kitify-equal-cols .kitify-carousel__item {
+	height: auto
+}
+.kitify-carousel.kitify-equal-cols .kitify-banner,
+.kitify-carousel.kitify-equal-cols .kitify-banner__img,
+.kitify-carousel.kitify-equal-cols .kitify-carousel__item-inner {
+	height: 100%
+}
+.swiper-pagination-bullets-dynamic {
+	overflow: hidden;
+	font-size: 0;
+	white-space: nowrap
+}
+.swiper-pagination-bullets-dynamic .swiper-pagination-bullet {
+	position: relative;
+	transition: all 0.2s;
+	vertical-align: middle;
+}
+.swiper-container-flip .swiper-slide {
+	pointer-events: none;
+	backface-visibility: hidden;
+	z-index: 1
+}
+.swiper-container-cube .swiper-slide {
+	pointer-events: none;
+	backface-visibility: hidden;
+	z-index: 1;
+	visibility: hidden;
+	transform-origin: 0 0;
+	width: 100%;
+	height: 100%
+}
+.swiper-container-cube .swiper-slide-active, .swiper-container-cube .swiper-slide-next, .swiper-container-cube .swiper-slide-next + .swiper-slide, .swiper-container-cube .swiper-slide-prev {
+	pointer-events: auto;
+	visibility: inherit
+}
+.kitify-carousel .swiper-container-cube .swiper-cube-shadow {
+	background: none;
+	filter: none;
+	opacity: 0.3
+}
+.kitify-carousel .swiper-container-cube .swiper-cube-shadow:before {
+	content: "";
+	background: #000;
+	position: absolute;
+	inset: 0;
+	filter: blur(50px)
+}
+.kitify-arrow {
+	position: absolute;
+	top: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transform: translateY(-50%);
+	cursor: pointer;
+	z-index: 2;
+	transition: all 0.2s;
+	background-color: #fff;
+	color: var(--kitify-secondary-color);
+	width: 40px;
+	height: 40px;
+	line-height: 50px;
+	font-size: 16px;
+	border: 0;
+	text-align: center
+}
+.kitify-arrow:hover {
+	background-color: var(--kitify-primary-color);
+	color: #fff
+}
+.kitify-arrow.next-arrow {
+	right: 0
+}
+.kitify-arrow.prev-arrow {
+	left: 0
+}
+.kitify-arrow.swiper-button-disabled {
+	pointer-events: none;
+	opacity: 0;
+	visibility: hidden
+}
+.kitify-carousel .swiper-container-vertical {
+	height: 100vh;
+}
+.kitify-carousel .swiper-container-vertical .kitify-carousel__item-inner {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.swiper-container-vertical .kitify-carousel__item-inner .kitify-carousel__item-link {
+	overflow: hidden;
+}
+.swiper-container-vertical .kitify-carousel__item-inner .kitify-carousel__item-img {
+	height: 100%;
+}
+.elementor-button-content-wrapper {
+	align-items: center
+}
+.elementor-btn-align-icon-top .elementor-button-content-wrapper {
+	flex-direction: column
+}
+.elementor-btn-align-icon-bottom .elementor-button-content-wrapper {
+	flex-direction: column-reverse
+}
+.kitify .elementor-button {
+	background-color: var(--kitify-primary-color);
+	color: #fff;
+	display: inline-flex;
+	align-items: center
+}
+.kitify .elementor-button:hover {
+	background-color: var(--kitify-secondary-color);
+	color: #fff
+}
+.kitify-pagination {
+	text-align: center;
+	margin-top: 2rem;
+}
+.kitify-pagination:not(.active-loadmore) .kitify-pagination_ajax_loadmore {
+	display: none
+}
+.kitify-pagination.active-loadmore ul.page-numbers {
+	display: none
+}
+.kitify-pagination .kitify-pagination_ajax_loadmore a {
+	border: 1px solid var(--kitify-pagination-border-color);
+	background-color: var(--kitify-pagination-link-bg-color);
+	color: var(--kitify-pagination-link-color);
+	text-decoration: none;
+	transition: all 0.3s;
+	padding: var(--kitify-pagination-padding)
+}
+.kitify-pagination .kitify-pagination_ajax_loadmore a:hover {
+	background-color: var(--kitify-pagination-link-hover-bg-color);
+	border-color: var(--kitify-pagination-link-hover-bg-color);
+	color: var(--kitify-pagination-link-hover-color)
+}
+.kitify-pagination .kitify-ajax-loading-outer {
+	display: none
+}
+.kitify-pagination ul {
+	display: inline-flex;
+	margin-left: calc(-1 * var(--kitify-pagination-item-spacing));
+	margin-right: calc(-1 * var(--kitify-pagination-item-spacing));
+	padding: 0;
+	flex-flow: row wrap;
+}
+.kitify-pagination ul li {
+	display: inline-block;
+	padding: 0
+}
+.kitify-pagination ul .page-numbers {
+	background-color: var(--kitify-pagination-link-bg-color);
+	color: var(--kitify-pagination-link-color);
+	border: 1px solid var(--kitify-pagination-border-color);
+	padding: var(--kitify-pagination-padding);
+	width: var(--kitify-pagination-item-width);
+	height: var(--kitify-pagination-item-height);
+	margin: 0 var(--kitify-pagination-item-spacing) var(--kitify-pagination-item-spacing);
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.3s
+}
+.kitify-pagination ul .page-numbers.current, .kitify-pagination ul .page-numbers:hover {
+	background-color: var(--kitify-pagination-link-hover-bg-color);
+	border-color: var(--kitify-pagination-link-hover-bg-color);
+	color: var(--kitify-pagination-link-hover-color)
+}
+.kitify-pagination.doing-ajax .kitify-ajax-loading-outer {
+	display: block
+}
+.kitify-pagination.doing-ajax .kitify-pagination_ajax_loadmore, .kitify-pagination.doing-ajax ul.page-numbers {
+	display: none
+}
+.kitify-pagination.nothingtoshow.active-loadmore {
+	display: none
+}
+.kitify-loader {
+	display: inline-block
+}
+.kitify-loader.spinner1 {
+	width: 40px;
+	height: 40px;
+	margin: 5px;
+	display: block;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.15);
+	animation: kitify-rotateplane 1.2s infinite ease-in-out;
+	border-radius: 3px
+}
+.kitify-loader.spinner2 {
+	width: 40px;
+	height: 40px;
+	margin: 5px;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.15);
+	border-radius: 100%;
+	animation: kitify-scaleout 1s infinite ease-in-out
+}
+.kitify-loader.spinner3 {
+	width: 70px;
+	text-align: center
+}
+.kitify-loader.spinner3 [class*=bounce] {
+	width: 18px;
+	height: 18px;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.15);
+	border-radius: 100%;
+	display: inline-block;
+	animation: kitify-bouncedelay 1.4s infinite ease-in-out;
+	animation-fill-mode: both
+}
+.kitify-loader.spinner3 .bounce1 {
+	animation-delay: -0.32s
+}
+.kitify-loader.spinner3 .bounce2 {
+	animation-delay: -0.16s
+}
+.kitify-loader.spinner4 {
+	margin: 5px;
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	animation: kitify-rotate 2s infinite linear
+}
+.kitify-loader.spinner4 [class*=dot] {
+	width: 60%;
+	height: 60%;
+	display: inline-block;
+	position: absolute;
+	top: 0;
+	border-radius: 100%;
+	animation: kitify-bounce 2s infinite ease-in-out;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.15)
+}
+.kitify-loader.spinner4 .dot2 {
+	top: auto;
+	bottom: 0;
+	animation-delay: -1s
+}
+.kitify-loader.spinner5 {
+	margin: 5px;
+	width: 40px;
+	height: 40px
+}
+.kitify-loader.spinner5 div {
+	width: 33%;
+	height: 33%;
+	float: left;
+	animation: kitify-cubeGridScaleDelay 1.3s infinite ease-in-out
+}
+.kitify-loader.spinner5 div:first-child, .kitify-loader.spinner5 div:nth-child(5), .kitify-loader.spinner5 div:nth-child(9) {
+	animation-delay: 0.2s
+}
+.kitify-loader.spinner5 div:nth-child(2), .kitify-loader.spinner5 div:nth-child(6) {
+	animation-delay: 0.3s
+}
+.kitify-loader.spinner5 div:nth-child(3) {
+	animation-delay: 0.4s
+}
+.kitify-loader.spinner5 div:nth-child(4), .kitify-loader.spinner5 div:nth-child(8) {
+	animation-delay: 0.1s
+}
+.kitify-loader.spinner5 div:nth-child(7) {
+	animation-delay: 0s
+}
+.kitify-loader.spinner1, .kitify-loader.spinner2, .kitify-loader.spinner3 [class*=bounce], .kitify-loader.spinner4 [class*=dot], .kitify-loader.spinner5 div {
+	background-color: var(--kitify-primary-color)
+}
+.hidden {
+	display: none !important
+}
+.kitify-equal-height-enable, .kitify-equal-height-enable .elementor-widget-container {
+	height: 100%
+}
+.kitify-global-links {
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 3
+}
+.kitify__badge {
+	background-color: var(--kitify-primary-color);
+	font-size: 0.625em;
+	color: #fff;
+	font-weight: 500;
+	padding: 0.8em 1.2em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.kitify_position_top_left {
+	top: 0;
+	left: 0
+}
+.kitify_position_top_center {
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%)
+}
+.kitify_position_top_right {
+	top: 0;
+	right: 0
+}
+.kitify_position_center_left {
+	top: 50%;
+	transform: translateY(-50%);
+	left: 0
+}
+.kitify_position_center_right {
+	top: 50%;
+	transform: translateY(-50%);
+	right: 0
+}
+.kitify_position_bottom_left {
+	bottom: 0;
+	left: 0
+}
+.kitify_position_bottom_center {
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%)
+}
+.kitify_position_bottom_right {
+	bottom: 0;
+	right: 0
+}
+.kitify-blocks-icon {
+	display: inline-block;
+	line-height: 0;
+	text-align: center
+}
+.kitify-blocks-icon svg{
+	width: 1em;
+	height: auto;
+}
+.kitify-logo {
+	display: flex
+}
+.kitify-logo__link {
+	display: inline-flex
+}
+.kitify-logo-display-block .kitify-logo__link {
+	flex-direction: column
+}
+.kitify-post-terms .term-item {
+	transition: all 0.3s;
+	display: inline-block
+}
+.wp-block-column ul {
+	padding-left: 1em
+}
+p + .wp-block-columns {
+	margin-top: 2em
+}
+.elementor-kitify-post-content p {
+	margin-bottom: 1.2rem
+}
+.elementor-kitify-post-content blockquote.wp-block-quote.is-style-large {
+	background-color: #45c784;
+	color: #fff;
+	padding: 2rem;
+	font-size: 16px;
+	font-weight: 600;
+	width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 100%;
+	margin-top: 2rem;
+	margin-bottom: 2rem
+}
+.elementor-kitify-post-content blockquote.wp-block-quote.is-style-large p {
+	margin: 0;
+	font: inherit
+}
+.elementor .kitify-post-featured-image img {
+	height: auto;
+	max-height: none;
+	vertical-align: middle;
+	width: 100%;
+	object-fit: cover
+}
+.kitify-post-title {
+	margin: 0
+}
+@keyframes kitifyFade {
+	0% {
+		opacity: 0
+	}
+	to {
+		opacity: 1
+	}
+}
+@keyframes kitifyZoomIn {
+	0% {
+		opacity: 0;
+		transform: scale(0.75)
+	}
+	to {
+		opacity: 1;
+		transform: scale(1)
+	}
+}
+@keyframes kitifyZoomOut {
+	0% {
+		opacity: 0;
+		transform: scale(1.1)
+	}
+	to {
+		opacity: 1;
+		transform: scale(1)
+	}
+}
+@keyframes kitifyMoveUp {
+	0% {
+		opacity: 0;
+		transform: translateY(25px)
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0)
+	}
+}
+@keyframes kitifyMoveUpBig {
+	0% {
+		opacity: 0;
+		transform: translateY(100px)
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0)
+	}
+}
+@keyframes kitifyMoveDown {
+	0% {
+		opacity: 0;
+		transform: translateY(-25px)
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0)
+	}
+}
+@keyframes kitifyMoveDownBig {
+	0% {
+		opacity: 0;
+		transform: translateY(-100px)
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0)
+	}
+}
+@keyframes kitifyMoveLeft {
+	0% {
+		opacity: 0;
+		transform: translateX(25px)
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0)
+	}
+}
+@keyframes kitifyMoveLeftBig {
+	0% {
+		opacity: 0;
+		transform: translateX(100px)
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0)
+	}
+}
+@keyframes kitifyMoveRight {
+	0% {
+		opacity: 0;
+		transform: translateX(-25px)
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0)
+	}
+}
+@keyframes kitifyMoveRightBig {
+	0% {
+		opacity: 0;
+		transform: translateX(-100px)
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0)
+	}
+}
+@keyframes kitifyFallPerspective {
+	0% {
+		opacity: 0;
+		transform: perspective(1000px) translateY(50px) translateZ(-300px) rotateX(-35deg)
+	}
+	to {
+		opacity: 1;
+		transform: perspective(1000px) translateY(0) translateZ(0) rotateX(0deg)
+	}
+}
+@keyframes kitifyFlipInX {
+	0% {
+		transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+		animation-timing-function: ease-in;
+		opacity: 0
+	}
+	40% {
+		transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+		animation-timing-function: ease-in
+	}
+	60% {
+		transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+		opacity: 1
+	}
+	80% {
+		transform: perspective(400px) rotate3d(1, 0, 0, -5deg)
+	}
+	to {
+		transform: perspective(400px)
+	}
+}
+@keyframes kitifyFlipInY {
+	0% {
+		transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+		animation-timing-function: ease-in;
+		opacity: 0
+	}
+	40% {
+		transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+		animation-timing-function: ease-in
+	}
+	60% {
+		transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+		opacity: 1
+	}
+	80% {
+		transform: perspective(400px) rotate3d(0, 1, 0, -5deg)
+	}
+	to {
+		transform: perspective(400px)
+	}
+}
+@keyframes edit-button-pulse {
+	0% {
+		box-shadow: 0 0 2px 0 rgba(183, 8, 78, 0.6)
+	}
+	30% {
+		box-shadow: 0 0 2px 10px rgba(183, 8, 78, 0)
+	}
+	to {
+		box-shadow: 0 0 2px 0 rgba(183, 8, 78, 0)
+	}
+}
+@keyframes kitify-spinner {
+	to {
+		transform: rotate(360deg)
+	}
+}
+@keyframes la-rotateplane {
+	0% {
+		transform: perspective(120px) rotateX(0deg) rotateY(0deg)
+	}
+	50% {
+		transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg)
+	}
+	to {
+		transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg)
+	}
+}
+@keyframes la-scaleout {
+	0% {
+		transform: scale(0)
+	}
+	to {
+		transform: scale(1);
+		opacity: 0
+	}
+}
+@keyframes la-bouncedelay {
+	0%, 80%, to {
+		transform: scale(0)
+	}
+	40% {
+		transform: scale(1)
+	}
+}
+@keyframes la-rotate {
+	to {
+		transform: rotate(360deg)
+	}
+}
+@keyframes la-bounce {
+	0%, to {
+		transform: scale(0)
+	}
+	50% {
+		transform: scale(1)
+	}
+}
+@keyframes la-cubeGridScaleDelay {
+	0% {
+		transform: scale3d(1, 1, 1)
+	}
+	35% {
+		transform: scale3d(0, 0, 1)
+	}
+	70% {
+		transform: scale3d(1, 1, 1)
+	}
+	to {
+		transform: scale3d(1, 1, 1)
+	}
+}
+span.kitify-btn-more-icon {
+	transition: margin .3s, transform .3s, font .3s;
+}
+.kitify-btn-more-icon i {
+	vertical-align: middle
+}
+.swiper-container .animated.no-effect-class {
+	opacity: 0;
+	transition: none
+}
+.slide-no-animation .swiper-container .animated {
+	opacity: 1;
+	transition: none;
+	animation: none;
+}
+.swiper-container.swiper-container-vertical .animated,
+.swiper-container.swiper-container-thumbs .animated {
+	opacity: 1;
+	transition: none;
+	animation: none;
+}
+.kitify-slidecontent-animation1 .kitify-carousel .kitify-slide-content > div {
+	transition-delay: 0ms;
+	opacity: 0;
+	transition: all .4s;
+	transform: translate3d(0, 40px, 0);
+}
+.kitify-slidecontent-animation1 .kitify-carousel .swiper-slide-visible .kitify-slide-content > div {
+	opacity: 1;
+	transform: translate3d(0, 0, 0);
+}
+.kitify-slidecontent-animation1 .kitify-carousel .kitify-slide-content > div:nth-child(1) {
+	transition-delay: 150ms;
+}
+.kitify-slidecontent-animation1 .kitify-carousel .kitify-slide-content > div:nth-child(2) {
+	transition-delay: 250ms;
+}
+.kitify-slidecontent-animation1 .kitify-carousel .kitify-slide-content > div:nth-child(3) {
+	transition-delay: 350ms;
+}
+.kitify-slidecontent-animation1 .kitify-carousel .kitify-slide-content > div:nth-child(4) {
+	transition-delay: 450ms;
+}
+.kitify-slidecontent-animation1 .kitify-carousel .kitify-slide-content > div:nth-child(5) {
+	transition-delay: 550ms;
+}
+.kitify-btn-more-icon svg {
+	width: 1em;
+	height: 1em;
+	display: inline-block;
+	vertical-align: middle;
+}
+.elementor-widget .elementor-counter .elementor-counter-title {
+	text-align: inherit;
+}
+.kitify-css-loader {
+	height: 100px;
+	display: flex;
+}
+.kitify-css-loader:after {
+	content: '';
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	border-top-color: transparent;
+	border-left-color: transparent;
+	border-right-color: transparent;
+	box-shadow: 2px 2px 1px var(--kitify-primary-color);
+	animation: kitify-load-spin 690ms infinite linear;
+	display: block;
+	margin: auto;
+}
+@keyframes kitify-load-spin {
+	100% {
+		transform: rotate(360deg);
+	}
+}
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translate3d(0, 50px, 0);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+.fadeInUp {
+	animation-name: fadeInUp;
+}
+@keyframes fadeOutDown {
+	0% {
+		opacity: 1
+	}
+	to {
+		opacity: 0;
+		transform: translate3d(0, 50px, 0)
+	}
+}
+.fadeOutDown {
+	animation-name: fadeOutDown
+}
+.kitify--is_stuck{
+	z-index: 2;
+}
+.kitify--is-vheader div#elementor-add-new-section {
+	margin-top: 0;
+}
+.kitify-tabs__edit-cover {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	box-sizing: border-box;
+	height: 30px;
+	padding: 5px 10px;
+	right: 15px;
+	top: 15px;
+	border-radius: 3px;
+	background-color: var(--kitify-primary-color);
+	z-index: 99;
+	cursor: pointer;
+	transition: opacity .3s ease;
+	box-shadow: 0 0 0 0 rgba(183, 8, 78, 0.6);
+	animation: edit-button-pulse 5s infinite
+}
+.kitify-tabs__edit-cover i {
+	font-size: 14px;
+	color: #fff;
+	margin-right: 5px
+}
+.kitify-tabs__edit-cover span {
+	font-family: Roboto, Arial, Helvetica, Verdana, sans-serif;
+	font-size: 13px;
+	color: #fff
+}
+.kitify-tabs__edit-cover:hover {
+	background-color: var(--kitify-primary-color);
+	animation: none
+}
+.kitify-tabs-no-template-message {
+	text-align: center;
+	padding: 10px
+}
+.kitify-tabs-new-template-link {
+	color: var(--kitify-primary-color);
+	text-decoration: underline
+}
+
+.kitify-masonry-wrapper{
+	margin-left: calc( -1 * var(--kitify-gcol-left-space) );
+	margin-right: calc( -1 * var(--kitify-gcol-left-space) );
+}
+.kitify-masonry-wrapper .col-row {
+	margin: 0;
+}
+.kitify-masonry_filter {
+	display: flex;
+	flex-flow: row;
+	justify-content: center;
+	align-items: center
+}
+.kitify-masonry_filter-list {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: center
+}
+.kitify-masonry_filter-item {
+	user-select: none;
+	cursor: pointer;
+	margin: 10px;
+}
+.kitify-masonry_filter-item.active,
+.kitify-masonry_filter-item:hover{
+	color: var(--kitify-primary-color);
+}
+
+.figure__object_fit {
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+}
+.figure__object_fit img {
+	width: 100%;
+	object-fit: cover;
+}
+
+.kitify.active-object-fit li.product .figure__object_fit img,
+.active-object-fit .figure__object_fit img {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+	margin: 0;
+}
+
+
+@media(min-width: 767px) {
+	.elementor-column.column_full_right > .elementor-widget-wrap {
+		width: calc((100vw - var(--kitify-section-width)) / 2 + 100%);
+		min-width: calc((100vw - var(--kitify-section-width)) / 2 + 100%);
+	}
+	.elementor-column .elementor-widget.widget_full_right {
+		width: calc((100vw - var(--kitify-section-width)) / 2 + 100% - var(--scrollbar-width-o));
+		min-width: calc((100vw - var(--kitify-section-width)) / 2 + 100% - var(--scrollbar-width-o));
+	}
+}
+.swiper-pagination-bullet-active-main:first-child ~ .swiper-pagination-bullet,
+.swiper-pagination-bullet-active-main:first-child {
+	left: 0 !important;
+}
+.wpcf7-form-control-wrap {
+	display: block;
+}
+.elementor-location-header.elementor-edit-mode.elementor-edit-area-active ~ main.site-main {
+	min-height: 50vh;
+}
+.elementor-editor-active .kitify-site-wrapper > .elementor-location-header:not(.elementor-edit-area-active) {
+	pointer-events: none;
+}
+.elementor-editor-active .kitify-site-wrapper > .elementor-location-header:not(.elementor-edit-area-active) .elementor-sticky.elementor-sticky__spacer.kitify--transparency-yes{
+	display: none;
+}
+.btn-icon svg,
+.kitify-arrow svg {
+	width: 1em;
+	height: auto;
+	vertical-align: middle;
+}
+.elementor-button .btn-icon{
+	line-height: 0;
+}
+.kitify-icon-inner {
+	display: inline-block;
+	line-height: 1;
+	vertical-align: middle;
+	transition: all .3s;
+}
+.kitify-icon-inner svg {
+	height: 1em;
+	width: 1em;
+	vertical-align: middle;
+	display: block;
+}
+.kitify--show-btn-hover-yes .kitify-carousel__item .elementor-button {
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(20px);
+}
+.kitify--show-btn-hover-yes .kitify-carousel__item:hover .elementor-button{
+	opacity: 1;
+	visibility: inherit;
+	transform: translateY(0);
+}
+.kitify-carousel--simple .kitify-carousel__content{
+	transition: all .2s;
+}
+.kitify--enable-zoom-hover .kitify-carousel--simple .kitify-carousel__content{
+	position: relative;
+}
+.kitify--enable-zoom-hover .kitify-carousel--simple .kitify-carousel__content > * {
+	z-index: 1;
+	position: relative;
+}
+.kitify--enable-zoom-hover .kitify-carousel--simple .kitify-carousel__content:before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	background: inherit;
+	transition: all .2s;
+	border: inherit;
+	box-shadow: inherit;
+	border-radius: inherit;
+}
+.kitify--enable-zoom-hover .kitify-carousel--simple .kitify-carousel__item:hover .kitify-carousel__content:before {
+	transform: scale(var(--kitify-content-zoom-lv));
+}
+.kitify-sticky-column {
+	align-self: flex-start;
+}
+.kitify-sticky-column.is-affixed.elementor-element.elementor-column > .elementor-element-populated {
+		margin-top: 0;
+		margin-bottom: 0;
+}
+body:not(.elementor-editor-active) .kitify--disable-relative-section-yes > div,
+body:not(.elementor-editor-active) .kitify-disable-relative-yes,
+body:not(.elementor-editor-active) .kitify-disable-relative-yes .elementor-element-populated,
+body:not(.elementor-editor-active) .kitify-disable-relative-yes .elementor-kitify-nova-menu,
+body:not(.elementor-editor-active) .kitify-disable-relative-yes .elementor-widget-container,
+body:not(.elementor-editor-active) .kitify-disable-relative-yes .elementor-widget-wrap
+ {
+	position: static !important;
+}
+.kitify-media-content,
+.kitify-media-overlay,
+.kitify-image-overlay,
+.kitify-media-background {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+.kitify-media-overlay {
+
+}
+.kitify-media-background {
+	background-color: rgba(0, 0, 0, 0.2);
+    background-size: cover;
+}
+.e-container--column.e-container.elementor-sticky.elementor-sticky--active:not(.elementor-top-section) {
+  padding: 0;
+}
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%
+}
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects):not(.ignore-docs-style-yes) {
+    background-color: var(--kitify-doc-headerts-bg-color) !important;
+    box-shadow: none;
+}
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .main-color:not(.ignore-docs-style-yes) .kitify-blocks-icon,
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .main-color:not(.ignore-docs-style-yes) .kitify-hamburger-panel__toggle-icon,
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .main-color:not(.ignore-docs-style-yes) .kitify-hamburger-panel__toggle-label {
+    color: inherit
+}
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .main-color:not(.ignore-docs-style-yes) {
+    color: var(--kitify-doc-headerts-link-color, var(--kitify-secondary-color))
+}
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .main-color:not(.ignore-docs-style-yes):hover {
+    color: var(--kitify-doc-headerts-link-hover-color, var(--kitify-primary-color))
+}
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-icon:not(.ignore-docs-style-yes) {
+    color: var(--kitify-doc-headerts-link-color, var(--kitify-secondary-color))
+}
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-icon:hover:not(.ignore-docs-style-yes) {
+    color: var(--kitify-doc-headerts-link-hover-color, var(--kitify-primary-color))
+}
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-heading-title:not(.ignore-docs-style-yes),
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-kitify-search:not(.ignore-docs-style-yes) .kitify-search__field,
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-widget-text-editor:not(.ignore-docs-style-yes) {
+    color: var(--kitify-doc-headerts-text-color, var(--kitify-secondary-color))
+}
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-widget-divider:not(.ignore-docs-style-yes) {
+    --divider-color: var(--kitify-doc-headerts-text-color, var(--kitify-secondary-color))
+}
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-widget-icon-list:not(.ignore-docs-style-yes) .elementor-icon-list-item {
+    color: var(--kitify-doc-headerts-link-color, var(--kitify-secondary-color))
+}
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .kitify-nova-mobile-menu .kitify-nova-menu__mobile-trigger a,
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-kitify-nova-cart svg,
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-kitify-nova-cart i,
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-kitify-search svg,
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-kitify-search i,
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-kitify-menu-account svg,
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-kitify-menu-account i
+ {
+    color: var(--kitify-doc-headerts-text-color, var(--kitify-secondary-color))
+}
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-widget-icon-list:not(.ignore-docs-style-yes) .elementor-icon-list-icon i,
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-widget-icon-list:not(.ignore-docs-style-yes) .elementor-icon-list-icon svg,
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-widget-icon-list:not(.ignore-docs-style-yes) .elementor-icon-list-text,
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-social-icon:not(.ignore-docs-style-yes) i,
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-social-icon:not(.ignore-docs-style-yes) svg {
+    color: inherit !important;
+    fill: currentColor !important
+}
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-widget-icon-list:not(.ignore-docs-style-yes) .elementor-icon-list-item:hover {
+    color: var(--kitify-doc-headerts-link-hover-color, var(--kitify-primary-color))
+}
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .kitify-nav-wrap:not(.kitify-mobile-menu-active) .current-menu-item > .menu-item-link.menu-item-link-depth-0:not(.ignore-docs-style-yes) {
+    color: var(--kitify-doc-headerts-link-hover-color, var(--kitify-primary-color))
+}
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .kitify-nav-wrap:not(.kitify-mobile-menu-active) .menu-item-link.menu-item-link-depth-0:not(.ignore-docs-style-yes) {
+    color: var(--kitify-doc-headerts-link-color, var(--kitify-secondary-color))
+}
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .kitify-nova-menu .main-navigation .nav-menu > li > a {
+    color: var(--kitify-doc-headerts-link-color, var(--kitify-secondary-color))
+}
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .kitify-nova-menu .main-navigation .nav-menu > li > a:hover {
+    color: var(--kitify-doc-headerts-link-hover-color, var(--kitify-primary-color))
+}
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .kitify-nav-wrap:not(.kitify-mobile-menu-active) .menu-item-link.menu-item-link-depth-0:not(.ignore-docs-style-yes):hover {
+    color: var(--kitify-doc-headerts-link-hover-color, var(--kitify-primary-color))
+}
+.kitify-doc-enable-header-transparency.kitify-doc-swap-logo .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .kitify-logo-default {
+    display: none
+}
+.kitify-doc-enable-header-transparency.kitify-doc-swap-logo .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .kitify-logo-light {
+    display: inherit
+}
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-button:not(.ignore-docs-style-yes) {
+    color: var(--kitify-doc-headerts-button-color, var(--kitify-secondary-color));
+    border-color: var(--kitify-doc-headerts-button-border-color, var(--kitify-secondary-color));
+    background-color: var(--kitify-doc-headerts-button-bgcolor, transparent);
+}
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-button:not(.ignore-docs-style-yes):hover {
+    border-color: var(--kitify-doc-headerts-button-hover-border-color, var(--kitify-doc-headerts-link-hover-color));
+    color: var(--kitify-doc-headerts-button-hover-color, var(--kitify-doc-headerts-link-hover-color));
+    background-color: var(--kitify-doc-headerts-button-hover-bgcolor, transparent);
+}

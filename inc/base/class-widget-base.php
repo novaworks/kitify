@@ -1248,6 +1248,80 @@ abstract class Kitify_Base extends Widget_Base
                 'prefix_class' => 'kitify-carousel-item-effect-',
             )
         );
+        $coverflow_conditions = [
+            'carousel_effect' => 'coverflow'
+        ];
+        if ($enable_carousel) {
+            $coverflow_conditions['enable_carousel'] = 'yes';
+        }
+        $this->_add_control(
+            'carousel_coverflow__depth',
+            array(
+                'label' => esc_html__('Coverflow Deep', 'kitify'),
+                'description' => esc_html__('Depth offset in px (slides translate in Z axis)', 'kitify'),
+                'type' => Controls_Manager::NUMBER,
+                'separator' => 'before',
+                'min' => 0,
+                'max' => 500,
+                'step' => 1,
+                'default' => 100,
+                'condition' => $coverflow_conditions,
+            )
+        );
+
+        $this->_add_control(
+            'carousel_coverflow__modifier',
+            array(
+                'label' => esc_html__('Coverflow Modifier', 'kitify'),
+                'description' => esc_html__('Effect multiplier', 'kitify'),
+                'type' => Controls_Manager::NUMBER,
+                'min' => 0,
+                'max' => 10,
+                'step' => 0.1,
+                'default' => 1,
+                'condition' => $coverflow_conditions,
+            )
+        );
+
+        $this->_add_control(
+            'carousel_coverflow__stretch',
+            array(
+                'label' => esc_html__('Coverflow Stretch', 'kitify'),
+                'description' => esc_html__('Stretch space between slides (in px)', 'kitify'),
+                'type' => Controls_Manager::NUMBER,
+                'min' => 0,
+                'max' => 500,
+                'step' => 1,
+                'default' => 100,
+                'condition' => $coverflow_conditions,
+            )
+        );
+
+        $this->_add_control(
+            'carousel_coverflow__rotate',
+            array(
+                'label' => esc_html__('Coverflow Rotate', 'kitify'),
+                'description' => esc_html__('Slide rotate in degrees', 'kitify'),
+                'type' => Controls_Manager::NUMBER,
+                'min' => 0,
+                'max' => 360,
+                'step' => 1,
+                'default' => 0,
+                'condition' => $coverflow_conditions,
+            )
+        );
+        $this->_add_control(
+            'carousel_coverflow__slideshadows',
+            array(
+                'label' => esc_html__('Side Shadow', 'kitify'),
+                'label_on' => esc_html__('Yes', 'kitify'),
+                'label_off' => esc_html__('No', 'kitify'),
+                'type' => Controls_Manager::SWITCHER,
+                'default' => 'yes',
+                'separator' => 'after',
+                'condition' => $coverflow_conditions
+            )
+        );
 
         $disable_content_effect_c = [];
         if($enable_carousel){
@@ -1980,6 +2054,13 @@ abstract class Kitify_Base extends Widget_Base
             'dotsElm' => '.kitify-carousel__dots_' . $widget_id,
             'rtl' => is_rtl(),
             'effect' => $settings['carousel_effect'],
+            'coverflowEffect' => [
+                'rotate' => $this->get_settings_for_display('carousel_coverflow__rotate'),
+                'stretch' => $this->get_settings_for_display('carousel_coverflow__stretch'),
+                'depth' => $this->get_settings_for_display('carousel_coverflow__depth'),
+                'modifier' => $this->get_settings_for_display('carousel_coverflow__modifier'),
+                'slideShadows' => $this->get_settings_for_display('carousel_coverflow__slideshadows'),
+            ],
             'dotType' => $settings['carousel_dot_type'],
             'direction' => $carousel_direction,
             'uniqueID' => $carousel_id,
