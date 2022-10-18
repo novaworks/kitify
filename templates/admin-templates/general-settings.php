@@ -4,7 +4,7 @@
 
     <cx-vui-select
       name="single_page_template"
-      label="<?php esc_html_e( 'Default Single Page Template', 'kitify' ); ?>"
+      label="<?php esc_attr_e( 'Default Single Page Template', 'kitify' ); ?>"
       :wrapper-css="[ 'equalwidth' ]"
       size="fullwidth"
       :options-list="pageOptions.single_page_template.options"
@@ -13,7 +13,7 @@
 
     <cx-vui-select
       name="single_post_template"
-      label="<?php esc_html_e( 'Default Single Post Template', 'kitify' ); ?>"
+      label="<?php esc_attr_e( 'Default Single Post Template', 'kitify' ); ?>"
       :wrapper-css="[ 'equalwidth' ]"
       size="fullwidth"
       :options-list="pageOptions.single_post_template.options"
