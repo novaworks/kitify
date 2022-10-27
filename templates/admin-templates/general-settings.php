@@ -4,7 +4,7 @@
 
     <cx-vui-select
       name="single_page_template"
-      label="<?php esc_attr_e( 'Default Single Page Template', 'kitify' ); ?>"
+      label="<?php esc_html_e( 'Default Single Page Template', 'kitify' ); ?>"
       :wrapper-css="[ 'equalwidth' ]"
       size="fullwidth"
       :options-list="pageOptions.single_page_template.options"
@@ -13,7 +13,7 @@
 
     <cx-vui-select
       name="single_post_template"
-      label="<?php esc_attr_e( 'Default Single Post Template', 'kitify' ); ?>"
+      label="<?php esc_html_e( 'Default Single Post Template', 'kitify' ); ?>"
       :wrapper-css="[ 'equalwidth' ]"
       size="fullwidth"
       :options-list="pageOptions.single_post_template.options"
@@ -53,4 +53,40 @@
     }
     ?>
 
+    <div class="cx-vui-title cx-vui-title--divider"><?php _e('Extra Code', 'kitify'); ?></div>
+
+    <cx-vui-textarea
+        name="custom_css"
+        label="<?php _e('Custom CSS', 'kitify'); ?>"
+        description="<?php echo esc_html__('Paste your custom CSS code here.', 'kitify');?>"
+        size="fullwidth"
+        :wrapper-css="[ 'kitify-vertical-fullwidth' ]"
+        :value="pageOptions.custom_css.value"
+        :rows="8"
+        @on-input-change="updateSetting( $event.target.value, 'custom_css' )"
+    ></cx-vui-textarea>
+
+    <cx-vui-textarea
+        name="head_code"
+        label="<?php _e('Custom Head', 'kitify'); ?>"
+        description="<?php echo esc_html__('Paste your html code here. The code will be added to the <head> of your site.', 'kitify');?>"
+        size="fullwidth"
+        :wrapper-css="[ 'kitify-vertical-fullwidth' ]"
+        :value="pageOptions.head_code.value"
+        :rows="8"
+        @on-input-change="updateSetting( $event.target.value, 'head_code' )"
+    ></cx-vui-textarea>
+
+    <cx-vui-textarea
+        name="footer_code"
+        label="<?php _e('Custom Footer Code', 'kitify'); ?>"
+        description="<?php echo esc_html__('Paste your HTML code here. The code will be added to the footer of your site.', 'kitify');?>"
+        size="fullwidth"
+        :wrapper-css="[ 'kitify-vertical-fullwidth' ]"
+        :value="pageOptions.footer_code.value"
+        :rows="8"
+        @on-input-change="updateSetting( $event.target.value, 'footer_code' )"
+    ></cx-vui-textarea>
+
+    <?php do_action('kitify-dashboard/js-page-templates/general-settings'); ?>
 </div>

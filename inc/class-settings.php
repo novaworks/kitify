@@ -260,7 +260,16 @@ if ( ! class_exists( 'Kitify_Settings' ) ) {
                         'add_new_font_variation'    => esc_html__('Add New Variation', 'kitify'),
                     ],
                     'value'   => $this->get( 'custom_fonts', [] )
-                ]
+                ],
+								'head_code' => [
+										'value' => $this->get( 'head_code', '' ),
+								],
+								'custom_css' => [
+										'value' => $this->get( 'custom_css', '' ),
+								],
+								'footer_code' => [
+										'value' => $this->get( 'footer_code', '' ),
+								],
             ];
 
             $settingsData = array_merge($settingsData, $breadcrumbs_taxonomy_options);

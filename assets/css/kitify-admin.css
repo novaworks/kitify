@@ -122,3 +122,10 @@
 .kitify-settings-page__fonts-manager .cx-vui-title {
   margin-bottom: 30px;
 }
+.cx-vui-component.cx-vui-component--kitify-vertical-fullwidth {
+  flex-direction: column;
+}
+.cx-vui-component--kitify-vertical-fullwidth .cx-vui-component__meta {
+  align-self: initial;
+  margin-bottom: 10px;
+}

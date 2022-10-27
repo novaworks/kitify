@@ -28,10 +28,21 @@ class Plugin_Settings extends Base {
 	}
 
 	/**
-	 * [callback description]
-	 * @param  [type]   $request [description]
-	 * @return function          [description]
+     * Clean variables using sanitize_text_field. Arrays are cleaned recursively.
+     * Non-scalar values are ignored.
+     *
+     * @param string|array $var Data to sanitize.
+     * @return string|array
 	 */
+
+    public function clean_var ( $var ){
+        if ( is_array( $var ) ) {
+            return array_map( array( $this, 'clean_var' ) , $var );
+        } else {
+            return is_scalar( $var ) ? sanitize_text_field( $var ) : $var;
+        }
+    }
+
 	public function callback( $request ) {
 
 		$data = $request->get_params();
@@ -46,7 +57,12 @@ class Plugin_Settings extends Base {
 		}
 
 		foreach ( $data as $key => $value ) {
-			$current[ $key ] = is_array( $value ) ? $value : esc_attr( $value );
+            if($key === 'head_code' || $key === 'footer_code' || $key === 'custom_css'){
+                $current[ $key ] = apply_filters('kitify/settings/sanitize_save', $value, $value, $key);
+            }
+            else{
+                $current[ $key ] = apply_filters('kitify/settings/sanitize_save', $this->clean_var( $value ), $value, $key);
+            }
 		}
 
 		update_option( kitify_settings()->key, $current );

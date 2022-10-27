@@ -93,6 +93,11 @@ if ( ! class_exists( 'Kitify_Integration' ) ) {
 
             add_action( 'init', [ $this, 'register_portfolio_content_type' ] );
 						add_action('kitify/ajax/register_actions', [ $this, 'register_ajax_actions' ] );
+
+						add_filter( 'pre_get_posts', [ $this, 'setup_post_per_page_for_portfolio' ]);
+
+						add_action( 'wp_head', [ $this, 'custom_head_code' ], 100 );
+						add_action( 'wp_footer', [ $this, 'custom_footer_code' ], 100 );
 		}
 
 		/**
@@ -1230,7 +1235,32 @@ if ( ! class_exists( 'Kitify_Integration' ) ) {
 			];
 			return $helper->widget_callback($args, 'ajax');
 		}
+		public function setup_post_per_page_for_portfolio( $query ){
 
+			if ( is_admin() || ! $query->is_main_query() || !post_type_exists('la_portfolio') ) {
+				return;
+			}
+			if ( is_post_type_archive( 'nova_portfolio' ) || (is_tax() && is_tax(get_object_taxonomies( 'nova_portfolio' ) ))) {
+				$query->set( 'posts_per_page', lastudio_kit_settings()->get_option( 'portfolio_per_page', 9 ) );
+			}
+		}
+		public function custom_head_code(){
+				$custom_css = kitify_settings()->get('custom_css', '');
+				$head_code = kitify_settings()->get('head_code', '');
+				if(!empty($custom_css)){
+						echo sprintf('<style>%1$s</style>', $custom_css);
+				}
+				if(!empty($head_code)){
+						echo $head_code;
+				}
+		}
+
+		public function custom_footer_code(){
+				$footer_code = kitify_settings()->get('footer_code', '');
+				if(!empty($footer_code)){
+						echo $footer_code;
+				}
+		}
 	}
 
 }

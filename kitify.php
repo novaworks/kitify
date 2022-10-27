@@ -138,7 +138,7 @@ if(!function_exists('Kitify')){
             // Register activation and deactivation hook.
             register_activation_hook( __FILE__, array( $this, 'activation' ) );
             register_deactivation_hook( __FILE__, array( $this, 'deactivation' ) );
-
+            require_once $this->plugin_path( 'inc/kitify-typekit-fonts/kitify-typekit-fonts.php' );
             require_once $this->plugin_path( 'inc/framework/customizer/controls/responsive/responsive.php' );
         }
 
@@ -162,6 +162,7 @@ if(!function_exists('Kitify')){
                     $this->plugin_path( 'inc/framework/fonts-manager/fonts-manager.php' ),
                     $this->plugin_path( 'inc/class-breadcrumbs.php' ),
                     $this->plugin_path( 'inc/framework/mega-menu/mega-menu.php' ),
+
                 )
             );
 
