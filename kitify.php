@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Kitify by Novaworks
  * Description:       A perfect plugin for Elementor
- * Version:           1.0.4.1
+ * Version:           1.0.4.2
  * Author:            Novaworks
  * Author URI:        https://kitify.app
  * License:           GPL-2.0+
@@ -138,6 +138,9 @@ if(!function_exists('Kitify')){
             // Register activation and deactivation hook.
             register_activation_hook( __FILE__, array( $this, 'activation' ) );
             register_deactivation_hook( __FILE__, array( $this, 'deactivation' ) );
+
+            $this->ajax_manager = new Kitify_Ajax_Manager();
+
             require_once $this->plugin_path( 'inc/kitify-typekit-fonts/kitify-typekit-fonts.php' );
             require_once $this->plugin_path( 'inc/framework/customizer/controls/responsive/responsive.php' );
         }

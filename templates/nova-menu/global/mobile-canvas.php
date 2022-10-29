@@ -9,7 +9,7 @@ $settings = $this->get_settings();
             'menu'              => $settings['nova_nav_menu'],
             'container'         => false,
             'menu_class'        => 'vertical menu drilldown mobile-menu',
-            'items_wrap'        => '<ul id="%1$s" class="%2$s" data-drilldown data-auto-height="true" data-animate-height="true" data-parent-link="true">%3$s</ul>',
+            'items_wrap'        => '<ul id="%1$s" class="%2$s" data-drilldown data-back-button="<li class=\'js-drilldown-back\'><a class=\'js_mobile_menu_back\'></a></li>" data-auto-height="true" data-animate-height="true">%3$s</ul>',
             'link_before'       => '<span>',
             'link_after'        => '</span>',
             'fallback_cb'     	=> '',

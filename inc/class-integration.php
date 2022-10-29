@@ -526,13 +526,13 @@ if ( ! class_exists( 'Kitify_Integration' ) ) {
 
             wp_add_inline_style('elementor-frontend', $this->add_new_animation_css());
 
-            $subscribe_obj = [
-                'action' => 'kitify_elementor_subscribe_form_ajax',
-                'nonce' => wp_create_nonce('kitify_elementor_subscribe_form_ajax'),
+						$subscribe_obj = [
+                'action' => 'kitify_ajax',
+                'nonce' => kitify()->ajax_manager->create_nonce(),
                 'type' => 'POST',
                 'data_type' => 'json',
                 'is_public' => 'true',
-                'ajax_url' => admin_url('admin-ajax.php'),
+                'ajax_url' => esc_url( admin_url( 'admin-ajax.php' ) ),
                 'sys_messages' => $this->sys_messages
             ];
             wp_localize_script( 'elementor-frontend', 'kitifySubscribeConfig', $subscribe_obj );
@@ -887,86 +887,6 @@ if ( ! class_exists( 'Kitify_Integration' ) ) {
             return '@keyframes kitifyShortFadeInDown{from{opacity:0;transform:translate3d(0,-50px,0)}to{opacity:1;transform:none}}.kitifyShortFadeInDown{animation-name:kitifyShortFadeInDown}@keyframes kitifyShortFadeInUp{from{opacity:0;transform:translate3d(0,50px,0)}to{opacity:1;transform:none}}.kitifyShortFadeInUp{animation-name:kitifyShortFadeInUp}@keyframes kitifyShortFadeInLeft{from{opacity:0;transform:translate3d(-50px,0,0)}to{opacity:1;transform:none}}.kitifyShortFadeInLeft{animation-name:kitifyShortFadeInLeft}@keyframes kitifyShortFadeInRight{from{opacity:0;transform:translate3d(50px,0,0)}to{opacity:1;transform:none}}.kitifyShortFadeInRight{animation-name:kitifyShortFadeInRight}';
         }
 
-        public function subscribe_form_ajax() {
-
-            if ( ! wp_verify_nonce( isset($_POST['nonce']) ? $_POST['nonce'] : false, 'kitify_elementor_subscribe_form_ajax' ) ) {
-                $response = array(
-                    'message' => $this->sys_messages['invalid_nonce'],
-                    'type'    => 'error-notice',
-                ) ;
-
-                wp_send_json( $response );
-            }
-
-            $data = ( ! empty( $_POST['data'] ) ) ? $_POST['data'] : false;
-
-            if ( ! $data ) {
-                wp_send_json_error( array( 'type' => 'error', 'message' => $this->sys_messages['server_error'] ) );
-            }
-
-            $api_key = apply_filters('kitify/mailchimp/api', kitify_settings()->get_option('mailchimp-api-key'));
-            $list_id = apply_filters('kitify/mailchimp/list_id', kitify_settings()->get_option('mailchimp-list-id'));
-            $double_opt = apply_filters('kitify/mailchimp/double_opt_in', kitify_settings()->get_option('mailchimp-double-opt-in'));
-
-            $double_opt_in = filter_var( $double_opt, FILTER_VALIDATE_BOOLEAN );
-
-            if ( ! $api_key ) {
-                wp_send_json( array( 'type' => 'error', 'message' => $this->sys_messages['mailchimp'] ) );
-            }
-
-            if ( isset( $data['use_target_list_id'] ) &&
-                filter_var( $data['use_target_list_id'], FILTER_VALIDATE_BOOLEAN ) &&
-                ! empty( $data['target_list_id'] )
-            ) {
-                $list_id = $data['target_list_id'];
-            }
-
-            if ( ! $list_id ) {
-                wp_send_json( array( 'type' => 'error', 'message' => $this->sys_messages['mailchimp'] ) );
-            }
-
-            $mail = $data['email'];
-
-            if ( empty( $mail ) || ! is_email( $mail ) ) {
-                wp_send_json( array( 'type' => 'error', 'message' => $this->sys_messages['invalid_mail'] ) );
-            }
-
-            $args = [
-                'email_address' => $mail,
-                'status'        => $double_opt_in ? 'pending' : 'subscribed',
-            ];
-
-            if ( ! empty( $data['additional'] ) ) {
-
-                $additional = $data['additional'];
-
-                foreach ( $additional as $key => $value ) {
-                    $merge_fields[ strtoupper( $key ) ] = $value;
-                }
-
-                $args['merge_fields'] = $merge_fields;
-
-            }
-
-            $response = $this->api_call( $api_key, $list_id, $args );
-
-            if ( false === $response ) {
-                wp_send_json( array( 'type' => 'error', 'message' => $this->sys_messages['mailchimp'] ) );
-            }
-
-            $response = json_decode( $response, true );
-
-            if ( empty( $response ) ) {
-                wp_send_json( array( 'type' => 'error', 'message' => $this->sys_messages['internal'] ) );
-            }
-
-            if ( isset( $response['status'] ) && 'error' == $response['status'] ) {
-                wp_send_json( array( 'type' => 'error', 'message' => esc_html( $response['error'] ) ) );
-            }
-
-            wp_send_json( array( 'type' => 'success', 'message' => $this->sys_messages['subscribe_success'] ) );
-        }
-
         /**
          * Make remote request to mailchimp API
          *
@@ -1107,8 +1027,8 @@ if ( ! class_exists( 'Kitify_Integration' ) ) {
 			$ajax_manager->register_ajax_action( 'elementor_widget', [ $this, 'ajax_get_elementor_widget' ] );
 		}
 		public function ajax_newsletter_subscribe( $request ){
-
 			$return_data = [];
+
 
 			$api_key = apply_filters('kitify/mailchimp/api', kitify_settings()->get_option('mailchimp-api-key'));
 			$list_id = apply_filters('kitify/mailchimp/list_id', kitify_settings()->get_option('mailchimp-list-id'));
@@ -1125,8 +1045,8 @@ if ( ! class_exists( 'Kitify_Integration' ) ) {
 			}
 
 			if ( isset( $request['use_target_list_id'] ) &&
-					 filter_var( $request['use_target_list_id'], FILTER_VALIDATE_BOOLEAN ) &&
-					 ! empty( $request['target_list_id'] )
+			     filter_var( $request['use_target_list_id'], FILTER_VALIDATE_BOOLEAN ) &&
+			     ! empty( $request['target_list_id'] )
 			) {
 				$list_id = $request['target_list_id'];
 			}
@@ -1241,7 +1161,7 @@ if ( ! class_exists( 'Kitify_Integration' ) ) {
 				return;
 			}
 			if ( is_post_type_archive( 'nova_portfolio' ) || (is_tax() && is_tax(get_object_taxonomies( 'nova_portfolio' ) ))) {
-				$query->set( 'posts_per_page', lastudio_kit_settings()->get_option( 'portfolio_per_page', 9 ) );
+				$query->set( 'posts_per_page', kitify_settings()->get_option( 'portfolio_per_page', 9 ) );
 			}
 		}
 		public function custom_head_code(){

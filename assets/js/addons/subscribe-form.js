@@ -195,8 +195,7 @@
                 KitifyHandlerUtils.noticeCreate('error-notice', self.handlerSettings.sys_messages.wait_processing, self.handlerSettings.is_public);
             }
             self.ajaxProcessing = true;
-
-            self.ajaxRequest = jQuery.ajax({
+            self.ajaxRequest = $.ajax({
                 type: self.handlerSettings.type,
                 url: settings.url,
                 data: self.data,
@@ -213,6 +212,7 @@
                     }
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
+                  console.log(settings.processData);
                     $(document).trigger({
                         type: 'kitify-ajax-handler-error',
                         jqXHR: jqXHR,
@@ -238,7 +238,7 @@
                         settings.successCallback(data, textStatus, jqXHR);
                     }
 
-                    KitifyHandlerUtils.noticeCreate(data.type, data.message, self.handlerSettings.is_public);
+                    //KitifyHandlerUtils.noticeCreate(data.type, data.message, self.handlerSettings.is_public);
                 },
                 complete: function (jqXHR, textStatus) {
                     $(document).trigger({
@@ -264,11 +264,16 @@
         self.sendData = function (data) {
             var sendData = data || {};
             self.data = {
-                'action': self.handlerSettings.action,
-                'nonce': self.handlerSettings.nonce,
-                'data': sendData
+                'action': 'kitify_ajax',
+                '_nonce': self.handlerSettings.nonce,
+                'actions': JSON.stringify({
+                    'newsletter_subscribe' : {
+                        'action': 'newsletter_subscribe',
+                        'data': sendData
+                    }
+                }),
             };
-
+            console.log(sendData);
             self.send();
         };
 
@@ -304,10 +309,40 @@
         var kitifySubscribeFormAjax = new KitifyAjaxHandler({
             handlerId: subscribeFormAjaxId,
 
-            successCallback: function (data) {
-                var successType = data.type,
-                    message = data.message || '',
-                    responceClass = 'kitify-subscribe-form--response-' + successType;
+            errorCallback: function (jqXHR, textStatus, errorThrown){
+                var message = window.kitifySubscribeConfig.sys_messages.invalid_nonce,
+                    responceClass = 'kitify-subscribe-form--response-error';
+
+                $submitButton.removeClass('loading');
+
+                $target.addClass(responceClass);
+
+                $('span', $subscribeFormMessage).html(message);
+                $subscribeFormMessage.css({'visibility': 'visible'});
+
+                timeout = setTimeout(function () {
+                    $subscribeFormMessage.css({'visibility': 'hidden'});
+                    $target.removeClass(responceClass);
+                }, 20000);
+            },
+            successCallback: function ( response ) {
+                var successType, message, responceClass;
+                if(response.success){
+                    if(response.data.responses.newsletter_subscribe.success){
+                        message = response.data.responses.newsletter_subscribe.data.message;
+                        successType = response.data.responses.newsletter_subscribe.data.type;
+                    }
+                    else{
+                        message = response.data.responses.newsletter_subscribe.data;
+                        successType = 'error';
+                    }
+                }
+                else {
+                    successType = 'error';
+                    message = response.responses.error.data;
+                }
+
+                responceClass = 'kitify-subscribe-form--response-' + successType;
 
                 $submitButton.removeClass('loading');
 

@@ -65,7 +65,7 @@
     label="<?php _e('MailChimp list ID', 'kitify'); ?>"
     description="<?php
     echo sprintf(esc_html__('Input MailChimp list ID %1$s', 'kitify'),
-        htmlspecialchars('<a href="http://kb.mailchimp.com/integrations/api-integrations/about-api-keys" target="_blank">About Mailchimp List Keys</a>', ENT_QUOTES)
+        htmlspecialchars('<a href="https://mailchimp.com/help/find-audience-id/" target="_blank">About Mailchimp List Keys</a>', ENT_QUOTES)
     ); ?>"
     :wrapper-css="[ 'equalwidth' ]"
     size="fullwidth"
