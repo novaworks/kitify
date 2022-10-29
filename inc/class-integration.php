@@ -1074,9 +1074,9 @@ if ( ! class_exists( 'Kitify_Integration' ) ) {
 				'status'        => $double_opt_in ? 'pending' : 'subscribed',
 			];
 
-			if ( ! empty( $data['additional'] ) ) {
+			if ( ! empty( $request['additional'] ) ) {
 
-				$additional = $data['additional'];
+				$additional = $request['additional'];
 
 				foreach ( $additional as $key => $value ) {
 					$merge_fields[ strtoupper( $key ) ] = $value;
@@ -1085,7 +1085,6 @@ if ( ! class_exists( 'Kitify_Integration' ) ) {
 				$args['merge_fields'] = $merge_fields;
 
 			}
-
 			$response = $this->api_call( $api_key, $list_id, $args );
 
 			if ( false === $response ) {

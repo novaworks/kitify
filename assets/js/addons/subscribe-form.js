@@ -212,7 +212,6 @@
                     }
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
-                  console.log(settings.processData);
                     $(document).trigger({
                         type: 'kitify-ajax-handler-error',
                         jqXHR: jqXHR,
@@ -273,7 +272,6 @@
                     }
                 }),
             };
-            console.log(sendData);
             self.send();
         };
 
