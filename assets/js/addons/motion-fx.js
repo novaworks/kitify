@@ -487,7 +487,7 @@
                     $wpAdminBar = elementorFrontend.elements.$wpAdminBar;
 
                 if (elementSettings.sticky_parent) {
-                    stickyOptions.parent = '.e-root-container, .elementor-widget-wrap';
+                    stickyOptions.parent = '.elementor-location-archive, .e-root-container, .elementor-widget-wrap';
                 }
 
                 if ($wpAdminBar.length && 'top' === elementSettings.sticky && 'fixed' === $wpAdminBar.css('position')) {
