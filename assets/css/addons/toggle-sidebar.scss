@@ -118,6 +118,9 @@
       }
     }
   }
+  &.ps--active-y {
+    padding-top: rem-calc(30);
+  }
 }
 body.toogle-opened {
   #wpadminbar {

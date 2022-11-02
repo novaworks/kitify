@@ -158,6 +158,10 @@
   }
 }
 
+.kitify-toggle-sidebar.ps--active-y {
+  padding-top: 1.875rem;
+}
+
 body.toogle-opened #wpadminbar {
   z-index: 0;
 }
