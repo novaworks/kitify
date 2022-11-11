@@ -23,7 +23,7 @@
 
     function getHeaderHeight(){
         var _height = 0;
-        var $stickySection = $('.elementor-location-header .elementor-section[data-settings*="sticky_on"]');
+        var $stickySection = $('.elementor-location-header .elementor-top-section[data-settings*="sticky_on"]');
         if($stickySection.length){
             _height = $stickySection.innerHeight();
         }

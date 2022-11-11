@@ -493,7 +493,6 @@
                 if ($wpAdminBar.length && 'top' === elementSettings.sticky && 'fixed' === $wpAdminBar.css('position')) {
                     stickyOptions.offset += $wpAdminBar.height();
                 }
-
                 this.$element.sticky(stickyOptions);
             },
 
