@@ -37,10 +37,10 @@
 		};
 
 		var bindEvents = function() {
-			elements.$window.on( {
-				scroll: onWindowScroll,
-				resize: onWindowResize,
-			} );
+			// elements.$window.on( {
+			// 	scroll: onWindowScroll,
+			// 	resize: onWindowResize,
+			// } );
       //nova fix
       elements.$window.on("scroll", onWindowScroll);
       elements.$window.on("resize", onWindowScroll);
