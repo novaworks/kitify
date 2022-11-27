@@ -227,7 +227,18 @@ class Kitify_Tabs extends Kitify_Base {
                 'label' => esc_html__( 'Settings', 'kitify' ),
             )
         );
-
+        $this->_add_control(
+            'transfer_to_select_desktop',
+            array(
+                'label'        => esc_html__( 'Is dropdown controls desktop', 'kitify' ),
+                'type'         => Controls_Manager::SWITCHER,
+                'label_on'     => esc_html__( 'On', 'kitify' ),
+                'label_off'    => esc_html__( 'Off', 'kitify' ),
+                'return_value' => 'yes',
+                'default'      => 'false',
+                'prefix_class' => 'dttabcontrolisselect-',
+            )
+        );
         $this->_add_control(
             'transfer_to_select_tb',
             array(

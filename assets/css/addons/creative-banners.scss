@@ -1,14 +1,63 @@
+@import '_mixins';
 .kitify-creative-banners {
   position: relative;
+  &__links {
+    ul {
+      margin: 0;
+      padding: 0;
+      counter-reset: section;
+      li {
+        position: relative;
+        list-style: none;
+        .b-title {
+          padding-left: 35px;
+        }
+        &:before {
+          counter-increment: section;
+          content: "0" counter(section);
+          font-size: 20px;
+          line-height: 36px;
+          position: absolute;
+          left: 0;
+          top: 0;
+        }
+      }
+    }
+  }
   &__images {
     position: absolute;
-    display: block;
+    display: none;
     margin-left: auto;
     width: 60%;
     height: 100%;
     overflow: hidden;
     right: 0;
     top: 0;
+    @include breakpoint(medium) {
+      display: block;
+    }
+    .kitify-creative-banners__image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      opacity: 0;
+      -webkit-transition: opacity 0.3s ease;
+      -o-transition: opacity 0.3s ease;
+      transition: opacity 0.3s ease;
+      &[data-element-loaded="true"]
+      img {
+        display: none;
+      }
+      &.active {
+        opacity: 1;
+        z-index: 1;
+      }
+    }
   }
   &.custom-style-default {
     .kitify-creative-banners__images {

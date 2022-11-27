@@ -609,6 +609,46 @@
 		z-index: 3
 	}
 }
+.dttabcontrolisselect-yes .kitify-tabs .kitify-tabs__control-wrapper .kitify-tabs__label-text {
+	text-decoration: none !important
+}
+.dttabcontrolisselect-yes .kitify-tabs .kitify-tabs__control-wrapper:not(.open) > .kitify-tabs__control {
+	display: none
+}
+.dttabcontrolisselect-yes .kitify-tabs .kitify-tabs__control-wrapper:not(.open) > .kitify-tabs__control.active-tab {
+	display: block
+}
+.dttabcontrolisselect-yes .kitify-tabs .kitify-tabs__control-wrapper:not(.open) > .active-tab {
+	order: -1
+}
+.dttabcontrolisselect-yes .kitify-tabs .kitify-tabs__control-wrapper:not(.open) > .active-tab .kitify-tabs__control-inner {
+	position: relative
+}
+.dttabcontrolisselect-yes .kitify-tabs .kitify-tabs__control-wrapper:not(.open) > .active-tab .kitify-tabs__label-text:after {
+	content: "⇿";
+	font-family: monospace;
+	font-size: 24px;
+	transform: translateY(-50%) rotate(90deg);
+	position: absolute;
+	right: 8px;
+	line-height: 1;
+	top: 50%
+}
+.dttabcontrolisselect-yes .kitify-tabs .kitify-tabs__control-wrapper.open .kitify-tabs__control-wrapper-mobile a {
+	display: none
+}
+.dttabcontrolisselect-yes .kitify-tabs .kitify-tabs__control-wrapper-mobile a {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	bottom: 0;
+	z-index: 2;
+	top: 0
+}
+.dttabcontrolisselect-yes .kitify-tabs__control {
+	display: block;
+	width: 100%
+}
 @media (max-width: 992px) and (min-width: 768px) {
 	.mttabcontrolisselect-yes .kitify-tabs .kitify-tabs__control-wrapper .kitify-tabs__label-text {
 		text-decoration: none !important
