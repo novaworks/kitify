@@ -515,7 +515,10 @@ if ( ! class_exists( 'Kitify_Integration' ) ) {
                 'cache_ttl'      => apply_filters('kitify/cache-management/time-to-life', !$template_cache ? 30 : (60 * 5)),
                 'local_ttl'      => apply_filters('kitify/cache-management/local-time-to-life', !$template_cache ? 30 : (60 * 60 * 24)),
                 'themeName'      => get_template(),
-                'i18n'           => [ ]
+                'i18n'           => [ ],
+								'ajaxNonce'      => kitify()->ajax_manager->create_nonce(),
+								'useFrontAjax'   => 'true',
+								'isElementorAdmin' => kitify()->elementor()->editor->is_edit_mode() || kitify()->elementor()->preview->is_preview_mode(),
             ]);
             if( apply_filters( 'kitify/allow_override_elementor_device', true ) ){
                 wp_add_inline_style('elementor-frontend', $this->set_device_name_for_custom_bkp_by_css());

@@ -32,4 +32,14 @@
 }
 .kitify-search__popup-trigger-container {
 	line-height: 0;
+	> a {
+		display: flex;
+		align-items: center;
+		.kitify-search__trigger-label {
+			display: none;
+			@include breakpoint(large) {
+				display: flex;
+			}
+		}
+	}
 }

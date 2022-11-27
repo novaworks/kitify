@@ -54,3 +54,25 @@
 .kitify-search__popup-trigger-container {
   line-height: 0;
 }
+
+.kitify-search__popup-trigger-container > a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.kitify-search__popup-trigger-container > a .kitify-search__trigger-label {
+  display: none;
+}
+
+@media print, screen and (min-width: 64em) {
+  .kitify-search__popup-trigger-container > a .kitify-search__trigger-label {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+/*# sourceMappingURL=search.css.map */

@@ -9,6 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Set constants.
  */
+define( 'KITIFY_TYPEKIT_FONTS', true );
 define( 'KITIFY_TYPEKIT_FONTS_FILE', __FILE__ );
 define( 'KITIFY_TYPEKIT_FONTS_BASE', plugin_basename( KITIFY_TYPEKIT_FONTS_FILE ) );
 define( 'KITIFY_TYPEKIT_FONTS_DIR', plugin_dir_path( KITIFY_TYPEKIT_FONTS_FILE ) );

@@ -62,28 +62,6 @@ if ( ! class_exists( 'Custom_Typekit_Fonts' ) ) {
 
 						if ( empty( $option['custom-typekit-font-details'] ) ) {
 							$_POST['custom-typekit-empty-notice'] = true;
-
-							// Get all stored typekit fonts.
-							// Search it in 'get_option( ASTRA_THEME_SETTINGS )'.
-							// If found set 'inherit'.
-							// Update 'ASTRA_THEME_SETTINGS'.
-							if ( defined( 'ASTRA_THEME_SETTINGS' ) ) {
-								// get astra options.
-								$options        = get_option( ASTRA_THEME_SETTINGS );
-								$custom_typekit = get_option( 'kitify-typekit-fonts' );
-								foreach ( $options as $key => $value ) {
-									if ( ! is_array( $value ) ) {
-										$font_arr  = explode( ',', $value );
-										$font_name = $font_arr[0];
-										if ( isset( $custom_typekit['custom-typekit-font-details'][ $font_name ] ) ) {
-											// set default inherit if custom font is deleted.
-											$options[ $key ] = 'inherit';
-										}
-									}
-								}
-								// update astra options.
-								update_option( ASTRA_THEME_SETTINGS, $options );
-							}
 						}
 
 						update_option( 'kitify-typekit-fonts', $option );

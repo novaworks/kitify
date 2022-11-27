@@ -37,8 +37,29 @@
     document.addEventListener('DOMContentLoaded', function () {
         document.body.classList.add('kitify--js-ready');
         checkHeaderHeight();
+        if(!Kitify.isPageSpeed()){
+        Kitify.localCache.validCache(false);
+        Kitify.ajaxTemplateHelper.init();
+        $('.col-row').each(function (){
+            if($(this).closest('[data-kitify_ajax_loadtemplate]').length == 0){
+                $(this).trigger('kitify/LazyloadSequenceEffects');
+            }
+        })
+      }
+    });
+    $(window).on('load', function (){
+        $('.template-loaded[data-kitify_ajax_loadtemplate="true"] .col-row').trigger('kitify/LazyloadSequenceEffects');
     });
 
+    $(document).on('kitify/LazyloadSequenceEffects', '.col-row, .swiper-container', function (e){
+        var $this = $(this);
+        if( $this.hasClass('swiper-container') ){
+            Kitify.LazyLoad( $this, {rootMargin: '0px'} ).observe();
+        }
+        else{
+            Kitify.LazyLoad( $('>*', $this), {rootMargin: '0px'} ).observe();
+        }
+    });
     $(window).on('load resize', checkHeaderHeight);
 
     $(document).on('kitify/woocommerce/single/init_product_slider', function (e, slider) {
@@ -79,7 +100,7 @@
                 return !!Kitify.localCache.data[url] && ((Date.now() - Kitify.localCache.data[url]._) / 1000 < Kitify.localCache.timeout2);
             },
             get: function (url) {
-                Kitify.log('Get cache for ' + url);
+                //Kitify.log('Get cache for ' + url);
                 return Kitify.localCache.data[url].data;
             },
             set: function (url, cachedData, callback) {
@@ -1053,7 +1074,92 @@
                 }
             })
         },
+        LazyLoad: function (){
+            var selector = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+            var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+            var _defaultConfig$option = $.extend({}, {
+                    rootMargin: '50px',
+                    threshold: 0,
+                    load: function load(element) {
+                        var base_src = element.getAttribute('data-src') || element.getAttribute('data-lazy') || element.getAttribute('data-lazy-src') || element.getAttribute('data-lazy-original'),
+                            base_srcset = element.getAttribute('data-src') || element.getAttribute('data-lazy-srcset'),
+                            base_sizes = element.getAttribute('data-sizes') || element.getAttribute('data-lazy-sizes');
+                        if (base_src) {
+                            element.src = base_src;
+                        }
+                        if (base_srcset) {
+                            element.srcset = base_srcset;
+                        }
+                        if (base_sizes) {
+                            element.sizes = base_sizes;
+                        }
+                        if (element.getAttribute('data-background-image')) {
+                            element.style.backgroundImage = 'url("' + element.getAttribute('data-background-image') + '")';
+                        }
+                        element.setAttribute('data-element-loaded', true);
+                        if (element.classList.contains('jetpack-lazy-image')) {
+                            element.classList.add('jetpack-lazy-image--handled');
+                        }
+                    },
+                    complete: function (elm) {}
+                }, options),
+                rootMargin = _defaultConfig$option.rootMargin,
+                threshold = _defaultConfig$option.threshold,
+                load = _defaultConfig$option.load,
+                complete = _defaultConfig$option.complete; // // If initialized, then disconnect the observer
 
+            var _target_cache = false,
+                _counter = 0;
+
+            function onIntersection(load) {
+                return function (entries, observer) {
+                    entries.forEach(function (entry) {
+                        if(entry.isIntersecting){
+                            if(_counter > 7){
+                                _counter = 0;
+                            }
+                            if(_target_cache !== entry.target.offsetTop){
+                                _counter = 0;
+                                _target_cache = entry.target.offsetTop;
+                            }
+                            else{
+                                _counter++;
+                            }
+                            observer.unobserve(entry.target);
+                            entry.target.style.setProperty('--effect-delay', _counter);
+                            load(entry.target);
+                        }
+                    });
+                };
+            }
+
+            var observer = void 0;
+
+            if ("IntersectionObserver" in window) {
+                observer = new IntersectionObserver(onIntersection(load), {
+                    rootMargin: rootMargin,
+                    threshold: threshold
+                });
+            }
+            return {
+                observe: function observe() {
+                    if(!selector){
+                        return;
+                    }
+                    for (var i = 0; i < selector.length; i++) {
+                        if(selector[i].getAttribute('data-element-loaded') === 'true'){
+                            continue;
+                        }
+                        if (observer) {
+                            observer.observe(selector[i]);
+                            continue;
+                        }
+                        load(selector[i]);
+                    }
+                    complete(selector);
+                }
+            };
+        },
         elementorFrontendInit: function ($container, reinit_global_trigger) {
             if( typeof window.elementorFrontend.hooks === "undefined"){
                 return;
@@ -1192,81 +1298,6 @@
 
                 event.stopPropagation();
             });
-        },
-        /**
-         * [ajaxLoadTemplate description]
-         * @param  {[Object]} $panelContent [jQuery Object]
-         * @param  {[Object]} $target [jQuery Object]
-         * @return {[type]}        [description]
-         */
-        ajaxLoadTemplate: function ($panelContent, $target) {
-            var $contentHolder = $panelContent,
-                templateLoaded = $contentHolder.data('template-loaded') || false,
-                templateId = $contentHolder.data('template-id'),
-                loader = $('.kitify-tpl-panel-loader', $contentHolder);
-
-            if (templateLoaded) {
-                return false;
-            }
-
-            $(document).trigger('kitify/ajax-load-template/before', {
-                target: $target,
-                contentHolder: $contentHolder
-            });
-
-            $contentHolder.data('template-loaded', true);
-
-            $.ajax({
-                type: 'GET',
-                url: window.KitifySettings.templateApiUrl,
-                dataType: 'json',
-                data: {
-                    'id': templateId,
-                    'current_url': window.location.href,
-                    'current_url_no_search': window.location.href.replace(window.location.search, ''),
-                    'dev': window.KitifySettings.devMode
-                },
-                success: function (response, textStatus, jqXHR) {
-                    var templateContent = response['template_content'],
-                        templateScripts = response['template_scripts'],
-                        templateStyles = response['template_styles'];
-
-                    for (var scriptHandler in templateScripts) {
-                        if($( '#' + scriptHandler + '-js').length == 0){
-                            Kitify.addedAssetsPromises.push(Kitify.loadScriptAsync(scriptHandler, templateScripts[scriptHandler], '', true));
-                        }
-                    }
-
-                    for (var styleHandler in templateStyles) {
-                        if($('#' + styleHandler + '-css').length == 0) {
-                            Kitify.addedAssetsPromises.push(Kitify.loadStyle(styleHandler, templateStyles[styleHandler]));
-                        }
-                    }
-
-                    Promise.all(Kitify.addedAssetsPromises).then(function (value) {
-                        loader.remove();
-                        $contentHolder.append(templateContent);
-                        Kitify.elementorFrontendInit($contentHolder);
-
-                        $(document).trigger('kitify/ajax-load-template/after', {
-                            target: $target,
-                            contentHolder: $contentHolder,
-                            response: response
-                        });
-                    }, function (reason) {
-                        console.log(`An error occurred while insert the asset resources, however we still need to insert content. Reason detail: "${reason}"`);
-                        loader.remove();
-                        $contentHolder.append(templateContent);
-                        Kitify.elementorFrontendInit($contentHolder);
-
-                        $(document).trigger('kitify/ajax-load-template/after', {
-                            target: $target,
-                            contentHolder: $contentHolder,
-                            response: response
-                        });
-                    });
-                }
-            });//end
         },
         wooCard: function ($scope) {
             if (window.KitifyEditor && window.KitifyEditor.activeSection) {
@@ -1626,31 +1657,56 @@
         },
 
         ajaxTemplateHelper: {
+
+            need_reinit_js : false,
+
+            template_processed : {},
+
+            template_processed_count : 0,
+
+            template_loaded : [],
+
+            total_template : 0,
+
             processInsertData: function ($el, templateContent, template_id){
+
+
+                Kitify.ajaxTemplateHelper.template_processed_count++;
+
                 if (templateContent) {
                     $el.html(templateContent);
-                    Kitify.elementorFrontendInit($el);
-
                     if($el.find('div[data-kitify_ajax_loadtemplate]:not(.template-loaded,.is-loading)').length){
                         Kitify.log('found template in ajax content');
                         Kitify.ajaxTemplateHelper.init();
                     }
                 }
-                $('.elementor-motion-effects-element').trigger('resize');
-                $('body').trigger('jetpack-lazy-images-load');
+
+                if(Kitify.ajaxTemplateHelper.template_processed_count >= Kitify.ajaxTemplateHelper.total_template && Kitify.ajaxTemplateHelper.need_reinit_js){
+                    Kitify.ajaxTemplateHelper.need_reinit_js = false;
+                    Promise.all(Kitify.addedAssetsPromises).then(function (value) {
+                        // $(window).trigger('elementor/frontend/init');
+                        Kitify.elementorFrontendInit($('.need-reinit-js[data-kitify_ajax_loadtemplate="true"]'), false);
+                        $('.elementor-motion-effects-element').trigger('resize');
+                        $('body').trigger('jetpack-lazy-images-load');
+                        //Kitify.log('Kitify.addedAssetsPromises --- FINISHED');
+
+                    }, function (reason){
+
+                        Kitify.log(`An error occurred while insert the asset resources, however we still need to insert content. Reason detail: "${reason}"`);
+                        // $(window).trigger('elementor/frontend/init');
+                        Kitify.elementorFrontendInit($('.need-reinit-js[data-kitify_ajax_loadtemplate="true"]'), false);
+                        $('.elementor-motion-effects-element').trigger('resize');
+                        $('body').trigger('jetpack-lazy-images-load');
+                        Kitify.log('Kitify.addedAssetsPromises --- ERROR');
+                    });
+                }
+
                 $(document).trigger('kitify/ajax-load-template/after', {
                     target_id: template_id,
                     contentHolder: $el,
+                    parentContainer: $el,
                     response: templateContent
                 });
-            },
-            elementorContentRender: function ( $el, templateContent, template_id ){
-                Promise.all(Kitify.addedAssetsPromises).then(function (value) {
-                    Kitify.ajaxTemplateHelper.processInsertData($el, templateContent, template_id);
-                }, function (reason){
-                    Kitify.log(`An error occurred while insert the asset resources, however we still need to insert content. Reason detail: "${reason}"`);
-                    Kitify.ajaxTemplateHelper.processInsertData($el, templateContent, template_id);
-                })
             },
             templateRenderCallback: function ( response, template_id ){
                 var templateContent = response['template_content'],
@@ -1669,11 +1725,11 @@
                         Kitify.addedAssetsPromises.push(Kitify.loadStyle(styleHandler, templateStyles[styleHandler]));
                     }
                 }
-
                 document.querySelectorAll('body:not(.elementor-editor-active) div[data-kitify_ajax_loadtemplate][data-cache-id="' + template_id + '"]:not(.template-loaded)').forEach(function (elm) {
                     elm.classList.remove('is-loading');
                     elm.classList.add('template-loaded');
-                    Kitify.ajaxTemplateHelper.elementorContentRender($(elm), templateContent, template_id);
+                    elm.classList.add('need-reinit-js');
+                    Kitify.ajaxTemplateHelper.processInsertData($(elm), templateContent, template_id);
                 });
 
                 var wpbar = document.querySelectorAll('#wp-admin-bar-elementor_edit_page ul');
@@ -1682,24 +1738,100 @@
                     setTimeout(function () {
                         var _tid = 'wp-admin-bar-elementor_edit_doc_'+template_metadata['id'];
                         if($('#'+_tid).length == 0){
-                            $('<li id="'+_tid+'" class="elementor-general-section"><a class="ab-item" href="' + template_metadata['href'] + '"><span class="elementor-edit-link-title">' + template_metadata['title'] + '</span><span class="elementor-edit-link-type">' + template_metadata['sub_title'] + '</span></a></li>').prependTo($(wpbar));
+                            $('<li id="'+_tid+'" class="elementor-general-section"><a class="ab-item" title="'+template_metadata['title']+'" data-title="'+template_metadata['title']+'" href="' + template_metadata['href'] + '"><span class="elementor-edit-link-title">' + template_metadata['title'] + '</span><span class="elementor-edit-link-type">' + template_metadata['sub_title'] + '</span></a></li>').prependTo($(wpbar));
                         }
                     }, 2000);
                 }
             },
             init: function (){
+                if(KitifySettings.isElementorAdmin){
+                    /** do not run if current context is editor **/
+                    return;
+                }
+                Kitify.ajaxTemplateHelper.need_reinit_js = false;
+                Kitify.ajaxTemplateHelper.template_loaded = [];
+                Kitify.ajaxTemplateHelper.template_processed_count = 0;
+                Kitify.ajaxTemplateHelper.total_template = 0;
+                Kitify.ajaxTemplateHelper.template_processed = {};
+
                 var templates = document.querySelectorAll('body:not(.elementor-editor-active) div[data-kitify_ajax_loadtemplate]:not(.template-loaded)');
                 if (templates.length) {
                     var template_ids = [];
+                    var template_exist_ids = [];
                     templates.forEach(function (el) {
                         if (!el.classList.contains('is-loading') && !el.classList.contains('template-loaded')) {
                             el.classList.add('is-loading');
                             var _cache_key = el.getAttribute('data-template-id');
                             if (!template_ids.includes(_cache_key)) {
-                                template_ids.push(_cache_key);
+                                var exits_nodes = document.querySelectorAll('.elementor.elementor-'+_cache_key+'[data-elementor-type]:not([data-elementor-title])');
+                                if(exits_nodes.length == 0){
+                                    template_ids.push(_cache_key);
+                                }
+                                else{
+                                    template_exist_ids.push(_cache_key);
+                                }
                             }
                             el.setAttribute('data-cache-id', _cache_key);
                         }
+                    });
+
+                    var arr_ids = [], _idx1 = 0, _idx2 = 0, _bk = 6;
+
+                    var ajaxCalling = function (template_ids){
+
+                        var _ajax_data_sending = {
+                            'action': 'kitify_ajax',
+                            '_nonce': window.KitifySettings.ajaxNonce,
+                            'actions': JSON.stringify({
+                                'elementor_template' : {
+                                    'action': 'elementor_template',
+                                    'data': {
+                                        'template_ids': template_ids,
+                                        'current_url': window.location.href,
+                                        'current_url_no_search': window.location.href.replace(window.location.search, ''),
+                                        'dev': window.KitifySettings.devMode
+                                    }
+                                }
+                            })
+                        };
+                        if(KitifySettings.useFrontAjax == 'true'){
+                            _ajax_data_sending['kitify-ajax'] = 'yes';
+                            delete _ajax_data_sending['action'];
+                        }
+                        $.ajax({
+                            type: KitifySettings.useFrontAjax == 'true' ? 'GET' : 'POST',
+                            url:  KitifySettings.useFrontAjax == 'true' ? window.location.href : window.KitifySettings.ajaxUrl,
+                            dataType: 'json',
+                            data: _ajax_data_sending,
+                            success: function (resp, textStatus, jqXHR) {
+                                var responses = resp.data.responses.elementor_template.data;
+                                $.each( responses, function( templateId, response ) {
+                                    var cached_key = 'kitifyTpl_' + templateId;
+                                    var browserCacheKey = Kitify.localCache.cache_key + '_' + Kitify.localCache.hashCode(templateId);
+                                    Kitify.localCache.set(cached_key, response);
+                                    Kitify.ajaxTemplateHelper.templateRenderCallback(response, templateId);
+                                    try{
+                                        //Kitify.log('setup browser cache for ' + browserCacheKey);
+                                        localStorage.setItem(browserCacheKey, JSON.stringify(response));
+                                        localStorage.setItem(browserCacheKey + ':ts', Date.now());
+                                    }
+                                    catch (ajax_ex1){
+                                        Kitify.log('Cannot setup browser cache', ajax_ex1);
+                                    }
+                                });
+                            }
+                        });
+                    }
+
+                    template_exist_ids.forEach(function (templateId){
+                        var exist_tpl = document.querySelector('.elementor.elementor-'+templateId+'[data-elementor-type]');
+                        Kitify.ajaxTemplateHelper.need_reinit_js = true;
+                        Kitify.ajaxTemplateHelper.templateRenderCallback({
+                            'template_content' : exist_tpl.outerHTML,
+                            'template_scripts' : [],
+                            'template_styles' : [],
+                            'template_metadata' : {},
+                        }, templateId);
                     });
 
                     template_ids.forEach(function (templateId){
@@ -1708,6 +1840,7 @@
 
                         if(Kitify.localCache.exist(cached_key2)){
                             if(Kitify.localCache.exist(cached_key)){
+                                Kitify.ajaxTemplateHelper.need_reinit_js = true;
                                 Kitify.ajaxTemplateHelper.templateRenderCallback(Kitify.localCache.get(cached_key), templateId);
                             }
                             return;
@@ -1715,6 +1848,7 @@
                         Kitify.localCache.set(cached_key2, 'yes');
 
                         if(Kitify.localCache.exist(cached_key)){
+                            Kitify.ajaxTemplateHelper.need_reinit_js = true;
                             Kitify.ajaxTemplateHelper.templateRenderCallback(Kitify.localCache.get(cached_key), templateId);
                         }
                         else{
@@ -1725,34 +1859,6 @@
 
                             var browserCacheKey = Kitify.localCache.cache_key + '_' + Kitify.localCache.hashCode(templateId);
                             var expiry = Kitify.localCache.timeout;
-                            var ajaxData = {
-                                'id': templateId,
-                                'current_url': window.location.href,
-                                'current_url_no_search': window.location.href.replace(window.location.search, ''),
-                                'dev': window.KitifySettings.devMode
-                            }
-
-                            var ajaxCalling = function (){
-                                $.ajax({
-                                    type: 'GET',
-                                    url: window.KitifySettings.templateApiUrl,
-                                    dataType: 'json',
-                                    data: ajaxData,
-                                    success: function (response, textStatus, jqXHR) {
-                                        Kitify.localCache.set(cached_key, response);
-                                        Kitify.ajaxTemplateHelper.templateRenderCallback(response, templateId);
-                                        try{
-                                            Kitify.log('setup browser cache for ' + browserCacheKey);
-                                            localStorage.setItem(browserCacheKey, JSON.stringify(response));
-                                            localStorage.setItem(browserCacheKey + ':ts', Date.now());
-                                        }
-                                        catch (ajax_ex1){
-                                            Kitify.log('Cannot setup browser cache');
-                                        }
-                                    }
-                                });
-                            }
-
                             try{
                                 var browserCached = localStorage.getItem(browserCacheKey);
                                 var browserWhenCached = localStorage.getItem(browserCacheKey + ':ts');
@@ -1760,30 +1866,58 @@
                                 if (browserCached !== null && browserWhenCached !== null) {
                                     var age = (Date.now() - browserWhenCached) / 1000;
                                     if (age < expiry) {
-                                        Kitify.log('render from cache for ' + browserCacheKey);
+                                        //Kitify.log(`render from cache for ID: ${templateId} | Cache Key: ${browserCacheKey}`);
+                                        Kitify.ajaxTemplateHelper.need_reinit_js = true;
                                         Kitify.ajaxTemplateHelper.templateRenderCallback(JSON.parse(browserCached), templateId);
                                         return;
                                     }
                                     else {
-                                        Kitify.log('clear browser cache key for ' + browserCacheKey);
+                                        //Kitify.log(`clear browser cache key for ID: ${templateId} | Cache Key: ${browserCacheKey}`);
                                         // We need to clean up this old key
                                         localStorage.removeItem(browserCacheKey);
                                         localStorage.removeItem(browserCacheKey + ':ts');
                                     }
                                 }
-                                Kitify.log('run ajaxCalling() for ' + templateId);
-                                ajaxCalling();
+                                //Kitify.log('run ajaxCalling() for ' + templateId);
+                                _idx1++;
+                                if(_idx1 > _bk){
+                                    _idx1 = 0;
+                                    _idx2++;
+                                }
+                                if( "undefined" == typeof arr_ids[_idx2] ) {
+                                    arr_ids[_idx2] = [];
+                                }
+                                arr_ids[_idx2].push(templateId);
+                                Kitify.ajaxTemplateHelper.template_loaded.push(templateId);
                             }
                             catch (ajax_ex) {
                                 Kitify.log('Cannot setup browser cache ajaxCalling() for ' + templateId);
-                                ajaxCalling();
+                                _idx1++;
+                                if(_idx1 == _bk){
+                                    _idx1 = 0;
+                                    _idx2++;
+                                }
+                                if( "undefined" == typeof arr_ids[_idx2] ) {
+                                    arr_ids[_idx2] = [];
+                                }
+                                arr_ids[_idx2].push(templateId);
+                                Kitify.ajaxTemplateHelper.template_loaded.push(templateId);
                             }
                         }
 
                     });
+
+                    Kitify.ajaxTemplateHelper.total_template = templates.length;
+
+                    if(arr_ids.length){
+                        Kitify.ajaxTemplateHelper.need_reinit_js = true;
+                        arr_ids.forEach(function (arr_id){
+                            ajaxCalling(arr_id);
+                        });
+                    }
                 }
             }
-        }
+        },
     }
 
     $(window).on('elementor/frontend/init', function () {
@@ -1883,6 +2017,12 @@
 
     			Kitify.initCarousel( $scope );
         });
+        $(document).on('kitify/activetabs', function (e, $tabContent){
+            $('.col-row', $tabContent).each(function (){
+                $(this).addClass('hello')
+                $(this).trigger('kitify/LazyloadSequenceEffects');
+            })
+        });
         elementor.hooks.addAction('frontend/element_ready/section', function ($scope) {
             if( $scope.hasClass('elementor-top-section') ) {
                 $scope.trigger('kitify/section/calculate-container-width');
@@ -1918,7 +2058,6 @@
         var id = Kitify.removeURLParameter(originalOptions.url, '_') + ("undefined" !== typeof originalOptions.ajax_request_id ? JSON.stringify(originalOptions.ajax_request_id) : "undefined" !== typeof originalOptions.data ? JSON.stringify(originalOptions.data) : '');
         options.cache = false;
         id = Kitify.localCache.hashCode(id.replace(/null$/g, ''));
-
         if (Kitify.localCache.exist(id)) {
             return {
                 send: function (headers, completeCallback) {
@@ -1930,13 +2069,6 @@
                     /* abort code, nothing needed here I guess... */
                 }
             };
-        }
-    });
-
-    document.addEventListener('DOMContentLoaded', function () {
-        if(!Kitify.isPageSpeed()){
-            Kitify.localCache.validCache(false);
-            Kitify.ajaxTemplateHelper.init();
         }
     });
 

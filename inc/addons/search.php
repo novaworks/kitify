@@ -732,7 +732,7 @@ class Kitify_Search extends Kitify_Base {
         $this->_add_control(
             'popup_trigger_color',
             array(
-                'label'  => esc_html__( 'Text Color', 'kitify' ),
+                'label'  => esc_html__( 'Icon Color', 'kitify' ),
                 'type'   => Controls_Manager::COLOR,
                 'selectors' => array(
                     '{{WRAPPER}} ' . $css_scheme['popup_trigger'].' i' => 'color: {{VALUE}}',
@@ -740,7 +740,25 @@ class Kitify_Search extends Kitify_Base {
             ),
             25
         );
-
+        $this->_add_control(
+            'popup_trigger_label_color',
+            array(
+                'label'  => esc_html__( 'Label Color', 'kitify' ),
+                'type'   => Controls_Manager::COLOR,
+                'selectors' => array(
+                    '{{WRAPPER}} ' . $css_scheme['popup_trigger_container'].' .kitify-search__trigger-label' => 'color: {{VALUE}}',
+                ),
+            ),
+            25
+        );
+        $this->_add_group_control(
+            Group_Control_Typography::get_type(),
+            array(
+                'name'      => 'popup_trigger_label_typography',
+                'selector'  => '{{WRAPPER}} ' . $css_scheme['popup_trigger_container']. ' .kitify-search__trigger-label',
+            ),
+            50
+        );
         $this->_end_controls_tab();
 
         $this->_start_controls_tab(
@@ -765,10 +783,23 @@ class Kitify_Search extends Kitify_Base {
         $this->_add_control(
             'popup_trigger_color_hover',
             array(
-                'label'  => esc_html__( 'Text Color', 'kitify' ),
+                'label'  => esc_html__( 'Icon Color', 'kitify' ),
                 'type'   => Controls_Manager::COLOR,
                 'selectors' => array(
                     '{{WRAPPER}} ' . $css_scheme['popup_trigger'] . ' i:hover' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} ' . $css_scheme['popup_trigger_container'] . ' #js_header_search_modal:hover i' => 'color: {{VALUE}}',
+                ),
+            ),
+            25
+        );
+        $this->_add_control(
+            'popup_trigger_label_color_hover',
+            array(
+                'label'  => esc_html__( 'Label Color', 'kitify' ),
+                'type'   => Controls_Manager::COLOR,
+                'selectors' => array(
+                    '{{WRAPPER}} ' . $css_scheme['popup_trigger_container'] . ' .kitify-search__trigger-label:hover' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} ' . $css_scheme['popup_trigger_container'] . ' > a:hover .kitify-search__trigger-label' => 'color: {{VALUE}}',
                 ),
             ),
             25
@@ -793,6 +824,25 @@ class Kitify_Search extends Kitify_Base {
 
         $this->_end_controls_tabs();
 
+        $this->_add_responsive_control(
+            'popup_trigger_label_space',
+            array(
+                'label'      => esc_html__( 'Label space', 'kitify' ),
+                'type'       => Controls_Manager::SLIDER,
+                'size_units' => array( 'px' ),
+                'range'      => array(
+                    'px' => array(
+                        'min' => 1,
+                        'max' => 20,
+                    ),
+                ),
+                'selectors'  => array(
+                    '{{WRAPPER}} ' . $css_scheme['popup_trigger_container'] . ' .kitify-search__trigger-label' => 'padding-left: {{SIZE}}{{UNIT}};',
+                ),
+                'separator' => 'before',
+            ),
+            50
+        );
         $this->_add_responsive_control(
             'popup_trigger_alignment',
             array(

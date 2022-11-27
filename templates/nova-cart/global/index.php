@@ -32,7 +32,7 @@ if ( ( $is_edit_mode && ! wp_doing_ajax() ) || null === WC()->cart ) {
       <div class="cart-text">
         <div class="count-badge js_count_bag_item"><?php echo esc_html($count); ?></div>
         <?php if ( $show_label ): ?>
-          <div class="count-text"><?php echo esc_html__('Item(s) Added', 'elime'); ?></div>
+          <div class="count-text"><?php echo esc_html__('Cart', 'kitify'); ?></div>
         <?php endif;?>
       </div>
     </div>

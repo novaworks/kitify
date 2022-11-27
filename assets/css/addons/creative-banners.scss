@@ -1,0 +1,25 @@
+.kitify-creative-banners {
+  position: relative;
+  &__images {
+    position: absolute;
+    display: block;
+    margin-left: auto;
+    width: 60%;
+    height: 100%;
+    overflow: hidden;
+    right: 0;
+    top: 0;
+  }
+  &.custom-style-default {
+    .kitify-creative-banners__images {
+      bottom: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .kitify-creative-banners__images {
+      max-width: 30vw;
+      height: 50vh;
+    }
+  }
+
+}

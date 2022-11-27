@@ -97,7 +97,7 @@ class Kitify_Nav_Menu extends Kitify_Base {
             array(
                 'label'   => esc_html__( 'Dropdown Icon', 'kitify' ),
                 'type'    => Controls_Manager::SELECT,
-                'default' => 'novaicon-down-arrow',
+                'default' => '',
                 'options' => $this->dropdown_arrow_icons_list(),
             )
         );

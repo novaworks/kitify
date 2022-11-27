@@ -72,7 +72,15 @@ class Kitify_Nova_Menu extends Kitify_Base {
             'options' => $menus,
         )
     );
-
+    $this->_add_control(
+        'dropdown_icon',
+        array(
+            'label'   => esc_html__( 'Dropdown Icon', 'kitify' ),
+            'type'    => Controls_Manager::SELECT,
+            'default' => 'novaicon-down-arrow',
+            'options' => $this->dropdown_arrow_icons_list(),
+        )
+    );
     $this->_add_responsive_control(
         'nova_menu_alignment',
         array(
@@ -268,6 +276,89 @@ class Kitify_Nova_Menu extends Kitify_Base {
         array(
             'name'     => 'nova_nav_items_typography',
             'selector' => '{{WRAPPER}} '. $css_scheme['nova_menu_item'].' > a',
+        ),
+        50
+    );
+    $this->end_controls_section();
+
+    $this->_start_controls_section(
+        'dropdown_icon_section',
+        array(
+            'label'      => esc_html__( 'Dropdown Icon', 'kitify' ),
+            'tab'        => Controls_Manager::TAB_STYLE,
+            'show_label' => false,
+            'condition' => array(
+                'dropdown_icon!' => '',
+            ),
+        )
+    );
+    $this->_add_control(
+        'nav_items_text_icon_color',
+        array(
+            'label'  => esc_html__( 'Dropdown Icon Color', 'kitify' ),
+            'type'   => Controls_Manager::COLOR,
+            'selectors' => array(
+                '{{WRAPPER}} .main-navigation > ul > li > a > i.kitify-nav-arrow' => 'color: {{VALUE}}',
+            ),
+        ),
+        25
+    );
+    $this->_add_control(
+        'nav_items_text_icon_color_hover',
+        array(
+            'label'  => esc_html__( 'Dropdown Hover Icon Color', 'kitify' ),
+            'type'   => Controls_Manager::COLOR,
+            'selectors' => array(
+                '{{WRAPPER}} .main-navigation > ul > li:hover > a > i.kitify-nav-arrow' => 'color: {{VALUE}}',
+            ),
+        ),
+        25
+    );
+    $this->_add_control(
+        'nav_items_text_icon_color_active',
+        array(
+            'label'  => esc_html__( 'Dropdown Active Icon Color', 'kitify' ),
+            'type'   => Controls_Manager::COLOR,
+            'selectors' => array(
+                '{{WRAPPER}} .main-navigation > ul > li.current-menu-item > a > i.kitify-nav-arrow' => 'color: {{VALUE}}',
+            ),
+        ),
+        25
+    );
+
+    $this->_add_responsive_control(
+        'nav_items_icon_size',
+        array(
+            'label'      => esc_html__( 'Dropdown Icon Size', 'kitify' ),
+            'type'       => Controls_Manager::SLIDER,
+            'size_units' => array( 'px' ),
+            'range'      => array(
+                'px' => array(
+                    'min' => 10,
+                    'max' => 100,
+                ),
+            ),
+            'selectors' => array(
+                '{{WRAPPER}} .main-navigation a i.kitify-nav-arrow' => 'font-size: {{SIZE}}{{UNIT}};',
+            ),
+        ),
+        50
+    );
+    $this->_add_responsive_control(
+        'nav_items_icon_gap',
+        array(
+            'label'      => esc_html__( 'Gap Before Dropdown Icon', 'kitify' ),
+            'type'       => Controls_Manager::SLIDER,
+            'size_units' => array( 'px' ),
+            'range'      => array(
+                'px' => array(
+                    'min' => 0,
+                    'max' => 20,
+                ),
+            ),
+            'selectors'  => array(
+                '{{WRAPPER}} .main-navigation a i.kitify-nav-arrow' => 'margin-left: {{SIZE}}{{UNIT}};',
+            ),
         ),
         50
     );
@@ -639,7 +730,24 @@ class Kitify_Nova_Menu extends Kitify_Base {
 
       return $menus;
   }
+  /**
+   * Returns available icons for dropdown list
+   *
+   * @return array
+   */
+  public function dropdown_arrow_icons_list() {
 
+      return apply_filters( 'kitify/nova-menu/dropdown-icons', array(
+          'novaicon-down-arrow'          => esc_html__( 'Angle', 'kitify' ),
+          'novaicon-small-triangle-down' => esc_html__( 'Triangle', 'kitify' ),
+          'novaicon-arrow-down'          => esc_html__( 'Arrow', 'kitify' ),
+          'novaicon-i-add'               => esc_html__( 'Plus', 'kitify' ),
+          'novaicon-i-add-2'             => esc_html__( 'Plus 2', 'kitify' ),
+          'novaicon-e-add'               => esc_html__( 'Plus 3', 'kitify' ),
+          ''                             => esc_html__( 'None', 'kitify' ),
+      ) );
+
+  }
   protected function render() {
 
     $settings = $this->get_settings();
@@ -676,6 +784,9 @@ class Kitify_Nova_Menu extends Kitify_Base {
         'link_after'        => '',
         'fallback_cb'     	=> 'Nova_Mega_Menu_Walker',
         'walker'            => new \Nova_Mega_Menu_Walker(),
+        'widget_settings' => array(
+            'dropdown_icon'   => $settings['dropdown_icon'],
+        ),
       ));
       echo '</nav>';
     }else{
@@ -685,7 +796,7 @@ class Kitify_Nova_Menu extends Kitify_Base {
         'container'         => false,
         'menu_class'        => 'menu nav-menu',
         'link_before'       => '',
-        'link_after'        => ''
+        'link_after'        => '',
       ));
       echo '</nav>';
     }

@@ -36,18 +36,21 @@
             align-items: center;
   }
   .kitify-nova-cart.kitify-nova-cart-label-on .header-cart-box .cart-text {
-    margin-left: 12px;
+    margin-left: 8px;
   }
   .kitify-nova-cart.kitify-nova-cart-label-on .header-cart-box .cart-text .count-badge {
     background-color: transparent !important;
+  }
+  .kitify-nova-cart.kitify-nova-cart-label-on .header-cart-box .cart-text .count-badge {
+    display: none;
   }
   .kitify-nova-cart.kitify-nova-cart-label-on .header-cart-box .cart-text .count-text {
     display: block;
     font-size: 14px;
     color: #999999;
-    text-transform: uppercase;
   }
   .kitify-nova-cart.kitify-nova-cart-label-on .header-cart-box .count-badge {
     position: static;
   }
 }
+/*# sourceMappingURL=nova-cart.css.map */
