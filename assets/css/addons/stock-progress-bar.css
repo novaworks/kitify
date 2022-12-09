@@ -1,0 +1,61 @@
+.kitify-progress-bar {
+  --kitify-progress-height: 4px;
+  --kitify-brd-radius: 0;
+  --kitity-bar-color: var(--site-border-color);
+  --kitity-bar-active-color: var(--site-heading-color);
+}
+
+.kitify-progress-bar.kitify-stock-progress-bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.kitify-progress-bar p:last-child {
+  margin-bottom: 0;
+}
+
+.kitify-progress-bar .stock-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.kitify-progress-bar .stock-info span {
+  -webkit-margin-start: 3px;
+          margin-inline-start: 3px;
+  color: var(--site-heading-color);
+}
+
+.kitify-progress-bar :is(
+.progress-area,
+.progress-bar) {
+  height: var(--kitify-progress-height);
+  border-radius: var(--kitify-brd-radius);
+}
+
+.kitify-progress-bar .progress-area {
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
+  width: 100%;
+  background-color: var(--kitity-bar-color);
+}
+
+.kitify-progress-bar .progress-bar {
+  background-color: var(--kitity-bar-active-color);
+}
+/*# sourceMappingURL=stock-progress-bar.css.map */

@@ -75,6 +75,7 @@ class Kitify_Woo_Menu_Account extends Kitify_Base {
         'kitify/woo-menu-acc/css-scheme',
         array(
             'acc_box'    => '.kitify-menu-account__box',
+            'acc_icon_box'    => '.kitify-menu-account__icon',
             'acc_icon'    => '.kitify-menu-account__icon  i, .kitify-menu-account__icon  svg',
             'acc_label'    => '.kitify-menu-account__label',
             'acc_sub_menu'    => '.kitify-menu-account__box .sub-menu',
@@ -117,6 +118,24 @@ class Kitify_Woo_Menu_Account extends Kitify_Base {
             ),
             'selectors'  => array(
                 '{{WRAPPER}} ' . $css_scheme['acc_icon'] => 'font-size: {{SIZE}}{{UNIT}};',
+            ),
+        ),
+        25
+    );
+    $this->_add_responsive_control(
+        'acc_icon_space',
+        array(
+            'label'      => esc_html__( 'Icon Space', 'kitify' ),
+            'type'       => Controls_Manager::SLIDER,
+            'size_units' => array( 'px' ),
+            'range'      => array(
+                'px' => array(
+                    'min' => 1,
+                    'max' => 100,
+                ),
+            ),
+            'selectors'  => array(
+                '{{WRAPPER}} ' . $css_scheme['acc_icon_box'] => 'margin-right: {{SIZE}}{{UNIT}};',
             ),
         ),
         25

@@ -3,24 +3,33 @@
     "use strict";
 
     $( window ).on( 'elementor/frontend/init', function (){
-        elementor.hooks.addAction( 'frontend/element_ready/kitify-tabs.default', function ( $scope ){
+
+        function kitify_tabs( $scope ){
+
             var $target = $('.kitify-tabs', $scope).first(),
-                $controlWrapper = $('.kitify-tabs__control-wrapper', $target).first(),
-                $contentWrapper = $('.kitify-tabs__content-wrapper', $target).first(),
-                $controlList = $('> .kitify-tabs__control', $controlWrapper),
-                $contentList = $('> .kitify-tabs__content', $contentWrapper),
+                $controlWrapper = $('>.kitify-tabs__control-wrapper', $target).first(),
+                $contentWrapper = $('>.kitify-tabs__content-wrapper', $target).first(),
+                $controlList = $('.kitify-tabs__control', $controlWrapper),
+                $contentList = $('>.kitify-tabs__content', $contentWrapper),
                 settings = $target.data('settings') || {},
-                toogleEvents = 'mouseenter mouseleave',
+                toggleEvents = 'mouseenter mouseleave',
                 scrollOffset,
                 autoSwitchInterval = null,
                 curentHash = window.location.hash || false,
-                tabsArray = curentHash ? curentHash.replace('#', '').split('&') : false;
+                tabsArray = curentHash ? curentHash.replace('#', '').split('&') : false,
+                _clickState = false;
+
+            var $ddControls = $('.kitify-tabs__controls', $controlWrapper),
+                $ddControlsTmp = $('.kitify-tabs__controls__tmp', $controlWrapper);
 
             if ('click' === settings['event']) {
                 addClickEvent();
             }
             else {
                 addMouseEvent();
+            }
+            if($ddControls.length){
+                switchTab(settings['activeIndex']);
             }
 
             if (settings['autoSwitch']) {
@@ -122,20 +131,26 @@
                 $controlList.removeClass('active-tab');
                 $activeControl.addClass('active-tab');
 
+                if($ddControlsTmp.length){
+                    $ddControlsTmp.find('.kitify-tabs__controls__text').html($activeControl.find('.kitify-tabs__label-text').text());
+                }
+
                 if ('click' === settings['event']) {
-                    $('html,body').animate({
-                        scrollTop: $target.offset().top - 200
-                    }, 300);
+                    if(_clickState){
+                        $('html,body').animate({
+                            scrollTop: $target.offset().top - 200
+                        }, 300);
+                    }
                 }
 
                 $controlWrapper.removeClass('open');
 
                 $contentList.removeClass('active-content');
+                $activeContent.addClass('active-content');
                 activeContentHeight = $activeContent.outerHeight(true);
                 activeContentHeight += parseInt($contentWrapper.css('border-top-width')) + parseInt($contentWrapper.css('border-bottom-width'));
-                $activeContent.addClass('active-content');
 
-                $(document).trigger('kitify/activetabs', [$activeContent]);
+                $(document).trigger('lastudio-kit/active-tabs', [$activeContent]);
 
                 $contentWrapper.css({'height': activeContentHeight});
 
@@ -154,21 +169,20 @@
                     catch (e) {  }
                 }
 
+                $('.kitify-masonry-wrapper', $activeContent).trigger('resize');
+
+                _clickState = true;
+
                 if (timer) {
                     clearTimeout(timer);
                 }
                 timer = setTimeout(function () {
                     $contentWrapper.css({'height': 'auto'});
-
-                }, 500);
+                }, 300);
             }
 
             // Hash Watch Handler
             if (tabsArray) {
-
-                console.log(tabsArray);
-
-                console.log($controlList);
 
                 $controlList.each(function (index) {
                     var $this = $(this),
@@ -184,20 +198,39 @@
                 });
             }
 
-            $target.on('click', '.kitify-tabs__control-wrapper-mobile a', function (e) {
+            $ddControlsTmp.on('click', function (e){
                 e.preventDefault();
+                if ($controlWrapper.hasClass('open')) {
+                    $controlWrapper.removeClass('open');
+                }
+                else {
+                    $controlWrapper.addClass('open');
+                }
+            });
 
-                if ('mobile' == elementor.getCurrentDeviceMode()) {
-                    if ($controlWrapper.hasClass('open')) {
+            $(document).on('click', function (e){
+                if( $(e.target).hasClass('kitify-tabs__controls__tmp') || $(e.target).closest('.kitify-tabs__controls__tmp').length ) {
+                    return;
+                }
+                else{
+                    if($ddControlsTmp.length){
                         $controlWrapper.removeClass('open');
                     }
-                    else {
-                        $controlWrapper.addClass('open');
-                    }
                 }
+            });
 
+            $('.kitify-tabs__control-wrapper-mobile a', $target).on('click.kitifyTabs', function (e) {
+                e.preventDefault();
+                if ($controlWrapper.hasClass('open')) {
+                    $controlWrapper.removeClass('open');
+                }
+                else {
+                    $controlWrapper.addClass('open');
+                }
             })
-        } );
+        }
+
+        window.elementorFrontend.hooks.addAction( 'frontend/element_ready/kitify-tabs.default', kitify_tabs );
     } );
 
 }( jQuery, window.elementorFrontend ) );

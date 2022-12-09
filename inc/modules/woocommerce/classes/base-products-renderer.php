@@ -185,6 +185,7 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 
         $image_size = 'woocommerce_thumbnail';
         $enable_alt_image = false;
+				$enable_stock_progress_bar = false;
         $enable_custom_image_size = !empty($this->settings['enable_custom_image_size']) && filter_var($this->settings['enable_custom_image_size'], FILTER_VALIDATE_BOOLEAN);
 
         if($enable_custom_image_size && !empty($this->settings['image_size'])){
@@ -193,9 +194,13 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
         if(!empty($this->settings['enable_alt_image']) && filter_var( $this->settings['enable_alt_image'], FILTER_VALIDATE_BOOLEAN )){
             $enable_alt_image = true;
         }
+        if(!empty($this->settings['enable_stock_progress_bar']) && filter_var( $this->settings['enable_stock_progress_bar'], FILTER_VALIDATE_BOOLEAN )){
+            $enable_stock_progress_bar = true;
+        }
 
 
         wc_set_loop_prop('kitify_enable_alt_image', $enable_alt_image );
+        wc_set_loop_prop('kitify_enable_stock_progress_bar', $enable_stock_progress_bar );
         wc_set_loop_prop('kitify_enable_product_cat', $enable_category );
         wc_set_loop_prop('kitify_image_size', $image_size );
 

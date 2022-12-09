@@ -1,0 +1,289 @@
+.elementor-widget-kitify-hotspots {
+  display: flex;
+  justify-content: var(--background-align);
+}
+
+.elementor-widget-kitify-hotspots .elementor-widget-container {
+  width: 100%;
+}
+
+.elementor-widget-kitify-hotspots .elementor-widget-container > img {
+  display: block;
+  width: 100%;
+  height: var(--container-height);
+  opacity: var(--opacity, 1);
+  object-fit: cover;
+}
+
+.kitify-hotspot {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+
+  &--active {
+    z-index: 2;
+  }
+  &__outer-circle,
+  &__inner-circle {
+    content: "";
+    display: inline-block;
+    box-sizing: content-box;
+    border-radius: 50%;
+  }
+  &__inner-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--hotspot-color);
+    padding: calc(var(--hotspot-size, 18px) / 2);
+}
+&__outer-circle {
+    background-color: var(--hotspot-color);
+    padding: var(--hotspot-padding, 4px);
+    width: var(--hotspot-size, 18px);
+    height: var(--hotspot-size, 18px);
+}
+}
+.kitify-hotspot--icon .kitify-hotspot__button {
+    line-height: 0;
+    box-sizing: content-box;
+    font-size: var(--hotspot-size, 18px);
+    width: var(--hotspot-size, 18px);
+    height: var(--hotspot-size, 18px);
+}
+.kitify-hotspot__icon, .kitify-hotspot__label {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.kitify-hotspot__icon svg, .kitify-hotspot__label svg {
+    width: var(--hotspot-size, 18px);
+    height: auto;
+}
+.kitify-hotspot__button {
+    cursor: pointer;
+    position: relative;
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: center;
+    color: var(--hotspot-color);
+    font-size: var(--hotspot-size, 18px);
+    min-width: var(--hotspot-button-width);
+    min-height: var(--hotspot-button-height);
+}
+.kitify-hotspot__button:before {
+    z-index: -2;
+    content: "";
+    width: 100%;
+    height: 100%;
+    left: -5px;
+    top: -5px;
+    position: absolute;
+    padding: 5px;
+    box-sizing: content-box;
+}
+.kitify-hotspot__button svg {
+    fill: var(--hotspot-color);
+}
+.kitify-hotspot:not(.kitify-hotspot--circle) .kitify-hotspot__button {
+    min-width: var(--hotspot-min-width);
+    min-height: var(--hotspot-min-height);
+    background-color: var(--hotspot-box-color);
+    padding: var(--hotspot-padding, 4px);
+    border-radius: var(--hotspot-border-radius, 3px);
+}
+.kitify-hotspot:not(.kitify-hotspot--circle) .kitify-hotspot__button:before {
+    border-radius: var(--hotspot-border-radius, 3px);
+}
+.kitify-hotspot:not(.kitify-hotspot--circle) .kitify-hotspot--expand::before {
+    background-color: var(--hotspot-box-color);
+}
+.kitify-hotspot--overlay {
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+.kitify-hotspot--overlay:hover,
+.kitify-hotspot--active .kitify-hotspot--overlay {
+    opacity: 1;
+}
+.kitify-hotspot--soft-beat {
+    animation: kitify-hotspot-soft-beat 0.7s infinite alternate;
+    animation-timing-function: ease;
+}
+.kitify-hotspot--expand .kitify-hotspot__outer-circle {
+    animation: kitify-hotspot-expand 2s infinite;
+}
+.kitify-hotspot:not(.kitify-hotspot--circle) .kitify-hotspot--expand::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    animation: kitify-hotspot-expand 2s infinite;
+}
+.kitify-hotspot--sequenced {
+    animation: fadeIn 0.3s;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+}
+.kitify-hotspot__direction-mask {
+    overflow: hidden;
+    position: absolute;
+    pointer-events: none;
+}
+.kitify-hotspot__tooltip {
+    white-space: var(--white-space, nowrap);
+    transition-property: transform, opacity;
+    transition-duration: var(--tooltip-transition-duration, 500ms);
+    transform-origin: center center;
+    position: absolute;
+    pointer-events: none;
+    color: var(--tooltip-text-color, #FFF);
+    text-align: var(--tooltip-align);
+    min-width: var(--tooltip-min-width);
+    padding: var(--tooltip-padding, 8px);
+    border-radius: var(--tooltip-border-radius);
+    background-color: var(--tooltip-color);
+    width: 280px
+}
+.kitify-hotspot__tooltip p:last-of-type {
+    margin-bottom: 0;
+}
+.kitify-hotspot__direction-mask .kitify-hotspot__tooltip {
+    box-shadow: none !important;
+    position: static;
+}
+.kitify-hotspot--active .kitify-hotspot__tooltip {
+    pointer-events: visible;
+}
+.kitify-hotspot--fade-in-out {
+    opacity: 0;
+}
+.kitify-hotspot--active .kitify-hotspot--fade-in-out {
+    opacity: 1;
+}
+.kitify-hotspot--fade-grow {
+    opacity: 0;
+    transform: scale(0);
+}
+.kitify-hotspot--active .kitify-hotspot--fade-grow {
+    opacity: 1;
+    transform: scale(1);
+}
+.kitify-hotspot--tooltip-animation-from-top, .kitify-hotspot--override-tooltip-animation-from-top {
+    transform: translate(0, calc(-100% - 1px));
+}
+.kitify-hotspot--tooltip-animation-from-left, .kitify-hotspot--override-tooltip-animation-from-left {
+    transform: translate(calc(-100% - 1px), 0);
+}
+.kitify-hotspot--tooltip-animation-from-right, .kitify-hotspot--override-tooltip-animation-from-right {
+    transform: translate(calc(100% + 1px), 0);
+}
+.kitify-hotspot--tooltip-animation-from-bottom, .kitify-hotspot--override-tooltip-animation-from-bottom {
+    transform: translate(0, calc(100% + 1px));
+}
+.kitify-hotspot--fade-direction {
+    opacity: 0;
+}
+.kitify-hotspot--active .kitify-hotspot--slide-direction,
+.kitify-hotspot--active .kitify-hotspot--fade-direction {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+}
+.kitify-hotspot--show-tooltip {
+    transition: none;
+    opacity: 1;
+    pointer-events: visible;
+    transform: translate(0, 0);
+}
+.kitify-hotspot__product {
+    display: flex;
+    width: 100%;
+    line-height: 1.2;
+    align-items: flex-start;
+}
+.kitify-hotspot__product img {
+    width: 90px;
+    max-width: 30%;
+    margin-right: 20px;
+    height: auto !important;
+}
+.kitify-hotspot__product .kitify-hotspot__product_info {
+    display: flex;
+    flex-flow: row wrap;
+    max-width: 70%;
+    white-space: normal;
+}
+.kitify-hotspot__product_info .product_item--title {
+    margin-bottom: .5em;
+}
+.kitify-hotspot__product_info .product_item--price {
+    margin-bottom: .5em;
+    width: 100%;
+}
+
+.kitify-hotspot:not(.kitify-hotspot--fake) .kitify-hotspot__tooltip {
+    opacity: 0 !important;
+    pointer-events: none;
+}
+.elementor-root-fake {
+    height: 0;
+    overflow: hidden;
+}
+.elementor-root-fake .kitify-hotspot {
+    position: static;
+}
+.elementor-root-fake .kitify-hotspot__tooltip {
+    position: fixed;
+    z-index: 2;
+}
+.elementor-widget-kitify-hotspots{
+    overflow: hidden;
+}
+/* Animations */
+@-webkit-keyframes kitify-hotspot-soft-beat {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.1);
+  }
+}
+@keyframes kitify-hotspot-soft-beat {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.1);
+  }
+}
+@-webkit-keyframes kitify-hotspot-expand {
+  from {
+    transform: scale(0.5);
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+@keyframes kitify-hotspot-expand {
+  from {
+    transform: scale(0.5);
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}

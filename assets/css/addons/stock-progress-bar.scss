@@ -1,0 +1,41 @@
+@import '_mixins';
+.kitify-progress-bar {
+  --kitify-progress-height: 4px;
+  --kitify-brd-radius: 0;
+  --kitity-bar-color: var(--site-border-color);
+  --kitity-bar-active-color: var(--site-heading-color);
+  &.kitify-stock-progress-bar {
+    display: flex;
+    flex-direction: column;
+  }
+  p {
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  .stock-info {
+    display: flex;
+    flex-wrap: wrap;
+    order: 1;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    span {
+      margin-inline-start: 3px;
+      color: var(--site-heading-color);
+    }
+  }
+  :is(
+  .progress-area,
+  .progress-bar) {
+    height: var(--kitify-progress-height);
+    border-radius: var(--kitify-brd-radius);
+  }
+  .progress-area {
+    order: 2;
+    width: 100%;
+    background-color: var(--kitity-bar-color);
+  }
+  .progress-bar {
+    background-color: var(--kitity-bar-active-color);
+  }
+}

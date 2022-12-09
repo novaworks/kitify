@@ -524,7 +524,17 @@ class Kitify_Woo_Products extends Kitify_Base {
                 'default' => ''
             ]
         );
-
+        if( kitify()->get_theme_support('kitify-woo::stock-progress-bar') ){
+          $this->add_control(
+              'enable_stock_progress_bar',
+              [
+                  'label' => esc_html__( 'Enable Stock progress bar', 'kitify' ),
+                  'type' => Controls_Manager::SWITCHER,
+                  'return_value' => 'yes',
+                  'default' => ''
+              ]
+          );
+        }
         $this->register_advance_control_layout();
 
         $this->add_control(
@@ -1619,6 +1629,146 @@ class Kitify_Woo_Products extends Kitify_Base {
         );
 
         $this->end_controls_section();
+
+        $this->start_controls_section(
+            'section_product_stock_style',
+            [
+                'label' => esc_html__( 'Stock Progress Bar Style', 'kitify' ),
+                'tab' => Controls_Manager::TAB_STYLE,
+                'condition' => [
+                    'enable_stock_progress_bar!' => ''
+                ]
+            ]
+        );
+        $this->_add_responsive_control(
+            'bar_height',
+            array(
+                'label' => esc_html__( 'Bar Height', 'kitify' ),
+                'type'  => Controls_Manager::SLIDER,
+                'range' => array(
+                    'px' => array(
+                        'min' => 1,
+                        'max' => 100,
+                    ),
+                ),
+                'default' => [
+                    'size' => 4,
+                ],
+                'selectors' => array(
+                    '{{WRAPPER}} .kitify-progress-bar' => '--kitify-progress-height: {{SIZE}}{{UNIT}};',
+                ),
+            )
+        );
+        $this->add_control(
+            'bar_color',
+            [
+                'label' => esc_html__( 'Bar Color', 'kitify' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .kitify-progress-bar' => '--kitity-bar-color: {{VALUE}}',
+                ],
+            ]
+        );
+        $this->add_control(
+            'bar_active_color',
+            [
+                'label' => esc_html__( 'Bar Active Color', 'kitify' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .kitify-progress-bar' => '--kitity-bar-active-color: {{VALUE}}',
+                ],
+            ]
+        );
+        $this->_add_responsive_control(
+            'bar_border_radius',
+            array(
+                'label' => esc_html__( 'Bar Border Radius', 'kitify' ),
+                'type'  => Controls_Manager::SLIDER,
+                'range' => array(
+                    'px' => array(
+                        'min' => 1,
+                        'max' => 100,
+                    ),
+                ),
+                'default' => [
+                    'size' => 0,
+                ],
+                'selectors' => array(
+                    '{{WRAPPER}} .kitify-progress-bar' => '--kitify-brd-radius: {{SIZE}}{{UNIT}};',
+                ),
+            )
+        );
+        $this->_add_responsive_control(
+          'stock_info_margin',
+          array(
+            'label'      => __( 'Stock Info Margin', 'kitify' ),
+            'type'       => Controls_Manager::DIMENSIONS,
+            'size_units' => array( 'px', '%' ),
+            'selectors'  => array(
+              '{{WRAPPER}} .kitify-progress-bar .stock-info' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+            ),
+          ),
+          100
+        );
+        $this->_add_responsive_control(
+          'stock_bar_margin',
+          array(
+            'label'      => __( 'Stock Bar Margin', 'kitify' ),
+            'type'       => Controls_Manager::DIMENSIONS,
+            'size_units' => array( 'px', '%' ),
+            'selectors'  => array(
+              '{{WRAPPER}} .kitify-progress-bar .progress-area' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+            ),
+          ),
+          100
+        );
+        $this->end_controls_section();
+
+        $this->_start_controls_section(
+          'stock_progress_bar_order',
+          array(
+            'label'      => esc_html__( 'Stock Progress Bar Order', 'kitify' ),
+            'tab'        => Controls_Manager::TAB_STYLE,
+            'show_label' => false,
+            'condition' => [
+                'enable_stock_progress_bar!' => ''
+            ]
+          )
+        );
+
+        $this->_add_control(
+          'bar_info_order',
+          array(
+            'label'   => esc_html__( 'Info Order', 'kitify' ),
+            'type'    => Controls_Manager::NUMBER,
+            'default' => 1,
+            'min'     => 1,
+            'max'     => 2,
+            'step'    => 1,
+            'selectors' => array(
+              '{{WRAPPER}} .kitify-progress-bar .stock-info' => 'order: {{VALUE}};',
+            ),
+          ),
+          100
+        );
+
+        $this->_add_control(
+          'bar_order',
+          array(
+            'label'   => esc_html__( 'Bar Order', 'kitify' ),
+            'type'    => Controls_Manager::NUMBER,
+            'default' => 2,
+            'min'     => 1,
+            'max'     => 2,
+            'step'    => 1,
+            'selectors' => array(
+              '{{WRAPPER}} .kitify-progress-bar .progress-area' => 'order: {{VALUE}};',
+            ),
+          ),
+          100
+        );
+
+        $this->_end_controls_section();
 
         $this->register_carousel_arrows_dots_style_section( [ 'enable_masonry!' => 'yes', 'enable_carousel' => 'yes' ] );
     }

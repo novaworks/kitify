@@ -1605,7 +1605,166 @@ span.kitify-btn-more-icon {
             transform: translate3d(0, 50px, 0);
   }
 }
-
+@keyframes kitifyFade {
+  0% {
+    opacity: 0
+  }
+  to {
+    opacity: 1
+  }
+}
+@keyframes kitifyZoomIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.75)
+  }
+  to {
+    opacity: 1;
+    transform: scale(1)
+  }
+}
+@keyframes kitifyZoomOut {
+  0% {
+    opacity: 0;
+    transform: scale(1.1)
+  }
+  to {
+    opacity: 1;
+    transform: scale(1)
+  }
+}
+@keyframes kitifyMoveUp {
+  0% {
+    opacity: 0;
+    transform: translateY(25px)
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0)
+  }
+}
+@keyframes kitifyMoveUpBig {
+  0% {
+    opacity: 0;
+    transform: translateY(100px)
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0)
+  }
+}
+@keyframes kitifyMoveDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-25px)
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0)
+  }
+}
+@keyframes kitifyMoveDownBig {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px)
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0)
+  }
+}
+@keyframes kitifyMoveLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(25px)
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0)
+  }
+}
+@keyframes kitifyMoveLeftBig {
+  0% {
+    opacity: 0;
+    transform: translateX(100px)
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0)
+  }
+}
+@keyframes kitifyMoveRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-25px)
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0)
+  }
+}
+@keyframes kitifyMoveRightBig {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px)
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0)
+  }
+}
+@keyframes kitifyFallPerspective {
+  0% {
+    opacity: 0;
+    transform: perspective(1000px) translateY(50px) translateZ(-300px) rotateX(-35deg)
+  }
+  to {
+    opacity: 1;
+    transform: perspective(1000px) translateY(0) translateZ(0) rotateX(0deg)
+  }
+}
+@keyframes kitifyFlipInX {
+  0% {
+    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+    animation-timing-function: ease-in;
+    opacity: 0
+  }
+  40% {
+    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+    animation-timing-function: ease-in
+  }
+  60% {
+    transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+    opacity: 1
+  }
+  80% {
+    transform: perspective(400px) rotate3d(1, 0, 0, -5deg)
+  }
+  to {
+    transform: perspective(400px)
+  }
+}
+@keyframes kitifyFlipInY {
+  0% {
+    transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+    animation-timing-function: ease-in;
+    opacity: 0
+  }
+  40% {
+    transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+    animation-timing-function: ease-in
+  }
+  60% {
+    transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+    opacity: 1
+  }
+  80% {
+    transform: perspective(400px) rotate3d(0, 1, 0, -5deg)
+  }
+  to {
+    transform: perspective(400px)
+  }
+}
 .fadeOutDown {
   -webkit-animation-name: fadeOutDown;
           animation-name: fadeOutDown;
@@ -1954,20 +2113,22 @@ body:not(.elementor-editor-active) .kitify-disable-relative-yes .elementor-widge
 .kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .kitify-nova-mobile-menu .kitify-nova-menu__mobile-trigger a,
 .kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-kitify-nova-cart svg,
 .kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-kitify-nova-cart i,
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-kitify-nova-cart .header-cart-box .cart-text .count-text,
 .kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-kitify-search svg,
 .kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-kitify-search i,
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-kitify-search .kitify-search__popup-trigger-container .kitify-search__trigger-label,
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-kitify-search .kitify-search__popup-trigger #js_header_search_modal i,
 .kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-kitify-menu-account svg,
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-widget-icon-list:not(.ignore-docs-style-yes) .elementor-icon-list-icon i,
 .kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-kitify-menu-account i {
   color: var(--kitify-doc-headerts-text-color, var(--kitify-secondary-color));
 }
-
-.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-widget-icon-list:not(.ignore-docs-style-yes) .elementor-icon-list-icon i,
 .kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-widget-icon-list:not(.ignore-docs-style-yes) .elementor-icon-list-icon svg,
 .kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-widget-icon-list:not(.ignore-docs-style-yes) .elementor-icon-list-text,
 .kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-social-icon:not(.ignore-docs-style-yes) i,
 .kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-social-icon:not(.ignore-docs-style-yes) svg {
-  color: inherit !important;
-  fill: currentColor !important;
+  color: var(--kitify-doc-headerts-text-color, var(--kitify-secondary-color)) !important;
+  fill: var(--kitify-doc-headerts-text-color, var(--kitify-secondary-color)) !important;
 }
 
 .kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-widget-icon-list:not(.ignore-docs-style-yes) .elementor-icon-list-item:hover {

@@ -12,6 +12,8 @@ if (!defined('WPINC')) {
     die;
 }
 
+use KitifyExtensions\Elementor\Controls\Control_Query as QueryControlModule;
+use Elementor\Core\Base\Document;
 
 /**
  * Tabs Widget
@@ -19,11 +21,13 @@ if (!defined('WPINC')) {
 class Kitify_Tabs extends Kitify_Base {
 
     protected function enqueue_addon_resources(){
-        wp_register_script(  $this->get_name() , kitify()->plugin_url('assets/js/addons/tabs.js') , [ 'kitify-base' ],  kitify()->get_version() , true );
-        wp_register_style( $this->get_name(), kitify()->plugin_url('assets/css/addons/tabs.css'), ['kitify-base'], kitify()->get_version());
+	    if(!kitify_settings()->is_combine_js_css()) {
+		    wp_register_script( $this->get_name(), kitify()->plugin_url( 'assets/js/addons/tabs.js' ), [ 'kitify-base' ], kitify()->get_version(), true );
+		    wp_register_style( $this->get_name(), kitify()->plugin_url( 'assets/css/addons/tabs.css' ), [ 'kitify-base' ], kitify()->get_version() );
 
-        $this->add_style_depends( $this->get_name() );
-        $this->add_script_depends( $this->get_name() );
+		    $this->add_style_depends( $this->get_name() );
+		    $this->add_script_depends( $this->get_name() );
+	    }
     }
 
     public function get_name() {
@@ -44,12 +48,15 @@ class Kitify_Tabs extends Kitify_Base {
             array(
                 'instance'        => '> .elementor-widget-container > .kitify-tabs',
                 'control_wrapper' => '> .elementor-widget-container > .kitify-tabs > .kitify-tabs__control-wrapper',
-                'control'         => '> .elementor-widget-container > .kitify-tabs > .kitify-tabs__control-wrapper > .kitify-tabs__control',
+                'control'         => '> .elementor-widget-container > .kitify-tabs > .kitify-tabs__control-wrapper .kitify-tabs__control',
                 'content_wrapper' => '> .elementor-widget-container > .kitify-tabs > .kitify-tabs__content-wrapper',
-                'content'         => '> .elementor-widget-container > .kitify-tabs > .kitify-tabs__content-wrapper > .kitify-tabs__content',
+                'content'         => '> .elementor-widget-container > .kitify-tabs > .kitify-tabs__content-wrapper .kitify-tabs__content',
                 'label'           => '.kitify-tabs__label-text',
                 'sublabel'        => '.kitify-tabs__sublabel-text',
                 'icon'            => '.kitify-tabs__label-icon',
+                'dropdown'        => '> .elementor-widget-container > .kitify-tabs > .kitify-tabs__control-wrapper .kitify-tabs__controls',
+                'dropdown_toggle' => '> .elementor-widget-container > .kitify-tabs > .kitify-tabs__control-wrapper .kitify-tabs__controls__tmp',
+                'dropdown_intro'  => '> .elementor-widget-container > .kitify-tabs > .kitify-tabs__control-wrapper .intro-text',
             )
         );
         $preset_type = apply_filters(
@@ -58,7 +65,6 @@ class Kitify_Tabs extends Kitify_Base {
             'default' => esc_html__( 'Default', 'kitify' ),
           )
         );
-
         $this->_start_controls_section(
             'section_items_data',
             array(
@@ -160,9 +166,21 @@ class Kitify_Tabs extends Kitify_Base {
             [
                 'label'       => esc_html__( 'Choose Template', 'kitify' ),
                 'label_block' => 'true',
-                'type'        => 'kitify-query',
-                'object_type' => \Elementor\TemplateLibrary\Source_Local::CPT,
-                'filter_type' => 'by_id',
+                'type'        => QueryControlModule::QUERY_CONTROL_ID,
+                'autocomplete' => [
+                    'object' => QueryControlModule::QUERY_OBJECT_LIBRARY_TEMPLATE,
+                    'query' => [
+                        'posts_per_page' => -1,
+                        'post_status' => [ 'publish', 'private' ],
+                        'meta_query' => [
+                            [
+                                'key' => Document::TYPE_META_KEY,
+                                'value' => ['section', 'container'],
+                                'compare' => 'IN'
+                            ],
+                        ],
+                    ],
+                ],
                 'condition'   => array(
                     'content_type' => 'template',
                 ),
@@ -227,18 +245,32 @@ class Kitify_Tabs extends Kitify_Base {
                 'label' => esc_html__( 'Settings', 'kitify' ),
             )
         );
+
         $this->_add_control(
-            'transfer_to_select_desktop',
+            'tab_as_dropdown',
             array(
-                'label'        => esc_html__( 'Is dropdown controls desktop', 'kitify' ),
+                'label'        => esc_html__( 'Tabs as dropdown', 'kitify' ),
                 'type'         => Controls_Manager::SWITCHER,
-                'label_on'     => esc_html__( 'On', 'kitify' ),
-                'label_off'    => esc_html__( 'Off', 'kitify' ),
+                'label_on'     => esc_html__( 'Yes', 'kitify' ),
+                'label_off'    => esc_html__( 'no', 'kitify' ),
                 'return_value' => 'yes',
-                'default'      => 'false',
-                'prefix_class' => 'dttabcontrolisselect-',
+                'default'      => '',
             )
         );
+        $this->_add_control(
+            'tab_text_intro',
+            array(
+                'label'   => esc_html__( 'Intro Text', 'kitify' ),
+                'type'    => Controls_Manager::TEXT,
+                'dynamic' => [
+                    'active' => true,
+                ],
+                'condition'    => [
+                    'tab_as_dropdown' => 'yes'
+                ]
+            )
+        );
+
         $this->_add_control(
             'transfer_to_select_tb',
             array(
@@ -249,6 +281,9 @@ class Kitify_Tabs extends Kitify_Base {
                 'return_value' => 'yes',
                 'default'      => 'false',
                 'prefix_class' => 'mttabcontrolisselect-',
+                'condition'    => [
+                    'tab_as_dropdown' => ''
+                ]
             )
         );
         $this->_add_control(
@@ -261,6 +296,9 @@ class Kitify_Tabs extends Kitify_Base {
                 'return_value' => 'yes',
                 'default'      => 'false',
                 'prefix_class' => 'mbtabcontrolisselect-',
+                'condition'    => [
+                    'tab_as_dropdown' => ''
+                ]
             )
         );
 
@@ -359,7 +397,7 @@ class Kitify_Tabs extends Kitify_Base {
         $this->_add_responsive_control(
             'tabs_control_wrapper_width',
             array(
-                'label'      => esc_html__( 'Tabs Control Width', 'kitify' ),
+                'label'      => esc_html__( 'Tab Control Width', 'kitify' ),
                 'type'       => Controls_Manager::SLIDER,
                 'size_units' => array(
                     'px', '%',
@@ -450,12 +488,12 @@ class Kitify_Tabs extends Kitify_Base {
         $this->_end_controls_section();
 
         /**
-         * Tabs Control Style Section
+         * Tab Control Style Section
          */
         $this->_start_controls_section(
             'section_tabs_control_style',
             array(
-                'label'      => esc_html__( 'Tabs Control', 'kitify' ),
+                'label'      => esc_html__( 'Tab Control', 'kitify' ),
                 'tab'        => Controls_Manager::TAB_STYLE,
                 'show_label' => false,
             )
@@ -591,12 +629,282 @@ class Kitify_Tabs extends Kitify_Base {
         $this->_end_controls_section();
 
         /**
-         * Tabs Control Style Section
+         * Tab Control Style Section
+         */
+        $this->_start_controls_section(
+            'section_tabs_dd_style',
+            array(
+                'label'      => esc_html__( 'Dropdown Controls', 'kitify' ),
+                'tab'        => Controls_Manager::TAB_STYLE,
+                'show_label' => false,
+                'condition'  => [
+                    'tab_as_dropdown' => 'yes'
+                ]
+            )
+        );
+
+        $this->add_control(
+            'dd_heading0',
+            [
+                'label' => esc_html__( 'Intro Text', 'kitify' ),
+                'type' => Controls_Manager::HEADING,
+            ]
+        );
+
+        $this->add_control(
+            'dd_intro_color',
+            [
+                'label' => esc_html__( 'Color', 'kitify' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} ' . $css_scheme['dropdown_intro'] => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'dd_intro_font',
+                'selector' =>  '{{WRAPPER}} ' . $css_scheme['dropdown_intro']
+            ]
+        );
+
+        $this->_add_responsive_control(
+            'dd_intro_padding',
+            array(
+                'label'      => __( 'Intro Padding', 'kitify' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => array( 'px', '%' , 'em'),
+                'selectors'  => array(
+                    '{{WRAPPER}} ' . $css_scheme['dropdown_intro'] => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ),
+            )
+        );
+
+        $this->_add_responsive_control(
+            'dd_intro_margin',
+            array(
+                'label'      => __( 'Intro Margin', 'kitify' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => array( 'px', '%' , 'em'),
+                'selectors'  => array(
+                    '{{WRAPPER}} ' . $css_scheme['dropdown_intro'] => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ),
+            )
+        );
+
+        $this->add_control(
+            'dd_heading1',
+            [
+                'label' => esc_html__( 'Toggle', 'kitify' ),
+                'type' => Controls_Manager::HEADING,
+            ]
+        );
+
+        $this->_add_control(
+            'dd_toggle_custom_width',
+            array(
+                'label'        => esc_html__( 'Custom width ?', 'kitify' ),
+                'type'         => Controls_Manager::SWITCHER,
+                'label_on'     => esc_html__( 'Yes', 'kitify' ),
+                'label_off'    => esc_html__( 'no', 'kitify' ),
+                'return_value' => 'yes',
+                'default'      => '',
+                'prefix_class' => 'dd-custom-width-',
+                'condition'  => [
+                    'tab_as_dropdown' => 'yes'
+                ]
+            )
+        );
+
+        $this->add_responsive_control(
+            'dd_toggle_width',
+            [
+                'label' => esc_html__( 'Width', 'kitify' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => array( 'px', 'em', '%', 'vh', 'vw'),
+                'selectors' => [
+                    '{{WRAPPER}}' => '--kitify-dd-width: {{SIZE}}{{UNIT}}',
+                ],
+                'condition'  => [
+                    'tab_as_dropdown' => 'yes',
+                    'dd_toggle_custom_width' => 'yes',
+                ]
+            ]
+        );
+
+        $this->add_control(
+            'dd_toggle_color',
+            [
+                'label' => esc_html__( 'Color', 'kitify' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} ' . $css_scheme['dropdown_toggle'] => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'dd_font',
+                'selector' => '{{WRAPPER}} ' .$css_scheme['dropdown_toggle'],
+            ]
+        );
+
+        $this->_add_icon_control(
+            'dd_icon',
+            [
+                'label'       => esc_html__( 'Dropdown Icon', 'kitify' ),
+                'type'        => Controls_Manager::ICON,
+                'file'        => '',
+                'skin'        => 'inline',
+                'label_block' => false
+            ]
+        );
+
+        $this->add_responsive_control(
+            'dd_icon_size',
+            [
+                'label' => esc_html__( 'Icon Size', 'kitify' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units' => [ 'px', 'em' ],
+                'selectors' => [
+                    '{{WRAPPER}} ' . $css_scheme['dropdown_toggle'] . ' .dd-icon' => 'font-size: {{SIZE}}{{UNIT}}',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'dd_icon_padding',
+            [
+                'label' => esc_html__( 'Icon padding', 'kitify' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', 'em' ],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} ' . $css_scheme['dropdown_toggle'] . ' .dd-icon' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+                ]
+            ]
+        );
+
+        $this->_add_group_control(
+            Group_Control_Background::get_type(),
+            array(
+                'name'     => 'dd_toggle_background',
+                'selector' => '{{WRAPPER}} ' . $css_scheme['dropdown_toggle'],
+            )
+        );
+        $this->_add_responsive_control(
+            'dd_toggle_padding',
+            array(
+                'label'      => __( 'Toggle Padding', 'kitify' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => array( 'px', '%' , 'em'),
+                'selectors'  => array(
+                    '{{WRAPPER}} ' . $css_scheme['dropdown_toggle'] => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ),
+            )
+        );
+        $this->_add_group_control(
+            Group_Control_Border::get_type(),
+            array(
+                'name'        => 'dd_toggle_border',
+                'label'       => esc_html__( 'Toggle rorder', 'kitify' ),
+                'placeholder' => '1px',
+                'default'     => '1px',
+                'selector'    => '{{WRAPPER}} ' . $css_scheme['dropdown_toggle'],
+            )
+        );
+        $this->_add_responsive_control(
+            'dd_toggle_radius',
+            array(
+                'label'      => __( 'Toggle border radius', 'kitify' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => array( 'px', '%' , 'em'),
+                'selectors'  => array(
+                    '{{WRAPPER}} ' . $css_scheme['dropdown_toggle'] => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ),
+            )
+        );
+        $this->_add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            array(
+                'name'     => 'dd_toggle_shadow',
+                'selector' => '{{WRAPPER}} ' . $css_scheme['dropdown_toggle'],
+            )
+        );
+
+        $this->add_control(
+            'dd_heading2',
+            [
+                'label' => esc_html__( 'Dropdown', 'kitify' ),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+
+        $this->_add_group_control(
+            Group_Control_Background::get_type(),
+            array(
+                'name'     => 'dd_background',
+                'selector' => '{{WRAPPER}} ' . $css_scheme['dropdown'],
+            )
+        );
+        $this->_add_responsive_control(
+            'dd_padding',
+            array(
+                'label'      => __( 'Padding', 'kitify' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => array( 'px', '%' , 'em'),
+                'selectors'  => array(
+                    '{{WRAPPER}} ' . $css_scheme['dropdown'] => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ),
+            )
+        );
+        $this->_add_group_control(
+            Group_Control_Border::get_type(),
+            array(
+                'name'        => 'dd_border',
+                'label'       => esc_html__( 'Border', 'kitify' ),
+                'placeholder' => '1px',
+                'default'     => '1px',
+                'selector'    => '{{WRAPPER}} ' . $css_scheme['dropdown'],
+            )
+        );
+        $this->_add_responsive_control(
+            'dd_radius',
+            array(
+                'label'      => __( 'Border Radius', 'kitify' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => array( 'px', '%' , 'em'),
+                'selectors'  => array(
+                    '{{WRAPPER}} ' . $css_scheme['dropdown'] => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ),
+            )
+        );
+        $this->_add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            array(
+                'name'     => 'dd_shadow',
+                'selector' => '{{WRAPPER}} ' . $css_scheme['dropdown'],
+            )
+        );
+
+        $this->_end_controls_section();
+
+        /**
+         * Tab Control Style Section
          */
         $this->_start_controls_section(
             'section_tabs_control_item_style',
             array(
-                'label'      => esc_html__( 'Tabs Control Item', 'kitify' ),
+                'label'      => esc_html__( 'Tab Control Item', 'kitify' ),
                 'tab'        => Controls_Manager::TAB_STYLE,
                 'show_label' => false,
             )
@@ -609,15 +917,15 @@ class Kitify_Tabs extends Kitify_Base {
                 'type'    => Controls_Manager::CHOOSE,
                 'options' => array(
                     'flex-start'    => array(
-                        'title' => esc_html__( 'Left', 'nova' ),
+                        'title' => esc_html__( 'Left', 'kitify' ),
                         'icon'  => 'eicon-h-align-left',
                     ),
                     'center' => array(
-                        'title' => esc_html__( 'Center', 'nova' ),
+                        'title' => esc_html__( 'Center', 'kitify' ),
                         'icon'  => 'eicon-h-align-center',
                     ),
                     'flex-end' => array(
-                        'title' => esc_html__( 'Right', 'nova' ),
+                        'title' => esc_html__( 'Right', 'kitify' ),
                         'icon'  => 'eicon-h-align-right',
                     ),
                 ),
@@ -637,16 +945,20 @@ class Kitify_Tabs extends Kitify_Base {
                 'type'    => Controls_Manager::CHOOSE,
                 'options' => array(
                     'flex-start'    => array(
-                        'title' => esc_html__( 'Left', 'nova' ),
+                        'title' => esc_html__( 'Left', 'kitify' ),
                         'icon'  => 'eicon-h-align-left',
                     ),
                     'center' => array(
-                        'title' => esc_html__( 'Center', 'nova' ),
+                        'title' => esc_html__( 'Center', 'kitify' ),
                         'icon'  => 'eicon-h-align-center',
                     ),
                     'flex-end' => array(
-                        'title' => esc_html__( 'Right', 'nova' ),
+                        'title' => esc_html__( 'Right', 'kitify' ),
                         'icon'  => 'eicon-h-align-right',
+                    ),
+                    'space-between' => array(
+                        'title' => esc_html__( 'Stretch', 'kitify' ),
+                        'icon'  => 'eicon-align-stretch-h',
                     ),
                 ),
                 'condition' => array(
@@ -1050,17 +1362,7 @@ class Kitify_Tabs extends Kitify_Base {
                 ),
             )
         );
-        $this->_add_responsive_control(
-            'tabs_control_border_radius_hover',
-            array(
-                'label'      => esc_html__( 'Border Radius', 'kitify' ),
-                'type'       => Controls_Manager::DIMENSIONS,
-                'size_units' => array( 'px', '%' , 'em', 'vw', 'vh'),
-                'selectors'  => array(
-                    '{{WRAPPER}} ' . $css_scheme['control'] . ':hover' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-                ),
-            )
-        );
+
         $this->_add_group_control(
             Group_Control_Border::get_type(),
             array(
@@ -1312,6 +1614,7 @@ class Kitify_Tabs extends Kitify_Base {
 
         $id_int = substr( $this->get_id_int(), 0, 3 );
 
+        $tab_as_dropdown = filter_var($this->get_settings_for_display('tab_as_dropdown'), FILTER_VALIDATE_BOOLEAN);
         $tabs_style = $this->get_settings( 'tabs_style' );
         $tabs_position = $this->get_settings( 'tabs_position' );
         $tabs_position_laptop = $this->get_settings( 'tabs_position_laptop' );
@@ -1348,6 +1651,12 @@ class Kitify_Tabs extends Kitify_Base {
             'data-settings' => json_encode( $settings ),
         ) );
 
+        if( $tab_as_dropdown ) {
+            $this->add_render_attribute( 'instance', 'class', [
+                'tab-as-dropdown'
+            ] );
+        }
+
         if ( ! empty( $tabs_position_laptop ) ) {
             $this->add_render_attribute( 'instance', 'class', [
                 'kitify-tabs-position-laptop-' . $tabs_position_laptop
@@ -1376,9 +1685,18 @@ class Kitify_Tabs extends Kitify_Base {
         <div <?php echo $this->get_render_attribute_string( 'instance' ); ?>>
             <div class="kitify-tabs__control-wrapper">
                 <?php
+                if( $tab_as_dropdown ) {
+                    echo '<div class="kitify-tabs__controls--dd">';
+                    $intro_text = $this->get_settings_for_display('tab_text_intro');
+                    if(!empty($intro_text)){
+                        echo sprintf('<div class="intro-text">%1$s</div>', $intro_text);
+                    }
+                    echo '<div class="kitify-tabs__controls--ddw">';
+                    echo '<div class="kitify-tabs__controls">';
+                }
                 foreach ( $tabs as $index => $item ) {
                     $tab_count = $index + 1;
-                    $tab_title_setting_key = $this->get_repeater_setting_key( 'nova_tab_control', 'tabs', $index );
+                    $tab_title_setting_key = $this->get_repeater_setting_key( 'lastudio_tab_control', 'tabs', $index );
 
                     $this->add_render_attribute( $tab_title_setting_key, array(
                         'id'            => 'kitify-tabs-control-' . $id_int . $tab_count,
@@ -1390,7 +1708,6 @@ class Kitify_Tabs extends Kitify_Base {
                         'data-tab'      => $tab_count,
                         'tabindex'      => $id_int . $tab_count,
                     ) );
-
 
                     $title_icon_html = '';
 
@@ -1406,7 +1723,7 @@ class Kitify_Tabs extends Kitify_Base {
                     $title_image_html = '';
 
                     if ( ! empty( $item['item_image']['url'] ) ) {
-                        $title_image_html = sprintf( '<img class="kitify-tabs__label-image" src="%1$s" alt="">', apply_filters('nova_wp_get_attachment_image_url', $item['item_image']['url']) );
+                        $title_image_html = sprintf( '<img class="kitify-tabs__label-image" src="%1$s" alt="">', apply_filters('lastudio_wp_get_attachment_image_url', $item['item_image']['url']) );
                     }
 
                     $title_label_html = '';
@@ -1438,8 +1755,18 @@ class Kitify_Tabs extends Kitify_Base {
                         );
                     }
                 }
+
+                if( $tab_as_dropdown ) {
+                    $icon_dd = $this->_get_icon('dd_icon', '<span class="dd-icon">%1$s</span>');
+                    echo '</div>';
+                    echo sprintf('<div class="kitify-tabs__controls__tmp"><div class="kitify-tabs__controls__text"></div>%1$s</div>', $icon_dd);
+                    echo '</div>';
+                    echo '</div>';
+                }
+                else{
+                    echo '<div class="kitify-tabs__control-wrapper-mobile"><a href="#" rel="nofollow" target="_self"></a></div>';
+                }
                 ?>
-                <div class="kitify-tabs__control-wrapper-mobile"><a href="#" rel="nofollow" target="_self"></a></div>
             </div>
             <div class="kitify-tabs__content-wrapper">
                 <?php
@@ -1551,7 +1878,7 @@ class Kitify_Tabs extends Kitify_Base {
     public function no_template_content_message() {
         $message = '<span>' . esc_html__( 'The tabs are working. Please, note, that you have to add a template to the library in order to be able to display it inside the tabs.', 'kitify' ) . '</span>';
 
-        return sprintf( '<div class="nova-toogle-no-template-message">%1$s</div>', $message );
+        return sprintf( '<div class="lastudio-toogle-no-template-message">%1$s</div>', $message );
     }
 
     /**

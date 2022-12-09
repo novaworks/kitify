@@ -258,6 +258,12 @@ if ( ! class_exists( 'Kitify_Integration' ) ) {
                         ),
                         'conditional' => $woo_conditional,
                     ),
+                    'woo_single_product_stock_progress_bar' => array(
+                        'file' => kitify()->plugin_path(
+                            'inc/addons/vendor/woo-single-stock-progress-bar.php'
+                        ),
+                        'conditional' => $woo_conditional,
+                    ),
                     'woo_single_product_meta' => array(
                         'file' => kitify()->plugin_path(
                             'inc/addons/vendor/woo-single-product-meta.php'
