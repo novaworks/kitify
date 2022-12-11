@@ -222,7 +222,8 @@ class Kitify_Woo_Menu_Account extends Kitify_Base {
       $this->_open_wrap();
       include $this->_get_global_template( 'index' );
       $this->_close_wrap();
-      add_action('kitify/theme/canvas_panel', [ $this, 'add_panel' ] );
+      add_filter( 'kitify/account_menu/filter/canvas_panel',[ $this, 'add_panel' ] );
+      add_action('kitify/theme/canvas_panel', apply_filters( 'kitify/account_menu/filter/canvas_panel', '') );
 
   }
   public function add_panel() {
