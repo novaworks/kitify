@@ -132,7 +132,6 @@
 .kitify_tab-full-no .kitify-tabs-position-top .kitify-tabs__control-wrapper {
   align-items: center;
   align-self: var(--kitify-tabs-h-align);
-  width: auto;
 }
 .kitify-tabs-position-top .kitify-tabs__content-wrapper {
   -webkit-box-ordinal-group: 3;

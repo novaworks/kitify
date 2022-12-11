@@ -41,3 +41,16 @@
 .kitify-nova-menu.kitify-active--mbmenu .main-navigation {
   display: none;
 }
+.mega-menu .elementor-icon-list-items{
+  visibility: hidden;
+  pointer-events:visible !important;
+}
+.nav-menu ul.mega-menu ul .elementor-icon-list-items li{
+  padding: 0;
+}
+.nav-menu > li:hover .mega-menu .elementor-icon-list-items{
+  visibility: visible;
+}
+.mega-menu .kitify-nav-arrow {
+  display: none;
+}

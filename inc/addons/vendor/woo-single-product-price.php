@@ -93,7 +93,7 @@ class Kitify_Woo_Single_Product_Price extends Kitify_Base {
                 'label' => esc_html__( 'Color', 'kitify' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '.woocommerce {{WRAPPER}} .price' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .price' => 'color: {{VALUE}}',
                 ],
             ]
         );
@@ -102,7 +102,7 @@ class Kitify_Woo_Single_Product_Price extends Kitify_Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'typography',
-                'selector' => '.woocommerce {{WRAPPER}} .price',
+                'selector' => '{{WRAPPER}} .price',
             ]
         );
 
@@ -121,7 +121,7 @@ class Kitify_Woo_Single_Product_Price extends Kitify_Base {
                 'label' => esc_html__( 'Color', 'kitify' ),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '.woocommerce {{WRAPPER}} .price del' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .price del' => 'color: {{VALUE}};',
                 ],
             ]
         );
@@ -130,7 +130,7 @@ class Kitify_Woo_Single_Product_Price extends Kitify_Base {
             Group_Control_Typography::get_type(),
             [
                 'name' => 'sale_price_typography',
-                'selector' => '.woocommerce {{WRAPPER}} .price del',
+                'selector' => '{{WRAPPER}} .price del',
             ]
         );
 
