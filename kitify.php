@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Kitify by Novaworks
  * Description:       A perfect plugin for Elementor
- * Version:           1.0.4.4
+ * Version:           1.0.4.5
  * Author:            Novaworks
  * Author URI:        https://kitify.app
  * License:           GPL-2.0+
@@ -58,7 +58,7 @@ if(!function_exists('Kitify')){
          *
          * @var string
          */
-        private $version = '1.0.4.4';
+        private $version = '1.0.4.5';
 
         /**
          * Framework component
@@ -428,7 +428,6 @@ if(!function_exists('Kitify')){
                 return false;
             }
         }
-
         /**
          * Do some stuff on plugin activation
          *
@@ -436,6 +435,18 @@ if(!function_exists('Kitify')){
          * @return void
          */
         public function activation() {
+          $typekit = new Custom_Typekit_Fonts();
+          $adobe_font_id = apply_filters('kitify/adobe_fonts/id','');
+          if (get_option('kitify-typekit-fonts') == '' && $adobe_font_id !='') {
+            $option                                = array();
+            $option['custom-typekit-font-id']      = sanitize_text_field( $adobe_font_id );
+            $option['custom-typekit-font-details'] = $typekit->get_custom_typekit_details( $adobe_font_id );
+
+            if ( empty( $option['custom-typekit-font-details'] ) ) {
+              return;
+            }
+            update_option( 'kitify-typekit-fonts', $option );
+          }
         }
 
         /**
