@@ -15,7 +15,7 @@
 class Kitify_Nova_Menu_Cart extends Kitify_Base {
 
   protected function enqueue_addon_resources(){
-      wp_register_style( $this->get_name(), kitify()->plugin_url('assets/css/addons/nova-cart.css'), ['kitify-base'], kitify()->get_version());
+      wp_register_style( $this->get_name(), kitify()->plugin_url('assets/css/addons/nova-cart.css'), [ 'kitify-base','kitify-canvas' ], kitify()->get_version());
       $this->add_style_depends( $this->get_name() );
       $this->add_script_depends('kitify-base' );
   }
