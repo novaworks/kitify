@@ -1,5 +1,5 @@
 <div class="kitify-offcanvas minicart-canvas site-canvas-menu off-canvas position-right" id="MiniCartCanvas_<?php echo $this->get_id()?>" data-off-canvas data-transition="overlap">
-  <h2 class="title"><?php echo esc_html__( 'Shopping Cart', 'robeto' );?><span class="nova_js_count_bag_item_canvas count-item-canvas"><?php echo esc_html(WC()->cart->get_cart_contents_count()); ?></span></h2>
+  <h2 class="title"><?php echo esc_html__( 'Shopping Cart', 'kitify' );?><span class="nova_js_count_bag_item_canvas count-item-canvas"><?php echo esc_html(WC()->cart->get_cart_contents_count()); ?></span></h2>
   <div class="add_ajax_loading">
     <span></span>
   </div>
