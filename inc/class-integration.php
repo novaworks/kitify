@@ -385,7 +385,7 @@ if ( ! class_exists( 'Kitify_Integration' ) ) {
 			require_once $file;
 
 			if ( class_exists( $class ) ) {
-				$widgets_manager->register_widget_type( new $class );
+				$widgets_manager->register( new $class );
 			}
 		}
 

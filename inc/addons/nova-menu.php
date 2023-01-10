@@ -738,13 +738,13 @@ class Kitify_Nova_Menu extends Kitify_Base {
   public function dropdown_arrow_icons_list() {
 
       return apply_filters( 'kitify/nova-menu/dropdown-icons', array(
+          ''                             => esc_html__( 'None', 'kitify' ),
           'novaicon-down-arrow'          => esc_html__( 'Angle', 'kitify' ),
           'novaicon-small-triangle-down' => esc_html__( 'Triangle', 'kitify' ),
           'novaicon-arrow-down'          => esc_html__( 'Arrow', 'kitify' ),
           'novaicon-i-add'               => esc_html__( 'Plus', 'kitify' ),
           'novaicon-i-add-2'             => esc_html__( 'Plus 2', 'kitify' ),
           'novaicon-e-add'               => esc_html__( 'Plus 3', 'kitify' ),
-          ''                             => esc_html__( 'None', 'kitify' ),
       ) );
 
   }
