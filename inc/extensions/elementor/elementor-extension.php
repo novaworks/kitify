@@ -236,18 +236,6 @@ if ( ! class_exists( 'KitifyExtensions\Elementor\Module' ) ) {
                 $tabs['novaicon'] = [
                     'name' => 'novaicon',
                     'label' => esc_html__( 'Nova Icons', 'kitify' ),
-                    'prefix' => 'novaicon-',
-                    'displayPrefix' => '',
-                    'labelIcon' => 'fas fa-star',
-                    'ver' => '1.0.0',
-                    'fetchJson' => $this->url . 'assets/fonts/NovaIcons.json',
-                    'native' => false
-                ];
-            }
-            else{
-                $tabs['novaicon'] = [
-                    'name' => 'novaicon',
-                    'label' => __( 'Nova Icons', 'kitify' ),
                     'url' =>  $this->url . 'assets/css/novaicon.css',
                     'prefix' => 'novaicon-',
                     'displayPrefix' => '',
