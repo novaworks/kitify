@@ -175,19 +175,16 @@ class Module extends Module_Base {
              'fetchJson' => kitify()->plugin_url('inc/extensions/elementor/assets/fonts/icofont.json'),
              'native' => false
          ];
-
-         if(kitify()->get_theme_support('elementor::nova-icon')){
-             $tabs['novaicon'] = [
-                 'name' => 'novaicon',
-                 'label' => esc_html__( 'Nova Icons', 'kitify' ),
-                 'prefix' => 'novaicon-',
-                 'displayPrefix' => '',
-                 'labelIcon' => 'fas fa-star',
-                 'ver' => '1.0.0',
-                 'fetchJson' => kitify()->plugin_url('inc/extensions/elementor/assets/fonts/NovaIcons.json'),
-                 'native' => false
-             ];
-         }
+         $tabs['novaicon'] = [
+             'name' => 'novaicon',
+             'label' => esc_html__( 'Nova Icons', 'kitify' ),
+             'prefix' => 'novaicon-',
+             'displayPrefix' => '',
+             'labelIcon' => 'fas fa-star',
+             'ver' => '1.0.0',
+             'fetchJson' => kitify()->plugin_url('inc/extensions/elementor/assets/fonts/NovaIcons.json'),
+             'native' => false
+         ];
          return $tabs;
      }
 

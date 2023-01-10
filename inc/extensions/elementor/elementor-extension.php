@@ -231,20 +231,17 @@ if ( ! class_exists( 'KitifyExtensions\Elementor\Module' ) ) {
                 'fetchJson' => $this->url . 'assets/fonts/icofont.json',
                 'native' => false
             ];
-
-            if(kitify()->get_theme_support('elementor::nova-icon')){
-                $tabs['novaicon'] = [
-                    'name' => 'novaicon',
-                    'label' => esc_html__( 'Nova Icons', 'kitify' ),
-                    'url' =>  $this->url . 'assets/css/novaicon.css',
-                    'prefix' => 'novaicon-',
-                    'displayPrefix' => '',
-                    'labelIcon' => 'fas fa-star',
-                    'ver' => '1.0.0',
-                    'fetchJson' => $this->url . 'assets/fonts/NovaIcons.json',
-                    'native' => false
-                ];
-            }
+            $tabs['novaicon'] = [
+                'name' => 'novaicon',
+                'label' => esc_html__( 'Nova Icons', 'kitify' ),
+                'url' =>  $this->url . 'assets/css/novaicon.css',
+                'prefix' => 'novaicon-',
+                'displayPrefix' => '',
+                'labelIcon' => 'fas fa-star',
+                'ver' => '1.0.0',
+                'fetchJson' => $this->url . 'assets/fonts/NovaIcons.json',
+                'native' => false
+            ];
 
             return $tabs;
         }
