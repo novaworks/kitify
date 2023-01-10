@@ -178,6 +178,7 @@ class Module extends Module_Base {
          $tabs['novaicon'] = [
              'name' => 'novaicon',
              'label' => esc_html__( 'Nova Icons', 'kitify' ),
+             'url' =>  kitify()->plugin_url('inc/extensions/elementor/assets/css/novaicon.css'),
              'prefix' => 'novaicon-',
              'displayPrefix' => '',
              'labelIcon' => 'fas fa-star',
