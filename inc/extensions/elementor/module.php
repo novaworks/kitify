@@ -188,20 +188,6 @@ class Module extends Module_Base {
                  'native' => false
              ];
          }
-         else{
-             $tabs['novaicon'] = [
-                 'name' => 'novaicon',
-                 'label' => __( 'Nova Icons', 'kitify' ),
-                 'url' =>  kitify()->plugin_url('inc/extensions/elementor/assets/css/novaicon.css'),
-                 'prefix' => 'novaicon-',
-                 'displayPrefix' => '',
-                 'labelIcon' => 'fas fa-star',
-                 'ver' => '1.0.0',
-                 'fetchJson' => kitify()->plugin_url('inc/extensions/elementor/assets/fonts/NovaIcons.json'),
-                 'native' => false
-             ];
-         }
-
          return $tabs;
      }
 
