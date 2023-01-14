@@ -51,7 +51,7 @@ if ( ! class_exists( 'Kitify_DB_Upgrader' ) ) {
 				array(
 					'path'      => $db_updater_data['path'],
 					'url'       => $db_updater_data['url'],
-					'slug'      => 'nova-element-kit',
+					'slug'      => 'kitify',
 					'version'   => '1.0.1',
 					'callbacks' => array(
 						'1.0.1' => array(

@@ -1872,7 +1872,7 @@ class Kitify_Nav_Menu extends Kitify_Base {
             'novaicon-i-add'               => esc_html__( 'Plus', 'kitify' ),
             'novaicon-i-add-2'             => esc_html__( 'Plus 2', 'kitify' ),
             'novaicon-e-add'               => esc_html__( 'Plus 3', 'kitify' ),
-            ''                                 => esc_html__( 'None', 'kitify' ),
+            ''                             => esc_html__( 'None', 'kitify' ),
         ) );
 
     }
