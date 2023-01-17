@@ -203,20 +203,13 @@ class Products_Renderer extends Base_Products_Renderer {
 				$query_args['paged'] = $page;
                 $this->attributes['page'] = $page;
 			}
+			if ( 'yes' !== $settings['allow_order'] || $front_page ) {
+					remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
+			}
 
-            if( kitify()->get_theme_support('elementor::product-grid-v2') ){
-                remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
-                remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
-            }
-            else{
-                if ( 'yes' !== $settings['allow_order'] || $front_page ) {
-                    remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
-                }
-
-                if ( 'yes' !== $settings['show_result_count'] ) {
-                    remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
-                }
-            }
+			if ( 'yes' !== $settings['show_result_count'] ) {
+					remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
+			}
 		}
 		// fallback to the widget's default settings in case settings was left empty:
 		$query_args['posts_per_page'] = $this->get_limit();

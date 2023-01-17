@@ -634,16 +634,16 @@ class Kitify_Banner extends Kitify_Base {
         'default' => 'center',
         'options'   => array(
           'flex-start' => array(
-            'title' => esc_html__( 'Top', 'kitify' ),
-            'icon'  => 'eicon-v-align-top',
+            'title' => esc_html__( 'Left', 'kitify' ),
+            'icon'  => 'eicon-arrow-left',
           ),
           'center'     => array(
-            'title' => esc_html__( 'Middle', 'kitify' ),
-            'icon'  => 'eicon-v-align-middle',
+            'title' => esc_html__( 'Center', 'kitify' ),
+            'icon'  => 'eicon-text-align-center',
           ),
           'flex-end'   => array(
-            'title' => esc_html__( 'Bottom', 'kitify' ),
-            'icon'  => 'eicon-v-align-bottom',
+            'title' => esc_html__( 'Right', 'kitify' ),
+            'icon'  => 'eicon-arrow-right',
           ),
         ),
         'selectors' => array(
