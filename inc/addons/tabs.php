@@ -390,6 +390,7 @@ class Kitify_Tabs extends Kitify_Base {
                     'left'  => esc_html__( 'Left', 'kitify' ),
                     'top'   => esc_html__( 'Top', 'kitify' ),
                     'right' => esc_html__( 'Right', 'kitify' ),
+                    'bottom' => esc_html__( 'Bottom', 'kitify' ),
                 ),
             )
         );

@@ -52,10 +52,10 @@ class Kitify_Team_Member extends Kitify_Base {
                 'content'           => '.kitify-team-member__content',
                 'image_wrap'        => '.kitify-team-member__image',
                 'image_instance'    => '.kitify-team-member__image-instance',
-                'title'             => '.kitify-team-member__name',
-                'desc'              => '.kitify-team-member__desc',
-                'position'          => '.kitify-team-member__position',
-                'socials'           => '.kitify-team-member__socials',
+                'title'             => '.kitify-team-member__list .kitify-team-member__content .kitify-team-member__name',
+                'desc'              => '.kitify-team-member__list .kitify-team-member__content .kitify-team-member__desc',
+                'position'          => '.kitify-team-member__list .kitify-team-member__content .kitify-team-member__position',
+                'socials'           => '.kitify-team-member__list .kitify-team-member__content .kitify-team-member__socials',
                 'slick_list'        => '.kitify-team-member .slick-list'
             )
         );

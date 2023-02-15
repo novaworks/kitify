@@ -68,6 +68,7 @@ class Kitify_Woo_Single_Product_Rating extends Kitify_Base {
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
                     '.woocommerce {{WRAPPER}} .star-rating' => 'color: {{VALUE}}',
+                    '.woocommerce {{WRAPPER}} .star-rating span:before, .woocommerce {{WRAPPER}} .wc-block-grid__product-rating__stars span:before' => 'color: {{VALUE}}',
                 ],
             ]
         );

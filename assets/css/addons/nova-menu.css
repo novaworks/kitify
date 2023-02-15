@@ -54,3 +54,8 @@
 .mega-menu .kitify-nav-arrow {
   display: none;
 }
+.main-navigation > ul > li > ul > li .kitify-nav-arrow {
+  position: relative;
+  top: -1px;
+  transform: rotate(-90deg);
+}

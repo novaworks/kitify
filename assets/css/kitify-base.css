@@ -2095,12 +2095,13 @@ body:not(.elementor-editor-active) .kitify-disable-relative-yes .elementor-widge
   color: var(--kitify-doc-headerts-link-hover-color, var(--kitify-primary-color));
 }
 
-.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-heading-title:not(.ignore-docs-style-yes),
-.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-kitify-search:not(.ignore-docs-style-yes) .kitify-search__field,
-.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-widget-text-editor:not(.ignore-docs-style-yes) {
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects):not(.ignore-docs-style-yes) .elementor-kitify-search .kitify-search__field,
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects):not(.ignore-docs-style-yes) .elementor-widget-text-editor {
   color: var(--kitify-doc-headerts-text-color, var(--kitify-secondary-color));
 }
-
+.kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects):not(.ignore-docs-style-yes) .elementor-heading-title {
+  color: var(--kitify-doc-headerts-text-color, var(--kitify-secondary-color));
+}
 .kitify-doc-enable-header-transparency .kitify-site-wrapper > .elementor-location-header > .elementor-top-section:not(.elementor-sticky--effects) .elementor-widget-divider:not(.ignore-docs-style-yes) {
   --divider-color: var(--kitify-doc-headerts-text-color, var(--kitify-secondary-color))
 ;

@@ -394,6 +394,7 @@ class Kitify_Icon_Box extends Kitify_Base {
                     'lefttitle'  => esc_html__( 'Left Title', 'kitify' ),
                     'right'  => esc_html__( 'Right', 'kitify' ),
                     'righttitle'  => esc_html__( 'Right Title', 'kitify' ),
+                    'bottom'  => esc_html__( 'Bottom', 'kitify' ),
                 ],
                 'separator' => 'before',
                 'condition' => [
