@@ -40,7 +40,9 @@ class Kitify_Hotspots extends Widget_Image {
 	public function get_icon() {
 		return 'kitify-icon-hotspot';
 	}
-
+	public function get_categories() {
+		return array( 'kitify' );
+	}
 	public function get_keywords() {
         return [ 'image', 'tooltip', 'CTA', 'dot', 'hotspot' ];
 	}

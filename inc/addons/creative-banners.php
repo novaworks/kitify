@@ -173,20 +173,22 @@ class Kitify_Creative_Banners extends Kitify_Base {
         ),
       )
     );
-    $this->add_control(
-      'category_filter',
-      array(
-        'label'       => __( 'Category Filter', 'kitify' ),
-        'type'        => Controls_Manager::SELECT2,
-        'multiple'    => true,
-        'label_block' => true,
-        'default'     => '',
-        'options'     => $this->get_product_categories(),
-        'condition'   => array(
-          'category_filter_rule' => array( 'include', 'exclude' ),
-        ),
-      )
-    );
+    if( class_exists( 	'WooCommerce' ) ) {
+      $this->add_control(
+        'category_filter',
+        array(
+          'label'       => __( 'Category Filter', 'kitify' ),
+          'type'        => Controls_Manager::SELECT2,
+          'multiple'    => true,
+          'label_block' => true,
+          'default'     => '',
+          'options'     => $this->get_product_categories(),
+          'condition'   => array(
+            'category_filter_rule' => array( 'include', 'exclude' ),
+          ),
+        )
+      );  
+    }
     $this->add_control(
       'display_empty_cat',
       array(

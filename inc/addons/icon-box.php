@@ -56,6 +56,8 @@ class Kitify_Icon_Box extends Kitify_Base {
                 'button_icon'           => '.kitify-iconbox__button_wrapper .elementor-button-icon',
                 'box_badge'             => '.kitify-iconbox__badge',
                 'badge'                 => '.kitify__badge',
+                'number'                => '.kitify-iconbox__number',
+                'number_text'           => '.kitify-iconbox__number .kitify__number',
                 'water_box_icon'        => '.kitify-iconbox__icon-hover',
                 'water_box_img'         => '.kitify-iconbox__image-hover',
             )
@@ -574,6 +576,39 @@ class Kitify_Icon_Box extends Kitify_Base {
             ]
         );
 
+        $this->_end_controls_section();
+        //Number
+        $this->_start_controls_section(
+            'number_control_tab',
+            [
+                'label' => esc_html__( 'Number', 'kitify' ),
+                'tab' => Controls_Manager::TAB_CONTENT,
+            ]
+        );
+
+        $this->_add_control(
+            'number_control',
+            [
+                'label' => esc_html__( 'Show Number', 'kitify' ),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => esc_html__( 'Show', 'kitify' ),
+                'label_off' => esc_html__( 'Hide', 'kitify' ),
+                'return_value' => 'yes',
+            ]
+        );
+        $this->_add_control(
+            'number_text',
+            [
+                'label' =>esc_html__( 'Text', 'kitify' ),
+                'type' => Controls_Manager::TEXT,
+                'default' =>esc_html__( '01', 'kitify' ),
+                'placeholder' =>esc_html__( '01', 'kitify' ),
+                'dynamic'     => array( 'active' => true ),
+                'condition' => [
+                    'number_control' => 'yes',
+                ]
+            ]
+        );
         $this->_end_controls_section();
 
         // start style for Icon Box Container
@@ -1882,6 +1917,48 @@ class Kitify_Icon_Box extends Kitify_Base {
         );
 
         $this->_end_controls_section();
+        /** Number section **/
+        $this->_start_controls_section(
+            'number_style_tab',
+            [
+                'label' => esc_html__( 'Number', 'kitify' ),
+                'tab' => Controls_Manager::TAB_STYLE,
+                'condition' => [
+                    'number_control' => 'yes',
+                    'number_text!' => ''
+                ]
+            ]
+        );
+        $this->_add_responsive_control(
+            'number_padding',
+            [
+                'label' => esc_html__( 'Padding', 'kitify' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%', 'em' ],
+                'selectors' => [
+                    '{{WRAPPER}} ' . $css_scheme['number'] => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->_add_control(
+            'number_text_color',
+            [
+                'label' => esc_html__( 'Color', 'kitify' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} ' . $css_scheme['number_text'] => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+        $this->_add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'number_typography',
+                'label' => esc_html__( 'Typography', 'kitify' ),
+                'selector' => '{{WRAPPER}} ' . $css_scheme['number_text'],
+            ]
+        );
+        $this->_end_controls_section();
 
     }
 
@@ -1977,6 +2054,14 @@ class Kitify_Icon_Box extends Kitify_Base {
         $badge_position = $this->get_settings_for_display('badge_position');
         if(filter_var($badge_control, FILTER_VALIDATE_BOOLEAN) && !empty($badge_title)){
             return sprintf('<div class="kitify-iconbox__badge kitify_position_%2$s"><span class="kitify__badge">%1$s</span></div>', esc_html($badge_title), esc_attr($badge_position));
+        }
+        return '';
+    }
+    public function get_number(){
+        $number_control = $this->get_settings_for_display('number_control');
+        $number_text = $this->get_settings_for_display('number_text');
+        if(filter_var($number_control, FILTER_VALIDATE_BOOLEAN) && !empty($number_text)){
+            return sprintf('<div class="kitify-iconbox__number"><span class="kitify__number">%1$s</span></div>', esc_html($number_text));
         }
         return '';
     }

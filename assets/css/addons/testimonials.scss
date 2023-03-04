@@ -5,6 +5,11 @@
 	&__item-inner {
 		min-height: 100%;
 	}
+	.kitify-testimonials__infomation {
+		display: flex;
+		flex-direction: column;
+		order: 1;
+	}
 	.star-rating
 	{
 		font-family: "iNova" !important;

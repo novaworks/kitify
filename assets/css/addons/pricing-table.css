@@ -24,7 +24,8 @@
     vertical-align: middle
 }
 .kitify-pricing-table .kitify-pricing-table-button.button-full-size {
-    width: 100%
+    width: 100%;
+    justify-content: center;
 }
 .kitify-pricing-table .button-icon {
     margin-right: 5px

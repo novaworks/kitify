@@ -815,7 +815,17 @@ p + .wp-block-columns {
 .kitify-post-title {
   margin: 0;
 }
-
+.kitify-text-list ul {
+    margin: 0;
+    list-style: none;
+}
+.kitify-text-list ul li {
+  display: flex;
+  align-items: center;
+}
+.kitify-text-list ul li span{
+  width: 50%;
+}
 @-webkit-keyframes kitifyFade {
   0% {
     opacity: 0;

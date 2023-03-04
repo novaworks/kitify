@@ -19,6 +19,21 @@
   top: 0;
 }
 
+.kitify-iconbox__number {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  z-index: 0;
+}
+
+.kitify-iconbox__number .kitify__number {
+  font-size: 150px;
+  font-weight: bold;
+  color: #fff;
+}
+
 .kitify-iconbox__badge {
   position: absolute;
   line-height: 1;

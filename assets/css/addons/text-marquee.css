@@ -1,0 +1,253 @@
+.kitify-text-marquee {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  vertical-align: top;
+  overflow: hidden;
+}
+
+.kitify-text-marquee .kititfy-m-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  white-space: nowrap;
+  font-size: 0;
+  overflow: hidden;
+}
+
+.kitify-text-marquee__text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+}
+
+.kitify-text-marquee__text.text--original {
+  -webkit-animation: kitify-move-horizontal-normal-text-marquee 20s linear infinite;
+          animation: kitify-move-horizontal-normal-text-marquee 20s linear infinite;
+}
+
+.kitify-text-marquee__text.text--clone {
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-transform: translateX(100%) translateZ(0);
+          transform: translateX(100%) translateZ(0);
+  -webkit-animation: kitify-move-horizontal-normal-text-marquee-clone 10s linear infinite;
+          animation: kitify-move-horizontal-normal-text-marquee-clone 10s linear infinite;
+}
+
+.kitify-text-marquee__item {
+  font-size: 100px;
+  line-height: 1.1em;
+  padding-right: 0.5em;
+  padding-left: 0.5em;
+}
+
+.kitify-text-marquee .kitify-e-icon-holder {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 30px;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.kitify-text-marquee .kitify-e-icon-holder svg {
+  fill: currentColor;
+  stroke: currentColor;
+  width: 1em;
+  height: auto;
+}
+
+.kitify-text-marquee.kitify-text-stroke-effect .kitify-text-marquee__item {
+  color: transparent !important;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #333333;
+  text-shadow: none;
+}
+
+@-webkit-keyframes kitify-move-horizontal-normal-text-marquee {
+  0% {
+    -webkit-transform: translateX(0%) translateZ(0);
+            transform: translateX(0%) translateZ(0);
+  }
+  100% {
+    -webkit-transform: translateX(-100%) translateZ(0);
+            transform: translateX(-100%) translateZ(0);
+  }
+}
+
+@keyframes kitify-move-horizontal-normal-text-marquee {
+  0% {
+    -webkit-transform: translateX(0%) translateZ(0);
+            transform: translateX(0%) translateZ(0);
+  }
+  100% {
+    -webkit-transform: translateX(-100%) translateZ(0);
+            transform: translateX(-100%) translateZ(0);
+  }
+}
+
+@-webkit-keyframes kitify-move-horizontal-normal-text-marquee-clone {
+  0% {
+    -webkit-transform: translateX(100%) translateZ(0);
+            transform: translateX(100%) translateZ(0);
+  }
+  100% {
+    -webkit-transform: translateX(0%) translateZ(0);
+            transform: translateX(0%) translateZ(0);
+  }
+}
+
+@keyframes kitify-move-horizontal-normal-text-marquee-clone {
+  0% {
+    -webkit-transform: translateX(100%) translateZ(0);
+            transform: translateX(100%) translateZ(0);
+  }
+  100% {
+    -webkit-transform: translateX(0%) translateZ(0);
+            transform: translateX(0%) translateZ(0);
+  }
+}
+
+@-webkit-keyframes kitify-move-vertical-normal-text-marquee {
+  0% {
+    -webkit-transform: translateY(0%) translateZ(0);
+            transform: translateY(0%) translateZ(0);
+  }
+  100% {
+    -webkit-transform: translateY(-100%) translateZ(0);
+            transform: translateY(-100%) translateZ(0);
+  }
+}
+
+@keyframes kitify-move-vertical-normal-text-marquee {
+  0% {
+    -webkit-transform: translateY(0%) translateZ(0);
+            transform: translateY(0%) translateZ(0);
+  }
+  100% {
+    -webkit-transform: translateY(-100%) translateZ(0);
+            transform: translateY(-100%) translateZ(0);
+  }
+}
+
+@-webkit-keyframes kitify-move-vertical-normal-text-marquee-clone {
+  0% {
+    -webkit-transform: translateY(100%) translateZ(0);
+            transform: translateY(100%) translateZ(0);
+  }
+  100% {
+    -webkit-transform: translateY(0%) translateZ(0);
+            transform: translateY(0%) translateZ(0);
+  }
+}
+
+@keyframes kitify-move-vertical-normal-text-marquee-clone {
+  0% {
+    -webkit-transform: translateY(100%) translateZ(0);
+            transform: translateY(100%) translateZ(0);
+  }
+  100% {
+    -webkit-transform: translateY(0%) translateZ(0);
+            transform: translateY(0%) translateZ(0);
+  }
+}
+
+@-webkit-keyframes kitify-move-horizontal-reverse-text-marquee {
+  0% {
+    -webkit-transform: translateX(0%) translateZ(0);
+            transform: translateX(0%) translateZ(0);
+  }
+  100% {
+    -webkit-transform: translateX(100%) translateZ(0);
+            transform: translateX(100%) translateZ(0);
+  }
+}
+
+@keyframes kitify-move-horizontal-reverse-text-marquee {
+  0% {
+    -webkit-transform: translateX(0%) translateZ(0);
+            transform: translateX(0%) translateZ(0);
+  }
+  100% {
+    -webkit-transform: translateX(100%) translateZ(0);
+            transform: translateX(100%) translateZ(0);
+  }
+}
+
+@-webkit-keyframes kitify-move-horizontal-reverse-text-marquee-clone {
+  0% {
+    -webkit-transform: translateX(-100%) translateZ(0);
+            transform: translateX(-100%) translateZ(0);
+  }
+  100% {
+    -webkit-transform: translateX(0%) translateZ(0);
+            transform: translateX(0%) translateZ(0);
+  }
+}
+
+@keyframes kitify-move-horizontal-reverse-text-marquee-clone {
+  0% {
+    -webkit-transform: translateX(-100%) translateZ(0);
+            transform: translateX(-100%) translateZ(0);
+  }
+  100% {
+    -webkit-transform: translateX(0%) translateZ(0);
+            transform: translateX(0%) translateZ(0);
+  }
+}
+
+@-webkit-keyframes kitify-move-vertical-reverse-text-marquee {
+  0% {
+    -webkit-transform: translateY(0%) translateZ(0);
+            transform: translateY(0%) translateZ(0);
+  }
+  100% {
+    -webkit-transform: translateY(100%) translateZ(0);
+            transform: translateY(100%) translateZ(0);
+  }
+}
+
+@keyframes kitify-move-vertical-reverse-text-marquee {
+  0% {
+    -webkit-transform: translateY(0%) translateZ(0);
+            transform: translateY(0%) translateZ(0);
+  }
+  100% {
+    -webkit-transform: translateY(100%) translateZ(0);
+            transform: translateY(100%) translateZ(0);
+  }
+}
+
+@-webkit-keyframes kitify-move-vertical-reverse-text-marquee-clone {
+  0% {
+    -webkit-transform: translateY(-100%) translateZ(0);
+            transform: translateY(-100%) translateZ(0);
+  }
+  100% {
+    -webkit-transform: translateY(0%) translateZ(0);
+            transform: translateY(0%) translateZ(0);
+  }
+}
+
+@keyframes kitify-move-vertical-reverse-text-marquee-clone {
+  0% {
+    -webkit-transform: translateY(-100%) translateZ(0);
+            transform: translateY(-100%) translateZ(0);
+  }
+  100% {
+    -webkit-transform: translateY(0%) translateZ(0);
+            transform: translateY(0%) translateZ(0);
+  }
+}

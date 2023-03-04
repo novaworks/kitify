@@ -50,11 +50,10 @@ if($badge_in_header){
 }
 
 
-
 echo sprintf('<div %1$s>', $this->get_render_attribute_string('infobox_wrapper') );
     echo $this->get_main_icon( sprintf('<div class="kitify-iconbox__box_header elementor-animation-%1$s"><div class="kitify-iconbox__box_icon icon_pos_%2$s">', esc_attr($icons_hover_animation), esc_attr($icon_position) )  . '%s' . sprintf('</div>%1$s%2$s</div>', $box_title, $badge_header_html) );
     echo $this->get_main_image( sprintf('<div class="kitify-iconbox__box_header elementor-animation-%1$s"><div class="kitify-iconbox__box_icon icon_pos_%2$s">', esc_attr($icons_hover_animation), esc_attr($icon_position))  . '%s' . sprintf('</div>%1$s%2$s</div>', $box_title, $badge_header_html) );
-
+    echo $this->get_number();
     echo '<div class="kitify-iconbox__box_body">';
 
     $this->_html( 'subtitle_text', '<div class="kitify-iconbox__subtitle">%s</div>' );

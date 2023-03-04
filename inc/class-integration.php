@@ -468,8 +468,8 @@ if ( ! class_exists( 'Kitify_Integration' ) ) {
             wp_register_style( 'kitify-canvas', kitify()->plugin_url('assets/css/addons/kitify-canvas.css'), [], kitify()->get_version());
             wp_register_script(  'kitify-base' , kitify()->plugin_url('assets/js/kitify-base.js') , [ 'elementor-frontend' ],  kitify()->get_version() , true );
             wp_register_script(  'kitify-header-vertical' , kitify()->plugin_url('assets/js/addons/header-sidebar.js') , [ 'elementor-frontend' ],  kitify()->get_version() , true );
-
             wp_register_script(  'jquery-isotope' , kitify()->plugin_url('assets/js/lib/isotope.pkgd.min.js') , ['imagesloaded'],  kitify()->get_version() , true );
+            wp_register_script(  'jquery-numerator' , kitify()->plugin_url('assets/js/lib/jquery-numerator.js') , null,  kitify()->get_version() , true );
 						// Register vendor juxtapose.js script
 						wp_register_script(
 							'kitify-juxtapose',

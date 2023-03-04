@@ -40,8 +40,10 @@ else{
             }
 
             echo $this->_loop_item( array( 'item_comment' ), '<div class="kitify-testimonials__comment"><div>%s</div></div>' );
+            echo '<div class="kitify-testimonials__infomation">';
             echo $this->_loop_item( array( 'item_name' ), '<div class="kitify-testimonials__name"><span>%s</span></div>' );
             echo $this->_loop_item( array( 'item_position' ), '<div class="kitify-testimonials__position"><span>%s</span></div>' );
+            echo '</div>';
 
             if($this->get_settings('replace_star')){
                 ?>
