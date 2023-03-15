@@ -13,6 +13,7 @@
           padding-left: 35px;
         }
         &:before {
+          display: none;
           counter-increment: section;
           content: "0" counter(section);
           font-size: 20px;

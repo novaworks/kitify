@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Kitify by Novaworks
  * Description:       A perfect plugin for Elementor
- * Version:           1.0.4.6
+ * Version:           1.0.5
  * Author:            Novaworks
  * Author URI:        https://kitify.app
  * License:           GPL-2.0+
@@ -643,7 +643,10 @@ if(!function_exists('Kitify')){
               new KitifyThemeBuilder_AdminApp();
           }
         }
-
+        public function is_optimized_css_mode(){
+    			$is_optimized_css_loading = $this->elementor()->experiments->is_feature_active( 'e_optimized_css_loading' );
+    			return $is_optimized_css_loading && ! $this->elementor()->preview->is_preview_mode();
+    		}
     }
 }
 

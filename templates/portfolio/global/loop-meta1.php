@@ -41,6 +41,11 @@ if (filter_var($show_metadata, FILTER_VALIDATE_BOOLEAN) && !empty($metadata)) {
                 $meta_value = sprintf('<a href="%1$s">%2$s</a>', esc_url( get_comments_link() ), esc_html( get_comments_number() ) );
                 $item_type_class = 'post__comment';
                 break;
+            case 'custom':
+                $item_custom = isset($meta['item_type_custom']) ? $meta['item_type_custom'] : '';
+                $meta_value = get_post_meta( get_the_ID(), $item_custom , true );
+                $item_type_class = 'post__custom-field';
+                break;
         }
 
         if (!empty($meta_value)) {

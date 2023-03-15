@@ -49,7 +49,54 @@ class Kitify_Portfolio extends Kitify_Posts {
 	public function get_keywords() {
 		return [ 'portfolio' ];
 	}
-
+	protected function _register_section_custom_field( $css_scheme ){
+		$this->_start_controls_section(
+			'section_custom_field',
+			[
+				'label' => __( 'Custom Field', 'kitify' ),
+				'tab'       => Controls_Manager::TAB_STYLE,
+				'condition' => [
+					'show_meta' => 'yes'
+				],
+			]
+		);
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'custom_label',
+				'label'    => __( 'Label Typography', 'kitify' ),
+				'selector' => '{{WRAPPER}} .kitify-posts__meta__item.kitify-posts__meta__item--custom .meta--label',
+			)
+		);
+		$this->add_control(
+				'custom_label_color',
+				[
+						'label' => __( 'Label Color', 'kitify' ),
+						'type' => Controls_Manager::COLOR,
+						'selector' => '{{WRAPPER}} .kitify-posts__meta__item.kitify-posts__meta__item--custom .meta--label',
+				]
+		);
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'custom_value',
+				'label'    => __( 'Value Typography', 'kitify' ),
+				'selector' => '{{WRAPPER}} .kitify-posts__meta__item.kitify-posts__meta__item--custom .meta--value',
+				'separator' => 'before',
+			)
+		);
+		$this->add_control(
+				'custom_value_color',
+				[
+						'label' => __( 'Value Color', 'kitify' ),
+						'type' => Controls_Manager::COLOR,
+						'selectors' => array(
+							'{{WRAPPER}} .kitify-posts__meta__item.kitify-posts__meta__item--custom .meta--value' => 'color: {{VALUE}}',
+						),
+				]
+		);
+		$this->_end_controls_section();
+	}
 	protected function _register_section_meta( $css_scheme ){
 		$this->_start_controls_section(
 			'section_meta',
@@ -137,8 +184,20 @@ class Kitify_Portfolio extends Kitify_Posts {
 					'author'   => esc_html__( 'Author', 'kitify' ),
 					'date'     => esc_html__( 'Posted Date', 'kitify' ),
 					'tag'      => esc_html__( 'Tags', 'kitify' ),
+					'custom'      => esc_html__( 'Custom Field', 'kitify' ),
 				] )
 			]
+		);
+
+		$repeater->add_control(
+				'item_type_custom',
+				array(
+						'label'     => esc_html__( 'Custom Field', 'kitify' ),
+						'type'      => Controls_Manager::TEXT,
+						'condition' => array(
+								'item_type' => 'custom',
+						),
+				)
 		);
 
 		$this->_add_control(
@@ -513,6 +572,8 @@ class Kitify_Portfolio extends Kitify_Posts {
 		$this->register_carousel_section( [ 'enable_masonry!' => 'yes' ], 'columns' );
 
 		$this->_register_section_style_general( $css_scheme );
+
+		$this->_register_section_custom_field( $css_scheme );
 
 		$this->_register_section_style_meta( $css_scheme );
 

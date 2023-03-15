@@ -187,7 +187,7 @@ class Kitify_Creative_Banners extends Kitify_Base {
             'category_filter_rule' => array( 'include', 'exclude' ),
           ),
         )
-      );  
+      );
     }
     $this->add_control(
       'display_empty_cat',
@@ -240,6 +240,64 @@ class Kitify_Creative_Banners extends Kitify_Base {
  */
 protected function register_style_category_controls() {
 
+  $this->start_controls_section(
+    'section_design_item',
+    array(
+      'label' => __( 'Items', 'kitify' ),
+      'tab'   => Controls_Manager::TAB_STYLE,
+    )
+  );
+  $this->_add_group_control(
+      Group_Control_Background::get_type(),
+      [
+          'name' => 'design_item_bg',
+          'label' => esc_html__( 'Background', 'kitify' ),
+          'types' => [ 'classic', 'gradient'],
+          'selector' => '{{WRAPPER}} .kitify-creative-banners__links ul li',
+      ]
+  );
+  $this->_add_responsive_control(
+      'design_item_padding',
+      [
+          'label' => esc_html__( 'Padding', 'kitify' ),
+          'type' => Controls_Manager::DIMENSIONS,
+          'size_units' => [ 'px', '%', 'em' ],
+          'selectors' => [
+              '{{WRAPPER}} .kitify-creative-banners__links ul li' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+          ],
+      ]
+  );
+  $this->_add_responsive_control(
+      'design_item_margin',
+      [
+          'label' => esc_html__( 'Margin', 'kitify' ),
+          'type' => Controls_Manager::DIMENSIONS,
+          'size_units' => [ 'px', '%', 'em' ],
+          'selectors' => [
+              '{{WRAPPER}} .kitify-creative-banners__links ul li' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+          ],
+      ]
+  );
+  $this->_add_group_control(
+      Group_Control_Border::get_type(),
+      [
+          'name' => 'design_item_border_group',
+          'label' => esc_html__( 'Border', 'kitify' ),
+          'selector' => '{{WRAPPER}} .kitify-creative-banners__links ul li',
+      ]
+  );
+  $this->_add_responsive_control(
+      'design_item_border_radious',
+      [
+          'label' => esc_html__( 'Border Radius', 'kitify' ),
+          'type' => Controls_Manager::DIMENSIONS,
+          'size_units' => [ 'px', '%', 'em' ],
+          'selectors' => [
+              '{{WRAPPER}} .kitify-creative-banners__links ul li' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+          ],
+      ]
+  );
+  $this->end_controls_section();
   $this->start_controls_section(
     'section_design_cat_image',
     array(
@@ -315,6 +373,23 @@ protected function register_style_category_controls() {
           ],
       ]
   );
+  $this->_add_responsive_control(
+      'rotate',
+      [
+          'label' => esc_html__( 'Rotate', 'kitify' ),
+          'type' => Controls_Manager::SLIDER,
+          'range'			 => [
+              'deg' => [
+                  'min'	 => 0,
+                  'max'	 => 360,
+                  'step'	 => 1,
+              ],
+          ],
+          'selectors' => [
+              '{{WRAPPER}} .kitify-creative-banners .kitify-creative-banners__images' => 'transform: rotate({{SIZE}}deg);',
+          ],
+      ]
+  );
   $this->add_responsive_control(
       'image_top_postion',
       [
@@ -338,6 +413,32 @@ protected function register_style_category_controls() {
           ],
           'selectors' => [
               '{{WRAPPER}} .kitify-creative-banners .kitify-creative-banners__images' => 'top: {{SIZE}}{{UNIT}};',
+          ],
+      ]
+  );
+  $this->add_responsive_control(
+      'image_right_postion',
+      [
+          'label' => __( 'Image Right Postion (%)', 'kitify' ),
+          'type' => Controls_Manager::SLIDER,
+          'default' => [
+              'unit' => '%',
+          ],
+          'tablet_default' => [
+              'unit' => '%',
+          ],
+          'mobile_default' => [
+              'unit' => '%',
+          ],
+          'size_units' => [ '%'],
+          'range' => [
+              '%' => [
+                  'min' => 1,
+                  'max' => 100,
+              ],
+          ],
+          'selectors' => [
+              '{{WRAPPER}} .kitify-creative-banners .kitify-creative-banners__images' => 'right: {{SIZE}}{{UNIT}};',
           ],
       ]
   );
@@ -415,6 +516,20 @@ protected function register_style_category_controls() {
       'label' => __( 'Count text', 'kitify' ),
       'tab'   => Controls_Manager::TAB_STYLE,
     )
+  );
+  $this->add_control(
+      'hotspot_tooltip_text_wrap',
+      [
+          'label' => esc_html__( 'Show Counter', 'kitify' ),
+          'type' => Controls_Manager::SWITCHER,
+          'label_off' => esc_html__( 'Off', 'kitify' ),
+          'label_on' => esc_html__( 'On', 'kitify' ),
+          'selectors' => [
+              '{{WRAPPER}} .kitify-creative-banners__links li:before' => 'display: block',
+          ],
+          'return_value' => 'yes',
+          'default' => 'yes',
+      ]
   );
   $this->_add_group_control(
       Group_Control_Typography::get_type(),

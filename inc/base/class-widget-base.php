@@ -2721,7 +2721,7 @@ abstract class Kitify_Base extends Widget_Base
         return $icons;
     }
 
-    public static function get_laicon_default( $key_only = false ){
+    public static function get_novaicon_default( $key_only = false ){
         $icon_list = array(
             "b-dribbble",
             "b-vkontakte",
@@ -2929,4 +2929,22 @@ abstract class Kitify_Base extends Widget_Base
         }
         return $icons;
     }
+    /**
+ * @param $icon
+ * @param $attributes
+ * @param $tag
+ * @return bool|mixed|string
+ */
+public static function try_get_icon_html( $icon, $attributes = [], $tag = 'i' ) {
+    $output = '';
+    if ( empty( $icon['library'] ) ) {
+        return $output;
+    }
+    if ( 'svg' === $icon['library'] ) {
+        $output = Icons_Manager::render_uploaded_svg_icon( $icon['value'] );
+    } else {
+        $output = Icons_Manager::render_font_icon( $icon, $attributes, $tag );
+    }
+    return $output;
+}
 }

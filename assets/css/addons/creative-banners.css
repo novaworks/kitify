@@ -18,6 +18,7 @@
 }
 
 .kitify-creative-banners__links ul li:before {
+  display: none;
   counter-increment: section;
   content: "0" counter(section);
   font-size: 20px;

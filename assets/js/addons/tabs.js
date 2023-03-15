@@ -150,7 +150,7 @@
                 activeContentHeight = $activeContent.outerHeight(true);
                 activeContentHeight += parseInt($contentWrapper.css('border-top-width')) + parseInt($contentWrapper.css('border-bottom-width'));
 
-                $(document).trigger('lastudio-kit/active-tabs', [$activeContent]);
+                $(document).trigger('kitify/active-tabs', [$activeContent]);
 
                 $contentWrapper.css({'height': activeContentHeight});
 
