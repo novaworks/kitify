@@ -13,10 +13,10 @@ final class Modules_Manager {
 
 	public function __construct() {
 		$modules = [
-						'theme-builder',
+			'theme-builder',
             'woocommerce',
-						'dynamic-tags',
-						'nested-elements',
+			'dynamic-tags',
+			'nested-elements',
 		];
 
 		foreach ( $modules as $module_name ) {

@@ -147,6 +147,16 @@ class Kitify_Creative_Banners extends Kitify_Base {
             'separator' => 'before',
         )
     );
+    $this->_add_advanced_icon_control(
+        'arrow_icon',
+        array(
+            'label'       => esc_html__( 'Arrow Icon', 'kitify' ),
+            'type'        => Controls_Manager::ICON,
+            'label_block' => false,
+            'skin'        => 'inline',
+            'file'        => '',
+        )
+    );
     $this->end_controls_section();
 
     $this->start_controls_section(
@@ -507,6 +517,43 @@ protected function register_style_category_controls() {
         '{{WRAPPER}} .kitify-creative-banners__links .b-title' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
       ),
     )
+  );
+  $this->end_controls_section();
+  $this->start_controls_section(
+    'section_design_cat_icon',
+    array(
+      'label' => __( 'Icon', 'kitify' ),
+      'tab'   => Controls_Manager::TAB_STYLE,
+    )
+  );
+
+  $this->_add_control(
+      'icon_color',
+      [
+          'label' => esc_html__( 'Icon Color', 'kitify' ),
+          'type' => Controls_Manager::COLOR,
+          'selectors' => [
+              '{{WRAPPER}} .kitify-e-icon-holder' => 'color: {{VALUE}};',
+          ],
+          'separator' => 'before',
+      ]
+  );
+  $this->_add_responsive_control(
+      'icon_size',
+      [
+          'label' => esc_html__( 'Icon Size', 'kitify' ),
+          'type' => Controls_Manager::SLIDER,
+          'range' => [
+              'px' => [
+                  'min' => 6,
+                  'max' => 300,
+              ],
+          ],
+          'selectors' => [
+              '{{WRAPPER}} .kitify-e-icon-holder' => 'font-size: {{SIZE}}{{UNIT}};',
+              '{{WRAPPER}} .kitify-e-icon-holder svg' => 'width: {{SIZE}}{{UNIT}};',
+          ],
+      ]
   );
   $this->end_controls_section();
 

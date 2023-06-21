@@ -12,6 +12,7 @@
         $item_link         = !empty($item['item_link']) ? $item['item_link'] : '#';
         echo '<li data-item-id='.$item_id.'>';
         echo sprintf('<a href="%1$s"><%2$s class="b-title">%3$s</%2$s></a>', $item_link['url'], $title_html_tag, $item_title);
+        echo $this->_icon( 'arrow_icon', '<span class="kitify-e-icon-holder">%s</span>' );
         echo '</li>';
       }
     }

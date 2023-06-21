@@ -59,6 +59,17 @@ class Kitify_Text_Marquee extends Kitify_Base {
 				]
 		);
 		$repeater->add_control(
+				'link',
+				[
+						'label' => __( 'Link', 'kitify' ),
+						'type' => Controls_Manager::URL,
+						'dynamic' => [
+								'active' => true,
+						],
+						'placeholder' => __( 'https://your-link.com', 'kitify' ),
+				]
+		);
+		$repeater->add_control(
 				'text_color',
 				[
 						'label' => __( 'Color', 'kitify' ),

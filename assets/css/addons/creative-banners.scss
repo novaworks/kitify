@@ -3,14 +3,20 @@
   position: relative;
   &__links {
     ul {
+      display: inline-block;
       margin: 0;
       padding: 0;
       counter-reset: section;
       li {
+        display: flex;
+        align-items: center;
         position: relative;
         list-style: none;
         .b-title {
           padding-left: 35px;
+        }
+        span.kitify-e-icon-holder {
+          margin-left: auto;
         }
         &:before {
           display: none;

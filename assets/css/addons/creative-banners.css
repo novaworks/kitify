@@ -3,18 +3,29 @@
 }
 
 .kitify-creative-banners__links ul {
+  display: inline-block;
   margin: 0;
   padding: 0;
   counter-reset: section;
 }
 
 .kitify-creative-banners__links ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   position: relative;
   list-style: none;
 }
 
 .kitify-creative-banners__links ul li .b-title {
   padding-left: 35px;
+}
+
+.kitify-creative-banners__links ul li span.kitify-e-icon-holder {
+  margin-left: auto;
 }
 
 .kitify-creative-banners__links ul li:before {
