@@ -60,6 +60,12 @@
       text-shadow: none;
     }
   }
+  .kitify-item-stroke-effect.kitify-text-marquee__item {
+    color: transparent !important;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #333333;
+    text-shadow: none;
+  }
 }
 @keyframes kitify-move-horizontal-normal-text-marquee {
   0% {

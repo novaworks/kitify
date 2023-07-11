@@ -13,12 +13,16 @@
 		<div class="kitify-text-marquee__text text--original">
 			<?php
 			foreach ( $items as $item ) {
+				$item_stroke_classes = '';
 				$item_class = 'kitify-text-marquee__item elementor-repeater-item-' . $item['_id'];
+				if ($item['text_stroke_effect'] == 'yes') {
+					$item_stroke_classes = ' kitify-item-stroke-effect';
+				}
 				?>
 				<?php
 				if(empty($item['link']['url'])){
 				?>
-				<span class="<?php echo esc_attr($item_class)?>" ><?php echo wp_kses( $item['text'], array( 'span' => array( 'style' => true ) ) ); ?></span>
+				<span class="<?php echo esc_attr($item_class)?><?php echo esc_attr($item_stroke_classes)?>" ><?php echo wp_kses( $item['text'], array( 'span' => array( 'style' => true ) ) ); ?></span>
 			<?php }else{ ?>
 				<a href="<?php echo esc_url($item['link']['url'])?>"><span class="<?php echo esc_attr($item_class)?>" ><?php echo wp_kses( $item['text'], array( 'span' => array( 'style' => true ) ) ); ?></span></a>
 			<?php } ?>
@@ -28,12 +32,16 @@
 		<div class="kitify-text-marquee__text text--clone">
 			<?php
 			foreach ( $items as $item ) {
+				$item_stroke_classes = '';
 				$item_class = 'kitify-text-marquee__item elementor-repeater-item-' . $item['_id'];
+				if ($item['text_stroke_effect'] == 'yes') {
+					$item_stroke_classes = ' kitify-item-stroke-effect';
+				}
 				?>
 				<?php
 				if(empty($item['link']['url'])){
 				?>
-				<span class="<?php echo esc_attr($item_class)?>" ><?php echo wp_kses( $item['text'], array( 'span' => array( 'style' => true ) ) ); ?></span>
+				<span class="<?php echo esc_attr($item_class)?><?php echo esc_attr($item_stroke_classes)?>" ><?php echo wp_kses( $item['text'], array( 'span' => array( 'style' => true ) ) ); ?></span>
 			<?php }else{ ?>
 				<a href="<?php echo esc_url($item['link']['url'])?>"><span class="<?php echo esc_attr($item_class)?>" ><?php echo wp_kses( $item['text'], array( 'span' => array( 'style' => true ) ) ); ?></span></a>
 			<?php } ?>

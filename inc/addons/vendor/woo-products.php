@@ -924,7 +924,27 @@ class Kitify_Woo_Products extends Kitify_Base {
                 'separator' => 'before',
             ]
         );
-
+        $this->add_control(
+            'price_background_color',
+            [
+                'label' => esc_html__( 'Price Background Color', 'kitify' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} ul.products li.product .price' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+        $this->add_responsive_control(
+            'price_box_padding',
+            [
+                'label' => esc_html__( 'Padding', 'kitify' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', 'em' ],
+                'selectors' => [
+                    apply_filters('kitify/products/box_price', '{{WRAPPER}} ul.products li.product .price') => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+                ]
+            ]
+        );
         $this->add_control(
             'price_color',
             [

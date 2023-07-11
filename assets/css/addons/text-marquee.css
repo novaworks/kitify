@@ -76,6 +76,13 @@
   text-shadow: none;
 }
 
+.kitify-text-marquee .kitify-item-stroke-effect.kitify-text-marquee__item {
+  color: transparent !important;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #333333;
+  text-shadow: none;
+}
+
 @-webkit-keyframes kitify-move-horizontal-normal-text-marquee {
   0% {
     -webkit-transform: translateX(0%) translateZ(0);

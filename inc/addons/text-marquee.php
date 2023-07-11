@@ -87,6 +87,43 @@ class Kitify_Text_Marquee extends Kitify_Base {
 						'selector' => '{{WRAPPER}} {{CURRENT_ITEM}}.kitify-text-marquee__item',
 				)
 		);
+		$repeater->add_control(
+				'text_stroke_effect',
+				array(
+						'label'        => esc_html__( 'Text Stroke Effect', 'kitify' ),
+						'type'         => Controls_Manager::SWITCHER,
+						'label_on'     => esc_html__( 'Yes', 'kitify' ),
+						'label_off'    => esc_html__( 'No', 'kitify' ),
+						'return_value' => 'yes',
+						'default'      => '',
+				)
+		);
+		$repeater->add_control(
+				'text_stroke_color',
+				[
+						'label' => esc_html__( 'Text Stroke Color', 'kitify' ),
+						'type' => Controls_Manager::COLOR,
+						'selectors' => [
+								'{{WRAPPER}} {{CURRENT_ITEM}}.kitify-text-marquee__item' => '-webkit-text-stroke-color: {{VALUE}};',
+						],
+						'condition' => [
+								'text_stroke_effect' => 'yes',
+						]
+				]
+		);
+		$repeater->add_control(
+			'text_stroke_width',
+			array(
+				'type' => Controls_Manager::NUMBER,
+				'label' => esc_html__( 'Text Stroke Width', 'kitify' ),
+				'selectors'  => array(
+					'{{WRAPPER}} {{CURRENT_ITEM}}.kitify-text-marquee__item ' => '-webkit-text-stroke-width: {{SIZE}}px;',
+				),
+				'condition' => array(
+					'text_stroke_effect' => 'yes',
+				)
+			)
+		);
 		$this->add_control(
 				'items',
 				[
