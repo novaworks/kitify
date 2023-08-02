@@ -116,6 +116,11 @@
   border-radius: inherit;
 }
 
+.kitify-testimonials__tag-sign {
+  display: inline-block;
+  vertical-align: middle;
+}
+
 .kitify-testimonials__comment {
   max-width: 100%;
 }

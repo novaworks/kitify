@@ -11,9 +11,8 @@ namespace Elementor;
 if (!defined('WPINC')) {
     die;
 }
-
-use Elementor\Core\Schemes\Color as Scheme_Color;
-use Elementor\Core\Schemes\Typography as Scheme_Typography;
+use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 
 // Elementor Classes
 use Elementor\Modules\DynamicTags\Module as TagsModule;
@@ -1179,7 +1178,9 @@ class Kitify_Advanced_Carousel extends Kitify_Base {
             Group_Control_Typography::get_type(),
             array(
                 'name'     => 'items_title_typography',
-                'scheme'   => Scheme_Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
                 'selector' => '{{WRAPPER}}  ' . $css_scheme['items_title'] . ', {{WRAPPER}}  ' . $css_scheme['items_title'] . ' a, {{WRAPPER}} ' . $css_scheme['banner_title'],
                 'separator' => 'before',
             ),
@@ -1240,10 +1241,9 @@ class Kitify_Advanced_Carousel extends Kitify_Base {
             array(
                 'label'     => esc_html__( 'Content Color', 'kitify' ),
                 'type'      => Controls_Manager::COLOR,
-                'scheme'    => array(
-                    'type'  => Scheme_Color::get_type(),
-                    'value' => Scheme_Color::COLOR_3,
-                ),
+				'global' => [
+					'default' => Global_Colors::COLOR_TEXT,
+				],
                 'selectors' => array(
                     '{{WRAPPER}} ' . $css_scheme['items_text'] => 'color: {{VALUE}}',
                     '{{WRAPPER}} ' . $css_scheme['banner_text'] => 'color: {{VALUE}}',
@@ -1282,7 +1282,9 @@ class Kitify_Advanced_Carousel extends Kitify_Base {
             Group_Control_Typography::get_type(),
             array(
                 'name'     => 'items_text_typography',
-                'scheme'   => Scheme_Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
                 'selector' => '{{WRAPPER}}  ' . $css_scheme['items_text'] . ', {{WRAPPER}} ' . $css_scheme['banner_text'],
                 'separator' => 'before',
             ),
@@ -1400,7 +1402,9 @@ class Kitify_Advanced_Carousel extends Kitify_Base {
             Group_Control_Typography::get_type(),
             array(
                 'name'     => 'button_typography',
-                'scheme'   => Scheme_Typography::TYPOGRAPHY_4,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
+				],
                 'selector' => '{{WRAPPER}}  ' . $css_scheme['items_button'],
             ),
             50
@@ -1471,10 +1475,9 @@ class Kitify_Advanced_Carousel extends Kitify_Base {
             array(
                 'label' => esc_html__( 'Background Color', 'kitify' ),
                 'type' => Controls_Manager::COLOR,
-                'scheme' => array(
-                    'type'  => Scheme_Color::get_type(),
-                    'value' => Scheme_Color::COLOR_1,
-                ),
+				'global' => [
+					'default' => Global_Colors::COLOR_PRIMARY,
+				],
                 'selectors' => array(
                     '{{WRAPPER}} ' . $css_scheme['items_button'] => 'background-color: {{VALUE}}',
                 ),

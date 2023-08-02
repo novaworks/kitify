@@ -10,6 +10,9 @@ $full_width = $this->get_settings( 'enable_image_full_width' );
 $item_image = $this->_loop_item( array( 'item_image', 'url' ), '%s' );
 $item_image = apply_filters('kitify_wp_get_attachment_image_url', $item_image);
 
+$item_sign = $this->_loop_item( array( 'item_sign', 'url' ), '%s' );
+$item_sign = apply_filters('kitify_wp_get_attachment_image_url', $item_sign);
+
 $post_classes = ['kitify-testimonials__item'];
 $el_class = $this->_loop_item( array( 'el_class' ), '%s' );
 $el_class = $this->_loop_item( array( '_id' ), 'elementor-repeater-item-%s' );
@@ -35,10 +38,12 @@ else{
                 }else {
                   echo sprintf('<span class="kitify-testimonials__tag-img"><span style="background-image: url(\'%1$s\')"></span></span>', $item_image );
                 }
+                if(!empty($item_sign)){
+                    echo sprintf('<span class="kitify-testimonials__tag-sign"><img alt="Kitify Testimonials Signature" src="%1$s" /></span>', $item_sign );
+                }
                 do_action('kitify/testimonials/output/after_image', $preset);
                 echo '</div>';
             }
-
             echo $this->_loop_item( array( 'item_comment' ), '<div class="kitify-testimonials__comment"><div>%s</div></div>' );
             echo '<div class="kitify-testimonials__infomation">';
             echo $this->_loop_item( array( 'item_name' ), '<div class="kitify-testimonials__name"><span>%s</span></div>' );

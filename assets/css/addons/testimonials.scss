@@ -110,7 +110,10 @@
 			border-radius: inherit;
 		}
 	}
-
+	&__tag-sign {
+		display: inline-block;
+		vertical-align: middle;
+	}
 	&__comment {
 		max-width: 100%;
 	}

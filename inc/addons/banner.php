@@ -7,7 +7,8 @@
 
 namespace Elementor;
 
-use Elementor\Core\Schemes\Typography as Scheme_Typography;
+use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Modules\DynamicTags\Module as TagsModule;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
@@ -681,7 +682,9 @@ class Kitify_Banner extends Kitify_Base {
 			Group_Control_Typography::get_type(),
 			array(
 				'name'     => 'banner_title_typography',
-				'scheme'   => Scheme_Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 				'selector' => '{{WRAPPER}} ' . $css_scheme['banner_title'],
 			),
 			50
@@ -808,7 +811,9 @@ class Kitify_Banner extends Kitify_Base {
 			Group_Control_Typography::get_type(),
 			array(
 				'name'     => 'banner_text_typography',
-				'scheme'   => Scheme_Typography::TYPOGRAPHY_3,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
 				'selector' => '{{WRAPPER}} ' . $css_scheme['banner_text'],
 			),
 			50

@@ -44,6 +44,7 @@ class Kitify_Testimonials extends Kitify_Base {
                 'item_inner' => '.kitify-testimonials__item-inner',
                 'image'      => '.kitify-testimonials__figure',
                 'image_tag'  => '.kitify-testimonials__tag-img',
+                'image_sign' => '.kitify-testimonials__tag-sign',
                 'content'    => '.kitify-testimonials__content',
                 'icon'       => '.kitify-testimonials__icon',
                 'icon_inner' => '.kitify-testimonials__icon-inner',
@@ -117,7 +118,14 @@ class Kitify_Testimonials extends Kitify_Base {
                 'dynamic' => array( 'active' => true ),
             )
         );
-
+        $repeater->add_control(
+            'item_sign',
+            array(
+                'label'   => esc_html__( 'Signature', 'kitify' ),
+                'type'    => Controls_Manager::MEDIA,
+                'dynamic' => array( 'active' => true ),
+            )
+        );
         $repeater->add_control(
             'item_title',
             array(
@@ -432,6 +440,29 @@ class Kitify_Testimonials extends Kitify_Base {
             ]
         );
 
+        $this->add_responsive_control(
+            'custom_sign_width',
+            [
+                'label' => __( 'Custom Signature Width', 'kitify' ),
+                'type' => Controls_Manager::SLIDER,
+                'size_units'  => array( 'px' ),
+                'range' => [
+                    'px' => [
+                        'min' => 50,
+                        'max' => 500,
+                        'step' => 1,
+                    ]
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 400,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} ' . $css_scheme['image_sign'] . ' img' => 'width: {{SIZE}}{{UNIT}};'
+                ],
+                'render_type' => 'template'
+            ]
+        );
         $this->add_responsive_control(
             'image_padding',
             array(

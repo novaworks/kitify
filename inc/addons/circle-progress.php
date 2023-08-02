@@ -12,8 +12,8 @@ use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
 use Elementor\Repeater;
-use Elementor\Core\Schemes\Color as Scheme_Color;
-use Elementor\Core\Schemes\Typography as Scheme_Typography;
+use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Widget_Base;
 use Elementor\Utils;
 use Elementor\Modules\DynamicTags\Module as TagsModule;
@@ -549,10 +549,9 @@ class Kitify_Circle_Progress extends Kitify_Base {
 			array(
 				'label' => esc_html__( 'Color', 'kitify' ),
 				'type' => Controls_Manager::COLOR,
-				'scheme' => array(
-					'type'  => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_1,
-				),
+				'global' => [
+					'default' => Global_Colors::COLOR_PRIMARY,
+				],
 				'selectors' => array(
 					'{{WRAPPER}} .circle-counter .circle-val' => 'color: {{VALUE}}',
 				),
@@ -564,7 +563,9 @@ class Kitify_Circle_Progress extends Kitify_Base {
 			Group_Control_Typography::get_type(),
 			array(
 				'name'     => 'number_typography',
-				'scheme'   => Scheme_Typography::TYPOGRAPHY_1,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+				],
 				'selector' => '{{WRAPPER}} .circle-counter .circle-val',
 			),
 			50
@@ -740,10 +741,9 @@ class Kitify_Circle_Progress extends Kitify_Base {
 			array(
 				'label' => esc_html__( 'Color', 'kitify' ),
 				'type' => Controls_Manager::COLOR,
-				'scheme' => array(
-					'type'  => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_2,
-				),
+				'global' => [
+					'default' => Global_Colors::COLOR_SECONDARY,
+				],
 				'selectors' => array(
 					'{{WRAPPER}} .circle-counter .circle-counter__title' => 'color: {{VALUE}}',
 				),
@@ -755,7 +755,9 @@ class Kitify_Circle_Progress extends Kitify_Base {
 			Group_Control_Typography::get_type(),
 			array(
 				'name'     => 'title_typography',
-				'scheme'   => Scheme_Typography::TYPOGRAPHY_1,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+				],
 				'selector' => '{{WRAPPER}} .circle-counter .circle-counter__title',
 			),
 			50
@@ -789,10 +791,9 @@ class Kitify_Circle_Progress extends Kitify_Base {
 			array(
 				'label'  => esc_html__( 'Color', 'kitify' ),
 				'type'   => Controls_Manager::COLOR,
-				'scheme' => array(
-					'type'  => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_3,
-				),
+				'global' => [
+					'default' => Global_Colors::COLOR_TEXT,
+				],
 				'selectors' => array(
 					'{{WRAPPER}} .circle-counter .circle-counter__subtitle' => 'color: {{VALUE}}',
 				),
@@ -804,7 +805,9 @@ class Kitify_Circle_Progress extends Kitify_Base {
 			Group_Control_Typography::get_type(),
 			array(
 				'name'     => 'subtitle_typography',
-				'scheme'   => Scheme_Typography::TYPOGRAPHY_2,
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
+				],
 				'selector' => '{{WRAPPER}} .circle-counter .circle-counter__subtitle',
 			),
 			50

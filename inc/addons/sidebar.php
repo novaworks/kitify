@@ -9,8 +9,8 @@ namespace Elementor;
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-use Elementor\Core\Schemes\Color as Scheme_Color;
-use Elementor\Core\Schemes\Typography as Scheme_Typography;
+use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 
 class Kitify_Sidebar extends Kitify_Base {
 
@@ -224,7 +224,9 @@ class Kitify_Sidebar extends Kitify_Base {
           Group_Control_Typography::get_type(),
           array(
               'name'     => 'widget_title_typography',
-              'scheme'   => Scheme_Typography::TYPOGRAPHY_3,
+              'global' => [
+                'default' => Global_Typography::TYPOGRAPHY_TEXT,
+              ],
               'selector' => '{{WRAPPER}}  ' . $css_scheme['widget_title'],
               'separator' => 'before',
           ),
