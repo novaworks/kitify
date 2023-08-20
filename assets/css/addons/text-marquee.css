@@ -73,6 +73,8 @@
   color: transparent !important;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #333333;
+  background-clip: text;
+  -webkit-background-clip: text;
   text-shadow: none;
 }
 
@@ -80,6 +82,8 @@
   color: transparent !important;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #333333;
+  background-clip: text;
+  -webkit-background-clip: text;
   text-shadow: none;
 }
 

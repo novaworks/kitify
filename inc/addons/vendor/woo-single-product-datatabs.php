@@ -262,7 +262,6 @@ class Kitify_Woo_Single_Product_Datatabs extends Kitify_Base {
                 'type'       => Controls_Manager::DIMENSIONS,
                 'size_units' => array( 'px', '%', 'em', 'vw', 'vh' ),
                 'selectors'  => array(
-                    '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs .tabs-title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs .tabs-title > a' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ),
             )
@@ -284,7 +283,7 @@ class Kitify_Woo_Single_Product_Datatabs extends Kitify_Base {
             Group_Control_Border::get_type(),
             array(
                 'name'        => 'tabs_control_border',
-                'selector'  => '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs .tabs-title',
+                'selector'  => '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs .tabs-title > a',
             )
         );
 
@@ -341,7 +340,7 @@ class Kitify_Woo_Single_Product_Datatabs extends Kitify_Base {
             Group_Control_Border::get_type(),
             array(
                 'name'        => 'tabs_control_border_hover',
-                'selector'  => '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs .tabs-title.is-active,{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs .tabs-title:hover',
+                'selector'  => '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs .tabs-title.is-active >a,{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs .tabs-title:hover >a',
             )
         );
 
@@ -349,7 +348,7 @@ class Kitify_Woo_Single_Product_Datatabs extends Kitify_Base {
             Group_Control_Box_Shadow::get_type(),
             array(
                 'name'     => 'tabs_control_box_shadow_hover',
-                'selector'  => '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs .tabs-title.is-active,{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs .tabs-title:hover',
+                'selector'  => '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs .tabs-title.is-active > a,{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs .tabs-title:hover > a',
             )
         );
 

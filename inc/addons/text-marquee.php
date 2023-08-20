@@ -124,6 +124,18 @@ class Kitify_Text_Marquee extends Kitify_Base {
 				)
 			)
 		);
+		
+		$repeater->add_group_control(
+			Group_Control_Background::get_type(),
+			array(
+				'name'     => 'background_text',
+				'selector' => '{{WRAPPER}} {{CURRENT_ITEM}}.kitify-text-marquee__item',
+				'condition' => array(
+					'text_stroke_effect' => 'yes',
+				)			
+			),
+		);
+
 		$this->add_control(
 				'items',
 				[
@@ -250,6 +262,7 @@ class Kitify_Text_Marquee extends Kitify_Base {
 				)
 			)
 		);
+		
 		$this->_add_control(
 				'icon_color',
 				[
