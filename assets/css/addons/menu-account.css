@@ -3,13 +3,16 @@
   padding: 15px;
   line-height: 0;
 }
+
 .kitify-menu-account__box a {
   display: inline-block;
   line-height: 0;
 }
+
 .kitify-menu-account__box .kitify-menu-account__icon {
   font-size: 1.125rem;
 }
+
 .kitify-menu-account__box .sub-menu {
   position: absolute;
   opacity: 0;
@@ -30,43 +33,22 @@
   z-index: 1000;
   pointer-events: none;
 }
+
 .kitify-menu-account__box .sub-menu li {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding: 0.3125rem 1.25rem;
+  padding: 0.3125rem 0.3125rem;
   margin: 0;
 }
+
 .kitify-menu-account__box .sub-menu li a {
   display: block;
   font-size: 0.875rem;
   line-height: 1;
   padding: 0.3125rem 0;
 }
-.kitify-menu-account__box .sub-menu li a:before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  -webkit-transform: scaleX(0);
-          transform: scaleX(0);
-  -webkit-transform-origin: right;
-          transform-origin: right;
-  -webkit-transition: -webkit-transform 0.2s ease-out;
-  transition: -webkit-transform 0.2s ease-out;
-  transition: transform 0.2s ease-out;
-  transition: transform 0.2s ease-out, -webkit-transform 0.2s ease-out;
-}
-.kitify-menu-account__box .sub-menu li a:hover:before {
-  height: 1px;
-  background-color: var(--site-link-hover-color);
-  -webkit-transform: scaleX(1);
-          transform: scaleX(1);
-  -webkit-transform-origin: left;
-          transform-origin: left;
-}
+
 .kitify-menu-account__box:hover .sub-menu {
   opacity: 1;
   -webkit-transform: translate(0, 0);

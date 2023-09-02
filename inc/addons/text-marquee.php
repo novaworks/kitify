@@ -174,7 +174,7 @@ class Kitify_Text_Marquee extends Kitify_Base {
 				'label' => esc_html__( 'Animation Duration (Seconds)', 'kitify' ),
 				'placeholder' => '20',
 				'min' => 0,
-				'max' => 100,
+				'max' => 5000,
 				'step' => 1,
 				'default' => 20,
 			)
