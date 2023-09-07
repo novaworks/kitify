@@ -425,7 +425,7 @@
                 }
             }
 
-            swiperOptions.slideToClickedSlide = true;
+            swiperOptions.slideToClickedSlide = false;
 
             var $swiperContainer = $scope.find('.swiper-container');
 

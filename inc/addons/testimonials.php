@@ -1199,7 +1199,7 @@ class Kitify_Testimonials extends Kitify_Base {
                 'label'  => esc_html__( 'Color', 'kitify' ),
                 'type'   => Controls_Manager::COLOR,
                 'selectors' => array(
-                    '{{WRAPPER}} .star-rating' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .kitify-testimonials .star-rating span:before' => 'color: {{VALUE}}',
                 ),
             )
         );
