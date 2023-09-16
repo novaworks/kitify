@@ -111,9 +111,6 @@ class Kitify_Post_Info extends Kitify_Base {
 			    'label_off'    => esc_html__( 'No', 'kitify' ),
 			    'return_value' => 'yes',
 			    'default'      => '',
-			    'condition'    => [
-				    'show_meta' => 'yes',
-			    ]
 		    )
 	    );
 
@@ -298,6 +295,28 @@ class Kitify_Post_Info extends Kitify_Base {
 			    ),
 		    )
 	    );
+		$this->_add_responsive_control(
+		    'meta_image_size',
+		    array(
+			    'label'      => esc_html__( 'Avata Size', 'kitify' ),
+			    'type'       => Controls_Manager::SLIDER,
+			    'size_units' => array( 'px', 'em' ),
+			    'selectors'  => array(
+				    '{{WRAPPER}} ' . $css_scheme['meta-item'] . ' .meta--icon img' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+			    ),
+		    )
+	    );
+		$this->_add_responsive_control(
+			'box_border_radius',
+			array(
+				'label'      => __( 'Avata Border Radius', 'kitify' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%' ),
+				'selectors'  => array(
+					'{{WRAPPER}} ' . $css_scheme['meta-item'] . ' .meta--icon img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
 	    $this->_add_responsive_control(
 		    'meta_icon_spacing',
 		    array(

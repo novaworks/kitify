@@ -915,7 +915,10 @@
                 })
                 .on('kitify/section/calculate-container-width', '.elementor-top-section', function (e){
                     var $scope = $(this);
-                    var $child_container = $scope.find('>.elementor-container');
+                    var $child_container = $scope.find('>.e-con-inner');
+                    if(!$child_container.length){
+                        $child_container = $scope;
+                    }
                     $child_container.css('--kitify-section-width', $child_container.width() + 'px');
                     $(window).on('resize', function (){
                         $child_container.css('--kitify-section-width', $child_container.width() + 'px');
@@ -2090,86 +2093,86 @@
 
     $(window).on('elementor/frontend/init', function () {
 
-        elementor.hooks.addAction('frontend/element_ready/kitify-advanced-carousel.default', function ($scope) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/kitify-advanced-carousel.default', function ($scope) {
             Kitify.initCarousel($scope);
         });
 
-        elementor.hooks.addAction('frontend/element_ready/kitify-slides.default', function ($scope) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/kitify-slides.default', function ($scope) {
             Kitify.initCarousel($scope);
         });
 
-        elementor.hooks.addAction('frontend/element_ready/kitify-posts.default', function ($scope) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/kitify-posts.default', function ($scope) {
             Kitify.initCarousel($scope);
             Kitify.initMasonry($scope);
         });
 
-        elementor.hooks.addAction('frontend/element_ready/kitify-portfolio.default', function ($scope) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/kitify-portfolio.default', function ($scope) {
             Kitify.initCarousel($scope);
             Kitify.initMasonry($scope);
         });
 
-        elementor.hooks.addAction('frontend/element_ready/kitify-images-layout.default', function ($scope) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/kitify-images-layout.default', function ($scope) {
             Kitify.initCarousel($scope);
             Kitify.initMasonry($scope);
         });
 
-        elementor.hooks.addAction('frontend/element_ready/kitify-team-member.default', function ($scope) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/kitify-team-member.default', function ($scope) {
             Kitify.initCarousel($scope);
             Kitify.initMasonry($scope);
         });
 
-        elementor.hooks.addAction('frontend/element_ready/kitify-testimonials.default', function ($scope) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/kitify-testimonials.default', function ($scope) {
             Kitify.initCarousel($scope);
             Kitify.initMasonry($scope);
         });
-        elementor.hooks.addAction('frontend/element_ready/kitify-banner-list.default', function ($scope) {
-            Kitify.initCarousel($scope);
-            Kitify.initMasonry($scope);
-        });
-
-        elementor.hooks.addAction('frontend/element_ready/kitify-instagram-feed.default', function ($scope) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/kitify-banner-list.default', function ($scope) {
             Kitify.initCarousel($scope);
             Kitify.initMasonry($scope);
         });
 
-        elementor.hooks.addAction('frontend/element_ready/kitify-wooproduct-datatabs.default', function ($scope) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/kitify-instagram-feed.default', function ($scope) {
+            Kitify.initCarousel($scope);
+            Kitify.initMasonry($scope);
+        });
+
+        elementorFrontend.hooks.addAction('frontend/element_ready/kitify-wooproduct-datatabs.default', function ($scope) {
             $scope.foundation();
         });
-        elementor.hooks.addAction('frontend/element_ready/kitify-woo-categories.default', function ($scope) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/kitify-woo-categories.default', function ($scope) {
             Kitify.initCarousel($scope);
         });
-        elementor.hooks.addAction('frontend/element_ready/kitify-scroll-image.default', function ($scope) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/kitify-scroll-image.default', function ($scope) {
             Kitify.ImageScrollHandler($scope);
         });
 
-        elementor.hooks.addAction('frontend/element_ready/kitify-hamburger-panel.default', function ($scope) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/kitify-hamburger-panel.default', function ($scope) {
             Kitify.hamburgerPanel($scope);
         });
 
-        elementor.hooks.addAction('frontend/element_ready/kitify-menucart.default', function ($scope) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/kitify-menucart.default', function ($scope) {
             Kitify.wooCard($scope);
         });
 
-        elementor.hooks.addAction('frontend/element_ready/kitify-animated-box.default', function ($scope) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/kitify-animated-box.default', function ($scope) {
             Kitify.animatedBoxHandler($scope);
         });
-        elementor.hooks.addAction('frontend/element_ready/kitify-search.default', function ($scope) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/kitify-search.default', function ($scope) {
             Kitify.SearchAnimate($scope);
         });
 
-        elementor.hooks.addAction('frontend/element_ready/kitify-wooproducts.default', function ($scope) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/kitify-wooproducts.default', function ($scope) {
             Kitify.initCarousel($scope);
             Kitify.initMasonry($scope);
         });
 
-        elementor.hooks.addAction('frontend/element_ready/kitify-wooproduct-images.default', function ($scope) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/kitify-wooproduct-images.default', function ($scope) {
             Kitify.wooGallery($scope);
         });
 
-        elementor.hooks.addAction('frontend/element_ready/kitify-wooproduct-datatabs.default', function ($scope) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/kitify-wooproduct-datatabs.default', function ($scope) {
             Kitify.wooTabs($scope);
         });
-        elementor.hooks.addAction('frontend/element_ready/kitify-image-comparison.default', function ($scope) {
+        elementorFrontend.hooks.addAction('frontend/element_ready/kitify-image-comparison.default', function ($scope) {
           var $target              = $scope.find( '.kitify-image-comparison__instance' ),
     				instance             = null,
     				imageComparisonItems = $( '.kitify-image-comparison__container', $target ),
@@ -2185,13 +2188,7 @@
 
     			Kitify.initCarousel( $scope );
         });
-        $(document).on('kitify/activetabs', function (e, $tabContent){
-            $('.col-row', $tabContent).each(function (){
-                $(this).addClass('hello')
-                $(this).trigger('kitify/LazyloadSequenceEffects');
-            })
-        });
-        elementor.hooks.addAction('frontend/element_ready/section', function ($scope) {
+        window.elementorFrontend.hooks.addAction('frontend/element_ready/section', function ($scope) {
             if( $scope.hasClass('elementor-top-section') ) {
                 $scope.trigger('kitify/section/calculate-container-width');
             }
@@ -2242,3 +2239,42 @@
     });
 
 }(jQuery, window.elementorFrontend));
+
+(function ($) {
+
+    class _eContainerHandler extends elementorModules.frontend.handlers.Base {
+        _editorInit(){
+            setTimeout( () => {
+                if(this.$element.data('nesting-level') > 0){
+                    this.$element.removeClass('e-root-container elementor-top-section');
+                }
+                else{
+                    this.$element.addClass('e-root-container elementor-top-section');
+                    this._FullwidthRight();
+                }
+            }, 50);
+        }
+        _FullwidthRight() {
+            const $scope = this.$element;
+            if( $scope.hasClass('elementor-top-section') ) {
+                $scope.trigger('kitify/section/calculate-container-width');
+            }
+        }
+        bindEvents() {
+            if(this.isEdit){
+                this._editorInit()
+            }
+            else{
+                this._FullwidthRight()
+            }
+        }
+    }
+
+    $( window ).on( 'elementor/frontend/init', () => {
+        elementorFrontend.hooks.addAction( 'frontend/element_ready/container', ( $element ) => {
+            elementorFrontend.elementsHandler.addHandler( _eContainerHandler, {
+                $element,
+            } );
+        } );
+    } );
+}(jQuery));

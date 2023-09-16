@@ -1357,12 +1357,33 @@ class Kitify_Banner_List extends Kitify_Base {
                 )
             );
             $this->add_control(
+                $section_key .'_bgcolor',
+                array(
+                    'label' => esc_html__( 'Background Color', 'kitify' ),
+                    'type' => Controls_Manager::COLOR,
+                    'selectors' => array(
+                        '{{WRAPPER}} ' . $css_scheme[$section_key] => 'background-color: {{VALUE}}',
+                    ),
+                )
+            );
+            $this->add_control(
                 $section_key .'_color',
                 array(
                     'label' => esc_html__( 'Color', 'kitify' ),
                     'type' => Controls_Manager::COLOR,
                     'selectors' => array(
                         '{{WRAPPER}} ' . $css_scheme[$section_key] => 'color: {{VALUE}}',
+                    ),
+                )
+            );
+            $this->add_responsive_control(
+                $section_key .'_padding',
+                array(
+                    'label'      => __( 'Padding', 'kitify' ),
+                    'type'       => Controls_Manager::DIMENSIONS,
+                    'size_units' => array( 'px', '%', 'em' ),
+                    'selectors'  => array(
+                        '{{WRAPPER}} ' . $css_scheme[$section_key] => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                     ),
                 )
             );

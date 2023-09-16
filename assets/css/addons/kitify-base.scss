@@ -66,7 +66,7 @@ body:not(.elementor-editor-active) .elementor-location-header .elementor-sticky.
 .kitify--transparency-yes.elementor-section.elementor-sticky:not(.elementor-sticky--effects)  {
 	background: transparent !important;
 }
-.elementor-container{
+.elementor-container, .elementor-top-section.e-container {
 	--kitify-section-width: 1140px;
 }
 .kitify--linear-effect .swiper-wrapper{
@@ -1032,6 +1032,17 @@ span.kitify-btn-more-icon {
 		width: calc((100vw - var(--kitify-section-width)) / 2 + 100% - var(--scrollbar-width-o));
 		min-width: calc((100vw - var(--kitify-section-width)) / 2 + 100% - var(--scrollbar-width-o));
 	}
+}
+.e-con .elementor-widget.widget_full_right,
+.e-container.widget_full_right,
+.e-con.widget_full_right,
+.e-container > .elementor-widget.widget_full_right,
+.elementor-column .elementor-widget.widget_full_right {
+  width: calc((100vw - var(--kitify-section-width)) / 2 + 100% - var(--scrollbar-width-o));
+  min-width: calc((100vw - var(--kitify-section-width)) / 2 + 100% - var(--scrollbar-width-o))
+}
+.e-container > .elementor-widget.widget_full_right, .elementor-widget.widget_full_right {
+  max-width: calc((100vw - var(--kitify-section-width)) / 2 + 100% - var(--scrollbar-width-o)) !important
 }
 .swiper-pagination-bullet-active-main:first-child ~ .swiper-pagination-bullet,
 .swiper-pagination-bullet-active-main:first-child {
