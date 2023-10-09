@@ -913,6 +913,16 @@ class Kitify_Hotspots extends Widget_Image {
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
+        $this->add_control(
+            'style_tooltip_bg_color',
+            [
+                'label' => esc_html__( 'Background Color', 'kitify' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}}' => '--tooltip-color: {{VALUE}};',
+                ],
+            ]
+        );
 
         $this->add_control(
             'style_tooltip_text_color',
@@ -1035,7 +1045,29 @@ class Kitify_Hotspots extends Widget_Image {
                 'selector' => '{{WRAPPER}} .kitify-hotspot__tooltip',
             ]
         );
-				$this->add_control(
+        $this->add_control(
+            'style_tooltip_heading_pimg',
+            [
+                'label' => esc_html__( 'Product Thumbnail', 'kitify' ),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+        $this->add_control(
+            'style_hotspot_p_img_border_radius',
+            [
+                'label' => esc_html__( 'Border Radius', 'kitify' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', 'em', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .kitify-hotspot__product img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+                'default' => [
+                    'unit' => 'px',
+                ],
+            ]
+        );
+		$this->add_control(
             'style_tooltip_heading_ptitle',
             [
                 'label' => esc_html__( 'Product Title', 'kitify' ),

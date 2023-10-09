@@ -11,7 +11,6 @@
 
 .kitify-offcanvas h2.title {
   font-size: 1.25rem;
-  text-transform: uppercase;
   padding-bottom: 1.5625rem;
   border-bottom: solid 1px var(--site-border-color);
 }
