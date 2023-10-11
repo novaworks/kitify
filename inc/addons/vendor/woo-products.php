@@ -535,6 +535,17 @@ class Kitify_Woo_Products extends Kitify_Base {
               ]
           );
         }
+        if( kitify()->get_theme_support('kitify-woo::show-rating-in-list') ){
+            $this->add_control(
+                'enable_p_rating',
+                [
+                    'label' => esc_html__( 'Show rating', 'kitify' ),
+                    'type' => Controls_Manager::SWITCHER,
+                    'return_value' => 'yes',
+                    'default' => ''
+                ]
+            );
+        }
         if( kitify()->get_theme_support('kitify-woo::stock-progress-bar') ){
           $this->add_control(
               'enable_stock_progress_bar',

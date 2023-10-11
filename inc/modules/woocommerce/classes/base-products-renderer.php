@@ -89,10 +89,15 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
         }
         wc_set_loop_prop('kitify_loop_allow_extra_filters', $allow_extra_filters );
 
-				$enable_category = false;
-				if(!empty($this->settings['enable_p_category']) && filter_var( $this->settings['enable_p_category'], FILTER_VALIDATE_BOOLEAN )){
-						$enable_category = true;
-				}
+        $enable_category = false;
+        if(!empty($this->settings['enable_p_category']) && filter_var( $this->settings['enable_p_category'], FILTER_VALIDATE_BOOLEAN )){
+                $enable_category = true;
+        }
+
+        $enable_rating = false;
+        if(!empty($this->settings['enable_p_rating']) && filter_var( $this->settings['enable_p_rating'], FILTER_VALIDATE_BOOLEAN )){
+                $enable_rating = true;
+        }
 
         $enable_carousel = false;
         if(!empty($this->settings['enable_carousel']) && filter_var($this->settings['enable_carousel'], FILTER_VALIDATE_BOOLEAN)){
@@ -202,6 +207,7 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
         wc_set_loop_prop('kitify_enable_alt_image', $enable_alt_image );
         wc_set_loop_prop('kitify_enable_stock_progress_bar', $enable_stock_progress_bar );
         wc_set_loop_prop('kitify_enable_product_cat', $enable_category );
+        wc_set_loop_prop('kitify_enable_rating', $enable_rating );
         wc_set_loop_prop('kitify_image_size', $image_size );
 
     }
@@ -241,8 +247,8 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
             remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10);
             remove_action('woocommerce_shop_loop_item_title', 'woocommerce_template_loop_product_title', 10);
             remove_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10);
-						remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_show_product_loop_sale_flash', 10 );
-						remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_rating', 5);
+			remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_show_product_loop_sale_flash', 10 );
+			remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_rating', 5);
 
             add_action( 'woocommerce_before_shop_loop_item', [ $this, 'loop_item_open' ], -1001 );
             add_action( 'woocommerce_after_shop_loop_item', [ $this, 'loop_item_close' ], 1001 );
@@ -255,8 +261,8 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
             add_action('woocommerce_before_shop_loop_item_title', [ $this, 'loop_item_thumbnail_overlay' ], 100 );
             add_action('woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_link_close', 101 );
 
-						remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10);
-						add_action( 'kitify/products/action/shop_loop_item_after_title', 'woocommerce_template_loop_price', 10);
+			remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10);
+			add_action( 'kitify/products/action/shop_loop_item_after_title', 'woocommerce_template_loop_price', 10);
 
             add_action('woocommerce_shop_loop_item_title', [ $this, 'loop_item_info_open' ], -101 );
             add_action('kitify/products/action/shop_loop_item_title', [ $this, 'loop_item_add_product_title' ], 10 );
