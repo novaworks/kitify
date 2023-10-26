@@ -124,7 +124,6 @@
 .kitify-hotspot:not(.kitify-hotspot--circle) .kitify-hotspot__button {
   min-width: var(--hotspot-min-width);
   min-height: var(--hotspot-min-height);
-  background-color: var(--hotspot-box-color);
   padding: var(--hotspot-padding, 4px);
   border-radius: var(--hotspot-border-radius, 3px);
 }

@@ -18,10 +18,10 @@
 			echo '<div class="kitify-banner__content-wrap">';
 				$title_tag = $this->_get_html( 'banner_title_html_tag', '%s' );
 				$title_tag = kitify_helper()->validate_html_tag( $title_tag );
-
+				$this->_html( 'banner_sub_title', '<div class="kitify-banner__sub-title">%s</div>' );
 				$this->_html( 'banner_title', '<' . $title_tag  . ' class="kitify-banner__title">%s</' . $title_tag  . '>' );
 				$this->_html( 'banner_text', '<div class="kitify-banner__text">%s</div>' );
-				$this->_html( 'btn_text', '<button type="button" class="elementor-button kitify-banner__button">'.$btn_text.'</button>' );
+				$this->_html( 'btn_text', '<div class="kitify-banner__button"><button type="button" class="elementor-button">'.$btn_text.'</button></div>' );
 			echo '</div>';
 		echo '</figcaption>';
 	$this->_html( 'banner_link', '</a>' );

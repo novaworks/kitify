@@ -63,6 +63,14 @@ class Kitify_Banner extends Kitify_Base {
 				'options'    => kitify_helper()->get_image_sizes(),
 			)
 		);
+		$this->_add_control(
+			'banner_sub_title',
+			array(
+				'label'   => esc_html__( 'Sub Title', 'kitify' ),
+				'type'    => Controls_Manager::TEXT,
+				'dynamic' => array( 'active' => true ),
+			)
+		);
 
 		$this->_add_control(
 			'banner_title',
@@ -272,6 +280,7 @@ class Kitify_Banner extends Kitify_Base {
 				'banner'         => '.kitify-banner',
 				'banner_content' => '.kitify-banner__content',
 				'banner_overlay' => '.kitify-banner__overlay',
+				'banner_sub_title'   => '.kitify-banner__sub-title',
 				'banner_title'   => '.kitify-banner__title',
 				'banner_text'    => '.kitify-banner__text',
 				'banner_button'    => '.kitify-banner__button',
@@ -566,6 +575,21 @@ class Kitify_Banner extends Kitify_Base {
 			),
 			100
 		);
+		$this->_add_control(
+			'banner_sub_title_order',
+			array(
+				'label'   => esc_html__( 'Sub Title Order', 'kitify' ),
+				'type'    => Controls_Manager::NUMBER,
+				'default' => 0,
+				'min'     => 0,
+				'max'     => 10,
+				'step'    => 1,
+				'selectors' => array(
+					'{{WRAPPER}} '. $css_scheme['banner_sub_title'] => 'order: {{VALUE}};',
+				),
+			),
+			100
+		);
 
 		$this->_add_control(
 			'banner_title_order',
@@ -573,8 +597,8 @@ class Kitify_Banner extends Kitify_Base {
 				'label'   => esc_html__( 'Title Order', 'kitify' ),
 				'type'    => Controls_Manager::NUMBER,
 				'default' => 1,
-				'min'     => 1,
-				'max'     => 2,
+				'min'     => 0,
+				'max'     => 10,
 				'step'    => 1,
 				'selectors' => array(
 					'{{WRAPPER}} '. $css_scheme['banner_title'] => 'order: {{VALUE}};',
@@ -589,8 +613,8 @@ class Kitify_Banner extends Kitify_Base {
 				'label'   => esc_html__( 'Description Order', 'kitify' ),
 				'type'    => Controls_Manager::NUMBER,
 				'default' => 2,
-				'min'     => 1,
-				'max'     => 2,
+				'min'     => 0,
+				'max'     => 10,
 				'step'    => 1,
 				'selectors' => array(
 					'{{WRAPPER}} '. $css_scheme['banner_text'] => 'order: {{VALUE}};',
@@ -605,8 +629,8 @@ class Kitify_Banner extends Kitify_Base {
 				'label'   => esc_html__( 'Button Order', 'kitify' ),
 				'type'    => Controls_Manager::NUMBER,
 				'default' => 3,
-				'min'     => 1,
-				'max'     => 2,
+				'min'     => 0,
+				'max'     => 10,
 				'step'    => 1,
 				'selectors' => array(
 					'{{WRAPPER}} '. $css_scheme['banner_button'] => 'order: {{VALUE}};',
@@ -758,7 +782,147 @@ class Kitify_Banner extends Kitify_Base {
 		);
 
 		$this->_end_controls_section();
+		$this->_start_controls_section(
+			'section_banner_sub_title_style',
+			array(
+				'label'      => esc_html__( 'Sub Title', 'kitify' ),
+				'tab'        => Controls_Manager::TAB_STYLE,
+				'show_label' => false,
+			)
+		);
 
+
+		$this->_add_responsive_control(
+			'sub_title_alignment',
+      array(
+        'label'     => esc_html__( 'Alignment', 'kitify' ),
+        'type'      => Controls_Manager::CHOOSE,
+        'default' => 'center',
+        'options'   => array(
+          'flex-start' => array(
+            'title' => esc_html__( 'Left', 'kitify' ),
+            'icon'  => 'eicon-arrow-left',
+          ),
+          'center'     => array(
+            'title' => esc_html__( 'Center', 'kitify' ),
+            'icon'  => 'eicon-text-align-center',
+          ),
+          'flex-end'   => array(
+            'title' => esc_html__( 'Right', 'kitify' ),
+            'icon'  => 'eicon-arrow-right',
+          ),
+        ),
+        'selectors' => array(
+          '{{WRAPPER}} ' . $css_scheme['banner_sub_title'] => 'justify-content: {{VALUE}};',
+        ),
+      ),
+			25
+		);
+
+		$this->_add_control(
+			'banner_sub_title_color',
+			array(
+				'label'     => esc_html__( 'Title Color', 'kitify' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} ' . $css_scheme['banner_sub_title'] => 'color: {{VALUE}}',
+					'{{WRAPPER}} ' . $css_scheme['banner_sub_title'].':before' => 'background-color: {{VALUE}}',
+				),
+			),
+			25
+		);
+    $this->_add_control(
+			'banner_sub_bg_color',
+			array(
+				'label'     => esc_html__( 'Background Color', 'kitify' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} ' . $css_scheme['banner_sub_title'] => 'background-color: {{VALUE}}',
+				),
+			),
+			25
+		);
+
+		$this->_add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'banner_sub_title_typography',
+				'global' => [
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				],
+				'selector' => '{{WRAPPER}} ' . $css_scheme['banner_sub_title'],
+			),
+			50
+		);
+
+		$this->_add_group_control(
+			Group_Control_Text_Shadow::get_type(),
+			array(
+				'name'     => 'banner_sub_title_text_shadow',
+				'label'     => esc_html__( 'Text Shadow', 'kitify' ),
+				'selector' => '{{WRAPPER}} ' . $css_scheme['banner_sub_title'],
+			),
+			50
+		);
+    $this->_add_responsive_control(
+      'sub_title_text_alignment',
+      array(
+        'label'   => esc_html__( 'Text Align', 'kitify' ),
+        'type'    => Controls_Manager::CHOOSE,
+        'default' => 'center',
+        'options' => array(
+          'left'    => array(
+            'title' => esc_html__( 'Left', 'kitify' ),
+            'icon'  => 'eicon-text-align-left',
+          ),
+          'center' => array(
+            'title' => esc_html__( 'Center', 'kitify' ),
+            'icon'  => 'eicon-text-align-center',
+          ),
+          'right' => array(
+            'title' => esc_html__( 'Right', 'kitify' ),
+            'icon'  => 'eicon-text-align-right',
+          ),
+        ),
+        'selectors'  => array(
+          '{{WRAPPER}} ' . $css_scheme['banner_sub_title'] => 'text-align: {{VALUE}};',
+        ),
+      ),
+      25
+    );
+    $this->_add_responsive_control(
+			'sub_title_padding',
+			array(
+				'label'      => esc_html__( 'Padding', 'kitify' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%' ),
+				'selectors'  => array(
+					'{{WRAPPER}} ' . $css_scheme['banner_sub_title'] => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			),
+			50
+		);
+    $this->_add_group_control(
+        Group_Control_Border::get_type(),
+        [
+            'name' => 'sub_title_border',
+            'selector' => '{{WRAPPER}} '.$css_scheme['banner_sub_title'],
+        ]
+    );
+		$this->_add_responsive_control(
+			'sub_title_margin',
+			array(
+				'label'      => esc_html__( 'Margin', 'kitify' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%' ),
+				'selectors'  => array(
+					'{{WRAPPER}} ' . $css_scheme['banner_sub_title'] => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			),
+			50
+		);
+
+		$this->_end_controls_section();
 		$this->_start_controls_section(
 			'section_banner_text_style',
 			array(
@@ -926,7 +1090,7 @@ class Kitify_Banner extends Kitify_Base {
         Group_Control_Background::get_type(),
         array(
             'name'     => 'btn_bg',
-            'selector' => '{{WRAPPER}} ' . $css_scheme['banner_button'],
+            'selector' => '{{WRAPPER}} ' . $css_scheme['banner_button'] .' .elementor-button',
             'fields_options' => array(
                 'background' => array(
                     'default' => 'classic',
@@ -955,7 +1119,7 @@ class Kitify_Banner extends Kitify_Base {
             'label'     => esc_html__( 'Text Color', 'kitify' ),
             'type'      => Controls_Manager::COLOR,
             'selectors' => array(
-                '{{WRAPPER}} ' . $css_scheme['banner_button'] => 'color: {{VALUE}}',
+                '{{WRAPPER}} ' . $css_scheme['banner_button'] .' .elementor-button' => 'color: {{VALUE}}',
             ),
         )
     );
@@ -965,7 +1129,7 @@ class Kitify_Banner extends Kitify_Base {
         array(
             'name'     => 'btn_t',
 
-            'selector' => '{{WRAPPER}}  ' . $css_scheme['banner_button'],
+            'selector' => '{{WRAPPER}}  ' . $css_scheme['banner_button'] .' .elementor-button',
         )
     );
 
@@ -976,7 +1140,7 @@ class Kitify_Banner extends Kitify_Base {
             'type'       => Controls_Manager::DIMENSIONS,
             'size_units' => array( 'px', '%', 'em' ),
             'selectors'  => array(
-                '{{WRAPPER}} ' . $css_scheme['banner_button'] => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                '{{WRAPPER}} ' . $css_scheme['banner_button'] .' .elementor-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
             ),
         )
     );
@@ -988,7 +1152,7 @@ class Kitify_Banner extends Kitify_Base {
             'type'       => Controls_Manager::DIMENSIONS,
             'size_units' => array( 'px', '%' ),
             'selectors'  => array(
-                '{{WRAPPER}} ' . $css_scheme['banner_button'] => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                '{{WRAPPER}} ' . $css_scheme['banner_button'] .' .elementor-button' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
             ),
         )
     );
@@ -1000,7 +1164,7 @@ class Kitify_Banner extends Kitify_Base {
             'type'       => Controls_Manager::DIMENSIONS,
             'size_units' => array( 'px', '%' ),
             'selectors'  => array(
-                '{{WRAPPER}} ' . $css_scheme['banner_button'] => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                '{{WRAPPER}} ' . $css_scheme['banner_button'].' .elementor-button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
             ),
         )
     );
@@ -1012,7 +1176,7 @@ class Kitify_Banner extends Kitify_Base {
             'label'       => esc_html__( 'Border', 'kitify' ),
             'placeholder' => '1px',
             'default'     => '1px',
-            'selector'    => '{{WRAPPER}} ' . $css_scheme['banner_button'],
+            'selector'    => '{{WRAPPER}} ' . $css_scheme['banner_button'].' .elementor-button',
         )
     );
 
@@ -1020,7 +1184,7 @@ class Kitify_Banner extends Kitify_Base {
         Group_Control_Box_Shadow::get_type(),
         array(
             'name'     => 'btn_bsd',
-            'selector' => '{{WRAPPER}} ' . $css_scheme['banner_button'],
+            'selector' => '{{WRAPPER}} ' . $css_scheme['banner_button'].' .elementor-button',
         )
     );
 
@@ -1037,7 +1201,7 @@ class Kitify_Banner extends Kitify_Base {
         Group_Control_Background::get_type(),
         array(
             'name'     => 'btn_bg_h',
-            'selector' => '{{WRAPPER}} ' .$css_scheme['banner'] . ':hover ' . $css_scheme['banner_button'],
+            'selector' => '{{WRAPPER}} ' .$css_scheme['banner'] . ':hover ' . $css_scheme['banner_button'].' .elementor-button',
             'fields_options' => array(
                 'background' => array(
                     'default' => 'classic',
@@ -1066,7 +1230,7 @@ class Kitify_Banner extends Kitify_Base {
             'label'     => esc_html__( 'Text Color', 'kitify' ),
             'type'      => Controls_Manager::COLOR,
             'selectors' => array(
-                '{{WRAPPER}} ' .$css_scheme['banner'] . ':hover ' . $css_scheme['banner_button'] => 'color: {{VALUE}}',
+                '{{WRAPPER}} ' .$css_scheme['banner'] . ':hover ' . $css_scheme['banner_button'].' .elementor-button' => 'color: {{VALUE}}',
             ),
         )
     );
@@ -1086,7 +1250,7 @@ class Kitify_Banner extends Kitify_Base {
             'type'       => Controls_Manager::DIMENSIONS,
             'size_units' => array( 'px', '%', 'em' ),
             'selectors'  => array(
-                '{{WRAPPER}} ' .$css_scheme['banner'] . ':hover ' . $css_scheme['banner_button'] => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                '{{WRAPPER}} ' .$css_scheme['banner'] . ':hover ' . $css_scheme['banner_button'].' .elementor-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
             ),
         )
     );
@@ -1098,7 +1262,7 @@ class Kitify_Banner extends Kitify_Base {
             'type'       => Controls_Manager::DIMENSIONS,
             'size_units' => array( 'px', '%' ),
             'selectors'  => array(
-                '{{WRAPPER}} ' .$css_scheme['banner'] . ':hover ' . $css_scheme['banner_button'] => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                '{{WRAPPER}} ' .$css_scheme['banner'] . ':hover ' . $css_scheme['banner_button'].' .elementor-button' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
             ),
         )
     );
@@ -1110,7 +1274,7 @@ class Kitify_Banner extends Kitify_Base {
             'type'       => Controls_Manager::DIMENSIONS,
             'size_units' => array( 'px', '%' ),
             'selectors'  => array(
-                '{{WRAPPER}} ' .$css_scheme['banner'] . ':hover ' . $css_scheme['banner_button'] => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                '{{WRAPPER}} ' .$css_scheme['banner'] . ':hover ' . $css_scheme['banner_button'].' .elementor-button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
             ),
         )
     );
@@ -1122,7 +1286,7 @@ class Kitify_Banner extends Kitify_Base {
             'label'       => esc_html__( 'Border', 'kitify' ),
             'placeholder' => '1px',
             'default'     => '1px',
-            'selector'    => '{{WRAPPER}} ' .$css_scheme['banner'] . ':hover ' . $css_scheme['banner_button']
+            'selector'    => '{{WRAPPER}} ' .$css_scheme['banner'] . ':hover ' . $css_scheme['banner_button'].' .elementor-button'
         )
     );
 
@@ -1130,7 +1294,7 @@ class Kitify_Banner extends Kitify_Base {
         Group_Control_Box_Shadow::get_type(),
         array(
             'name'     => 'btn_bsd_h',
-            'selector' => '{{WRAPPER}} ' .$css_scheme['banner'] . ':hover ' . $css_scheme['banner_button']
+            'selector' => '{{WRAPPER}} ' .$css_scheme['banner'] . ':hover ' . $css_scheme['banner_button'].' .elementor-button'
         )
     );
 
