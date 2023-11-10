@@ -1164,7 +1164,7 @@
             if( typeof window.elementorFrontend.hooks === "undefined"){
                 return;
             }
-            Kitify.detectWidgetsNotInHeader();
+           // Kitify.detectWidgetsNotInHeader();
             if(reinit_global_trigger){
                 $(window).trigger('elementor/frontend/init');
             }

@@ -1056,16 +1056,11 @@
             });
         },
         detectWidgetsNotInHeader: function (){
-            var itemDetected = ['.elementor-widget-icon-list', '.main-color', '.elementor-icon', '.elementor-heading-title', '.elementor-widget-text-editor', '.elementor-widget-divider', '.elementor-icon-list-item', '.elementor-social-icon', '.elementor-button', '.kitify-nav-wrap', '.kitify-nav', '.menu-item-link-depth-0'];
-            itemDetected.forEach(function ( _item ){
-                if($(_item).each(function (){
-                    if( $(this).closest('.kitify-nav__sub').length ){
-                        $(this).addClass('ignore-docs-style-yes');
-                    }
-                }));
-            });
-
-
+            let itemDetected = ['.elementor-widget-icon-list', '.main-color', '.elementor-icon', '.elementor-heading-title', '.elementor-widget-text-editor', '.elementor-widget-divider', '.elementor-icon-list-item', '.elementor-social-icon', '.elementor-button', '.kitify-nav-wrap', '.kitify-nav', '.menu-item-link-depth-0'];
+            let _q = [];
+            itemDetected.forEach( _item => _q.push('.lakit-nav__sub ' + _item) );
+            document.querySelectorAll(_q.join()).forEach( _item => _item.classList.add('ignore-docs-style') );
+            
             $('.elementor-widget-icon-list .elementor-icon-list-item').each(function (){
                 var $child_a = $('>a', $(this)),
                     _href = $child_a.attr('href');
