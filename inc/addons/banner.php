@@ -267,7 +267,7 @@ class Kitify_Banner extends Kitify_Base {
 			array(
 				'label'   => esc_html__( 'Animation Effect', 'kitify' ),
 				'type'    => Controls_Manager::SELECT,
-				'default' => 'lily',
+				'default' => 'none',
 				'options' => $animation_effect,
 			)
 		);

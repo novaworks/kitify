@@ -307,11 +307,22 @@ class Kitify_Woo_Single_Product_Datatabs extends Kitify_Base {
         $this->_add_control(
             'tabs_control_text_color_hover',
             array(
-                'label'  => esc_html__( 'Text Color', 'kitify' ),
+                'label'  => esc_html__( 'Text Active Color', 'kitify' ),
                 'type'   => Controls_Manager::COLOR,
                 'selectors' => array(
                   '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs .tabs-title.is-active' => 'color: {{VALUE}};',
                   '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs .tabs-title.is-active > a' => 'color: {{VALUE}};',
+                  '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs .tabs-title.is-active > a:hover' => 'color: {{VALUE}};',
+                ),
+            )
+        );
+
+        $this->_add_control(
+            'tabs_control_text_color_hover1',
+            array(
+                'label'  => esc_html__( 'Text Hover Color', 'kitify' ),
+                'type'   => Controls_Manager::COLOR,
+                'selectors' => array(
                   '{{WRAPPER}} .kitify-product-tabs .nova-woocommerce-tabs .tabs .tabs-title > a:hover' => 'color: {{VALUE}};',
                 ),
             )

@@ -2195,3 +2195,22 @@ body:not(.elementor-editor-active) .kitify-disable-relative-yes .elementor-widge
   color: var(--kitify-doc-headerts-button-hover-color, var(--kitify-doc-headerts-link-hover-color));
   background-color: var(--kitify-doc-headerts-button-hover-bgcolor, transparent);
 }
+.kitify-section-title {
+  display: inline-block;
+  position: relative;
+  margin: 0;
+}
+.kitify-section-title .title-count{
+  position: absolute;
+  right: -28px;
+  width: 26px;
+  height: 26px;
+  line-height: 26px;
+  border-radius: 50%;
+  text-align: center;
+  font-family: var(--site-main-font);
+  font-size: 14px;
+  font-weight: 500;
+  color: #FFF;
+  background-color: var(--site-accent-color);
+}

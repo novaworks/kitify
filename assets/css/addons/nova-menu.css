@@ -23,7 +23,7 @@
   align-items: center;
 }
 .kitify-nova-menu .main-navigation ul > li > a:hover {
-  color: var(--site-accent-color);
+  color: var(--site-link-hover-color);
 }
 .kitify-nova-menu .main-navigation .sub-menu li a:before {
   display: none;
