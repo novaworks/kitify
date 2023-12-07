@@ -25,7 +25,7 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 if(!function_exists('Kitify')){
-    define( 'KITIFY_VERSION', '1.0.7' );
+    define( 'KITIFY_VERSION', '1.0.8' );
     class Kitify {
         /**
          * A reference to an instance of this class.

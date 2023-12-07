@@ -359,7 +359,7 @@ class Kitify_Section_Title extends Kitify_Base {
 		}
 		$count = sprintf( '<span class="%1$s">%2$s</span>', 'title-count',  $settings['count'] );
 
-		$title_html = sprintf( '<%1$s %2$s>%3$s %4$s</%2$s>', Utils::validate_html_tag( $settings['header_size'] ), $this->get_render_attribute_string( 'title' ), $title, $count );
+		$title_html = sprintf( '<%1$s %2$s>%3$s %4$s</%1$s>', Utils::validate_html_tag( $settings['header_size'] ), $this->get_render_attribute_string( 'title' ), $title, $count );
 
 		// PHPCS - the variable $title_html holds safe data.
 		echo $title_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped

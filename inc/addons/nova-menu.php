@@ -358,6 +358,7 @@ class Kitify_Nova_Menu extends Kitify_Base {
             ),
             'selectors'  => array(
                 '{{WRAPPER}} .main-navigation a i.kitify-nav-arrow' => 'margin-left: {{SIZE}}{{UNIT}};',
+                '.rtl {{WRAPPER}} .main-navigation a i.kitify-nav-arrow' => 'margin-right: {{SIZE}}{{UNIT}};',
             ),
         ),
         50
