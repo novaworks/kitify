@@ -1332,6 +1332,57 @@ class Kitify_Banner_List extends Kitify_Base {
                 ],
             ]
         );
+        $this->add_responsive_control(
+            'ha',
+                array(
+                    'label'   => esc_html__( 'Horizontal Alignment', 'kitify' ),
+                    'type'    => Controls_Manager::CHOOSE,
+                    'default' => 'center',
+                    'options' => array(
+                        'flex-start'    => array(
+                            'title' => esc_html__( 'Left', 'kitify' ),
+                            'icon'  => 'eicon-arrow-left',
+                        ),
+                        'center' => array(
+                            'title' => esc_html__( 'Center', 'kitify' ),
+                            'icon'  => 'eicon-text-align-center',
+                        ),
+                        'flex-end' => array(
+                            'title' => esc_html__( 'Right', 'kitify' ),
+                            'icon'  => 'eicon-arrow-right',
+                        )
+                    ),
+                    'selectors'  => array(
+                        '{{WRAPPER}} ' . $css_scheme['content_inner'] => 'justify-content: {{VALUE}};',
+                    ),
+                )
+            );
+        
+            $this->add_responsive_control(
+                'va',
+                array(
+                    'label'   => esc_html__( 'Vertical Alignment', 'kitify' ),
+                    'type'    => Controls_Manager::CHOOSE,
+                    'default' => 'center',
+                    'options' => array(
+                        'flex-start'    => array(
+                            'title' => esc_html__( 'Start', 'kitify' ),
+                            'icon'  => 'eicon-v-align-top',
+                        ),
+                        'center' => array(
+                            'title' => esc_html__( 'Center', 'kitify' ),
+                            'icon'  => 'eicon-v-align-middle',
+                        ),
+                        'flex-end' => array(
+                            'title' => esc_html__( 'End', 'kitify' ),
+                            'icon'  => 'eicon-v-align-bottom',
+                        )
+                    ),
+                    'selectors'  => array(
+                        '{{WRAPPER}} ' . $css_scheme['content_inner'] => 'align-items: {{VALUE}};',
+                    ),
+                )
+            );
 
         $this->end_controls_section();
 
