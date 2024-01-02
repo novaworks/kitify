@@ -1353,7 +1353,7 @@ class Kitify_Banner_List extends Kitify_Base {
                         )
                     ),
                     'selectors'  => array(
-                        '{{WRAPPER}} ' . $css_scheme['content_inner'] => 'justify-content: {{VALUE}};',
+                        '{{WRAPPER}} ' . $css_scheme['content_inner'] => 'align-items: {{VALUE}};',
                     ),
                 )
             );
@@ -1379,7 +1379,7 @@ class Kitify_Banner_List extends Kitify_Base {
                         )
                     ),
                     'selectors'  => array(
-                        '{{WRAPPER}} ' . $css_scheme['content_inner'] => 'align-items: {{VALUE}};',
+                        '{{WRAPPER}} ' . $css_scheme['content_inner'] => 'justify-content: {{VALUE}};',
                     ),
                 )
             );
