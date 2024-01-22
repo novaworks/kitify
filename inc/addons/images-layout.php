@@ -481,6 +481,7 @@ class Kitify_Images_Layout extends Kitify_Base {
                 'type' => Controls_Manager::COLOR,
                 'selectors' => array(
                     '{{WRAPPER}} ' . $css_scheme['icon'] . ' .kitify-images-layout-icon-inner' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} ' . $css_scheme['icon'] . ' .kitify-images-layout-icon-inner svg' => 'fill: {{VALUE}}',
                 ),
             )
         );
