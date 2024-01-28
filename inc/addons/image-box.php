@@ -48,6 +48,7 @@ class Kitify_Image_Box extends Kitify_Base {
                 'box_body'              => '.kitify-imagebox__body',
                 'box_body_inner'        => '.kitify-imagebox__body_inner',
                 'box_title'             => '.kitify-imagebox__title',
+                'box_sub_title'         => '.kitify-imagebox__sub_title',
                 'box_title_icon'        => '.kitify-imagebox__title_icon',
                 'box_desc'             	=> '.kitify-imagebox__desc',
                 'button_wrap'           => '.kitify-iconbox__button_wrapper',
@@ -164,7 +165,19 @@ class Kitify_Image_Box extends Kitify_Base {
                 'label' => esc_html__( 'Body', 'kitify' ),
             ]
         );
-
+        $this->_add_control(
+            'box_sub_title_text',
+            [
+                'label' => esc_html__( 'Sub Title ', 'kitify' ),
+                'type' => Controls_Manager::TEXT,
+                'dynamic' => [
+                    'active' => true,
+                ],
+                'placeholder' => esc_html__( 'Enter your sub title', 'kitify' ),
+                'label_block' => true,
+                'separator' => 'before',
+            ]
+        );
         $this->_add_control(
             'box_title_text',
             [
@@ -1195,7 +1208,88 @@ class Kitify_Image_Box extends Kitify_Base {
                 'selector' => '{{WRAPPER}} ' . $css_scheme['box_body'],
             ]
         );
+        // sub title
+        $this->_add_control(
+            'imagebox_stitle_border_heading_title',
+            [
+                'label' => esc_html__( 'Sub Title', 'kitify' ),
+                'type' => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
 
+        $this->_add_responsive_control(
+            'box_stitle_bottom_space',
+            [
+                'label' => esc_html__( 'Spacing', 'kitify' ),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => [ 'px', '%', 'em' ],
+                'default' => [
+                    'top' => '0',
+                    'right' => '0',
+                    'bottom' => '20',
+                    'left' => '0',
+                    'unit' => 'px',
+                    'isLinked' => 'true',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} ' . $css_scheme['box_sub_title'] => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->_add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'box_stitle_typography',
+                'label' => esc_html__( 'Typography', 'kitify' ),
+                'selector' => '{{WRAPPER}} ' . $css_scheme['box_sub_title'],
+            ]
+        );
+
+        $this->_start_controls_tabs('box_style_heading_tabs2');
+
+        $this->_start_controls_tab(
+            'box_style_normal_tab2',
+            [
+                'label' => esc_html__( 'Normal', 'kitify' ),
+            ]
+        );
+
+        $this->_add_responsive_control(
+            'box_sheading_color',
+            [
+                'label' => esc_html__( 'Color', 'kitify' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} ' . $css_scheme['box_sub_title'] => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->_end_controls_tab();
+
+        $this->_start_controls_tab(
+            'box_style_hover_tab2',
+            [
+                'label' => esc_html__( 'Hover', 'kitify' ),
+            ]
+        );
+
+        $this->_add_responsive_control(
+            'box_sheading_color_hover',
+            [
+                'label' => esc_html__( 'Color (Hover)', 'kitify' ),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .kitify-imagebox:hover ' . $css_scheme['box_sub_title'] => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+
+        $this->_end_controls_tab();
+
+        $this->_end_controls_tabs();
         // title
         $this->_add_control(
             'imagebox_title_border_heading_title',

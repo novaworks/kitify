@@ -27,12 +27,8 @@ class Kitify_Google_Maps extends Kitify_Base {
 
         $api = add_query_arg( array( 'key' => $google_api_key ), 'https://maps.googleapis.com/maps/api/js' );
         wp_register_script(  'kitify-google-maps-api' , $api , false,  kitify()->get_version() , true );
-
-        $disable_gmap_api_js = kitify_settings()->get_option('disable_gmap_api_js');
-        if( !filter_var($disable_gmap_api_js, FILTER_VALIDATE_BOOLEAN) ){
-            $this->add_script_depends( 'kitify-google-maps-api' );
-        }
-
+        
+        $this->add_script_depends( 'kitify-google-maps-api' );
         $this->add_style_depends( $this->get_name() );
         $this->add_script_depends( $this->get_name() );
     }

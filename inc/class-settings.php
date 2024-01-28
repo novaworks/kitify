@@ -215,9 +215,6 @@ if ( ! class_exists( 'Kitify_Settings' ) ) {
                 'gmap_backend_api_key'                 => [
                     'value' => $this->get( 'gmap_backend_api_key', '' ),
                 ],
-                'disable_gmap_api_js'          => [
-                    'value' => $this->get( 'disable_gmap_api_js', false ),
-                ],
                 'mailchimp-api-key'       => [
                     'value' => $this->get( 'mailchimp-api-key', '' ),
                 ],

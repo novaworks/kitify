@@ -75,7 +75,7 @@ echo sprintf('<div %1$s>', $this->get_render_attribute_string('wrapper'));
                     $title_close_tag = $this->get_main_icon() . $title_close_tag;
                 }
             }
-
+            $this->_html( 'box_sub_title_text','<div class="kitify-imagebox__sub_title">%s</div>' );
             $this->_html( 'box_title_text', $title_open_tag . '<span class="kitify-imagebox__title_text">%s</span>' . $title_close_tag );
             $this->_html( 'box_description_text', '<div class="kitify-imagebox__desc">%s</div>' );
         echo '</div>';

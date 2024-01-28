@@ -34,16 +34,6 @@
       size="fullwidth"
       v-model="pageOptions.gmap_backend_api_key.value"></cx-vui-input>
 
-  <cx-vui-switcher
-    name="google-map-disable-api-js"
-    label="<?php _e('Disable Google Maps API JS file', 'kitify'); ?>"
-    description="<?php _e('Disable Google Maps API JS file, if it already included by another plugin or theme', 'kitify'); ?>"
-    :wrapper-css="[ 'equalwidth' ]"
-    return-true="true"
-    return-false="false"
-    v-model="pageOptions.disable_gmap_api_js.value">
-  </cx-vui-switcher>
-
   <div
     class="cx-vui-subtitle cx-vui-subtitle--divider"
     v-html="'<?php _e('MailChimp', 'kitify'); ?>'"></div>
