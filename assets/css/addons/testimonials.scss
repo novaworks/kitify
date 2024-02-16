@@ -1,7 +1,9 @@
 .kitify-testimonials {
 	width: 100%;
 	position: relative;
-
+	p {
+		margin: 0;
+	}
 	&__item-inner {
 		min-height: 100%;
 	}
@@ -529,6 +531,66 @@
 			-ms-flex-order: 3;
 			order: 3;
 			width: 100%;
+		}
+	}
+	&.preset-product {
+		.kitify-testimonials__item-inner {
+			display: flex;
+			flex-direction: column;
+		}
+		.kitify-testimonials__content {
+			display: flex;
+			flex-direction: column;
+			padding: 30px;
+			border: solid 1px var(--site-heading-color);
+		}
+		.kitify-testimonials__rating {
+			order: 0; 
+		}
+		.kitify-testimonials__title {
+			order: 1;
+		}
+		.kitify-testimonials__comment {
+			order: 2;
+		}
+		.kitify-testimonials__infomation {
+			order: 3;
+		}
+		.kitify-testimonials__product {
+			display: flex;
+			gap: 10px;
+			img {
+				width: 50px;
+				border: solid 1px;
+			}
+		}
+		.kitify-testimonials__product-infomation {
+			border: solid 1px var(--site-heading-color);
+			border-top: 0;
+			padding: 20px;
+		}
+		.kitify-testimonials__product_content {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			width: 100%;
+			.product_item--title {
+				width: 70%;
+			}
+			.product_item--action {
+				display: flex;
+				margin-left: auto;
+				width: 40px;
+				height: 40px;
+				padding: 0;
+				align-items: center;
+				justify-content: center;
+				border-radius: 50%;
+				svg {
+					width: 18px;
+					height: 18px;
+				}
+			}
 		}
 	}
 }

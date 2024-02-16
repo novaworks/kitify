@@ -3,6 +3,10 @@
   position: relative;
 }
 
+.kitify-testimonials p {
+  margin: 0;
+}
+
 .kitify-testimonials__item-inner {
   min-height: 100%;
 }
@@ -572,4 +576,105 @@
   -ms-flex-order: 3;
   order: 3;
   width: 100%;
+}
+
+.kitify-testimonials.preset-product .kitify-testimonials__item-inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.kitify-testimonials.preset-product .kitify-testimonials__content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 30px;
+  border: solid 1px var(--site-heading-color);
+}
+
+.kitify-testimonials.preset-product .kitify-testimonials__rating {
+  -webkit-box-ordinal-group: 1;
+      -ms-flex-order: 0;
+          order: 0;
+}
+
+.kitify-testimonials.preset-product .kitify-testimonials__title {
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+}
+
+.kitify-testimonials.preset-product .kitify-testimonials__comment {
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
+}
+
+.kitify-testimonials.preset-product .kitify-testimonials__infomation {
+  -webkit-box-ordinal-group: 4;
+      -ms-flex-order: 3;
+          order: 3;
+}
+
+.kitify-testimonials.preset-product .kitify-testimonials__product {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+}
+
+.kitify-testimonials.preset-product .kitify-testimonials__product img {
+  width: 50px;
+  border: solid 1px;
+}
+
+.kitify-testimonials.preset-product .kitify-testimonials__product-infomation {
+  border: solid 1px var(--site-heading-color);
+  border-top: 0;
+  padding: 20px;
+}
+
+.kitify-testimonials.preset-product .kitify-testimonials__product_content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.kitify-testimonials.preset-product .kitify-testimonials__product_content .product_item--title {
+  width: 70%;
+}
+
+.kitify-testimonials.preset-product .kitify-testimonials__product_content .product_item--action {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: auto;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 50%;
+}
+
+.kitify-testimonials.preset-product .kitify-testimonials__product_content .product_item--action svg {
+  width: 18px;
+  height: 18px;
 }

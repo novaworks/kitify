@@ -6,7 +6,7 @@
 
 $preset = $this->get_settings( 'preset' );
 $full_width = $this->get_settings( 'enable_image_full_width' );
-
+$product_id = $this->_loop_item( array( 'product_id' ), '%s' );
 $item_image = $this->_loop_item( array( 'item_image', 'url' ), '%s' );
 $item_image = apply_filters('kitify_wp_get_attachment_image_url', $item_image);
 
@@ -44,6 +44,7 @@ else{
                 do_action('kitify/testimonials/output/after_image', $preset);
                 echo '</div>';
             }
+            echo $this->_loop_item( array( 'item_title' ), '<div class="kitify-testimonials__title"><div>%s</div></div>' );
             echo $this->_loop_item( array( 'item_comment' ), '<div class="kitify-testimonials__comment"><div>%s</div></div>' );
             echo '<div class="kitify-testimonials__infomation">';
             echo $this->_loop_item( array( 'item_name' ), '<div class="kitify-testimonials__name"><span>%s</span></div>' );
@@ -72,5 +73,22 @@ else{
                 }
             }
 		?></div>
+        <?php
+        if( kitify()->get_theme_support('kitify-woo::product-testimonials') ){
+            if( function_exists('wc_get_product') && $product_id && $preset == 'product'):
+            $product_obj = wc_get_product($product_id);
+            if($product_obj){
+                $tpl = '<div class="kitify-testimonials__product">%1$s<div class="kitify-testimonials__product_content">%2$s%3$s </div></div>';
+                $product_image = $product_obj->get_image();
+                $product_title = sprintf('<a class="product_item--title" href="%1$s">%2$s</a>', esc_url($product_obj->get_permalink()), $product_obj->get_title());
+                $product_action = sprintf('<a class="product_item--action elementor-button" href="%1$s">%2$s</a>', esc_url($product_obj->get_permalink()), '<svg class="lumilux-addtocart"><use xlink:href="#lumilux-addtocart" xmlns:xlink="http://www.w3.org/1999/xlink"></use></svg>');
+                $product_content = sprintf( $tpl, $product_image, $product_title, $product_action);
+            }
+            echo '<div class="kitify-testimonials__product-infomation">';
+            echo $product_content;
+            echo '</div>';
+            endif;
+        }
+        ?>
 	</div>
 </div>

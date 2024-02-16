@@ -48,7 +48,7 @@ class Kitify_Testimonials extends Kitify_Base {
                 'content'    => '.kitify-testimonials__content',
                 'icon'       => '.kitify-testimonials__icon',
                 'icon_inner' => '.kitify-testimonials__icon-inner',
-                'title'      => '.kitify-testimonials__title',
+                'ctitle'      => '.kitify-testimonials__title',
                 'comment'    => '.kitify-testimonials__comment',
                 'name'       => '.kitify-testimonials__name',
                 'position'   => '.kitify-testimonials__position',
@@ -109,7 +109,18 @@ class Kitify_Testimonials extends Kitify_Base {
         );
 
         $repeater = new Repeater();
-
+        if( kitify()->get_theme_support('kitify-woo::product-testimonials') ){
+            $repeater->add_control(
+                'product_id',
+                array(
+                    'label'       => esc_html__( 'Choose Product', 'kitify' ),
+                    'label_block' => 'true',
+                    'type'        => 'kitify-query',
+                    'object_type' => 'product',
+                    'filter_type' => 'by_id',
+                )
+            );
+        }
         $repeater->add_control(
             'item_image',
             array(
@@ -118,14 +129,16 @@ class Kitify_Testimonials extends Kitify_Base {
                 'dynamic' => array( 'active' => true ),
             )
         );
-        $repeater->add_control(
-            'item_sign',
-            array(
-                'label'   => esc_html__( 'Signature', 'kitify' ),
-                'type'    => Controls_Manager::MEDIA,
-                'dynamic' => array( 'active' => true ),
-            )
-        );
+        if( !kitify()->get_theme_support('kitify-woo::product-testimonials') ){
+            $repeater->add_control(
+                'item_sign',
+                array(
+                    'label'   => esc_html__( 'Signature', 'kitify' ),
+                    'type'    => Controls_Manager::MEDIA,
+                    'dynamic' => array( 'active' => true ),
+                )
+            );
+        }
         $repeater->add_control(
             'item_title',
             array(
@@ -324,7 +337,20 @@ class Kitify_Testimonials extends Kitify_Base {
                 )
             )
         );
-
+        if( kitify()->get_theme_support('kitify-woo::product-testimonials') ){
+        $this->add_control(
+            'p_item_border',
+            array(
+                'label'  => esc_html__( 'Border Color', 'kitify' ),
+                'type'   => Controls_Manager::COLOR,
+                'selectors' => array(
+                    '{{WRAPPER}} .kitify-testimonials.preset-product .kitify-testimonials__content' => 'border-color: {{VALUE}}',
+                    '{{WRAPPER}} .kitify-testimonials.preset-product .kitify-testimonials__product-infomation' => 'border-color: {{VALUE}}',
+                    '{{WRAPPER}} .kitify-testimonials.preset-product .kitify-testimonials__product img' => 'border-color: {{VALUE}}',
+                ),
+            )
+        );
+        }
         $this->end_controls_section();
 
         $this->start_controls_section(
@@ -523,7 +549,114 @@ class Kitify_Testimonials extends Kitify_Base {
         );
 
         $this->end_controls_section();
+ /**
+         * Comment title Style Section
+         */
+        $this->start_controls_section(
+            'section_ctitle_style',
+            array(
+                'label'      => esc_html__( 'Comment Title', 'kitify' ),
+                'tab'        => Controls_Manager::TAB_STYLE,
+                'show_label' => false,
+            )
+        );
 
+        $this->add_control(
+            'ctitle_color',
+            array(
+                'label'  => esc_html__( 'Color', 'kitify' ),
+                'type'   => Controls_Manager::COLOR,
+                'selectors' => array(
+                    '{{WRAPPER}} ' . $css_scheme['ctitle'] => 'color: {{VALUE}}',
+                ),
+            )
+        );
+
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            array(
+                'name'     => 'ctitle_typography',
+                'selector' => '{{WRAPPER}} ' . $css_scheme['ctitle'],
+            )
+        );
+
+        $this->add_responsive_control(
+            'ctitle_padding',
+            array(
+                'label'      => __( 'Padding', 'kitify' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => array( 'px', '%' ),
+                'selectors'  => array(
+                    '{{WRAPPER}} ' . $css_scheme['ctitle'] => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ),
+            )
+        );
+
+        $this->add_responsive_control(
+            'ctitle_margin',
+            array(
+                'label'      => __( 'Margin', 'kitify' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => array( 'px', '%' ),
+                'selectors'  => array(
+                    '{{WRAPPER}} ' . $css_scheme['ctitle'] => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ),
+            )
+        );
+
+        $this->add_responsive_control(
+            'ctitle_alignment',
+            array(
+                'label'   => esc_html__( 'Alignment', 'kitify' ),
+                'type'    => Controls_Manager::CHOOSE,
+                'default' => '',
+                'options' => array(
+                    'flex-start'    => array(
+                        'title' => esc_html__( 'Left', 'kitify' ),
+                        'icon'  => 'eicon-h-align-left',
+                    ),
+                    'center' => array(
+                        'title' => esc_html__( 'Center', 'kitify' ),
+                        'icon'  => 'eicon-h-align-center',
+                    ),
+                    'flex-end' => array(
+                        'title' => esc_html__( 'Right', 'kitify' ),
+                        'icon'  => 'eicon-h-align-right',
+                    ),
+                ),
+                'selectors'  => array(
+                    '{{WRAPPER}} ' . $css_scheme['ctitle'] => 'align-self: {{VALUE}};',
+                ),
+            )
+        );
+
+        $this->add_responsive_control(
+            'ctitle_text_alignment',
+            array(
+                'label'   => esc_html__( 'Text Alignment', 'kitify' ),
+                'type'    => Controls_Manager::CHOOSE,
+                'default' => '',
+                'options' => array(
+                    'left'    => array(
+                        'title' => esc_html__( 'Left', 'kitify' ),
+                        'icon'  => 'eicon-text-align-left',
+                    ),
+                    'center' => array(
+                        'title' => esc_html__( 'Center', 'kitify' ),
+                        'icon'  => 'eicon-text-align-center',
+                    ),
+                    'right' => array(
+                        'title' => esc_html__( 'Right', 'kitify' ),
+                        'icon'  => 'eicon-text-align-right',
+                    ),
+                ),
+                'selectors'  => array(
+                    '{{WRAPPER}} ' . $css_scheme['ctitle'] => 'text-align: {{VALUE}};',
+                ),
+            )
+        );
+
+        $this->end_controls_section();
         /**
          * Comment Style Section
          */
@@ -884,7 +1017,7 @@ class Kitify_Testimonials extends Kitify_Base {
                 'label_on'     => esc_html__( 'Yes', 'kitify' ),
                 'label_off'    => esc_html__( 'No', 'kitify' ),
                 'return_value' => 'yes',
-                'default'      => 'false',
+                'default'      => 'false',  
             )
         );
 
