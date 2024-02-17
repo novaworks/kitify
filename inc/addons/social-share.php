@@ -17,7 +17,7 @@ class Kitify_Social_Share extends Kitify_Base {
             'has_counter' => true,
         ],
         'twitter' => [
-            'title' => 'Twitter',
+            'title' => 'X',
         ],
         'google' => [
             'title' => 'Google+',
