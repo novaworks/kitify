@@ -81,7 +81,12 @@ else{
                 $tpl = '<div class="kitify-testimonials__product">%1$s<div class="kitify-testimonials__product_content">%2$s%3$s </div></div>';
                 $product_image = $product_obj->get_image();
                 $product_title = sprintf('<a class="product_item--title" href="%1$s">%2$s</a>', esc_url($product_obj->get_permalink()), $product_obj->get_title());
-                $product_action = sprintf('<a class="product_item--action elementor-button" href="%1$s">%2$s</a>', esc_url($product_obj->get_permalink()), '<svg class="lumilux-addtocart"><use xlink:href="#lumilux-addtocart" xmlns:xlink="http://www.w3.org/1999/xlink"></use></svg>');
+                $product_action = sprintf('<a class="product_item--action elementor-button" href="%1$s">%2$s</a>', esc_url($product_obj->get_permalink()), '<svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.6 14.6H1V4.40002H11.8V8.60002" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M4 6.20002V3.80002C4 2.47462 5.0746 1.40002 6.4 1.40002C7.7254 1.40002 8.8 2.47462 8.8 3.80002V6.20002" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M11.2 11V14.6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M9.39996 12.8H13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>');
                 $product_content = sprintf( $tpl, $product_image, $product_title, $product_action);
             }
             echo '<div class="kitify-testimonials__product-infomation">';
