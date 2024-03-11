@@ -1013,6 +1013,21 @@ if ( ! class_exists( 'Kitify_Helper' ) ) {
 
 				return $text;
 		}
+		/**
+		 * Check is blog
+		 *
+		 * @since 1.0.0
+		 *
+		 * @return boolean
+		 */
+		public static function is_blog() {
+			if ( ( is_archive() || is_author() || is_category() || is_home() || is_tag() ) && 'post' == get_post_type() ) {
+				return true;
+			}
+
+			return false;
+		}
+
 	}
 
 }

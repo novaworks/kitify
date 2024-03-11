@@ -775,7 +775,7 @@ class Kitify_Nova_Menu extends Kitify_Base {
         include $this->_get_global_template( 'mobile-trigger' );
         add_action('kitify/theme/canvas_panel', [ $this, 'add_panel' ] );
     }
-    if ( class_exists( 'Nova_Mega_Menu_Walker' ) ) {
+    if ( class_exists( '\Novaworks\Core\Modules\Mega_Menu\Walker' ) ) {
       echo '<nav class="main-navigation header-primary-nav">';
       wp_nav_menu(array(
         'menu'              => $settings['nova_nav_menu'],
@@ -783,8 +783,7 @@ class Kitify_Nova_Menu extends Kitify_Base {
         'menu_class'        => 'menu nav-menu',
         'link_before'       => '',
         'link_after'        => '',
-        'fallback_cb'     	=> 'Nova_Mega_Menu_Walker',
-        'walker'            => new \Nova_Mega_Menu_Walker(),
+        'walker'			=> new \Novaworks\Core\Modules\Mega_Menu\Walker(),
         'widget_settings' => array(
             'dropdown_icon'   => $settings['dropdown_icon'],
         ),
