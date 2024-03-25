@@ -1027,6 +1027,68 @@ if ( ! class_exists( 'Kitify_Helper' ) ) {
 
 			return false;
 		}
+		/**
+		 * Output and Get Theme SVG.
+		 * Output and get the SVG markup for an icon in the TwentyTwenty_SVG_Icons class.
+		 *
+		 * @since Twenty Twenty 1.0
+		 *
+		 * @param string $svg_name The name of the icon.
+		 * @param string $group    The group the icon belongs to.
+		 * @param string $color    Color code.
+		 */
+		public function svg_icon( $svg_name, $group = 'ui', $attr = array() ) {
+			echo Kitify_SVG_Icons::get_svg( $svg_name, $group, $attr = array() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped in kitify_get_theme_svg().
+		}
+		/**
+		 * Get information about the SVG icon.
+		 *
+		 * @since Twenty Twenty 1.0
+		 *
+		 * @param string $svg_name The name of the icon.
+		 * @param string $group    The group the icon belongs to.
+		 * @param string $color    Color code.
+		 */
+		public function kitify_get_theme_svg( $svg_name, $group = 'ui', $attr = array() ) {
+
+			// Make sure that only our allowed tags and attributes are included.
+			$svg = wp_kses(
+				Kitify_SVG_Icons::get_svg( $svg_name, $group, $attr = array() ),
+				array(
+					'span'     => array(
+						'class'       => true,
+					),
+					'svg'     => array(
+						'class'       => true,
+						'xmlns'       => true,
+						'width'       => true,
+						'height'      => true,
+						'viewbox'     => true,
+						'aria-hidden' => true,
+						'role'        => true,
+						'focusable'   => true,
+					),
+					'path'    => array(
+						'fill'      => true,
+						'fill-rule' => true,
+						'd'         => true,
+						'transform' => true,
+					),
+					'polygon' => array(
+						'fill'      => true,
+						'fill-rule' => true,
+						'points'    => true,
+						'transform' => true,
+						'focusable' => true,
+					),
+				)
+			);
+
+			if ( ! $svg ) {
+				return false;
+			}
+			return $svg;
+		}
 
 	}
 

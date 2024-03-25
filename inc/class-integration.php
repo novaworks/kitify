@@ -535,7 +535,7 @@ if ( ! class_exists( 'Kitify_Integration' ) ) {
 
             wp_add_inline_style('elementor-frontend', $this->add_new_animation_css());
 
-						$subscribe_obj = [
+			$subscribe_obj = [
                 'action' => 'kitify_ajax',
                 'nonce' => kitify()->ajax_manager->create_nonce(),
                 'type' => 'POST',

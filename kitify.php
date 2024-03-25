@@ -342,6 +342,7 @@ if(!function_exists('Kitify')){
          */
         public function load_files() {
 
+            require_once $this->plugin_path( 'inc/class-svg-icons.php' );
             require_once $this->plugin_path( 'inc/class-helper.php' );
             require_once $this->plugin_path( 'inc/class-integration.php' );
             require_once $this->plugin_path( 'inc/class-settings.php' );

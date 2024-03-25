@@ -2214,3 +2214,15 @@ body:not(.elementor-editor-active) .kitify-disable-relative-yes .elementor-widge
   color: #FFF;
   background-color: var(--site-accent-color);
 }
+.kitify-svg-icon {
+	display: inline-block;
+	line-height: 1;
+}
+
+.kitify-svg-icon  svg {
+  vertical-align: -.125em;
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+  display: inline-block;
+}

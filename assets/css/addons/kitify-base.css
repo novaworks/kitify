@@ -2026,3 +2026,16 @@ body:not(.elementor-editor-active) .kitify-disable-relative-yes .elementor-widge
   color: var(--kitify-doc-headerts-button-hover-color, var(--kitify-doc-headerts-link-hover-color));
   background-color: var(--kitify-doc-headerts-button-hover-bgcolor, transparent);
 }
+
+.kitify-svg-icon {
+  display: inline-block;
+  line-height: 1;
+}
+
+.kitify-svg-icon svg {
+  vertical-align: -.125em;
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+  display: inline-block;
+}

@@ -71,7 +71,7 @@ if ( ! class_exists( 'Kitify_Settings' ) ) {
 			'wrapper_link'          => 'false',
 			'element_visibility'    => 'true',
 			'custom_css'            => 'true',
-			'sticky_column'    			=> 'true',
+			'sticky_column'    		=> 'true',
 		];
 
 		/**

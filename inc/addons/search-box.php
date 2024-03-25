@@ -30,7 +30,7 @@ class Kitify_Search_Box extends Kitify_Base {
         $search_for = apply_filters(
             'kitify/search-box/style/search_for',
             array(
-                'all' => esc_html__( 'Search for everything', 'kitify' ),
+                '' => esc_html__( 'Search for everything', 'kitify' ),
                 'product' => esc_html__( 'Search for products', 'kitify' ),
                 'post' => esc_html__( 'Search for posts', 'kitify' ),
                 'adaptive' => esc_html__( 'Search for adaptive', 'kitify' )
@@ -40,6 +40,17 @@ class Kitify_Search_Box extends Kitify_Base {
             'section_search_general_settings',
             array(
                 'label' => esc_html__( 'General Settings', 'kitify' ),
+            )
+        );
+        $this->_add_control(
+            'custom_button_icon',
+            array(
+                'label' => esc_html__('Custom Button Icon', 'kitify'),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Yes', 'kitify'),
+                'label_off' => esc_html__('No', 'kitify'),
+                'return_value' => 'true',
+                'default' => 'false',
             )
         );
         $this->_add_advanced_icon_control(
@@ -54,6 +65,9 @@ class Kitify_Search_Box extends Kitify_Base {
                 'fa5_default' => array(
                     'value'   => 'novaicon-zoom-1',
                     'library' => 'novaicon',
+                ),
+                'condition' => array(
+                    'custom_button_icon' => 'true',
                 ),
             )
         );
@@ -137,21 +151,23 @@ class Kitify_Search_Box extends Kitify_Base {
                 ),
             )
         );
-        $this->_add_control(
-            'ajax_search',
-            array(
-                'label' => esc_html__('AJAX Search', 'kitify'),
-                'type' => Controls_Manager::SWITCHER,
-                'label_on' => esc_html__('Yes', 'kitify'),
-                'label_off' => esc_html__('No', 'kitify'),
-                'description' => esc_html__('Check this option to enable AJAX search in the header', 'kitify'),
-                'return_value' => 'true',
-                'default' => 'true',
-                'condition' => array(
-                    'search_for' => 'product',
-                ),
-            )
-        );
+        if( kitify()->get_theme_support('elementor::ajax-search-box') ) {
+            $this->_add_control(
+                'ajax_search',
+                array(
+                    'label' => esc_html__('AJAX Search', 'kitify'),
+                    'type' => Controls_Manager::SWITCHER,
+                    'label_on' => esc_html__('Yes', 'kitify'),
+                    'label_off' => esc_html__('No', 'kitify'),
+                    'description' => esc_html__('Check this option to enable AJAX search in the header', 'kitify'),
+                    'return_value' => '1',
+                    'default' => '',
+                    'condition' => array(
+                        'search_for' => 'product',
+                    ),
+                )
+            );
+        }
         $this->_add_control(
             'ajax_search_count',
             array(
@@ -159,7 +175,7 @@ class Kitify_Search_Box extends Kitify_Base {
                 'type' => Controls_Manager::NUMBER,
                 'default' => 3,
                 'condition' => [
-                    'ajax_search' => 'true',
+                    'ajax_search' => '1',
                 ],
             )
         );
@@ -215,6 +231,532 @@ class Kitify_Search_Box extends Kitify_Base {
             )
         );
         $this->end_controls_section();
+        $css_scheme = apply_filters(
+            'kitify/search-box/css-scheme',
+            array(
+                'form'                    => '.kitify-search-box',
+                'form_input'              => '.kitify-search-box .kitify-search-box__container .kitify-search-box__field',
+                'form_submit'             => '.kitify-search-box .kitify-search-box__button',
+                'form_submit_icon'        => 'kitify-svg-icon svg, .kitify-svg-icon i',
+            )
+        );
+
+        $this->_start_controls_section(
+            'section_form_style',
+            array(
+                'label' => esc_html__( 'Form', 'kitify' ),
+                'tab'        => Controls_Manager::TAB_STYLE,
+                'show_label' => false,
+            )
+        );
+        $this->_add_control(
+            'form_style',
+            array(
+                'label'     => esc_html__( 'Form Style', 'kitify' ),
+                'type'      => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ),25
+        );
+        $this->_add_control(
+            'form_bg_color',
+            array(
+                'label'  => esc_html__( 'Background Color', 'kitify' ),
+                'type'   => Controls_Manager::COLOR,
+                'selectors' => array(
+                    '{{WRAPPER}} ' . $css_scheme['form'] => 'background-color: {{VALUE}}',
+                ),
+            ),
+            25
+        );
+
+        $this->_add_responsive_control(
+            'form_padding',
+            array(
+                'label'      => esc_html__( 'Padding', 'kitify' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => array( 'px', '%', 'em' ),
+                'selectors'  => array(
+                    '{{WRAPPER}} '  . $css_scheme['form'] => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ),
+            ),
+            25
+        );
+
+        $this->_add_responsive_control(
+            'form_margin',
+            array(
+                'label'      => esc_html__( 'Margin', 'kitify' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => array( 'px', '%', 'em' ),
+                'selectors'  => array(
+                    '{{WRAPPER}} '  . $css_scheme['form'] => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ),
+            ),
+            25
+        );
+
+        $this->_add_group_control(
+            Group_Control_Border::get_type(),
+            array(
+                'name'           => 'form_border',
+                'label'          => esc_html__( 'Border', 'kitify' ),
+                'placeholder'    => '1px',
+                'selector'       => '{{WRAPPER}} ' . $css_scheme['form'],
+            ),
+            75
+        );
+
+        $this->_add_responsive_control(
+            'form_border_radius',
+            array(
+                'label'      => esc_html__( 'Border Radius', 'kitify' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => array( 'px', '%' ),
+                'selectors'  => array(
+                    '{{WRAPPER}} ' . $css_scheme['form'] => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ),
+            ),
+            75
+        );
+
+        $this->_add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            array(
+                'name'     => 'form_box_shadow',
+                'selector' => '{{WRAPPER}} ' . $css_scheme['form'],
+            ),
+            100
+        );
+        $this->_add_control(
+            'form_input_style',
+            array(
+                'label'     => esc_html__( 'Input Field', 'kitify' ),
+                'type'      => Controls_Manager::HEADING,
+            ),
+            25
+        );
+
+		$this->_add_control(
+			'form_input_align',
+			[
+				'label' => __( 'Text Alignment', 'kitify' ),
+				'type' => Controls_Manager::CHOOSE,
+				'options' => [
+					'left' => [
+						'title' => __( 'Left', 'kitify' ),
+						'icon' => 'eicon-text-align-left',
+					],
+					'center' => [
+						'title' => __( 'Center', 'kitify' ),
+						'icon' => 'eicon-text-align-center',
+					],
+					'right' => [
+						'title' => __( 'Right', 'kitify' ),
+						'icon' => 'eicon-text-align-right',
+					],
+					'justify' => [
+						'title' => __( 'Justified', 'kitify' ),
+						'icon' => 'eicon-text-align-justify',
+					],
+				],
+				'default' => '',
+				'selectors' => [
+					'{{WRAPPER}} ' . $css_scheme['form_input'] => 'text-align: {{VALUE}};',
+				],
+			]
+		);
+
+        $this->_add_group_control(
+            Group_Control_Typography::get_type(),
+            array(
+                'name'      => 'form_input_typography',
+                'selector'  => '{{WRAPPER}} ' . $css_scheme['form_input'],
+            ),
+            50
+        );
+
+        $this->_start_controls_tabs( 'form_input_tabs' );
+
+        $this->_start_controls_tab(
+            'form_input_tab_normal',
+            array(
+                'label' => esc_html__( 'Normal', 'kitify' ),
+            )
+        );
+
+        $this->_add_control(
+            'form_input_bg_color',
+            array(
+                'label'  => esc_html__( 'Background Color', 'kitify' ),
+                'type'   => Controls_Manager::COLOR,
+                'selectors' => array(
+                    '{{WRAPPER}} ' . $css_scheme['form_input'] => 'background-color: {{VALUE}}',
+                ),
+            ),
+            25
+        );
+
+        $this->_add_control(
+            'form_input_color',
+            array(
+                'label'  => esc_html__( 'Text Color', 'kitify' ),
+                'type'   => Controls_Manager::COLOR,
+                'selectors' => array(
+                    '{{WRAPPER}} ' . $css_scheme['form_input'] => 'color: {{VALUE}}',
+                ),
+            ),
+            25
+        );
+
+        $this->_add_control(
+            'form_input_placeholder_color',
+            array(
+                'label'  => esc_html__( 'Placeholder Color', 'kitify' ),
+                'type'   => Controls_Manager::COLOR,
+                'selectors' => array(
+                    '{{WRAPPER}} ' . $css_scheme['form_input'] . '::-webkit-input-placeholder' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} ' . $css_scheme['form_input'] . '::-moz-placeholder'          => 'color: {{VALUE}}',
+                    '{{WRAPPER}} ' . $css_scheme['form_input'] . ':-ms-input-placeholder'      => 'color: {{VALUE}}',
+                ),
+            ),
+            25
+        );
+
+        $this->_add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            array(
+                'name'     => 'form_input_box_shadow',
+                'selector' => '{{WRAPPER}} ' . $css_scheme['form_input'],
+            ),
+            100
+        );
+
+        $this->_end_controls_tab();
+
+        $this->_start_controls_tab(
+            'form_input_tab_focus',
+            array(
+                'label' => esc_html__( 'Focus', 'kitify' ),
+            )
+        );
+
+        $this->_add_control(
+            'form_input_bg_color_focus',
+            array(
+                'label'  => esc_html__( 'Background Color', 'kitify' ),
+                'type'   => Controls_Manager::COLOR,
+                'selectors' => array(
+                    '{{WRAPPER}} ' . $css_scheme['form_input'] . ':focus' => 'background-color: {{VALUE}}',
+                ),
+            ),
+            25
+        );
+
+        $this->_add_control(
+            'form_input_color_focus',
+            array(
+                'label'  => esc_html__( 'Text Color', 'kitify' ),
+                'type'   => Controls_Manager::COLOR,
+                'selectors' => array(
+                    '{{WRAPPER}} ' . $css_scheme['form_input'] . ':focus' => 'color: {{VALUE}}',
+                ),
+            ),
+            25
+        );
+
+        $this->_add_control(
+            'form_input_placeholder_color_focus',
+            array(
+                'label'  => esc_html__( 'Placeholder Color', 'kitify' ),
+                'type'   => Controls_Manager::COLOR,
+                'selectors' => array(
+                    '{{WRAPPER}} ' . $css_scheme['form_input'] . ':focus::-webkit-input-placeholder' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} ' . $css_scheme['form_input'] . ':focus::-moz-placeholder'          => 'color: {{VALUE}}',
+                    '{{WRAPPER}} ' . $css_scheme['form_input'] . ':focus:-ms-input-placeholder'      => 'color: {{VALUE}}',
+                ),
+            ),
+            25
+        );
+
+        $this->_add_control(
+            'form_input_border_color_focus',
+            array(
+                'label'  => esc_html__( 'Border Color', 'kitify' ),
+                'type'   => Controls_Manager::COLOR,
+                'selectors' => array(
+                    '{{WRAPPER}} ' . $css_scheme['form_input'] . ':focus' => 'border-color: {{VALUE}}',
+                ),
+                'condition' => array(
+                    'form_input_border_border!' => '',
+                ),
+            ),75
+        );
+
+        $this->_add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            array(
+                'name'     => 'form_input_box_shadow_focus',
+                'selector' => '{{WRAPPER}} ' . $css_scheme['form_input'] . ':focus',
+            ),
+            100
+        );
+
+        $this->_end_controls_tab();
+
+        $this->_end_controls_tabs();
+
+        $this->_add_responsive_control(
+            'form_input_height',
+            array(
+                'label'      => esc_html__( 'Height', 'kitify' ),
+                'type'       => Controls_Manager::SLIDER,
+                'size_units' => array( 'px' ),
+                'range'      => array(
+                    'px' => array(
+                        'min' => 10,
+                        'max' => 100,
+                    ),
+                ),
+                'selectors'  => array(
+                    '{{WRAPPER}} ' . $css_scheme['form_input'] => 'height: {{SIZE}}{{UNIT}};',
+                ),
+            ),
+            50
+        );
+        $this->_add_responsive_control(
+            'form_input_padding',
+            array(
+                'label'      => esc_html__( 'Padding', 'kitify' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => array( 'px', '%', 'em' ),
+                'selectors'  => array(
+                    '{{WRAPPER}} '  . $css_scheme['form_input'] => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ),
+                'separator' => 'before',
+            ),
+            25
+        );
+
+        $this->_add_responsive_control(
+            'form_input_margin',
+            array(
+                'label'      => esc_html__( 'Margin', 'kitify' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => array( 'px', '%', 'em' ),
+                'selectors'  => array(
+                    '{{WRAPPER}} '  . $css_scheme['form_input'] => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ),
+            ),
+            25
+        );
+
+        $this->_add_group_control(
+            Group_Control_Border::get_type(),
+            array(
+                'name'           => 'form_input_border',
+                'label'          => esc_html__( 'Border', 'kitify' ),
+                'placeholder'    => '1px',
+                'selector'       => '{{WRAPPER}} ' . $css_scheme['form_input'],
+            ),
+            75
+        );
+
+        $this->_add_responsive_control(
+            'form_input_border_radius',
+            array(
+                'label'      => esc_html__( 'Border Radius', 'kitify' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => array( 'px', '%' ),
+                'selectors'  => array(
+                    '{{WRAPPER}} ' . $css_scheme['form_input'] => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ),
+            ),
+            75
+        );
+
+        $this->_add_control(
+            'form_submit_style',
+            array(
+                'label'     => esc_html__( 'Submit Button', 'kitify' ),
+                'type'      => Controls_Manager::HEADING,
+                'separator' => 'before',
+            ),
+            25
+        );
+
+        $this->_add_group_control(
+            Group_Control_Typography::get_type(),
+            array(
+                'name'     => 'form_submit_typography',
+                'selector' => '{{WRAPPER}} ' . $css_scheme['form_submit'],
+            ),
+            50
+        );
+
+        $this->_add_responsive_control(
+            'form_submit_icon_size',
+            array(
+                'label'      => esc_html__( 'Icon Size', 'kitify' ),
+                'type'       => Controls_Manager::SLIDER,
+                'size_units' => array( 'px' ),
+                'range'      => array(
+                    'px' => array(
+                        'min' => 10,
+                        'max' => 100,
+                    ),
+                ),
+                'selectors'  => array(
+                    '{{WRAPPER}} ' . $css_scheme['form_submit_icon'] => 'font-size: {{SIZE}}{{UNIT}};',
+                ),
+            ),
+            50
+        );
+
+        $this->_start_controls_tabs( 'tabs_form_submit_style' );
+
+        $this->_start_controls_tab(
+            'tab_form_submit_normal',
+            array(
+                'label' => esc_html__( 'Normal', 'kitify' ),
+            )
+        );
+
+        $this->_add_control(
+            'form_submit_bg_color',
+            array(
+                'label'  => esc_html__( 'Background Color', 'kitify' ),
+                'type'   => Controls_Manager::COLOR,
+                'selectors' => array(
+                    '{{WRAPPER}} ' . $css_scheme['form_submit'] => 'background-color: {{VALUE}}',
+                ),
+            ),
+            25
+        );
+
+        $this->_add_control(
+            'form_submit_color',
+            array(
+                'label'  => esc_html__( 'Text Color', 'kitify' ),
+                'type'   => Controls_Manager::COLOR,
+                'selectors' => array(
+                    '{{WRAPPER}} ' . $css_scheme['form_submit'] => 'color: {{VALUE}}',
+                ),
+            ),
+            25
+        );
+
+        $this->_end_controls_tab();
+
+        $this->_start_controls_tab(
+            'tab_form_submit_hover',
+            array(
+                'label' => esc_html__( 'Hover', 'kitify' ),
+            )
+        );
+
+        $this->_add_control(
+            'form_submit_bg_color_hover',
+            array(
+                'label'  => esc_html__( 'Background Color', 'kitify' ),
+                'type'   => Controls_Manager::COLOR,
+                'selectors' => array(
+                    '{{WRAPPER}} ' . $css_scheme['form_submit'] . ':hover' => 'background-color: {{VALUE}}',
+                ),
+            ),
+            25
+        );
+
+        $this->_add_control(
+            'form_submit_color_hover',
+            array(
+                'label'  => esc_html__( 'Text Color', 'kitify' ),
+                'type'   => Controls_Manager::COLOR,
+                'selectors' => array(
+                    '{{WRAPPER}} ' . $css_scheme['form_submit'] . ':hover' => 'color: {{VALUE}}',
+                ),
+            ),
+            25
+        );
+
+        $this->_add_control(
+            'form_submit_hover_border_color',
+            array(
+                'label' => esc_html__( 'Border Color', 'kitify' ),
+                'type' => Controls_Manager::COLOR,
+                'condition' => array(
+                    'form_submit_border_border!' => '',
+                ),
+                'selectors' => array(
+                    '{{WRAPPER}} ' . $css_scheme['form_submit'] . ':hover' => 'border-color: {{VALUE}};',
+                ),
+            ),
+            75
+        );
+
+        $this->_end_controls_tab();
+
+        $this->_end_controls_tabs();
+
+        $this->_add_responsive_control(
+            'form_submit_padding',
+            array(
+                'label'      => esc_html__( 'Padding', 'kitify' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => array( 'px', '%', 'em' ),
+                'selectors'  => array(
+                    '{{WRAPPER}} '  . $css_scheme['form_submit'] => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ),
+                'separator' => 'before',
+            ),
+            25
+        );
+
+        $this->_add_responsive_control(
+            'form_submit_margin',
+            array(
+                'label'      => esc_html__( 'Margin', 'kitify' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => array( 'px', '%', 'em' ),
+                'selectors'  => array(
+                    '{{WRAPPER}} '  . $css_scheme['form_submit'] => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ),
+            ),
+            25
+        );
+
+        $this->_add_group_control(
+            Group_Control_Border::get_type(),
+            array(
+                'name'           => 'form_submit_border',
+                'label'          => esc_html__( 'Border', 'kitify' ),
+                'placeholder'    => '1px',
+                'selector'       => '{{WRAPPER}} ' . $css_scheme['form_submit'],
+            ),
+            75
+        );
+
+        $this->_add_responsive_control(
+            'form_submit_border_radius',
+            array(
+                'label'      => esc_html__( 'Border Radius', 'kitify' ),
+                'type'       => Controls_Manager::DIMENSIONS,
+                'size_units' => array( 'px', '%' ),
+                'selectors'  => array(
+                    '{{WRAPPER}} ' . $css_scheme['form_submit'] => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ),
+            ),
+            75
+        );
+
+        $this->_add_group_control(
+            Group_Control_Box_Shadow::get_type(),
+            array(
+                'name'     => 'form_submit_box_shadow',
+                'selector' => '{{WRAPPER}} ' . $css_scheme['form_submit'],
+            ),
+            100
+        );
+        $this->end_controls_section();
     }
 	/**
 	 * Display trending searches links.
@@ -243,10 +785,10 @@ class Kitify_Search_Box extends Kitify_Base {
 		$post_type 		   = $settings['search_for'];
 
 		?>
-		<div class="header-search__trending header-search__trending--outside">
-			<div class="header-search__trending-label"><?php esc_html_e( 'Trending Searches', 'kitify' ); ?></div>
+		<div class="kitify-search-box__trending kitify-search-box__trending--outside">
+			<div class="kitify-search-box__trending-label"><?php esc_html_e( 'Trending Searches', 'kitify' ); ?></div>
 
-			<ul class="header-search__trending-links">
+			<ul class="kitify-search-box__trending-links">
 				<?php
 				foreach ( $items as $trending_search ) {
 					$url = $trending_search['item_url']['url'];
@@ -330,9 +872,12 @@ class Kitify_Search_Box extends Kitify_Base {
 
 		if ( $terms && ! is_wp_error( $terms ) ) :
 		?>
-			<div class="header-search__categories">
-				<div class="header-search__categories-title"><span><?php echo esc_html__( 'Select Categories', 'kitify' ); ?></span>icon_close</div>
-				<ul class="header-search__categories-container" <?php echo sprintf('style="--mt-header-search-cats-rows: %s"', esc_attr( $rows ) ); ?>>
+			<div class="kitify-search-box__categories">
+				<div class="kitify-search-box__categories-title">
+                    <span><?php echo esc_html__( 'Select Categories', 'kitify' ); ?></span>
+                    <?php echo \Kitify_SVG_Icons::get_svg( 'close', 'ui', 'class=kitify-search-box__categories-close' ); ?>
+                </div>
+				<ul class="kitify-search-box__categories-container" <?php echo sprintf('style="--mt-kitify-search-box-cats-rows: %s"', esc_attr( $rows ) ); ?>>
 					<?php
 						foreach ( $terms as $term ) :
 							if ( !empty($term->slug) ) {
@@ -362,7 +907,7 @@ class Kitify_Search_Box extends Kitify_Base {
 		if ( $settings['search_for'] !== 'adaptive' ) {
 			$type = $settings['search_for'];
 		} else {
-			if( Helper::is_blog() || is_singular('post') ) {
+			if( kitify_helper()->is_blog() || is_singular('post') ) {
 				$type = 'post';
 			} else {
 				$type = 'product';
@@ -375,25 +920,10 @@ class Kitify_Search_Box extends Kitify_Base {
 
 		return $type;
 	}
-	public function add_js () {
-        $settings = $this->get_settings();
-        $search_js_data = array(
-            'ajax_url'             				=> class_exists( 'WC_AJAX' ) ? \WC_AJAX::get_endpoint( '%%endpoint%%' ) : '',
-            'header_search_type' 				=> $settings['search_for'],
-            'header_ajax_search'   				=> intval( $settings['ajax_search'] ),
-            'header_search_number' 				=> $settings['ajax_search_count'],
-            'post_type' 	     				=> $this->type(),
-        );
-        wp_localize_script(
-            'kitify-search-box', 'SearchBoxData', $search_js_data
-        );
-	}
     protected function render() {
-        add_action( 'wp_enqueue_scripts', array( $this, 'add_js' ) );
 		$this->_context = 'render';
 		$this->_open_wrap();
 		include $this->_get_global_template( 'index' );
 		$this->_close_wrap();
 	}
-
 }

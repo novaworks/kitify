@@ -66,22 +66,6 @@ class Kitify_Section_Title extends Kitify_Base {
 	}
 
 	/**
-	 * Get widget categories.
-	 *
-	 * Retrieve the list of categories the heading widget belongs to.
-	 *
-	 * Used to determine where to display the widget in the editor.
-	 *
-	 * @since 2.0.0
-	 * @access public
-	 *
-	 * @return array Widget categories.
-	 */
-	public function get_categories() {
-		return [ 'basic' ];
-	}
-
-	/**
 	 * Get widget keywords.
 	 *
 	 * Retrieve the list of keywords the widget belongs to.

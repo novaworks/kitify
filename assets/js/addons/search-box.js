@@ -12,9 +12,6 @@
 	 * Product instance search
 	 */
     kitify_search.instanceSearch = function () {
-		// if (mottaData.header_ajax_search != '1') {
-		// 	return;
-		// }
 
 		var $modal = $('.kitify-search-box');
 
@@ -22,7 +19,13 @@
 			searchCache = {},
 			$form = $modal.find('form');
 
-		$modal.on('keyup', '.header-search__field, .search-modal__field', function (e) {
+		var $settings = $modal.data('settings');
+
+		if ($settings['header_ajax_search'] != '1') {
+			return;
+		}
+
+		$modal.on('keyup', '.kitify-search-box__field, .search-modal__field', function (e) {
 			var valid = false,
 			$search = $(this);
 
@@ -40,11 +43,11 @@
 				xhr.abort();
 			}
 
-			var $categoryWidth 	= $('.header-search__categories-label').is(":visible") ? $('.header-search__categories-label').outerWidth(true) : 0,
-				$dividerWidth 	= $('.header-search__divider').is(":visible") ? $('.header-search__divider').outerWidth(true) : 0,
+			var $categoryWidth 	= $('.kitify-search-box__categories-label').is(":visible") ? $('.kitify-search-box__categories-label').outerWidth(true) : 0,
+				$dividerWidth 	= $('.kitify-search-box__divider').is(":visible") ? $('.kitify-search-box__divider').outerWidth(true) : 0,
 				$spacing 		= $categoryWidth + $dividerWidth + 10;
 
-				if ( $('.header-search__container > div:first-child').hasClass('header-search__categories-label') ) {
+				if ( $('.kitify-search-box__container > div:first-child').hasClass('kitify-search-box__categories-label') ) {
 					$spacing = 10;
 				}
 
@@ -54,29 +57,29 @@
 				$modal.find('.close-search-results').css('right', $spacing);
 			}
 
-			$modal.find('.header-search__trending').removeClass('header-search__trending--open');
+			$modal.find('.kitify-search-box__trending').removeClass('kitify-search-box__trending--open');
 
 			$modal.find('.result-list-found, .result-list-not-found').html('');
 
-			var $currentForm = $search.closest('.header-search__form, .search-modal__form');
+			var $currentForm = $search.closest('.kitify-search-box__form, .search-modal__form');
 
 			if ($search.val().length < 2) {
 				$currentForm.removeClass('searching searched actived found-products found-no-product invalid-length');
 			}
 
 			search($currentForm);
-		}).on('click', '.header-search__categories-container a', function () {
+		}).on('click', '.kitify-search-box__categories-container a', function () {
 			if (xhr) {
 				xhr.abort();
 			}
 
 			$modal.find('.result-list-found').html('');
-			var $currentForm = $(this).closest('.header-search__form');
+			var $currentForm = $(this).closest('.kitify-search-box__form');
 
 			search($currentForm);
-		}).on('focusout', '.header-search__field, .search-modal__field', function () {
+		}).on('focusout', '.kitify-search-box__field, .search-modal__field', function () {
 			var $search = $(this),
-				$currentForm = $search .closest('.header-search__form, .search-modal__form');
+				$currentForm = $search .closest('.kitify-search-box__form, .search-modal__form');
 
 			if ($search.val().length < 2) {
 				$currentForm.removeClass('searching searched actived found-products found-no-product invalid-length');
@@ -85,8 +88,8 @@
 
 		$modal.on('click', '.close-search-results', function (e) {
 			e.preventDefault();
-			$modal.find('.header-search__field, .search-modal__field').val('');
-			$modal.find('.header-search__form, .search-modal__form').removeClass('searching searched actived found-products found-no-product invalid-length');
+			$modal.find('.kitify-search-box__field, .search-modal__field').val('');
+			$modal.find('.kitify-search-box__form, .search-modal__form').removeClass('searching searched actived found-products found-no-product invalid-length');
 
 			$modal.find('.result-list-found').html('');
 		});
@@ -95,7 +98,7 @@
 		 * Private function for search
 		 */
 		function search($currentForm) {
-			var $search = $currentForm.find('input.header-search__field, input.search-modal__field'),
+			var $search = $currentForm.find('input.kitify-search-box__field, input.search-modal__field'),
 				keyword = $search.val(),
 				cat = 0,
 				$results = $currentForm.find('.search-results');
@@ -122,7 +125,7 @@
 				$results.html(result.products);
 
 
-				$(document.body).trigger('motta_ajax_search_request_success', [$results]);
+				$(document.body).trigger('kitify_ajax_search_request_success', [$results]);
 
 				$currentForm.removeClass('invalid-length');
 				$currentForm.addClass('searched actived');
@@ -130,10 +133,10 @@
 				var data = {
 						'term': keyword,
 						'cat': cat,
-						'ajax_search_number': mottaData.header_search_number,
-						'search_type': $currentForm.find('input.header-search__post-type, input.search-modal__post-type').val()
+						'ajax_search_number': $settings['header_search_number'],
+						'search_type': $currentForm.find('input.kitify-search-box__post-type, input.search-modal__post-type').val()
 					},
-					ajax_url = mottaData.ajax_url.toString().replace('%%endpoint%%', 'motta_instance_search_form');
+					ajax_url = $settings['ajax_url'].toString().replace('%%endpoint%%', 'kitify_instance_search_form');
 
 				xhr = $.post(
 					ajax_url,
@@ -146,7 +149,7 @@
 						$results.html($products);
 						$currentForm.removeClass('invalid-length');
 
-						$(document.body).trigger('motta_ajax_search_request_success', [$results]);
+						$(document.body).trigger('kitify_ajax_search_request_success', [$results]);
 
 						// Cache
 						searchCache[keycat] = {
@@ -163,37 +166,37 @@
 			}
 		}
 
-		$( '.site-header .header-search__field' ).on( 'input', function() {
+		$( '.site-header .kitify-search-box__field' ).on( 'input', function() {
 			var value = $(this).val();
 
-			$( '.site-header .header-search__field' ).val(value);
+			$( '.site-header .kitify-search-box__field' ).val(value);
 		} );
 	}
     /**
 	 * Open trending post when focus on search field
 	 */
     kitify_search.focusSearchField = function() {
-		$( '.kitify-search-box .header-search__field' ).on( 'focus', function() {
+		$( '.kitify-search-box .kitify-search-box__field' ).on( 'focus', function() {
 			var $field = $( this );
-			var $trendingSearches = $field.closest( '.kitify-search-box' ).find( '.header-search__trending--outside' );
+			var $trendingSearches = $field.closest( '.kitify-search-box' ).find( '.kitify-search-box__trending--outside' );
 
-			$field.closest('.header-search__form').addClass( 'header-search__form--focused' );
+			$field.closest('.kitify-search-box__form').addClass( 'kitify-search-box__form--focused' );
 
-			if ( ! $field.closest('.header-search__form').hasClass( 'searched' ) ) {
-				$trendingSearches.addClass( 'header-search__trending--open' );
+			if ( ! $field.closest('.kitify-search-box__form').hasClass( 'searched' ) ) {
+				$trendingSearches.addClass( 'kitify-search-box__trending--open' );
 			}
-			$field.addClass( 'header-search--focused' );
+			$field.addClass( 'kitify-search-box--focused' );
 
-			$field.closest('.header-search__form').find('.header-search__results').removeClass( 'hidden' );
+			$field.closest('.kitify-search-box__form').find('.kitify-search-box__results').removeClass( 'hidden' );
 
 			$( window ).one( 'scroll', function() {
 				$field.trigger('blur');
 			} );
 		} );
 
-		$( document.body ).on( 'click', '.header-search__trending-label, .header-search__categories-label', function() {
-			$( '.header-search__trending--outside' ).removeClass( 'header-search__trending--open' );
-			$('.header-search__form').removeClass( 'header-search__form--focused' );
+		$( document.body ).on( 'click', '.kitify-search-box__trending-label, .kitify-search-box__categories-label', function() {
+			$( '.kitify-search-box__trending--outside' ).removeClass( 'kitify-search-box__trending--open' );
+			$('.kitify-search-box__form').removeClass( 'kitify-search-box__form--focused' );
 		}).on( 'click', 'div', function( event ) {
 			var $target = $( event.target );
 
@@ -201,21 +204,21 @@
 				return;
 			}
 
-			$( '.header-search__trending--outside' ).removeClass( 'header-search__trending--open' );
-			$( '.header-search' ).removeClass( 'header-search--focused' );
-			$('.header-search__form').removeClass( 'header-search__form--focused' );
+			$( '.kitify-search-box__trending--outside' ).removeClass( 'kitify-search-box__trending--open' );
+			$( '.kitify-search-box' ).removeClass( 'kitify-search-box--focused' );
+			$('.kitify-search-box__form').removeClass( 'kitify-search-box__form--focused' );
 
-			$( '.header-search').find('.header-search__results').addClass( 'hidden' );
+			$( '.kitify-search-box').find('.kitify-search-box__results').addClass( 'hidden' );
 		} );
 
-		var width = $( '.header-search--form' ).data('width');
+		var width = $( '.kitify-search-box--form' ).data('width');
 
 		if ( width ) {
 			$( window ).on('resize', function () {
 				if ($( window ).width() > 1300) {
-					$( '.header-search--form' ).css('max-width', width);
+					$( '.kitify-search-box--form' ).css('max-width', width);
 				} else {
-					$( '.header-search--form' ).removeAttr("style");
+					$( '.kitify-search-box--form' ).removeAttr("style");
 				}
 
 			}).trigger('resize');
@@ -226,22 +229,25 @@
 	 * Open category list
 	 */
 	kitify_search.clickCategorySearch = function() {
-		// if ( ! mottaData.header_search_type ) {
-		// 	return;
-		// }
+		var $modal = $('.kitify-search-box');
+		var $settings = $modal.data('settings');
 
-		// if ( mottaData.header_search_type == 'adaptive' && mottaData.post_type == 'post' ) {
-		// 	return;
-		// }
+		if ( ! $settings['header_search_type'] ) {
+			return;
+		}
 
-		$( '.header-search__categories-label' ).on( 'click', function() {
-			$( this ).closest('.header-search__form').find('.header-search__categories').addClass( 'header-search__categories--open' );
-			$( this ).closest('.header-search__form').addClass( 'categories--open' );
+		if ( $settings['header_search_type'] == 'adaptive' && $settings['header_search_type'] == 'post' ) {
+			return;
+		}
+
+		$( '.kitify-search-box__categories-label' ).on( 'click', function() {
+			$( this ).closest('.kitify-search-box__form').find('.kitify-search-box__categories').addClass( 'kitify-search-box__categories--open' );
+			$( this ).closest('.kitify-search-box__form').addClass( 'categories--open' );
 		});
 
-		$( document.body ).on( 'click', '.header-search__categories-close', function() {
-			$(this).closest('.header-search__categories').removeClass('header-search__categories--open');
-			$('.header-search__form').removeClass( 'categories--open' );
+		$( document.body ).on( 'click', '.kitify-search-box__categories-close', function() {
+			$(this).closest('.kitify-search-box__categories').removeClass('kitify-search-box__categories--open');
+			$('.kitify-search-box__form').removeClass( 'categories--open' );
 		}).on( 'click', 'div', function( event ) {
 			var $target = $( event.target );
 
@@ -249,40 +255,40 @@
 				return;
 			}
 
-			$( '.header-search__categories' ).removeClass('header-search__categories--open');
-			$( '.header-search__form' ).removeClass( 'categories--open' );
+			$( '.kitify-search-box__categories' ).removeClass('kitify-search-box__categories--open');
+			$( '.kitify-search-box__form' ).removeClass( 'categories--open' );
 		} );
 
-		$( '.header-search__categories a' ).on( 'click', function(e) {
+		$( '.kitify-search-box__categories a' ).on( 'click', function(e) {
 			e.preventDefault();
 
-			$( '.header-search__categories a' ).removeClass('active');
+			$( '.kitify-search-box__categories a' ).removeClass('active');
 			$(this).addClass('active');
 
 			var cat = $(this).attr('data-slug'),
 				text = $(this).text();
 
-			$(this).closest('.header-search__form').find('input.category-name').val(cat);
-			$(this).closest('.header-search__categories').removeClass('header-search__categories--open');
-			$('.header-search__form').removeClass( 'categories--open' );
-			$('.header-search__form').find('.header-search__categories-label').find('.header-search__categories-text').text(text);
+			$(this).closest('.kitify-search-box__form').find('input.category-name').val(cat);
+			$(this).closest('.kitify-search-box__categories').removeClass('kitify-search-box__categories--open');
+			$('.kitify-search-box__form').removeClass( 'categories--open' );
+			$('.kitify-search-box__form').find('.kitify-search-box__categories-label').find('.kitify-search-box__categories-text').text(text);
 
-			var $categoryWidth = $('.header-search__categories-label').is(":visible") ? $('.header-search__categories-label').outerWidth(true) : 0,
-				$dividerWidth = $('.header-search__divider').is(":visible") ? $('.header-search__divider').outerWidth(true) : 0;
+			var $categoryWidth = $('.kitify-search-box__categories-label').is(":visible") ? $('.kitify-search-box__categories-label').outerWidth(true) : 0,
+				$dividerWidth = $('.kitify-search-box__divider').is(":visible") ? $('.kitify-search-box__divider').outerWidth(true) : 0;
 
 			if (motta.$body.hasClass('rtl')) {
-				$(this).closest('.header-search__form').find('.close-search-results').css('left', $categoryWidth + $dividerWidth + 10);
+				$(this).closest('.kitify-search-box__form').find('.close-search-results').css('left', $categoryWidth + $dividerWidth + 10);
 			} else {
-				$(this).closest('.header-search__form').find('.close-search-results').css('right', $categoryWidth + $dividerWidth + 10);
+				$(this).closest('.kitify-search-box__form').find('.close-search-results').css('right', $categoryWidth + $dividerWidth + 10);
 			}
 		});
 
 		$(window).on( 'load', function() {
-			var cat = $('.header-search__form').find('input.category-name').val();
+			var cat = $('.kitify-search-box__form').find('input.category-name').val();
 
 			if( cat ) {
-				var item = $('.header-search__categories').find('a[data-slug="'+cat+'"]');
-				$( '.header-search__categories a' ).removeClass('active');
+				var item = $('.kitify-search-box__categories').find('a[data-slug="'+cat+'"]');
+				$( '.kitify-search-box__categories a' ).removeClass('active');
 				item.addClass('active');
 			}
 		});
@@ -292,18 +298,18 @@
 	 * Open search adaptive
 	 */
 	kitify_search.clickSearchAdaptive = function() {
-		$( '.header-search--icon' ).on( 'click', '.header-search__icon', function() {
-			$( this ).closest('.header-search--icon').addClass( 'header-search--icon-open' );
+		$( '.kitify-search-box--icon' ).on( 'click', '.kitify-search-box__icon', function() {
+			$( this ).closest('.kitify-search-box--icon').addClass( 'kitify-search-box--icon-open' );
 		});
 
 		$( document.body ).on( 'click', 'div', function( event ) {
 			var $target = $( event.target );
 
-			if ( $target.is( '.header-search--icon' ) || $target.closest( '.header-search--icon' ).length ) {
+			if ( $target.is( '.kitify-search-box--icon' ) || $target.closest( '.kitify-search-box--icon' ).length ) {
 				return;
 			}
 
-			$( '.header-search--icon' ).removeClass( 'header-search--icon-open' );
+			$( '.kitify-search-box--icon' ).removeClass( 'kitify-search-box--icon-open' );
 		} );
 	};
     $( window ).on( 'elementor/frontend/init', function (){
